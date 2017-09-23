@@ -6,7 +6,7 @@
 <!-- 2017-09-24 周日 00:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Links</title>
+<title>damon-kwok's homepage</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="damon-kwok" />
 <style type="text/css">
@@ -229,12 +229,42 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Links</h1>
+<h1 class="title">damon-kwok's homepage</h1>
 <p>
-<a href="./index.html">Home</a> <a href="./blog.html">Blogs</a> <a href="./articles.html">Articles</a> <a href="./link.html">Links</a>
+<a href="./index.html">Home</a> <a href="./blog.html">Blogs</a> <a href="./link.html">Links</a>
 </p>
 
 <hr />
+
+<p>
+*Emacs字体设置
+</p>
+
+<p>
+***终端登陆后，再使用桌面环境打开出现：
+Error (frameset): Font ‘tty’ is not defined
+</p>
+
+<p>
+ (setq desktop-restore-frames nil)
+(desktop-save-mode 1) 
+</p>
+
+<p>
+***定义字体后
+"Error (frameset): Font `tty' is not defined
+</p>
+
+<p>
+解决办法： 
+(if window-system
+(set-font)))
+</p>
+
+<p>
+*Windows10 下中文卡顿
+使用宋体或微软雅黑
+</p>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: damon-kwok</p>

@@ -1,5 +1,0 @@
-#+TITLE: Sitemap
-
-   + [[file:link.org][2017-08-31 Links]]
-   + [[file:blog.org][2017-08-31 Blogs]]
-   + [[file:index.org][2017-08-31 damon-kwok's homepage]]
