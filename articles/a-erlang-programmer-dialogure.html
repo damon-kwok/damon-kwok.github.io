@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>damon-kwok's homepage</title>
+<meta name="generator" content="Org mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../css/worg.css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">damon-kwok's homepage</h1>
+<p>
+<a href="../index.html">Home</a> <a href="../blog.html">Blogs</a> <a href="../articles.html">Articles</a> <a href="../link.html">Links</a>
+</p>
+
+<hr />
+
+<div class="org-center">
+<p>
+Erlang不能错过的盛宴（快步进入Erlang的世界）
+</p>
+</div>
+
+<p>
+作者：成立涛 (litaocheng@gmail.com)
+</p>
+
+<p>
+原文：<a href="http://blog.csdn.net/turingbooks/article/details/3247749">http://blog.csdn.net/turingbooks/article/details/3247749</a>
+</p>
+
+<p>
+作为程序员，我们曾经闻听很多“业界动态”，“技术革新”，曾经接触很多“高手箴言”，“权威推荐”。这些正确与否，都已成过去！
+</p>
+
+<p>
+现在，让我们迎接Erlang盛宴！
+</p>
+
+<div id="outline-container-orge2980da" class="outline-2">
+<h2 id="orge2980da">一、经历</h2>
+<div class="outline-text-2" id="text-orge2980da">
+<p>
+2007年11月在koders.com搜索代码时，发现*.erl格式的源文件，感叹开发语言的花样百出，此时，我觉得erlang是一个丑陋的小家伙，看名字就没有对它提起多少兴趣。
+</p>
+
+<p>
+2008年初的时候，公司的项目开发中，我有缘认识了ejabberd，一个采用Erlang开发的开源jabber服务器。我开始为其诱人的特性所倾倒。是时候认真看看Erlang到底什么样了！
+</p>
+
+<p>
+2008年4月，通过各种资料的搜集，了解，我决定系统的学习Erlang。
+</p>
+
+<p>
+今天，通过4个月的认真学习，我已经熟悉了Erlang，已经在使用Erlang开发项目。作为C++程序员，我不敢妄自使用“熟悉”，“精通”之类的字眼，但是对于Erlang我可以很负责任的说：Erlang很巧，很强大！
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8006290" class="outline-2">
+<h2 id="org8006290">二、困惑</h2>
+<div class="outline-text-2" id="text-org8006290">
+<p>
+面对一个新的事务，我们本性都会充满好奇，可是作为程序员，很多时候对于新的语言我们都充满了抵触：这个新东西值得学习么？它会不会让我抛弃旧爱？它文档丰富么？是不是很难理解？它的前景如何?······相信大家跟我有一样的苦恼。
+</p>
+
+<p>
+但是，请听我说！我们是程序员，我们走在技术革新的最前沿。用户的产品，体验是通过我们来产生！我们不能畏缩不前，我们的固步自封，就是我们的公司，乃至整个行业的停滞不前！口号可能有些响亮，但是认真思考，我相信朋友们一定有所感悟。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf4a4d40" class="outline-2">
+<h2 id="orgf4a4d40">三、Erlang是什么</h2>
+<div class="outline-text-2" id="text-orgf4a4d40">
+<p>
+Erlang是什么是我们最先要面对的问题，只有清楚了它是什么，我们才能做出我们的决定。可见这个问题的重要性，它决定了很多读者是否会继续看下去！非常紧张。
+</p>
+
+<p>
+Erlang最初是爱立信为开发电信相关产品而产生。
+</p>
+
+<p>
+Erlang是一种面向并发(Concurrency Oriented)，面向消息（Message Oriented）的函数式(Functional)编程语言。
+</p>
+
+<p>
+面向并发说明Erlang支持大规模的并发应用，我们可以在应用中处理成千上万的并发，而不相互影响。面向消息，其实是为并发服务！我们应该都熟悉多线程，熟悉加锁解锁操作，熟悉可能出现的资源竞争与死锁。在Erlang的世界里，我们可以将轻轻的抹去这些令人苦恼的词汇。Erlang的世界，每个处理都是独立的个体，他们之间的交互仅仅靠消息！因此不会有死锁，不会有那种痛苦的编程经历。
+</p>
+
+<p>
+Erlang中一个非常重要的名词：Process，也就是我们前面提到的“个体”。它不是我们操作系统中的进程，也不是线程。它是Erlang提供给我们的超级轻量的进程。为了适应大规模并发的特性，Process需要能够快速创建，快速销毁。Process之间通信的唯一方法就是消息，我们只要知道一个Process的名字即pid，就可以向其发送消息。Process也可以在任何时候，接收消息。我们这样做只有一个目的：让我们的系统更加简单，用一种朴素的做法，实现一个高效的语言。
+</p>
+
+<p>
+Erlang是种函数式编程语言，对此我没有很深刻的理解，最明显的特征就是，Erlang中到处都是函数，函数构成了我们的产品的主体，把这些函数放到一个个的Process中去，让他们运行起来，那么就组成了我们朝气蓬勃的产品。
+</p>
+
+<p>
+Erlang支持对数据的位操作，拥有丰富的数据持久化机制。
+</p>
+
+<p>
+同时需要说明的是Erlang内建垃圾回收机制（GC）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d8fe92" class="outline-2">
+<h2 id="org8d8fe92">四、Erlang的语言特性</h2>
+<div class="outline-text-2" id="text-org8d8fe92">
+</div>
+<div id="outline-container-org5e50dad" class="outline-3">
+<h3 id="org5e50dad">1.简单小巧</h3>
+<div class="outline-text-3" id="text-org5e50dad">
+<p>
+Erlang中只有8种基本的数据类型：
+</p>
+
+<p>
+integer、float、atom、reference、fun、port、pid、bitstring
+</p>
+
+<p>
+同时提供2种复合结构：tuple，list，这就是Erlang的所有数据类型。
+</p>
+</div>
+</div>
+<div id="outline-container-org5c7919a" class="outline-3">
+<h3 id="org5c7919a">2.模式匹配</h3>
+<div class="outline-text-3" id="text-org5c7919a">
+<p>
+在Erlang的函数中，某些语法中，我们可以使用Pattern匹配，这是一个非常好的特性，我们可以让代码自己去决定如何执行 ：
+</p>
+
+<p>
+比如，我们定义一个函数，其告诉我们某种水果的价格:
+</p>
+
+<p>
+price(apple) -&gt; 2.0;
+</p>
+
+<p>
+price(banana) -&gt; 1.2.
+</p>
+
+<p>
+我们随后调用 price(Fruit)，会根据Fruit变量的内容返回具体的价格。这样做的好处就是节省了我们的代码量，我们不用if&#x2026;else…或者switch…case的来伺候了。也便于代码的扩展：加一个新的水果品种，我们只需要加一行就可以了。
+</p>
+
+<p>
+学习Erlang一个非常重要的内容就是模式匹配，但是请不要混淆，这个匹配和正则表达式没有任何干系。
+</p>
+</div>
+</div>
+<div id="outline-container-org258a199" class="outline-3">
+<h3 id="org258a199">3.变量单次赋值</h3>
+<div class="outline-text-3" id="text-org258a199">
+<p>
+这个是一个匪夷所思的特性，变量竟然只能单次赋值！是的Erlang中变量一旦绑定某个数值以后，就不能再次绑定，这样做的好处是便于调试出错（更深层次的原因是Erlang为并发设计，如果变量可以修改，那么就涉及到资源的加锁解锁等问题），当发生错误时，某个变量是什么就永远是什么，不用顺藤摸瓜的查找谁修改过它，省了好多事情。唯一的麻烦就是需要一个信的变量时，你必须再为它想一个名字。
+</p>
+</div>
+</div>
+<div id="outline-container-org39d143b" class="outline-3">
+<h3 id="org39d143b">4.丰富的libs</h3>
+<div class="outline-text-3" id="text-org39d143b">
+<p>
+Erlang中提供丰富的libs
+</p>
+
+<p>
+stdlib中包含大量的数据结构如lists，array，dict，gb<sub>sets</sub>，gb<sub>trees</sub>，ets，dets等
+</p>
+
+<p>
+mnesia提供一个分布式的数据库系统
+</p>
+
+<p>
+inets提供ftp client，http client/server，tftp client/server
+</p>
+
+<p>
+crypto 提供加密解密相关函数，基于openssl相关实现
+</p>
+
+<p>
+ssl 实现加密socket通信，基于openssl实现
+</p>
+
+<p>
+ssh 实现ssh协议
+</p>
+
+<p>
+xmerl 实现XML相关解析
+</p>
+
+<p>
+snmp 实现SNMP协议（Simple Network Management Protocol）
+</p>
+
+<p>
+observer 用来分析与追踪分布式应用
+</p>
+
+<p>
+odbc 使Erlang可以连接基于SQL的数据库
+</p>
+
+<p>
+orber 实现CORBA对象请求代理服务
+</p>
+
+<p>
+os<sub>mon</sub> 提供对操作系统的监控功能
+</p>
+
+<p>
+dialyzer提供一个静态的代码或程序分析工具
+</p>
+
+<p>
+edoc 依据源文件生成文档
+</p>
+
+<p>
+gs 可以为我们提供某些GUI的功能（基于Tcl/Tk）
+</p>
+
+<p>
+…
+</p>
+
+<p>
+还有很多朋友提供了一些开源的lib，比如eunit，用来进行单元测试。
+</p>
+</div>
+</div>
+<div id="outline-container-orga7a5bf9" class="outline-3">
+<h3 id="orga7a5bf9">5.灵活多样的错误处理</h3>
+<div class="outline-text-3" id="text-orga7a5bf9">
+<p>
+Erlang最初为电信产品的开发，这样的目的，决定了其对错误处理的严格要求。Erlang中提供一般语言所提供的exception，catch，try…catch等语法，同时Erlang支持Link和Monitor两种机制，我们可以将Process连接起来，让他们组成一个整体，某个Process出错，或推出时，其他Process都具有得知其推出的能力。而Monitor顾名思义，可以用来监控某个Process，判断其是否退出或出错。所有的这些Erlang都提供内在支持，我们快速的开发坚固的产品，不在是奢望。
+</p>
+</div>
+</div>
+<div id="outline-container-org34d3430" class="outline-3">
+<h3 id="org34d3430">6.代码热替换</h3>
+<div class="outline-text-3" id="text-org34d3430">
+<p>
+你的产品想不间断的更新么？Erlang可以满足你这个需求，Erlang会在运行时自动将旧的模块进行替换。一切都静悄悄。
+</p>
+</div>
+</div>
+<div id="outline-container-org31bf50c" class="outline-3">
+<h3 id="org31bf50c">7.天生的分布式</h3>
+<div class="outline-text-3" id="text-org31bf50c">
+<p>
+Erlang天生适合分布式应用开发，其很多的BIF（内建函数，相API）都具有分布式版本，我们可以通过BIF在远程机器上创建Process，可以向远程机器上的某个Process发送消息。在分布式应用的开发中，我们可以像C、C＋＋，JAVA等语言一样，通过Socket进行通讯，也可以使用Erlang内嵌的基于Cookie的分布式架构，进行开发。当然也可以两者混合。分布式开发更加方便，快速。Erlang的Process的操作，Error的处理等都对支持分布式操作。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc17f827" class="outline-3">
+<h3 id="orgc17f827">8.超强的并发性</h3>
+<div class="outline-text-3" id="text-orgc17f827">
+<p>
+由于采用其自身Process，而没有采用操作系统的进程和线程，我们可以创建大规模的并发处理，同时还简化了我们的编程复杂度。我们可以通过几十行代码实现一个并发的TCP服务器，这在其他语言中都想都不敢想！
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc8a1a77" class="outline-3">
+<h3 id="orgc8a1a77">9.多核支持</h3>
+<div class="outline-text-3" id="text-orgc8a1a77">
+<p>
+Erlang让您的应用支持多个处理器，您不需要为不同的硬件系统做不同的开发。采用Erlang将最大限度的发挥你的机器性能。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdef4003" class="outline-3">
+<h3 id="orgdef4003">10.跨平台</h3>
+<div class="outline-text-3" id="text-orgdef4003">
+<p>
+如同JAVA一样，Erlang支持跨平台（其目前支持linux，mac，windows等19种平台），不用为代码的移植而头疼。
+</p>
+
+<p>
+我们仅仅需要了解平台的一些特性，对运行时进行优化。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org48dd346" class="outline-3">
+<h3 id="org48dd346">11.开源</h3>
+<div class="outline-text-3" id="text-org48dd346">
+<p>
+开源是我非常喜欢的一个词汇，开源意味这更加强壮，更加公开，更加的追求平等。开源会让Erlang更好。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgacb15bc" class="outline-2">
+<h2 id="orgacb15bc">五、Erlang与外界的交互</h2>
+<div class="outline-text-2" id="text-orgacb15bc">
+<p>
+Erlang可以与其他的语言进行交互，如C、C＋＋，Java。当然也有热心的朋友提供了与其他语言的交互，如果需要你也可以根据Erlang的数据格式，提供一个库，让Erang与您心爱的语言交互。
+</p>
+
+<p>
+Erlang支持分布式开发，您可以创建一个C Node，其如同一个Erlang节点，前提是你遵照Erlang的规范。
+</p>
+
+<p>
+当然最常用的交互还是再同一个Node上，比如我们要调用某个lib，调用一些系统提供的功能，这时候主要有两种方式：Port和嵌入式执行。
+</p>
+
+<p>
+Port是Erlang最基本的与外界交互的方式，进行交互的双方通过编码，解码，将信息以字节流的方式进行传递。（具体这个通道的实现方式，根据操作系统的不同而不同，比如unix环境下，采用PIPE实现，理论上任何支持对应Port通道实现的语言都可以与Erlang进行交互）。Erlang为了方便C和JAVA程序员，提供了Erl<sub>Interface和Jinterface</sub>。
+</p>
+
+<p>
+采用Port，您的代码在Erlang的平台之外运行，其崩溃不会影响Erlang。
+</p>
+
+<p>
+嵌入式执行，通过Erlang平台加载，因此这是非常危险的，如果您的程序崩溃，没有任何理由，Erlang也会崩溃。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeec5d66" class="outline-2">
+<h2 id="orgeec5d66">六、Erlang应用场景</h2>
+<div class="outline-text-2" id="text-orgeec5d66">
+<p>
+分布式产品，网络服务器，客户端，等各种应用环境。
+</p>
+
+<p>
+Erlang也可以作为一种快速开发语言，进行原型开发。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org38691a7" class="outline-2">
+<h2 id="org38691a7">七、Erlang的学习过程</h2>
+<div class="outline-text-2" id="text-org38691a7">
+</div>
+<div id="outline-container-orgcf50549" class="outline-3">
+<h3 id="orgcf50549">1.         安装首先从Erlang官方网站，下载安装Erlang（<a href="http://www.erlang.org/download.html">http://www.erlang.org/download.html</a>）</h3>
+<div class="outline-text-3" id="text-orgcf50549">
+<p>
+linux：获取源代码，根据说明编译；windows：直接安装
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9e064b2" class="outline-3">
+<h3 id="org9e064b2">2.         认真阅读《programming erlang》（中文版图书已经问世），并不断动手练习书中的例程。</h3>
+</div>
+
+<div id="outline-container-orgf5c2d3f" class="outline-3">
+<h3 id="orgf5c2d3f">3.         遇到问题时，不要退却，坚持下去找到解决办法</h3>
+</div>
+
+<div id="outline-container-orge16ec9b" class="outline-3">
+<h3 id="orge16ec9b">4.         对语言熟悉时，浏览一些好的开源项目</h3>
+</div>
+
+<div id="outline-container-org3853264" class="outline-3">
+<h3 id="org3853264">5.         有信心时，开始动手做一个小项目</h3>
+</div>
+
+<div id="outline-container-org1d737ea" class="outline-3">
+<h3 id="org1d737ea">6.         不间断的与大家交流，共同提高</h3>
+</div>
+
+<div id="outline-container-org84afa18" class="outline-3">
+<h3 id="org84afa18">可能遇到的困难：</h3>
+<div class="outline-text-3" id="text-org84afa18">
+</div>
+<div id="outline-container-org5bf97e7" class="outline-4">
+<h4 id="org5bf97e7">a)         对于语法的不适应？</h4>
+<div class="outline-text-4" id="text-org5bf97e7">
+<p>
+坚持看下去，代码继续写下去，我相信1个月，你会喜欢上Erlang的语法
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8a95fef" class="outline-4">
+<h4 id="org8a95fef">b)        有些数据类型不清楚？</h4>
+<div class="outline-text-4" id="text-org8a95fef">
+<p>
+认真看资料，或者询问朋友，比如我
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc3a1f54" class="outline-4">
+<h4 id="orgc3a1f54">c)         中文资料的缺乏？</h4>
+<div class="outline-text-4" id="text-orgc3a1f54">
+<p>
+Erlang中文的资料会越来越多，此外，Erlang的相关的英文资料也比较容易理解，还是那句话，别怕麻烦
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e16734" class="outline-2">
+<h2 id="org4e16734">八、Erlang开源项目</h2>
+<div class="outline-text-2" id="text-org4e16734">
+<p>
+排名不分先后
+</p>
+
+<p>
+couchdb     基于文档等非结构化数据的数据库，提供HTTP接口
+disco       Map-Reduce框架，Erlang + Python
+ejabberd    性能出众，使用广泛的Jabber开源服务器
+mochiweb    轻便，高效的HTTP应用框架
+rabbitmq    中间服务器，实现AMQP协议
+yaws        高效的web server
+etorrent    Bittorrent客户端
+scalaris      分布式的key-value存储
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8516861" class="outline-2">
+<h2 id="org8516861">九、遇到问题</h2>
+<div class="outline-text-2" id="text-org8516861">
+<p>
+参看Erlang官方文档 <a href="http://www.erlang.org/doc/">http://www.erlang.org/doc/</a>
+</p>
+
+<p>
+订阅Erlang的maillist（<a href="http://www.erlang.org/mailman/listinfo/erlang-questions%EF%BC%89%EF%BC%8C%E8%BF%9B%E8%A1%8C%E6%8F%90%E9%97%AE">http://www.erlang.org/mailman/listinfo/erlang-questions），进行提问</a>
+</p>
+
+<p>
+在Nabble提供的Erlang maillist存档中搜索（<a href="http://www.nabble.com/Erlang-f14095.html">http://www.nabble.com/Erlang-f14095.html</a>）
+</p>
+
+<p>
+Google中搜索答案
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56a998b" class="outline-2">
+<h2 id="org56a998b">十、推荐阅读</h2>
+<div class="outline-text-2" id="text-org56a998b">
+<p>
+Erlang Design Principles （<a href="http://www.erlang.org/doc/design_principles/part_frame.html">http://www.erlang.org/doc/design_principles/part_frame.html</a>）
+</p>
+
+<p>
+Erlang Efficiency Guide （<a href="http://www.erlang.org/doc/efficiency_guide/part_frame.html">http://www.erlang.org/doc/efficiency_guide/part_frame.html</a>）
+</p>
+
+<p>
+Erlang Programming Rules （<a href="http://www.erlang.se/doc/programming_rules.shtml">http://www.erlang.se/doc/programming_rules.shtml</a>）
+</p>
+</div>
+</div>
+<div id="outline-container-orga37661e" class="outline-2">
+<h2 id="orga37661e">十一、推荐网站</h2>
+<div class="outline-text-2" id="text-orga37661e">
+<p>
+<a href="http://www.erlang.org">http://www.erlang.org</a>
+</p>
+
+<p>
+<a href="http://erlang-china.org">http://erlang-china.org</a>
+</p>
+
+<p>
+<a href="http://trapexit.org">http://trapexit.org</a> （国内封锁，可以使用<a href="http://trapexit.org.nyud.net:8080/">http://trapexit.org.nyud.net:8080/</a> 或其他代理登录）
+</p>
+
+<p>
+<a href="http://toquick.com">http://toquick.com</a>
+</p>
+
+<p>
+<a href="http://blog.socklabs.com/">http://blog.socklabs.com/</a>
+</p>
+
+<p>
+<a href="http://www.planeterlang.org/">http://www.planeterlang.org/</a>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
