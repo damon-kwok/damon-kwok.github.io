@@ -237,7 +237,7 @@ for the JavaScript code in this tag.
 
 <div class="org-center">
 <p>
-*Catkin * 
+<b>Catkin使用技巧</b> 
 </p>
 </div>
 
@@ -247,17 +247,19 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>method 1</li>
 </ul>
-<p>
-set(EXTRALIB<sub>BIN</sub> ${PROJECT<sub>SOURCE</sub><sub>DIR</sub>}/lib/librobotsdk.so)
-target<sub>link</sub><sub>libraries</sub>(appname ${catkin<sub>LIBRARIES</sub>} ${EXTRALIB<sub>BIN</sub>})
-</p>
+<div class="org-src-container">
+<pre class="src src-Shell">set(EXTRALIB_BIN ${PROJECT_SOURCE_DIR}/lib/librobotsdk.so)
+target_link_libraries(appname ${catkin_LIBRARIES} ${EXTRALIB_BIN})
+</pre>
+</div>
 
 <ul class="org-ul">
 <li>method 2</li>
 </ul>
-<p>
-target<sub>link</sub><sub>libraries</sub>(appname robotsdk ${catkin<sub>LIBRARIES</sub>})
-</p>
+<div class="org-src-container">
+<pre class="src src-Shell">target_link_libraries(appname robotsdk ${catkin_LIBRARIES})
+</pre>
+</div>
 </div>
 </div>
 
@@ -265,9 +267,10 @@ target<sub>link</sub><sub>libraries</sub>(appname robotsdk ${catkin<sub>LIBRARIE
 <div id="outline-container-org2d96b5a" class="outline-2">
 <h2 id="org2d96b5a">Create shared library:libadd.so</h2>
 <div class="outline-text-2" id="text-org2d96b5a">
-<p>
-add<sub>library</sub>(add src/add.cpp)
-</p>
+<div class="org-src-container">
+<pre class="src src-Shell">add_library(add src/add.cpp)
+</pre>
+</div>
 </div>
 </div>
 </div>
