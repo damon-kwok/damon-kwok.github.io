@@ -237,44 +237,36 @@ for the JavaScript code in this tag.
 
 <div class="org-center">
 <p>
-<b>Emacs字体相关问题</b>
+*Catkin * 
 </p>
 </div>
 
-<div id="outline-container-org98b4c0a" class="outline-2">
-<h2 id="org98b4c0a">终端登陆后，再使用桌面环境打开出现：</h2>
-<div class="outline-text-2" id="text-org98b4c0a">
+<div id="outline-container-org8c02a51" class="outline-2">
+<h2 id="org8c02a51">Shared libraries:librobotsdk.so with catkin</h2>
+<div class="outline-text-2" id="text-org8c02a51">
+<ul class="org-ul">
+<li>method 1</li>
+</ul>
 <p>
-Error (frameset): Font ‘tty’ is not defined
+set(EXTRALIB<sub>BIN</sub> ${PROJECT<sub>SOURCE</sub><sub>DIR</sub>}/lib/librobotsdk.so)
+target<sub>link</sub><sub>libraries</sub>(appname ${catkin<sub>LIBRARIES</sub>} ${EXTRALIB<sub>BIN</sub>})
 </p>
 
+<ul class="org-ul">
+<li>method 2</li>
+</ul>
 <p>
- (setq desktop-restore-frames nil)
-(desktop-save-mode 1) 
-</p>
-</div>
-</div>
-
-<div id="outline-container-org65ddc7c" class="outline-2">
-<h2 id="org65ddc7c">定义字体后</h2>
-<div class="outline-text-2" id="text-org65ddc7c">
-<p>
-"Error (frameset): Font `tty' is not defined
-</p>
-
-<p>
-解决办法： 
-(if window-system
-(set-font)))
+target<sub>link</sub><sub>libraries</sub>(appname robotsdk ${catkin<sub>LIBRARIES</sub>})
 </p>
 </div>
 </div>
 
-<div id="outline-container-org23fa728" class="outline-2">
-<h2 id="org23fa728">Windows10 下中文卡顿</h2>
-<div class="outline-text-2" id="text-org23fa728">
+
+<div id="outline-container-org2d96b5a" class="outline-2">
+<h2 id="org2d96b5a">Create shared library:libadd.so</h2>
+<div class="outline-text-2" id="text-org2d96b5a">
 <p>
-使用宋体或微软雅黑
+add<sub>library</sub>(add src/add.cpp)
 </p>
 </div>
 </div>
