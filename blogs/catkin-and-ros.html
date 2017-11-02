@@ -237,39 +237,40 @@ for the JavaScript code in this tag.
 
 <div class="org-center">
 <p>
-<b>索尼DPT-RP1使用感受</b>
-</p>
-
-
-<div class="figure">
-<p><img src="../img/dpt-rp1.jpg" alt="dpt-rp1.jpg" />
+<b>Catkin使用技巧</b> 
 </p>
 </div>
+
+<div id="outline-container-org59ee8e2" class="outline-2">
+<h2 id="org59ee8e2">Shared libraries:librobotsdk.so with catkin</h2>
+<div class="outline-text-2" id="text-org59ee8e2">
+<ul class="org-ul">
+<li>method 1</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Shell">set(EXTRALIB_BIN ${PROJECT_SOURCE_DIR}/lib/librobotsdk.so)
+target_link_libraries(appname ${catkin_LIBRARIES} ${EXTRALIB_BIN})
+</pre>
 </div>
 
-<div id="outline-container-org1664f59" class="outline-2">
-<h2 id="org1664f59">优点</h2>
-<div class="outline-text-2" id="text-org1664f59">
 <ul class="org-ul">
-<li>屏幕大阅读PDF效果很赞</li>
-<li>轻薄的难以置信</li>
+<li>method 2</li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-Shell">target_link_libraries(appname robotsdk ${catkin_LIBRARIES})
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-orge21e5da" class="outline-2">
-<h2 id="orge21e5da">缺点</h2>
-<div class="outline-text-2" id="text-orge21e5da">
-<ul class="org-ul">
-<li>缺少手机APP</li>
-<li>没有Linux驱动</li>
-<li>只能在电脑上进行wifi设置，电子书上不行，换了网络环境很不方便</li>
-<li>虽然有蓝牙但是不能和手机连接，纯数鸡肋</li>
-<li>USB传输速度不给力</li>
-<li>不能安装第三方App，自己在kindle平台买的电子书还是只能在手机和kindle上看</li>
-<li>笔芯消耗过快</li>
-<li>只能阅读PDF，其他格式一概不支持</li>
-</ul>
+
+<div id="outline-container-org9ed90d0" class="outline-2">
+<h2 id="org9ed90d0">Create shared library:libadd.so</h2>
+<div class="outline-text-2" id="text-org9ed90d0">
+<div class="org-src-container">
+<pre class="src src-Shell">add_library(add src/add.cpp)
+</pre>
+</div>
 </div>
 </div>
 </div>
