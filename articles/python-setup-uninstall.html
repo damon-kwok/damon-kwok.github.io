@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>damon-kwok's homepage</title>
+<title>This is Title damon-kwok's homepage</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -178,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="./css/worg.css"/>
+<link rel="stylesheet" type="text/css" href="../css/worg.css"/>
 <a href="https://github.com/damon-kwok/damon-kwok.github.io"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 <script type="text/javascript">
 /*
@@ -229,41 +229,27 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">damon-kwok's homepage</h1>
+<h1 class="title">This is Title damon-kwok's homepage</h1>
 <p>
-<a href="./index.html">Home</a> <a href="./blog.html">Blogs</a> <a href="./articles.html">Articles</a> <a href="./link.html">Links</a>
+<a href="../index.html">Home</a> <a href="../blog.html">Blogs</a> <a href="../articles.html">Articles</a> <a href="../link.html">Links</a>
 </p>
 
 <hr />
 
 <div class="org-center">
 <p>
-<b>Articles</b>
+<b>python setup.py uninstall</b>
 </p>
 </div>
 
-<div id="outline-container-org1f9ff7c" class="outline-2">
-<h2 id="org1f9ff7c">2018</h2>
-<div class="outline-text-2" id="text-org1f9ff7c">
-<ul class="org-ul">
-<li>0629 <a href="articles/memory.html">为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org59a5f49" class="outline-2">
-<h2 id="org59a5f49">2017</h2>
-<div class="outline-text-2" id="text-org59a5f49">
-<ul class="org-ul">
-<li>1127 <a href="articles/python-setup-uninstall.html">Python setup.py安装文件卸载</a></li>
-<li>1121 <a href="articles/offlineiamp-install.html">mu和offlineiamp编译安装方法</a></li>
-<li>0925 <a href="articles/a-erlang-programmer-dialogure.html">Erlang不能错过的盛宴</a></li>
-<li>0921 <a href="./articles/why-not-oo.html">Erlang之父：为什么面向对象很糟糕</a></li>
-<li>0901 <a href="./articles/functional-programming-languages.html">函数式编程语言对比</a></li>
-<li>0924 <a href="./articles/let-it-crash.html">Let it crash: 因为误解，所以瞎说</a></li>
-<li>0610 <a href="./articles/awosome-erlang.html">了不起的Erlang</a></li>
-</ul>
-</div>
-</div>
+<p>
+有一些python setup.py 是没有uninstall的这个时候想要卸载需要如下方法
+1、将操作记录下来，文件里一般都是考到各个目录的文件
+python setup.py install –record install<sub>log</sub>
+2、查看文件内容，删除
+cat install<sub>log</sub>|xagrs rm －rf
+3、卸载完成
+</p>
 </div>
 </body>
 </html>
