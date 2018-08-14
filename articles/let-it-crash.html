@@ -179,7 +179,7 @@
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="../css/worg.css"/>
-<a href="https://github.com/damon-kwok/damon-kwok.github.io"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+<style>#forkongithub a{background:#587e71;color:#ffffff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#77aa99;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -250,9 +250,9 @@ for the JavaScript code in this tag.
 严格意义上来说，我之于 erlang，也是个半吊子，到目前为止，还没有写过真正的在生产环境中使用的 erlang 代码。不过我倒是写了两千行在生产环境中使用的 elixir 代码，还有几千行将要被应用在生产环境中，所以自认为对 elixir 算是略懂一二。由于在 VM 层面和语言核心层面，elixir 和 erlang 一脉相承，所以我也对 let it crash 也算略懂。今天，咱们就谈谈 let it crash。
 </p>
 
-<div id="outline-container-orgac36036" class="outline-2">
-<h2 id="orgac36036">什么是 let it crash？</h2>
-<div class="outline-text-2" id="text-orgac36036">
+<div id="outline-container-orgbba188d" class="outline-2">
+<h2 id="orgbba188d">什么是 let it crash？</h2>
+<div class="outline-text-2" id="text-orgbba188d">
 <p>
 在 erlang 里，let it crash 是指程序员不必过分担心未知的错误，而进行面面俱到的 defensive coding。相反，当这种错误来临时，任由错误所处的上下文 —— 一般是某个 process —— 崩溃退出。当 process 退出后，它会将这种状态汇报给 monitor process，由其决定如何来进一步处理这个错误。
 </p>
@@ -263,9 +263,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org3675623" class="outline-2">
-<h2 id="org3675623">Let it crash 是 erlang 的专利么？</h2>
-<div class="outline-text-2" id="text-org3675623">
+<div id="outline-container-orgc66b387" class="outline-2">
+<h2 id="orgc66b387">Let it crash 是 erlang 的专利么？</h2>
+<div class="outline-text-2" id="text-orgc66b387">
 <p>
 不好意思，这个只能打脸某些想当然的回答了，是的，确定一定以及肯定。这个思想也许不是 erlang 最先提出的，但只有 erlang VM 真正让程序员可以放心地 let it crash。其他语言和框架，对不起，没有这个能力。Java VM 的 akka 是对此最接近的模仿，然而，由于在这个场景下 JVM 天然的劣势（毕竟不是围绕着 let it crash 设计的），akka 只是接近。
 </p>
@@ -276,9 +276,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-org54aa3ee" class="outline-2">
-<h2 id="org54aa3ee">为什么实现 let it crash 很困难？</h2>
-<div class="outline-text-2" id="text-org54aa3ee">
+<div id="outline-container-orgd3b8f44" class="outline-2">
+<h2 id="orgd3b8f44">为什么实现 let it crash 很困难？</h2>
+<div class="outline-text-2" id="text-orgd3b8f44">
 <p>
 erlang VM 为了支持 let it crash，即便够不上呕心沥血，也对得起殚精竭虑四个字了。我们看如果你要让代码可以不做 defensive coding 系统还能很好地工作（不 crash），要做哪些事情：
 </p>
@@ -301,9 +301,9 @@ erlang VM 为了支持 let it crash，即便够不上呕心沥血，也对得起
 </div>
 </div>
 
-<div id="outline-container-orgf7386a6" class="outline-2">
-<h2 id="orgf7386a6">错误隔离</h2>
-<div class="outline-text-2" id="text-orgf7386a6">
+<div id="outline-container-org5e2539e" class="outline-2">
+<h2 id="org5e2539e">错误隔离</h2>
+<div class="outline-text-2" id="text-org5e2539e">
 <p>
 erlang VM 提供了以下手段 共同完成了错误隔离：
 </p>
@@ -322,9 +322,9 @@ erlang VM 提供了以下手段 共同完成了错误隔离：
 </div>
 </div>
 
-<div id="outline-container-orge2bc713" class="outline-2">
-<h2 id="orge2bc713">错误处理</h2>
-<div class="outline-text-2" id="text-orge2bc713">
+<div id="outline-container-org16e679e" class="outline-2">
+<h2 id="org16e679e">错误处理</h2>
+<div class="outline-text-2" id="text-org16e679e">
 <p>
 不要天真地以为 let it crash 就不需要处理错误了。只不过，错误的处理有「人」帮你抗了。
 </p>
@@ -359,9 +359,9 @@ erlang 里的 OTP framework 进一步将这个模式封装成 supervisor —— 
 </div>
 </div>
 
-<div id="outline-container-org6da7cd4" class="outline-2">
-<h2 id="org6da7cd4">错误恢复</h2>
-<div class="outline-text-2" id="text-org6da7cd4">
+<div id="outline-container-org1736797" class="outline-2">
+<h2 id="org1736797">错误恢复</h2>
+<div class="outline-text-2" id="text-org1736797">
 <p>
 process 的重启是要花时间的。对 erlang 来说，这个时间足够小以至于你大部分时间可以不在意。一个不保存任何状态的 erlang process，启动后只有几百字节的 memory footprint，一段执行函数，和在 scheduler 里注册的 process 的信息（以便于调度）。在 erlang 下，spawn 一个 process 跟执行一个稍稍复杂的函数的速度几乎是一个量级的，所以你才有机会 let it crash —— 因为 restart 瞬间完成。
 </p>
@@ -392,9 +392,9 @@ heir / give away 看着眼熟？对！rust 的 memory 的 lifecycle 里的 owner
 </div>
 </div>
 
-<div id="outline-container-org90910cd" class="outline-2">
-<h2 id="org90910cd">不要滥用 let it crash</h2>
-<div class="outline-text-2" id="text-org90910cd">
+<div id="outline-container-org37bd578" class="outline-2">
+<h2 id="org37bd578">不要滥用 let it crash</h2>
+<div class="outline-text-2" id="text-org37bd578">
 <p>
 尽管 let it crash 有诸多好处，我们也不该毫无节制地使用它。孔子他老人家说：过犹不及。满汉全席天天吃也会恶心，再好的思想，不该用的时候还用，也会「樯橹灰飞烟灭」。
 </p>
