@@ -1,0 +1,17 @@
+#+DATE:      2017-09-24
+#+INCLUDE: "./template"
+
+#+BEGIN_CENTER
+*Articles*
+#+END_CENTER
+
+* 2018
+- 0629 [[file:articles/memory.org][为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？]]
+* 2017
+- 1127 [[file:articles/python-setup-uninstall.org][Python setup.py安装文件卸载]]
+- 1121 [[file:articles/offlineiamp-install.org][mu和offlineiamp编译安装方法]]
+- 0925 [[file:articles/a-erlang-programmer-dialogure.org][Erlang不能错过的盛宴]]
+- 0921 [[./articles/why-not-oo.org][Erlang之父：为什么面向对象很糟糕]]
+- 0901 [[./articles/functional-programming-languages.org][函数式编程语言对比]]
+- 0924 [[./articles/let-it-crash.org][Let it crash: 因为误解，所以瞎说]]
+- 0610 [[./articles/awosome-erlang.org][了不起的Erlang]]

@@ -1,0 +1,6 @@
+#+DATE:      2017-08-31
+#+INCLUDE: "./template"
+
+#+BEGIN_CENTER
+*在Github上开博客啦*
+#+END_CENTER

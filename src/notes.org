@@ -1,0 +1,14 @@
+#+DATE:      2017-08-31
+#+INCLUDE: "./template"
+
+#+BEGIN_CENTER
+*Blogs*
+#+END_CENTER
+
+** 2017
+- 1027 [[file:blogs/catkin-and-ros.org][catkin使用技巧]]
+- 0923 [[./blogs/dpt-rp1.org][索尼DPT-RP1使用感受]]
+- 0831 [[file:blogs/emacs-set-font.org][Emacs字体相关问题]]
+- 0831 [[./blogs/first-blog.org][第一篇]]
+
+

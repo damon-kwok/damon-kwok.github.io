@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>damon-kwok's homepage</title>
+<title>Damon Kwok's Homepage</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -178,8 +178,8 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="../css/worg.css"/>
-<style>#forkongithub a{background:#587e71;color:#ffffff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#77aa99;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
+<link rel="stylesheet" type="text/css" href="../css/worg-classic.css"/>
+<style>#forkongithub a{background:#587e71;color:#eeeeee;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#ffffff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -229,54 +229,48 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">damon-kwok's homepage</h1>
+<h1 class="title">Damon Kwok's Homepage</h1>
 <p>
-<a href="../index.html">Home</a> <a href="../blog.html">Blogs</a> <a href="../articles.html">Articles</a> <a href="../link.html">Links</a>
+<a href="../index.html"><b>Home</b></a> <a href="../blog.html"><b>Blogs</b></a> <a href="../articles.html"><b>Articles</b></a> <a href="../link.html"><b>Links</b></a>
 </p>
-
 <hr />
 
 <div class="org-center">
 <p>
-<b>Emacs字体相关问题</b>
+<b>Catkin使用技巧</b> 
 </p>
 </div>
 
-<div id="outline-container-org99ac276" class="outline-2">
-<h2 id="org99ac276">终端登陆后，再使用桌面环境打开出现：</h2>
-<div class="outline-text-2" id="text-org99ac276">
-<p>
-Error (frameset): Font ‘tty’ is not defined
-</p>
-
-<p>
- (setq desktop-restore-frames nil)
-(desktop-save-mode 1) 
-</p>
-</div>
+<div id="outline-container-orge6e55f5" class="outline-2">
+<h2 id="orge6e55f5">Shared libraries:librobotsdk.so with catkin</h2>
+<div class="outline-text-2" id="text-orge6e55f5">
+<ul class="org-ul">
+<li>method 1</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Shell">set(EXTRALIB_BIN ${PROJECT_SOURCE_DIR}/lib/librobotsdk.so)
+target_link_libraries(appname ${catkin_LIBRARIES} ${EXTRALIB_BIN})
+</pre>
 </div>
 
-<div id="outline-container-orged4cad0" class="outline-2">
-<h2 id="orged4cad0">定义字体后</h2>
-<div class="outline-text-2" id="text-orged4cad0">
-<p>
-"Error (frameset): Font `tty' is not defined
-</p>
-
-<p>
-解决办法： 
-(if window-system
-(set-font)))
-</p>
+<ul class="org-ul">
+<li>method 2</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Shell">target_link_libraries(appname robotsdk ${catkin_LIBRARIES})
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org00d3d5b" class="outline-2">
-<h2 id="org00d3d5b">Windows10 下中文卡顿</h2>
-<div class="outline-text-2" id="text-org00d3d5b">
-<p>
-使用宋体或微软雅黑
-</p>
+
+<div id="outline-container-orgda9e848" class="outline-2">
+<h2 id="orgda9e848">Create shared library:libadd.so</h2>
+<div class="outline-text-2" id="text-orgda9e848">
+<div class="org-src-container">
+<pre class="src src-Shell">add_library(add src/add.cpp)
+</pre>
+</div>
 </div>
 </div>
 </div>

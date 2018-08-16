@@ -1,0 +1,30 @@
+#+TITLE:     offlineimap编译安装
+#+AUTHOR:    damon-kwok
+#+EMAIL:     damon-kwok@outlook.com
+#+DATE:      2017-11-27
+#+OPTIONS: toc:nil creator:nil author:nil email:nil timestamp:nil html-postamble:nil
+#+TODO: TODO DOING DONE
+
+arch: xapian-core gmime imagemagick
+
+ubuntu: libxapian-dev libgmime-2.6-dev imagemagick 
+
+https://github.com/djcb/mu.git
+./autogen.sh
+make
+sudo make install
+
+https://github.com/OfflineIMAP/offlineimap.git
+make
+python2 setup.py install
+
+
+------------------------------------------
+
+rtags irony-server
+clang llvm
+
+
+------------------------------------
+elpy
+jupyter

@@ -1,0 +1,185 @@
+- count:
+sudo sh -c "add-apt-repository ppa:graphics-drivers/ppa; add-apt-repository -y ppa:ubuntu-elisp; apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc; apt-add-repository 'deb https://repos.codelite.org/ubuntu/ xenial universe'; apt update; apt dist-upgrade"
+
+sudo sh -c "apt install build-essential git subversion curl wget zip unzip zsh llvm clang libclang-dev python-pip; apt install unace p7zip-full p7zip-rar sharutils rar arj lunzip lzip unzip zip; apt install ubuntu-restricted-extras chromium-browser uget gdebi guake openconnect; apt install emacs-snapshot codelite wxcrafter nvidia-387; pip install --upgrade pip; pip install ipython rope jedi flake8 importmagic autopep8 yapf"
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+sudo apt-get install ros-kinetic-desktop-full ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-sound-play ros-kinetic-jsk-visualization ros-kinetic-grid-map ros-kinetic-gps-common ros-kinetic-controller-manager ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-gazebo-ros-control ros-kinetic-joystick-drivers libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev python-wxgtk3.0 python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+
+======================================================
+
+
+sudo apt update
+sudo apt install ros-kinetic-desktop-full
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+echo "source /opt/ros/kinetic/setup.zsh" >> ~/.zshrc
+source ~/.zshrc
+
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+
+sh <(curl -fksSL https://github.com/damon-kwok/my-emacs-config/raw/master/install)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+===========================================================
+
+* Base
+sudo apt update && sudo apt dist-upgrade && sudo apt install build-essential git subversion curl wget zip unzip zsh 
+
+* Chromium
+sudo apt-get install chromium-browser
+
+* 多媒体解码
+sudo apt-get install ubuntu-restricted-extras
+
+* zip unzip
+sudo apt-get install unace p7zip-rar sharutils rar arj lunzip lzip unzip zip
+
+* download tool
+sudo apt-get install uget
+
+* Emacs
+sudo add-apt-repository -y ppa:ubuntu-elisp && sudo apt-get update && sudo apt-get install emacs-snapshot
+
+* Codelite:
+sudo apt-key adv --fetch-keys http://repos.codelite.org/CodeLite.asc && sudo apt-add-repository 'deb https://repos.codelite.org/ubuntu/ xenial universe' && sudo apt-get install codelite wxcrafter
+
+* ROS
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+sudo apt update
+sudo apt install ros-kinetic-desktop-full
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+echo "source /opt/ros/kinetic/setup.zsh" >> ~/.zshrc
+source ~/.zshrc
+
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+
+* oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+* Autoware
+sudo apt-get install ros-kinetic-desktop-full ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-sound-play ros-kinetic-jsk-visualization ros-kinetic-grid-map ros-kinetic-gps-common
+
+sudo apt-get install ros-kinetic-controller-manager ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-gazebo-ros-control ros-kinetic-joystick-drivers
+
+sudo apt-get install libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev python-wxgtk3.0
+
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+- count:
+sudo apt-get install ros-kinetic-desktop-full ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-sound-play ros-kinetic-jsk-visualization ros-kinetic-grid-map ros-kinetic-gps-common ros-kinetic-controller-manager ros-kinetic-ros-control ros-kinetic-ros-controllers ros-kinetic-gazebo-ros-control ros-kinetic-joystick-drivers libnlopt-dev freeglut3-dev qtbase5-dev libqt5opengl5-dev libssh2-1-dev libarmadillo-dev libpcap-dev gksu libgl1-mesa-dev libglew-dev python-wxgtk3.0 python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+echo "source /opt/ros/kinetic/setup.zsh" >> ~/.zshrc
+source ~/.zshrc
+
+* rtags
+- require: llvm clang libclang-dev
+
+* gdebi 
+sudo apt-get install gdebi
+
+* Driver
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update && sudo apt-get install nvidia-387
+
+*Elpy
+sudo apt install python-pip
+pip install --upgrade pip
+pip install ipython rope jedi flake8 importmagic autopep8 yapf
+
+* Clean
+sudo apt-get autoremove
+
+==============================================================================
+
+* VPN
+sudo openconnect tokyo.link.ac.cn:4433
+smart
+shiqingbao
+51world
+
+* ntfsfix
+sudo ntfsfix /dev/sdb1
+
+* shell脚本中怎么判断发行版？ 
+https://segmentfault.com/q/1010000009829086
+
+cat /etc/os-release
+
+* 机器人俱乐部
+http://rosclub.cn/
+
+==============================================================================
+
+# ipython
+sudo apt install ipython
+
+# Either of these
+pip install rope
+pip install jedi
+# flake8 for code checks
+pip install flake8
+# importmagic for automatic imports
+pip install importmagic
+# and autopep8 for automatic PEP8 formatting
+pip install autopep8
+# and yapf for code formatting
+pip install yapf
+
+* Ubuntu常见问题
+- E: flAbsPath on ./var/lib/dpkg/status failed - realpath (2: No such file or directory)
+这个问题是因为/var/lib/dpkg被误删导致
+误删除/var/lib/dpkg解决办法：http://www.cnblogs.com/shamojituan/p/7466379.html
+sudo mkdir -p /var/lib/dpkg/{alternatives,info,parts,triggers,updates}
+Recover some backups:
+sudo cp /var/backups/dpkg.status.0 /var/lib/dpkg/status
+Now, lets see if your dpkg is working (start praying):
+apt-get download dpkg
+sudo dpkg -i dpkg.deb
+If everything is "ok" then repair your base files too:
+apt-get download base-files
+sudo dpkg -i base-files.deb
+Now try to update your package list, etc.:
+dpkg --audit
+sudo apt-get update
+sudo apt-get check
+
+
+* Emacs-C++
+http://syamajala.github.io/c-ide.html
+
+http://tuhdo.github.io/c-ide.html
+
+http://www.howardism.org/Technical/Emacs/new-window-manager.html
+
+* ROS
+http://wiki.ros.org/Client%20Libraries
+
+http://www.cnblogs.com/li-yao7758258/p/6659451.html
+
+* Emacs-WM
+
+http://www.howardism.org/Technical/Emacs/new-window-manager.html
+
+https://www.emacswiki.org/emacs/XWindowEmacsManager
+
+https://github.com/ch11ng/exwm
+
+https://github.com/kiwanami/emacs-window-manager/

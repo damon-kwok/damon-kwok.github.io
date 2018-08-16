@@ -1,0 +1,16 @@
+#+TITLE:     This is Title
+#+AUTHOR:    damon-kwok
+#+EMAIL:     damon-kwok@outlook.com
+#+DATE:      2017-11-27
+#+INCLUDE: "./template"
+
+#+BEGIN_CENTER
+*python setup.py uninstall*
+#+END_CENTER
+
+有一些python setup.py 是没有uninstall的这个时候想要卸载需要如下方法
+1、将操作记录下来，文件里一般都是考到各个目录的文件
+python setup.py install –record install_log
+2、查看文件内容，删除
+cat install_log|xagrs rm －rf
+3、卸载完成

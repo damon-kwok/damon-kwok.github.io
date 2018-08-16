@@ -1,0 +1,26 @@
+#+DATE:      2017-10-27
+#+INCLUDE: "./template"
+
+#+BEGIN_CENTER
+*Catkin使用技巧* 
+#+END_CENTER
+
+* Shared libraries:librobotsdk.so with catkin
+
+- method 1
+#+BEGIN_SRC Shell
+set(EXTRALIB_BIN ${PROJECT_SOURCE_DIR}/lib/librobotsdk.so)
+target_link_libraries(appname ${catkin_LIBRARIES} ${EXTRALIB_BIN})
+#+END_SRC
+
+- method 2
+#+BEGIN_SRC Shell
+target_link_libraries(appname robotsdk ${catkin_LIBRARIES})
+#+END_SRC
+
+
+* Create shared library:libadd.so
+#+BEGIN_SRC Shell
+add_library(add src/add.cpp)
+#+END_SRC
+

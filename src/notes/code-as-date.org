@@ -1,0 +1,6 @@
+#+DATE:      2017-09-04
+#+INCLUDE: "./template"
+
+#+BEGIN_CENTER
+*Code as Data*
+#+END_CENTER
