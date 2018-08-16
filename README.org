@@ -1,7 +1,8 @@
-#+TITLE:     This is Title
+#+TITLE:     Damon Kwok's Homepage
 #+AUTHOR:    damon-kwok
 #+EMAIL:     damon-kwok@outlook.com
 #+DATE:      2017-08-31
 #+TODO: TODO DOING DONE
 
-this is my home page
+[[https://imgs.xkcd.com/comics/blogging.png]]
+

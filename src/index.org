@@ -2,24 +2,7 @@
 #+INCLUDE: "./template"
 
 [[https://imgs.xkcd.com/comics/blogging.png]]
-#+BEGIN_SRC cpp
-#include "StringHelper.h"
-bool FileHelper::FileExists(FString Path) {
-#ifdef UE4_EDITOR
-    IPlatformFile &PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
-    return PlatformFile.FileExists(*Path);
-#else
-    std::fstream File_;
-    File_.open(Path, std::ios::in);
-    bool IsExist = false;
-    if (File_)
-        IsExist = true;
 
-    File_.close();
-    return IsExist;
-#endif
-}
-#+END_SRC
 ** About Me
 - [[mailto:damon-kwok@outlook.com][Email]]
 - [[https://github.com/damon-kwok/libknife][Github]]

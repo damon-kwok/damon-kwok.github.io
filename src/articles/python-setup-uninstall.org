@@ -1,6 +1,3 @@
-#+TITLE:     This is Title
-#+AUTHOR:    damon-kwok
-#+EMAIL:     damon-kwok@outlook.com
 #+DATE:      2017-11-27
 #+INCLUDE: "./template"
 

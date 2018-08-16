@@ -178,7 +178,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="./css/worg-classic.css"/>
+<link rel="stylesheet" type="text/css" href="./style/worg-classic.css"/>
 <style>#forkongithub a{background:#587e71;color:#eeeeee;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#ffffff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
 <script type="text/javascript">
 /*
@@ -231,7 +231,7 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Damon Kwok's Homepage</h1>
 <p>
-<a href="../index.html"><b>Home</b></a> <a href="../blog.html"><b>Blogs</b></a> <a href="../articles.html"><b>Articles</b></a> <a href="../link.html"><b>Links</b></a>
+<a href="./index.html"><b>Home</b></a> <a href="./notes.html"><b>Notes</b></a> <a href="./articles.html"><b>Articles</b></a> <a href="./link.html"><b>Links</b></a>
 </p>
 <hr />
 
@@ -240,25 +240,7 @@ for the JavaScript code in this tag.
 <p><img src="https://imgs.xkcd.com/comics/blogging.png" alt="blogging.png" />
 </p>
 </div>
-<div class="org-src-container">
-<pre class="src src-cpp"><span style="color: #ffd700;">#include</span><span style="color: #555555;"> </span><span style="color: #9ccc65;">"StringHelper.h"</span>&#57344;&#57345;&#57345;
-<span style="color: #84ffff;">bool</span><span style="color: #555555;"> </span><span style="color: #8bc34a;">FileHelper</span>::<span style="color: #84ffff;">FileExists</span>(<span style="color: #84ffff;">FString</span><span style="color: #555555;"> </span><span style="color: #ffcc80;">Path</span>)<span style="color: #555555;"> </span>{&#57344;&#57345;&#57345;
-<span style="color: #ffd700;">#ifdef</span><span style="color: #555555;"> </span>UE4_EDITOR&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span><span style="color: #84ffff;">IPlatformFile</span><span style="color: #555555;"> </span>&amp;<span style="color: #ffcc80;">PlatformFile</span><span style="color: #555555;"> </span>=<span style="color: #555555;"> </span><span style="color: #8bc34a;">FPlatformFileManager</span>::Get().GetPlatformFile();&#57345;
-<span style="color: #555555;">    </span><span style="color: #fff59d;">return</span><span style="color: #555555;"> </span>PlatformFile.FileExists(*Path);&#57344;&#57345;&#57345;
-<span style="color: #ffd700;">#else</span>&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span><span style="color: #8bc34a;">std</span>::<span style="color: #84ffff;">fstream</span><span style="color: #555555;"> </span><span style="color: #ffcc80;">File_</span>;&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span>File_.open(Path,<span style="color: #555555;"> </span><span style="color: #8bc34a;">std</span>::<span style="color: #8bc34a;">ios</span>::in);&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span><span style="color: #84ffff;">bool</span><span style="color: #555555;"> </span><span style="color: #ffcc80;">IsExist</span><span style="color: #555555;"> </span>=<span style="color: #555555;"> </span><span style="color: #8bc34a;">false</span>;&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span><span style="color: #fff59d;">if</span><span style="color: #555555;"> </span>(File_)&#57344;&#57345;&#57345;
-<span style="color: #555555;">        </span>IsExist<span style="color: #555555;"> </span>=<span style="color: #555555;"> </span><span style="color: #8bc34a;">true</span>;&#57344;&#57345;&#57345;
-&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span>File_.close();&#57344;&#57345;&#57345;
-<span style="color: #555555;">    </span><span style="color: #fff59d;">return</span><span style="color: #555555;"> </span>IsExist;&#57344;&#57345;&#57345;
-<span style="color: #ffd700;">#endif</span>&#57344;&#57345;&#57345;
-}
-</pre>
-</div>
+
 <div id="outline-container-org9f450ce" class="outline-2">
 <h2 id="org9f450ce">About Me</h2>
 <div class="outline-text-2" id="text-org9f450ce">

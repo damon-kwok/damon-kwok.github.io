@@ -2,8 +2,8 @@
 #+AUTHOR:    damon-kwok
 #+EMAIL:     damon-kwok@outlook.com
 #+OPTIONS: toc:nil creator:nil author:nil email:nil timestamp:nil html-postamble:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/worg-classic.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./style/worg-classic.css"/>
 #+HTML_HEAD: <style>#forkongithub a{background:#587e71;color:#eeeeee;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#ffffff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
 #+TODO: TODO DOING DONE
-[[../index.org][*Home*]] [[../blog.org][*Blogs*]] [[../articles.org][*Articles*]] [[../link.org][*Links*]]
+[[./index.org][*Home*]] [[./notes.org][*Notes*]] [[./articles.org][*Articles*]] [[./link.org][*Links*]]
 -----
