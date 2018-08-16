@@ -5,12 +5,12 @@
 - [[file:link.org][link]]
 - [[file:notes.org][notes]]
 - articles
+  - [[file:articles/functional-programming-languages.org][functional-programming-languages]]
   - [[file:articles/let-it-crash.org][let-it-crash]]
   - [[file:articles/offlineiamp-install.org][offlineimap编译安装]]
   - [[file:articles/python-setup-uninstall.org][This is Title]]
   - [[file:articles/why-not-oo.org][why-not-oo]]
   - [[file:articles/memory.org][为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？]]
-  - [[file:articles/functional-programming-languages.org][functional-programming-languages]]
   - [[file:articles/awosome-erlang.org][awosome-erlang]]
   - [[file:articles/a-erlang-programmer-dialogure.org][a-erlang-programmer-dialogure]]
 - notes
