@@ -178,8 +178,13 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="../style/worg-classic.css"/>
-<style>#forkongithub a{background:#587e71;color:#eeeeee;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#ffffff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
+<link rel="stylesheet" type="text/css" href="./style/worg-classic.css"/>
+<style>#forkongithub a{background:#587e71;color:#eeeeee;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#225544;color:#ffffff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#77aa99;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style>
+<span id="forkongithub" style="display:none"><a id="fork_link" href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a></span>
+<script> function forkme(repo_url){document.getElementById("forkongithub").style.display="inline";document.getElementById("fork_link").href=repo_url;}</script>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script> function comment_form(pageId,owner,repo) {var gitment = new Gitment({id: pageId, owner: owner,repo: repo, oauth: {client_id: 'a9fe69dfa6b5f560747b',client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',},}); const container = document.createElement('div');container.id="damon-comment";setTimeout(function(){document.body.appendChild(container);gitment.render('damon-comment');}, 1000); }</script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -231,7 +236,7 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Damon Kwok's Homepage</h1>
 <p>
-<a href="../index.html"><b>Home</b></a> <a href="../notes.html"><b>Notes</b></a> <a href="../articles.html"><b>Articles</b></a> <a href="../link.html"><b>Links</b></a>
+<a href="../index.html"><b>Home</b></a> <a href="../notes.html"><b>Notes</b></a> <a href="../articles.html"><b>Articles</b></a> <a href="../link.html"><b>Links</b></a>  <a href="../guest_book.html"><b>GuestBook</b></a>
 </p>
 <hr />
 
@@ -266,9 +271,9 @@ Erlang 在构建高可用服务上有其独特的优势，这与 Web 服务的�
 <p>
 语言并不那么重要，重要的是蕴含在语言之中的设计理念和设计思想。
 </p>
-<div id="outline-container-org809664b" class="outline-2">
-<h2 id="org809664b">不可变状态</h2>
-<div class="outline-text-2" id="text-org809664b">
+<div id="outline-container-orgc842d9f" class="outline-2">
+<h2 id="orgc842d9f">不可变状态</h2>
+<div class="outline-text-2" id="text-orgc842d9f">
 <p>
 Erlang 是一种一次性赋值（single-assignment variable）的动态类型函数式编程语言。单次赋值意味着每个变量只能被赋值一次，如果试图在变量被赋值后改变它的值，程序会出错。
 </p>
@@ -294,9 +299,9 @@ Erlang 是一种一次性赋值（single-assignment variable）的动态类型�
 </p>
 </div>
 </div>
-<div id="outline-container-org4b35598" class="outline-2">
-<h2 id="org4b35598">Actor 并发模型</h2>
-<div class="outline-text-2" id="text-org4b35598">
+<div id="outline-container-org6d1dfc3" class="outline-2">
+<h2 id="org6d1dfc3">Actor 并发模型</h2>
+<div class="outline-text-2" id="text-org6d1dfc3">
 <p>
 并发模型有很多种，大多数人最熟悉的还是 Java 所采用的基于锁和线程的并发模型，但也有其他的如 Golang 采用的 CSP 模型和 Erlang 的 Actor 模型，如果你对并发模型感兴趣，可以参阅《七周七并发模型》这本书。
 </p>
@@ -318,9 +323,9 @@ Erlang 的基本并发单元是进程（Process），它们是一些独立的小
 </p>
 </div>
 </div>
-<div id="outline-container-org27ac55c" class="outline-2">
-<h2 id="org27ac55c">Let it crash</h2>
-<div class="outline-text-2" id="text-org27ac55c">
+<div id="outline-container-org871ca82" class="outline-2">
+<h2 id="org871ca82">Let it crash</h2>
+<div class="outline-text-2" id="text-org871ca82">
 <p>
 在一般的传统语言里，我们总是被教导着要写「防御性代码」。那可能意味你代码中任何层次抽象出的每一个接口都应当检查传入的参数、可能意味着代码中需要大量的与业务逻辑交织在一起的错误检查代码。这是可以理解的，因为在基于锁和线程的并发模型中，编写多进程代码极其困难，多数程序都只有一个进程，所以如果这个进程随随便便就会崩溃，用专业的话说那就是程序的「鲁棒性」太差了。
 </p>
@@ -346,9 +351,9 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </p>
 </div>
 </div>
-<div id="outline-container-orge8d5537" class="outline-2">
-<h2 id="orge8d5537">GitHub 语言颜色</h2>
-<div class="outline-text-2" id="text-orge8d5537">
+<div id="outline-container-orgeed2076" class="outline-2">
+<h2 id="orgeed2076">GitHub 语言颜色</h2>
+<div class="outline-text-2" id="text-orgeed2076">
 <p>
 最后，说一个 tricky 的理由，在 GitHub 上代表 Erlang 和 Elixir 的颜色是紫色（Elixir 的颜色更深一点），这个已经暗示了这门技术的尊贵之处了。
 </p>
@@ -358,9 +363,9 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </p>
 </div>
 </div>
-<div id="outline-container-org481e219" class="outline-2">
-<h2 id="org481e219">结语</h2>
-<div class="outline-text-2" id="text-org481e219">
+<div id="outline-container-org00723d5" class="outline-2">
+<h2 id="org00723d5">结语</h2>
+<div class="outline-text-2" id="text-org00723d5">
 <p>
 希望这篇文章能真正引发你对于 Erlang 这门设计优秀的语言的兴趣与关注，并同时推荐你看《Erlang程序设计（第2版）》 这本书，它是由 Erlang 的设计和发明者、「Erlang 之父」Joe Armstrong 亲笔撰写的，所以在语言的诸多设计理念上都有非常清晰的讲解。
 </p>

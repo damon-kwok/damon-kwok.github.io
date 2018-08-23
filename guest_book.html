@@ -185,6 +185,8 @@
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script> function comment_form(pageId,owner,repo) {var gitment = new Gitment({id: pageId, owner: owner,repo: repo, oauth: {client_id: 'a9fe69dfa6b5f560747b',client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',},}); const container = document.createElement('div');container.id="damon-comment";setTimeout(function(){document.body.appendChild(container);gitment.render('damon-comment');}, 1000); }</script>
+<script> comment_form("guestbook", 'damon-kwok', 'damon-kwok.github.io');</script>
+<script> forkme("http://github.com/damon-kwok/damon-kwok.github.io")</script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -236,28 +238,14 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Damon Kwok's Homepage</h1>
 <p>
-<a href="../index.html"><b>Home</b></a> <a href="../notes.html"><b>Notes</b></a> <a href="../articles.html"><b>Articles</b></a> <a href="../link.html"><b>Links</b></a>  <a href="../guest_book.html"><b>GuestBook</b></a>
+<a href="./index.html"><b>Home</b></a> <a href="./notes.html"><b>Notes</b></a> <a href="./articles.html"><b>Articles</b></a> <a href="./link.html"><b>Links</b></a> <a href="./guest_book.html"><b>GuestBook</b></a>
 </p>
 <hr />
-
-
 <div class="org-center">
 <p>
-为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？
+<b>Guest Book</b>
 </p>
 </div>
-
-<p>
-这种乱码最常见的地方是Visual Studio里。Visual Studio中，未初始化的栈空间用0xCC填充，而未初始化的堆空间用0xCD填充。
-</p>
-
-<p>
-而0xCCCC和0xCDCD在中文GB2312编码中分别对应“烫”字和“屯”字。
-</p>
-
-<p>
-如果一个字符串没有结束符'\0'，输出时就会打印出未初始化的栈或堆空间的内容，这就是大名鼎鼎的“烫烫烫”、“屯屯屯”乱码。
-</p>
 </div>
 </body>
 </html>
