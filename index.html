@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 16:33 -->
+<!-- 2018-08-24 Fri 16:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="damon-kwok" />
+<script>  var blogcfg={}; function forkme(repo_url) { blogcfg.fork_repo_url=repo_url; };  function comment_box(pageId,owner,repo) { blogcfg.comment_page_id = pageId; blogcfg.comment_owner = owner; blogcfg.comment_repo = repo; };</script>
 <link rel="stylesheet" type="text/css" href="/style/default.css" />
 </head>
 <body>
@@ -29,7 +30,19 @@
   </span>
   
   <script>
+    var blogcfg={};
     function forkme(repo_url)
+    {
+        blogcfg.fork_repo_url=repo_url;
+    }
+    function comment_box(pageId,owner,repo)
+    {
+        blogcfg.comment_page_id = pageId;
+        blogcfg.comment_owner = owner;
+        blogcfg.comment_repo = repo;
+    }
+
+    if(blogcfg.fork_repo_url!=undefined)
     {
         document.getElementById("forkongithub").style.display="inline";
         document.getElementById("fork_link").href=repo_url;
@@ -45,9 +58,9 @@
 </p>
 </div>
 
-<div id="outline-container-org4d76ed4" class="outline-2">
-<h2 id="org4d76ed4">About Me</h2>
-<div class="outline-text-2" id="text-org4d76ed4">
+<div id="outline-container-orgde7d176" class="outline-2">
+<h2 id="orgde7d176">About Me</h2>
+<div class="outline-text-2" id="text-orgde7d176">
 <ul class="org-ul">
 <li><a href="mailto:damon-kwok@outlook.com">Email</a></li>
 <li><a href="https://github.com/damon-kwok/libknife">Github</a></li>
@@ -56,9 +69,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org8d9fd85" class="outline-2">
-<h2 id="org8d9fd85">My Projects</h2>
-<div class="outline-text-2" id="text-org8d9fd85">
+<div id="outline-container-org3c0cf9c" class="outline-2">
+<h2 id="org3c0cf9c">My Projects</h2>
+<div class="outline-text-2" id="text-org3c0cf9c">
 <ul class="org-ul">
 <li><a href="https://github.com/damon-kwok/oh-my-emacs">Oh-My-Emacs</a></li>
 <li><a href="https://github.com/damon-kwok/medusa">Medusa</a></li>
@@ -72,7 +85,7 @@
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
-    function comment_box(pageId,owner,repo)
+    if(blogcfg.comment_page_id!=undefined)
     {
         var gitment = new Gitment(
             {
