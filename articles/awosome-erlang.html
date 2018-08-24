@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 17:56 -->
+<!-- 2018-08-24 Fri 19:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>About</title>
+<title>Damon Kwok's Homepage</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="damon-kwok" />
 <script>  var blogcfg={}; var forkme=function(repo_url) { blogcfg.fork_repo_url=repo_url; };  var comment_box=function(pageId,owner,repo) { blogcfg.comment_page_id = pageId; blogcfg.comment_owner = owner; blogcfg.comment_repo = repo; };</script>
@@ -71,9 +71,9 @@ Erlang 在构建高可用服务上有其独特的优势，这与 Web 服务的�
 <p>
 语言并不那么重要，重要的是蕴含在语言之中的设计理念和设计思想。
 </p>
-<div id="outline-container-org8d92a95" class="outline-2">
-<h2 id="org8d92a95">不可变状态</h2>
-<div class="outline-text-2" id="text-org8d92a95">
+<div id="outline-container-org3de3d8f" class="outline-2">
+<h2 id="org3de3d8f">不可变状态</h2>
+<div class="outline-text-2" id="text-org3de3d8f">
 <p>
 Erlang 是一种一次性赋值（single-assignment variable）的动态类型函数式编程语言。单次赋值意味着每个变量只能被赋值一次，如果试图在变量被赋值后改变它的值，程序会出错。
 </p>
@@ -99,9 +99,9 @@ Erlang 是一种一次性赋值（single-assignment variable）的动态类型�
 </p>
 </div>
 </div>
-<div id="outline-container-org4a331da" class="outline-2">
-<h2 id="org4a331da">Actor 并发模型</h2>
-<div class="outline-text-2" id="text-org4a331da">
+<div id="outline-container-org3dfb2ef" class="outline-2">
+<h2 id="org3dfb2ef">Actor 并发模型</h2>
+<div class="outline-text-2" id="text-org3dfb2ef">
 <p>
 并发模型有很多种，大多数人最熟悉的还是 Java 所采用的基于锁和线程的并发模型，但也有其他的如 Golang 采用的 CSP 模型和 Erlang 的 Actor 模型，如果你对并发模型感兴趣，可以参阅《七周七并发模型》这本书。
 </p>
@@ -123,9 +123,9 @@ Erlang 的基本并发单元是进程（Process），它们是一些独立的小
 </p>
 </div>
 </div>
-<div id="outline-container-org56a506c" class="outline-2">
-<h2 id="org56a506c">Let it crash</h2>
-<div class="outline-text-2" id="text-org56a506c">
+<div id="outline-container-org8c7319a" class="outline-2">
+<h2 id="org8c7319a">Let it crash</h2>
+<div class="outline-text-2" id="text-org8c7319a">
 <p>
 在一般的传统语言里，我们总是被教导着要写「防御性代码」。那可能意味你代码中任何层次抽象出的每一个接口都应当检查传入的参数、可能意味着代码中需要大量的与业务逻辑交织在一起的错误检查代码。这是可以理解的，因为在基于锁和线程的并发模型中，编写多进程代码极其困难，多数程序都只有一个进程，所以如果这个进程随随便便就会崩溃，用专业的话说那就是程序的「鲁棒性」太差了。
 </p>
@@ -151,9 +151,9 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </p>
 </div>
 </div>
-<div id="outline-container-org41e935b" class="outline-2">
-<h2 id="org41e935b">GitHub 语言颜色</h2>
-<div class="outline-text-2" id="text-org41e935b">
+<div id="outline-container-org8d21b0b" class="outline-2">
+<h2 id="org8d21b0b">GitHub 语言颜色</h2>
+<div class="outline-text-2" id="text-org8d21b0b">
 <p>
 最后，说一个 tricky 的理由，在 GitHub 上代表 Erlang 和 Elixir 的颜色是紫色（Elixir 的颜色更深一点），这个已经暗示了这门技术的尊贵之处了。
 </p>
@@ -163,9 +163,9 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </p>
 </div>
 </div>
-<div id="outline-container-org5b78116" class="outline-2">
-<h2 id="org5b78116">结语</h2>
-<div class="outline-text-2" id="text-org5b78116">
+<div id="outline-container-org3e37c55" class="outline-2">
+<h2 id="org3e37c55">结语</h2>
+<div class="outline-text-2" id="text-org3e37c55">
 <p>
 希望这篇文章能真正引发你对于 Erlang 这门设计优秀的语言的兴趣与关注，并同时推荐你看《Erlang程序设计（第2版）》 这本书，它是由 Erlang 的设计和发明者、「Erlang 之父」Joe Armstrong 亲笔撰写的，所以在语言的诸多设计理念上都有非常清晰的讲解。
 </p>
