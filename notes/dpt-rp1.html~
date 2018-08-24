@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 16:07 -->
+<!-- 2018-08-24 Fri 16:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -23,7 +23,10 @@
     <li><a href="/guest_book.html">GuestBook</a></li>
   </ul>
   
-  <link rel="stylesheet" type="text/css" href="style/forme.css">
+  <style>
+
+
+
   <span id="forkongithub" style="display:none">
     <a id="fork_link" href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a>
   </span>
@@ -41,29 +44,38 @@
 <div id="content">
 <div class="org-center">
 <p>
-<b>Articles</b>
+<b>索尼DPT-RP1使用感受</b>
+</p>
+
+
+<div class="figure">
+<p><img src="../img/dpt-rp1.jpg" alt="dpt-rp1.jpg" />
 </p>
 </div>
+</div>
 
-<div id="outline-container-org567d712" class="outline-2">
-<h2 id="org567d712">2018</h2>
-<div class="outline-text-2" id="text-org567d712">
+<div id="outline-container-orgd370aeb" class="outline-2">
+<h2 id="orgd370aeb">优点</h2>
+<div class="outline-text-2" id="text-orgd370aeb">
 <ul class="org-ul">
-<li>0629 <a href="articles/memory.html">为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？</a></li>
+<li>屏幕大阅读PDF效果很赞</li>
+<li>轻薄的难以置信</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd2cc3ed" class="outline-2">
-<h2 id="orgd2cc3ed">2017</h2>
-<div class="outline-text-2" id="text-orgd2cc3ed">
+
+<div id="outline-container-org636488a" class="outline-2">
+<h2 id="org636488a">缺点</h2>
+<div class="outline-text-2" id="text-org636488a">
 <ul class="org-ul">
-<li>1127 <a href="articles/python-setup-uninstall.html">Python setup.py安装文件卸载</a></li>
-<li>1121 <a href="articles/offlineiamp-install.html">mu和offlineiamp编译安装方法</a></li>
-<li>0925 <a href="articles/a-erlang-programmer-dialogure.html">Erlang不能错过的盛宴</a></li>
-<li>0921 <a href="./articles/why-not-oo.html">Erlang之父：为什么面向对象很糟糕</a></li>
-<li>0901 <a href="./articles/functional-programming-languages.html">函数式编程语言对比</a></li>
-<li>0924 <a href="./articles/let-it-crash.html">Let it crash: 因为误解，所以瞎说</a></li>
-<li>0610 <a href="./articles/awosome-erlang.html">了不起的Erlang</a></li>
+<li>缺少手机APP</li>
+<li>没有Linux驱动</li>
+<li>只能在电脑上进行wifi设置，电子书上不行，换了网络环境很不方便</li>
+<li>虽然有蓝牙但是不能和手机连接，纯数鸡肋</li>
+<li>USB传输速度不给力</li>
+<li>不能安装第三方App，自己在kindle平台买的电子书还是只能在手机和kindle上看</li>
+<li>笔芯消耗过快</li>
+<li>只能阅读PDF，其他格式一概不支持</li>
 </ul>
 </div>
 </div>

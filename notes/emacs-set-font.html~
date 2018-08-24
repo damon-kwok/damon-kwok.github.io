@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 16:07 -->
+<!-- 2018-08-24 Fri 16:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -23,7 +23,10 @@
     <li><a href="/guest_book.html">GuestBook</a></li>
   </ul>
   
-  <link rel="stylesheet" type="text/css" href="style/forme.css">
+  <style>
+
+
+
   <span id="forkongithub" style="display:none">
     <a id="fork_link" href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a>
   </span>
@@ -41,30 +44,45 @@
 <div id="content">
 <div class="org-center">
 <p>
-<b>Articles</b>
+<b>Emacs字体相关问题</b>
 </p>
 </div>
 
-<div id="outline-container-org567d712" class="outline-2">
-<h2 id="org567d712">2018</h2>
-<div class="outline-text-2" id="text-org567d712">
-<ul class="org-ul">
-<li>0629 <a href="articles/memory.html">为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？</a></li>
-</ul>
+<div id="outline-container-org0e4812b" class="outline-2">
+<h2 id="org0e4812b">终端登陆后，再使用桌面环境打开出现：</h2>
+<div class="outline-text-2" id="text-org0e4812b">
+<p>
+Error (frameset): Font ‘tty’ is not defined
+</p>
+
+<p>
+ (setq desktop-restore-frames nil)
+(desktop-save-mode 1) 
+</p>
 </div>
 </div>
-<div id="outline-container-orgd2cc3ed" class="outline-2">
-<h2 id="orgd2cc3ed">2017</h2>
-<div class="outline-text-2" id="text-orgd2cc3ed">
-<ul class="org-ul">
-<li>1127 <a href="articles/python-setup-uninstall.html">Python setup.py安装文件卸载</a></li>
-<li>1121 <a href="articles/offlineiamp-install.html">mu和offlineiamp编译安装方法</a></li>
-<li>0925 <a href="articles/a-erlang-programmer-dialogure.html">Erlang不能错过的盛宴</a></li>
-<li>0921 <a href="./articles/why-not-oo.html">Erlang之父：为什么面向对象很糟糕</a></li>
-<li>0901 <a href="./articles/functional-programming-languages.html">函数式编程语言对比</a></li>
-<li>0924 <a href="./articles/let-it-crash.html">Let it crash: 因为误解，所以瞎说</a></li>
-<li>0610 <a href="./articles/awosome-erlang.html">了不起的Erlang</a></li>
-</ul>
+
+<div id="outline-container-org2b7d607" class="outline-2">
+<h2 id="org2b7d607">定义字体后</h2>
+<div class="outline-text-2" id="text-org2b7d607">
+<p>
+"Error (frameset): Font `tty' is not defined
+</p>
+
+<p>
+解决办法： 
+(if window-system
+(set-font)))
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83afb5a" class="outline-2">
+<h2 id="org83afb5a">Windows10 下中文卡顿</h2>
+<div class="outline-text-2" id="text-org83afb5a">
+<p>
+使用宋体或微软雅黑
+</p>
 </div>
 </div>
 </div>

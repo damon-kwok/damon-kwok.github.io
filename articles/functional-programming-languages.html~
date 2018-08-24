@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 16:07 -->
+<!-- 2018-08-24 Fri 16:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -23,7 +23,10 @@
     <li><a href="/guest_book.html">GuestBook</a></li>
   </ul>
   
-  <link rel="stylesheet" type="text/css" href="style/forme.css">
+  <style>
+
+
+
   <span id="forkongithub" style="display:none">
     <a id="fork_link" href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a>
   </span>
@@ -45,65 +48,65 @@
 <ul>
 <li><a href="#orgdcc9ae4">环境部署</a>
 <ul>
+<li><a href="#orgd6ea4e1">Elixir</a></li>
+<li><a href="#orgb38db0b">Erlang</a></li>
+<li><a href="#org5bf24f7">Clojure</a></li>
+<li><a href="#org71a1a7b">Elisp</a></li>
+<li><a href="#org43a18a6">Haskell</a></li>
+<li><a href="#org5b7bcd4">Rust</a></li>
+</ul>
+</li>
+<li><a href="#org7471cce">注释</a>
+<ul>
+<li><a href="#orgf03c1c1">Elixir</a></li>
+<li><a href="#org0ed1f88">Erlang</a></li>
+<li><a href="#org19197dd">Clojure</a></li>
+<li><a href="#org8c2051a">Elisp</a></li>
+<li><a href="#org837e27b">Haskell</a></li>
+<li><a href="#orgfa46918">Rust</a></li>
+</ul>
+</li>
+<li><a href="#orgd9e0d56">Last Eval</a>
+<ul>
+<li><a href="#org6ffaded">Elixir</a></li>
+<li><a href="#orgb64a462">Erlang</a></li>
+<li><a href="#org89effb3">Clojure</a></li>
+<li><a href="#org9ace00c">Haskell</a></li>
+<li><a href="#org6a7521b">Rust</a></li>
+</ul>
+</li>
+<li><a href="#org875d476">基本数据类型</a>
+<ul>
+<li><a href="#org084539b">Elixir</a></li>
+<li><a href="#org25b5cad">Clojure</a></li>
+<li><a href="#org5692669">Haskell</a></li>
+</ul>
+</li>
+<li><a href="#org23b20e3">基本运算符</a>
+<ul>
+<li><a href="#orgf83b525">Elixir</a></li>
+<li><a href="#orgd9b8638">Clojure</a></li>
+<li><a href="#org1326ec4">Haskell</a></li>
+</ul>
+</li>
+<li><a href="#org57eed18">匹配模式</a></li>
+<li><a href="#orgaadce81">字符串</a>
+<ul>
+<li><a href="#org53a1a8e">Elixir</a></li>
+<li><a href="#orgaaa23e5">Clojure</a></li>
+<li><a href="#org84afb58">Haskell</a></li>
+<li><a href="#org9f6a2f6">Rust</a></li>
+</ul>
+</li>
+<li><a href="#orge452a61">流程控制</a></li>
+<li><a href="#org6021c33">匿名函数</a>
+<ul>
 <li><a href="#orgbcaccbb">Elixir</a></li>
 <li><a href="#org061887f">Erlang</a></li>
 <li><a href="#org08a0d39">Clojure</a></li>
 <li><a href="#org71441af">Elisp</a></li>
 <li><a href="#orgfb8d167">Haskell</a></li>
 <li><a href="#org6b8f661">Rust</a></li>
-</ul>
-</li>
-<li><a href="#org7471cce">注释</a>
-<ul>
-<li><a href="#orgb261b91">Elixir</a></li>
-<li><a href="#org87edd7a">Erlang</a></li>
-<li><a href="#orgbf1e4e0">Clojure</a></li>
-<li><a href="#orga4f3096">Elisp</a></li>
-<li><a href="#org44d8797">Haskell</a></li>
-<li><a href="#org687a661">Rust</a></li>
-</ul>
-</li>
-<li><a href="#orgd9e0d56">Last Eval</a>
-<ul>
-<li><a href="#org8ba2557">Elixir</a></li>
-<li><a href="#orgca446dd">Erlang</a></li>
-<li><a href="#org5f304f5">Clojure</a></li>
-<li><a href="#orgd7cb859">Haskell</a></li>
-<li><a href="#org6203c18">Rust</a></li>
-</ul>
-</li>
-<li><a href="#org875d476">基本数据类型</a>
-<ul>
-<li><a href="#org8340615">Elixir</a></li>
-<li><a href="#orga29e436">Clojure</a></li>
-<li><a href="#org95a9c59">Haskell</a></li>
-</ul>
-</li>
-<li><a href="#org23b20e3">基本运算符</a>
-<ul>
-<li><a href="#org37e98a3">Elixir</a></li>
-<li><a href="#orgdceb8b6">Clojure</a></li>
-<li><a href="#org2a97be6">Haskell</a></li>
-</ul>
-</li>
-<li><a href="#org57eed18">匹配模式</a></li>
-<li><a href="#orgaadce81">字符串</a>
-<ul>
-<li><a href="#org13e5cfe">Elixir</a></li>
-<li><a href="#orga2e03dd">Clojure</a></li>
-<li><a href="#orgadbef5e">Haskell</a></li>
-<li><a href="#orgc08fd99">Rust</a></li>
-</ul>
-</li>
-<li><a href="#orge452a61">流程控制</a></li>
-<li><a href="#org6021c33">匿名函数</a>
-<ul>
-<li><a href="#orgb2b1560">Elixir</a></li>
-<li><a href="#orgc64800e">Erlang</a></li>
-<li><a href="#orgcf4c185">Clojure</a></li>
-<li><a href="#org6c969b4">Elisp</a></li>
-<li><a href="#orgc7f1e41">Haskell</a></li>
-<li><a href="#org47567b3">Rust</a></li>
 <li><a href="#orgea73ea8">OCaml</a></li>
 </ul>
 </li>
@@ -120,9 +123,9 @@
 <h2 id="orgdcc9ae4">环境部署</h2>
 <div class="outline-text-2" id="text-orgdcc9ae4">
 </div>
-<div id="outline-container-orgbcaccbb" class="outline-3">
-<h3 id="orgbcaccbb">Elixir</h3>
-<div class="outline-text-3" id="text-orgbcaccbb">
+<div id="outline-container-orgd6ea4e1" class="outline-3">
+<h3 id="orgd6ea4e1">Elixir</h3>
+<div class="outline-text-3" id="text-orgd6ea4e1">
 <div class="org-src-container">
 <pre class="src src-shell">pacman -S elixir
 iex
@@ -131,9 +134,9 @@ iex
 </div>
 </div>
 
-<div id="outline-container-org061887f" class="outline-3">
-<h3 id="org061887f">Erlang</h3>
-<div class="outline-text-3" id="text-org061887f">
+<div id="outline-container-orgb38db0b" class="outline-3">
+<h3 id="orgb38db0b">Erlang</h3>
+<div class="outline-text-3" id="text-orgb38db0b">
 <div class="org-src-container">
 <pre class="src src-shell">pacman -S erlang <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">erlang-nox</span>
 erl
@@ -142,9 +145,9 @@ erl
 </div>
 </div>
 
-<div id="outline-container-org08a0d39" class="outline-3">
-<h3 id="org08a0d39">Clojure</h3>
-<div class="outline-text-3" id="text-org08a0d39">
+<div id="outline-container-org5bf24f7" class="outline-3">
+<h3 id="org5bf24f7">Clojure</h3>
+<div class="outline-text-3" id="text-org5bf24f7">
 <div class="org-src-container">
 <pre class="src src-shell">pacman -S leiningen
 lein repl
@@ -153,9 +156,9 @@ lein repl
 </div>
 </div>
 
-<div id="outline-container-org71441af" class="outline-3">
-<h3 id="org71441af">Elisp</h3>
-<div class="outline-text-3" id="text-org71441af">
+<div id="outline-container-org71a1a7b" class="outline-3">
+<h3 id="org71a1a7b">Elisp</h3>
+<div class="outline-text-3" id="text-org71a1a7b">
 <div class="org-src-container">
 <pre class="src src-shell">pacman -S emacs ;;emacs-nox
 </pre>
@@ -163,9 +166,9 @@ lein repl
 </div>
 </div>
 
-<div id="outline-container-orgfb8d167" class="outline-3">
-<h3 id="orgfb8d167">Haskell</h3>
-<div class="outline-text-3" id="text-orgfb8d167">
+<div id="outline-container-org43a18a6" class="outline-3">
+<h3 id="org43a18a6">Haskell</h3>
+<div class="outline-text-3" id="text-org43a18a6">
 <div class="org-src-container">
 <pre class="src src-shell">pacman -S stack
 stack repl
@@ -174,9 +177,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-org6b8f661" class="outline-3">
-<h3 id="org6b8f661">Rust</h3>
-<div class="outline-text-3" id="text-org6b8f661">
+<div id="outline-container-org5b7bcd4" class="outline-3">
+<h3 id="org5b7bcd4">Rust</h3>
+<div class="outline-text-3" id="text-org5b7bcd4">
 <div class="org-src-container">
 <pre class="src src-shell">pacman -S rust
 </pre>
@@ -190,9 +193,9 @@ stack repl
 <h2 id="org7471cce">注释</h2>
 <div class="outline-text-2" id="text-org7471cce">
 </div>
-<div id="outline-container-orgb261b91" class="outline-3">
-<h3 id="orgb261b91">Elixir</h3>
-<div class="outline-text-3" id="text-orgb261b91">
+<div id="outline-container-orgf03c1c1" class="outline-3">
+<h3 id="orgf03c1c1">Elixir</h3>
+<div class="outline-text-3" id="text-orgf03c1c1">
 <div class="org-src-container">
 <pre class="src src-elixir"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;</span>
 </pre>
@@ -200,9 +203,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-org87edd7a" class="outline-3">
-<h3 id="org87edd7a">Erlang</h3>
-<div class="outline-text-3" id="text-org87edd7a">
+<div id="outline-container-org0ed1f88" class="outline-3">
+<h3 id="org0ed1f88">Erlang</h3>
+<div class="outline-text-3" id="text-org0ed1f88">
 <div class="org-src-container">
 <pre class="src src-elixir">% &#36825;&#26159;&#19968;&#20010;&#27880;&#37322;
 %% &#20989;&#25968;&#19968;&#33324;&#36825;&#26679;&#27880;&#37322;
@@ -212,9 +215,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-orgbf1e4e0" class="outline-3">
-<h3 id="orgbf1e4e0">Clojure</h3>
-<div class="outline-text-3" id="text-orgbf1e4e0">
+<div id="outline-container-org19197dd" class="outline-3">
+<h3 id="org19197dd">Clojure</h3>
+<div class="outline-text-3" id="text-org19197dd">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;</span>
 </pre>
@@ -222,9 +225,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-orga4f3096" class="outline-3">
-<h3 id="orga4f3096">Elisp</h3>
-<div class="outline-text-3" id="text-orga4f3096">
+<div id="outline-container-org8c2051a" class="outline-3">
+<h3 id="org8c2051a">Elisp</h3>
+<div class="outline-text-3" id="text-org8c2051a">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;</span>
 </pre>
@@ -232,9 +235,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-org44d8797" class="outline-3">
-<h3 id="org44d8797">Haskell</h3>
-<div class="outline-text-3" id="text-org44d8797">
+<div id="outline-container-org837e27b" class="outline-3">
+<h3 id="org837e27b">Haskell</h3>
+<div class="outline-text-3" id="text-org837e27b">
 <div class="org-src-container">
 <pre class="src src-haskell2">-- 这是一个注释
 {- 这是多行注释 -}
@@ -243,9 +246,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-org687a661" class="outline-3">
-<h3 id="org687a661">Rust</h3>
-<div class="outline-text-3" id="text-org687a661">
+<div id="outline-container-orgfa46918" class="outline-3">
+<h3 id="orgfa46918">Rust</h3>
+<div class="outline-text-3" id="text-orgfa46918">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#21333;&#34892;&#27880;&#37322;</span>
 <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">...&#36825;&#26159;&#22810;&#34892;&#27880;&#37322; */</span>
@@ -260,9 +263,9 @@ stack repl
 <h2 id="orgd9e0d56">Last Eval</h2>
 <div class="outline-text-2" id="text-orgd9e0d56">
 </div>
-<div id="outline-container-org8ba2557" class="outline-3">
-<h3 id="org8ba2557">Elixir</h3>
-<div class="outline-text-3" id="text-org8ba2557">
+<div id="outline-container-org6ffaded" class="outline-3">
+<h3 id="org6ffaded">Elixir</h3>
+<div class="outline-text-3" id="text-org6ffaded">
 <div class="org-src-container">
 <pre class="src src-elixir">
 </pre>
@@ -270,9 +273,9 @@ stack repl
 </div>
 </div>
 
-<div id="outline-container-orgca446dd" class="outline-3">
-<h3 id="orgca446dd">Erlang</h3>
-<div class="outline-text-3" id="text-orgca446dd">
+<div id="outline-container-orgb64a462" class="outline-3">
+<h3 id="orgb64a462">Erlang</h3>
+<div class="outline-text-3" id="text-orgb64a462">
 <div class="org-src-container">
 <pre class="src src-elixir">v(1).
 v(2).
@@ -282,9 +285,9 @@ v(2).
 </div>
 
 
-<div id="outline-container-org5f304f5" class="outline-3">
-<h3 id="org5f304f5">Clojure</h3>
-<div class="outline-text-3" id="text-org5f304f5">
+<div id="outline-container-org89effb3" class="outline-3">
+<h3 id="org89effb3">Clojure</h3>
+<div class="outline-text-3" id="text-org89effb3">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="font-weight: bold;">*1</span>
 <span style="font-weight: bold;">*2</span>
@@ -293,9 +296,9 @@ v(2).
 </div>
 </div>
 
-<div id="outline-container-orgd7cb859" class="outline-3">
-<h3 id="orgd7cb859">Haskell</h3>
-<div class="outline-text-3" id="text-orgd7cb859">
+<div id="outline-container-org9ace00c" class="outline-3">
+<h3 id="org9ace00c">Haskell</h3>
+<div class="outline-text-3" id="text-org9ace00c">
 <div class="org-src-container">
 <pre class="src src-haskell2">
 </pre>
@@ -303,9 +306,9 @@ v(2).
 </div>
 </div>
 
-<div id="outline-container-org6203c18" class="outline-3">
-<h3 id="org6203c18">Rust</h3>
-<div class="outline-text-3" id="text-org6203c18">
+<div id="outline-container-org6a7521b" class="outline-3">
+<h3 id="org6a7521b">Rust</h3>
+<div class="outline-text-3" id="text-org6a7521b">
 <div class="org-src-container">
 <pre class="src src-rust">
 </pre>
@@ -319,9 +322,9 @@ v(2).
 <h2 id="org875d476">基本数据类型</h2>
 <div class="outline-text-2" id="text-org875d476">
 </div>
-<div id="outline-container-org8340615" class="outline-3">
-<h3 id="org8340615">Elixir</h3>
-<div class="outline-text-3" id="text-org8340615">
+<div id="outline-container-org084539b" class="outline-3">
+<h3 id="org084539b">Elixir</h3>
+<div class="outline-text-3" id="text-org084539b">
 <p>
 整型（integer），浮点（float），布尔（boolean），原子（atom，又称symbol符号），
 字符串（string），列表（list）和元组（tuple）等。
@@ -329,13 +332,13 @@ v(2).
 </div>
 </div>
 
-<div id="outline-container-orga29e436" class="outline-3">
-<h3 id="orga29e436">Clojure</h3>
+<div id="outline-container-org25b5cad" class="outline-3">
+<h3 id="org25b5cad">Clojure</h3>
 </div>
 
-<div id="outline-container-org95a9c59" class="outline-3">
-<h3 id="org95a9c59">Haskell</h3>
-<div class="outline-text-3" id="text-org95a9c59">
+<div id="outline-container-org5692669" class="outline-3">
+<h3 id="org5692669">Haskell</h3>
+<div class="outline-text-3" id="text-org5692669">
 <hr />
 </div>
 </div>
@@ -344,22 +347,22 @@ v(2).
 <h2 id="org23b20e3">基本运算符</h2>
 <div class="outline-text-2" id="text-org23b20e3">
 </div>
-<div id="outline-container-org37e98a3" class="outline-3">
-<h3 id="org37e98a3">Elixir</h3>
-<div class="outline-text-3" id="text-org37e98a3">
+<div id="outline-container-orgf83b525" class="outline-3">
+<h3 id="orgf83b525">Elixir</h3>
+<div class="outline-text-3" id="text-orgf83b525">
 <p>
 +，-，*，/ div rem
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdceb8b6" class="outline-3">
-<h3 id="orgdceb8b6">Clojure</h3>
+<div id="outline-container-orgd9b8638" class="outline-3">
+<h3 id="orgd9b8638">Clojure</h3>
 </div>
 
-<div id="outline-container-org2a97be6" class="outline-3">
-<h3 id="org2a97be6">Haskell</h3>
-<div class="outline-text-3" id="text-org2a97be6">
+<div id="outline-container-org1326ec4" class="outline-3">
+<h3 id="org1326ec4">Haskell</h3>
+<div class="outline-text-3" id="text-org1326ec4">
 <hr />
 </div>
 </div>
@@ -374,9 +377,9 @@ v(2).
 <h2 id="orgaadce81">字符串</h2>
 <div class="outline-text-2" id="text-orgaadce81">
 </div>
-<div id="outline-container-org13e5cfe" class="outline-3">
-<h3 id="org13e5cfe">Elixir</h3>
-<div class="outline-text-3" id="text-org13e5cfe">
+<div id="outline-container-org53a1a8e" class="outline-3">
+<h3 id="org53a1a8e">Elixir</h3>
+<div class="outline-text-3" id="text-org53a1a8e">
 <div class="org-src-container">
 <pre class="src src-elixir">str=<span style="font-style: italic;">"hello,world!"</span>
 </pre>
@@ -384,9 +387,9 @@ v(2).
 </div>
 </div>
 
-<div id="outline-container-orga2e03dd" class="outline-3">
-<h3 id="orga2e03dd">Clojure</h3>
-<div class="outline-text-3" id="text-orga2e03dd">
+<div id="outline-container-orgaaa23e5" class="outline-3">
+<h3 id="orgaaa23e5">Clojure</h3>
+<div class="outline-text-3" id="text-orgaaa23e5">
 <div class="org-src-container">
 <pre class="src src-clojure"><span style="font-style: italic;">"hello,world"</span>
 </pre>
@@ -394,9 +397,9 @@ v(2).
 </div>
 </div>
 
-<div id="outline-container-orgadbef5e" class="outline-3">
-<h3 id="orgadbef5e">Haskell</h3>
-<div class="outline-text-3" id="text-orgadbef5e">
+<div id="outline-container-org84afb58" class="outline-3">
+<h3 id="org84afb58">Haskell</h3>
+<div class="outline-text-3" id="text-org84afb58">
 <div class="org-src-container">
 <pre class="src src-haskell2">str="hello,world"
 </pre>
@@ -404,9 +407,9 @@ v(2).
 </div>
 </div>
 
-<div id="outline-container-orgc08fd99" class="outline-3">
-<h3 id="orgc08fd99">Rust</h3>
-<div class="outline-text-3" id="text-orgc08fd99">
+<div id="outline-container-org9f6a2f6" class="outline-3">
+<h3 id="org9f6a2f6">Rust</h3>
+<div class="outline-text-3" id="text-org9f6a2f6">
 <div class="org-src-container">
 <pre class="src src-rust">
 </pre>
@@ -426,9 +429,9 @@ v(2).
 <h2 id="org6021c33">匿名函数</h2>
 <div class="outline-text-2" id="text-org6021c33">
 </div>
-<div id="outline-container-orgb2b1560" class="outline-3">
-<h3 id="orgb2b1560">Elixir</h3>
-<div class="outline-text-3" id="text-orgb2b1560">
+<div id="outline-container-orgbcaccbb" class="outline-3">
+<h3 id="orgbcaccbb">Elixir</h3>
+<div class="outline-text-3" id="text-orgbcaccbb">
 <div class="org-src-container">
 <pre class="src src-elixir"><span style="font-weight: bold; font-style: italic;">func1</span> = <span style="font-weight: bold;">fn</span>(a,b)-&gt; a + b <span style="font-weight: bold;">end</span>
 func1.(1 2)
@@ -440,9 +443,9 @@ func.(1,2)
 </div>
 </div>
 
-<div id="outline-container-orgc64800e" class="outline-3">
-<h3 id="orgc64800e">Erlang</h3>
-<div class="outline-text-3" id="text-orgc64800e">
+<div id="outline-container-org061887f" class="outline-3">
+<h3 id="org061887f">Erlang</h3>
+<div class="outline-text-3" id="text-org061887f">
 <div class="org-src-container">
 <pre class="src src-elixir"><span style="font-weight: bold; font-style: italic;">Z</span>=fun(<span style="font-weight: bold; text-decoration: underline;">X</span>,<span style="font-weight: bold; text-decoration: underline;">Y</span>) -&gt; <span style="font-weight: bold; text-decoration: underline;">X</span>+<span style="font-weight: bold; text-decoration: underline;">Y</span> <span style="font-weight: bold;">end</span>.
 func(1,2).
@@ -451,9 +454,9 @@ func(1,2).
 </div>
 </div>
 
-<div id="outline-container-orgcf4c185" class="outline-3">
-<h3 id="orgcf4c185">Clojure</h3>
-<div class="outline-text-3" id="text-orgcf4c185">
+<div id="outline-container-org08a0d39" class="outline-3">
+<h3 id="org08a0d39">Clojure</h3>
+<div class="outline-text-3" id="text-org08a0d39">
 <div class="org-src-container">
 <pre class="src src-clojure">(<span style="font-weight: bold;">fn</span> [a b] (+ a b))
 (<span style="font-weight: bold;">let</span> [func (<span style="font-weight: bold;">fn</span> [a b] (+ a b))] 
@@ -465,9 +468,9 @@ func(1,2).
 </div>
 </div>
 
-<div id="outline-container-org6c969b4" class="outline-3">
-<h3 id="org6c969b4">Elisp</h3>
-<div class="outline-text-3" id="text-org6c969b4">
+<div id="outline-container-org71441af" class="outline-3">
+<h3 id="org71441af">Elisp</h3>
+<div class="outline-text-3" id="text-org71441af">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="font-weight: bold;">lambda</span>(a b) (+ a b))
 ((<span style="font-weight: bold;">lambda</span>(a b) (+ a b)) 1 2) <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">3</span>
@@ -476,9 +479,9 @@ func(1,2).
 </div>
 </div>
 
-<div id="outline-container-orgc7f1e41" class="outline-3">
-<h3 id="orgc7f1e41">Haskell</h3>
-<div class="outline-text-3" id="text-orgc7f1e41">
+<div id="outline-container-orgfb8d167" class="outline-3">
+<h3 id="orgfb8d167">Haskell</h3>
+<div class="outline-text-3" id="text-orgfb8d167">
 <div class="org-src-container">
 <pre class="src src-haskell2">(\a b-&gt; a + b) 1 2 --3
 func = (\a b -&gt; x + b)
@@ -488,9 +491,9 @@ func 1 2 --3
 </div>
 </div>
 
-<div id="outline-container-org47567b3" class="outline-3">
-<h3 id="org47567b3">Rust</h3>
-<div class="outline-text-3" id="text-org47567b3">
+<div id="outline-container-org6b8f661" class="outline-3">
+<h3 id="org6b8f661">Rust</h3>
+<div class="outline-text-3" id="text-org6b8f661">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">func</span> = |a,b| a + b; <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">3</span>
 func(1,2); <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">3</span>

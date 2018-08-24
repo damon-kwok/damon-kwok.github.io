@@ -21,7 +21,10 @@
     <li><a href="/guest_book.html">GuestBook</a></li>
   </ul>
   
-  <link rel="stylesheet" type="text/css" href="style/forme.css">
+  <style>
+
+
+
   <span id="forkongithub" style="display:none">
     <a id="fork_link" href="https://github.com/damon-kwok/damon-kwok.github.io">Fork me on GitHub</a>
   </span>
