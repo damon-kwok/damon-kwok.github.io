@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 17:03 -->
+<!-- 2018-08-24 Fri 17:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -52,9 +52,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6e67e4b" class="outline-2">
-<h2 id="org6e67e4b">优点</h2>
-<div class="outline-text-2" id="text-org6e67e4b">
+<div id="outline-container-orge8e5b03" class="outline-2">
+<h2 id="orge8e5b03">优点</h2>
+<div class="outline-text-2" id="text-orge8e5b03">
 <ul class="org-ul">
 <li>屏幕大阅读PDF效果很赞</li>
 <li>轻薄的难以置信</li>
@@ -62,9 +62,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9580554" class="outline-2">
-<h2 id="org9580554">缺点</h2>
-<div class="outline-text-2" id="text-org9580554">
+<div id="outline-container-orgd4fc69e" class="outline-2">
+<h2 id="orgd4fc69e">缺点</h2>
+<div class="outline-text-2" id="text-orgd4fc69e">
 <ul class="org-ul">
 <li>缺少手机APP</li>
 <li>没有Linux驱动</li>
@@ -80,6 +80,7 @@
 </div>
 <div id="postamble" class="status">
 <footer>
+  <div id="div-gitment"></div>
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
@@ -87,22 +88,19 @@
     {
         var gitment = new Gitment(
             {
-                id: pageId,
-                owner: owner,
-                repo: repo,
+                id: blogcfg.comment_page_id,
+                owner: blogcfg.comment_owner,
+                repo: blogcfg.comment_repo,
                 oauth: {
                     client_id: 'a9fe69dfa6b5f560747b',
                     client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
                 },
             }
         );
-        const container =document.createElement('div');
-        container.id="div-gitment";
-        setTimeout(function()
-                   {
-                       document.body.appendChild(container);
-                       gitment.render('div-gitment');
-                   }, 500);
+        //const container =document.createElement('div');
+        //container.id="div-gitment";
+        //document.body.appendChild(container);
+        gitment.render('div-gitment');
     }
   </script>
   

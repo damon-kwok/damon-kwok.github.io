@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 17:03 -->
+<!-- 2018-08-24 Fri 17:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -71,9 +71,9 @@ Erlang 在构建高可用服务上有其独特的优势，这与 Web 服务的�
 <p>
 语言并不那么重要，重要的是蕴含在语言之中的设计理念和设计思想。
 </p>
-<div id="outline-container-org6cd1616" class="outline-2">
-<h2 id="org6cd1616">不可变状态</h2>
-<div class="outline-text-2" id="text-org6cd1616">
+<div id="outline-container-org8a1805c" class="outline-2">
+<h2 id="org8a1805c">不可变状态</h2>
+<div class="outline-text-2" id="text-org8a1805c">
 <p>
 Erlang 是一种一次性赋值（single-assignment variable）的动态类型函数式编程语言。单次赋值意味着每个变量只能被赋值一次，如果试图在变量被赋值后改变它的值，程序会出错。
 </p>
@@ -99,9 +99,9 @@ Erlang 是一种一次性赋值（single-assignment variable）的动态类型�
 </p>
 </div>
 </div>
-<div id="outline-container-org690955a" class="outline-2">
-<h2 id="org690955a">Actor 并发模型</h2>
-<div class="outline-text-2" id="text-org690955a">
+<div id="outline-container-orgfb64e68" class="outline-2">
+<h2 id="orgfb64e68">Actor 并发模型</h2>
+<div class="outline-text-2" id="text-orgfb64e68">
 <p>
 并发模型有很多种，大多数人最熟悉的还是 Java 所采用的基于锁和线程的并发模型，但也有其他的如 Golang 采用的 CSP 模型和 Erlang 的 Actor 模型，如果你对并发模型感兴趣，可以参阅《七周七并发模型》这本书。
 </p>
@@ -123,9 +123,9 @@ Erlang 的基本并发单元是进程（Process），它们是一些独立的小
 </p>
 </div>
 </div>
-<div id="outline-container-orgfc5aba7" class="outline-2">
-<h2 id="orgfc5aba7">Let it crash</h2>
-<div class="outline-text-2" id="text-orgfc5aba7">
+<div id="outline-container-org0597ae4" class="outline-2">
+<h2 id="org0597ae4">Let it crash</h2>
+<div class="outline-text-2" id="text-org0597ae4">
 <p>
 在一般的传统语言里，我们总是被教导着要写「防御性代码」。那可能意味你代码中任何层次抽象出的每一个接口都应当检查传入的参数、可能意味着代码中需要大量的与业务逻辑交织在一起的错误检查代码。这是可以理解的，因为在基于锁和线程的并发模型中，编写多进程代码极其困难，多数程序都只有一个进程，所以如果这个进程随随便便就会崩溃，用专业的话说那就是程序的「鲁棒性」太差了。
 </p>
@@ -151,9 +151,9 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </p>
 </div>
 </div>
-<div id="outline-container-org1817be5" class="outline-2">
-<h2 id="org1817be5">GitHub 语言颜色</h2>
-<div class="outline-text-2" id="text-org1817be5">
+<div id="outline-container-orge7d7f87" class="outline-2">
+<h2 id="orge7d7f87">GitHub 语言颜色</h2>
+<div class="outline-text-2" id="text-orge7d7f87">
 <p>
 最后，说一个 tricky 的理由，在 GitHub 上代表 Erlang 和 Elixir 的颜色是紫色（Elixir 的颜色更深一点），这个已经暗示了这门技术的尊贵之处了。
 </p>
@@ -163,9 +163,9 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </p>
 </div>
 </div>
-<div id="outline-container-org4f964a2" class="outline-2">
-<h2 id="org4f964a2">结语</h2>
-<div class="outline-text-2" id="text-org4f964a2">
+<div id="outline-container-org17ee6dc" class="outline-2">
+<h2 id="org17ee6dc">结语</h2>
+<div class="outline-text-2" id="text-org17ee6dc">
 <p>
 希望这篇文章能真正引发你对于 Erlang 这门设计优秀的语言的兴趣与关注，并同时推荐你看《Erlang程序设计（第2版）》 这本书，它是由 Erlang 的设计和发明者、「Erlang 之父」Joe Armstrong 亲笔撰写的，所以在语言的诸多设计理念上都有非常清晰的讲解。
 </p>
@@ -174,6 +174,7 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
 </div>
 <div id="postamble" class="status">
 <footer>
+  <div id="div-gitment"></div>
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
@@ -181,22 +182,19 @@ Let it crash 所带来的好处其实有很多，除了前面已经说到的不�
     {
         var gitment = new Gitment(
             {
-                id: pageId,
-                owner: owner,
-                repo: repo,
+                id: blogcfg.comment_page_id,
+                owner: blogcfg.comment_owner,
+                repo: blogcfg.comment_repo,
                 oauth: {
                     client_id: 'a9fe69dfa6b5f560747b',
                     client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
                 },
             }
         );
-        const container =document.createElement('div');
-        container.id="div-gitment";
-        setTimeout(function()
-                   {
-                       document.body.appendChild(container);
-                       gitment.render('div-gitment');
-                   }, 500);
+        //const container =document.createElement('div');
+        //container.id="div-gitment";
+        //document.body.appendChild(container);
+        gitment.render('div-gitment');
     }
   </script>
   

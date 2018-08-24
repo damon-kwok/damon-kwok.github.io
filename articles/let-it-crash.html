@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 17:03 -->
+<!-- 2018-08-24 Fri 17:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -54,9 +54,9 @@
 严格意义上来说，我之于 erlang，也是个半吊子，到目前为止，还没有写过真正的在生产环境中使用的 erlang 代码。不过我倒是写了两千行在生产环境中使用的 elixir 代码，还有几千行将要被应用在生产环境中，所以自认为对 elixir 算是略懂一二。由于在 VM 层面和语言核心层面，elixir 和 erlang 一脉相承，所以我也对 let it crash 也算略懂。今天，咱们就谈谈 let it crash。
 </p>
 
-<div id="outline-container-orgaf52471" class="outline-2">
-<h2 id="orgaf52471">什么是 let it crash？</h2>
-<div class="outline-text-2" id="text-orgaf52471">
+<div id="outline-container-orgd832ae6" class="outline-2">
+<h2 id="orgd832ae6">什么是 let it crash？</h2>
+<div class="outline-text-2" id="text-orgd832ae6">
 <p>
 在 erlang 里，let it crash 是指程序员不必过分担心未知的错误，而进行面面俱到的 defensive coding。相反，当这种错误来临时，任由错误所处的上下文 —— 一般是某个 process —— 崩溃退出。当 process 退出后，它会将这种状态汇报给 monitor process，由其决定如何来进一步处理这个错误。
 </p>
@@ -67,9 +67,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7a71703" class="outline-2">
-<h2 id="org7a71703">Let it crash 是 erlang 的专利么？</h2>
-<div class="outline-text-2" id="text-org7a71703">
+<div id="outline-container-org41c22e1" class="outline-2">
+<h2 id="org41c22e1">Let it crash 是 erlang 的专利么？</h2>
+<div class="outline-text-2" id="text-org41c22e1">
 <p>
 不好意思，这个只能打脸某些想当然的回答了，是的，确定一定以及肯定。这个思想也许不是 erlang 最先提出的，但只有 erlang VM 真正让程序员可以放心地 let it crash。其他语言和框架，对不起，没有这个能力。Java VM 的 akka 是对此最接近的模仿，然而，由于在这个场景下 JVM 天然的劣势（毕竟不是围绕着 let it crash 设计的），akka 只是接近。
 </p>
@@ -80,9 +80,9 @@
 </div>
 </div>
 
-<div id="outline-container-org940b3f4" class="outline-2">
-<h2 id="org940b3f4">为什么实现 let it crash 很困难？</h2>
-<div class="outline-text-2" id="text-org940b3f4">
+<div id="outline-container-org7d63806" class="outline-2">
+<h2 id="org7d63806">为什么实现 let it crash 很困难？</h2>
+<div class="outline-text-2" id="text-org7d63806">
 <p>
 erlang VM 为了支持 let it crash，即便够不上呕心沥血，也对得起殚精竭虑四个字了。我们看如果你要让代码可以不做 defensive coding 系统还能很好地工作（不 crash），要做哪些事情：
 </p>
@@ -105,9 +105,9 @@ erlang VM 为了支持 let it crash，即便够不上呕心沥血，也对得起
 </div>
 </div>
 
-<div id="outline-container-orgd7e33e8" class="outline-2">
-<h2 id="orgd7e33e8">错误隔离</h2>
-<div class="outline-text-2" id="text-orgd7e33e8">
+<div id="outline-container-orgf45a038" class="outline-2">
+<h2 id="orgf45a038">错误隔离</h2>
+<div class="outline-text-2" id="text-orgf45a038">
 <p>
 erlang VM 提供了以下手段 共同完成了错误隔离：
 </p>
@@ -126,9 +126,9 @@ erlang VM 提供了以下手段 共同完成了错误隔离：
 </div>
 </div>
 
-<div id="outline-container-org2b0068b" class="outline-2">
-<h2 id="org2b0068b">错误处理</h2>
-<div class="outline-text-2" id="text-org2b0068b">
+<div id="outline-container-org0356a3b" class="outline-2">
+<h2 id="org0356a3b">错误处理</h2>
+<div class="outline-text-2" id="text-org0356a3b">
 <p>
 不要天真地以为 let it crash 就不需要处理错误了。只不过，错误的处理有「人」帮你抗了。
 </p>
@@ -163,9 +163,9 @@ erlang 里的 OTP framework 进一步将这个模式封装成 supervisor —— 
 </div>
 </div>
 
-<div id="outline-container-org2f62205" class="outline-2">
-<h2 id="org2f62205">错误恢复</h2>
-<div class="outline-text-2" id="text-org2f62205">
+<div id="outline-container-orgf247c9c" class="outline-2">
+<h2 id="orgf247c9c">错误恢复</h2>
+<div class="outline-text-2" id="text-orgf247c9c">
 <p>
 process 的重启是要花时间的。对 erlang 来说，这个时间足够小以至于你大部分时间可以不在意。一个不保存任何状态的 erlang process，启动后只有几百字节的 memory footprint，一段执行函数，和在 scheduler 里注册的 process 的信息（以便于调度）。在 erlang 下，spawn 一个 process 跟执行一个稍稍复杂的函数的速度几乎是一个量级的，所以你才有机会 let it crash —— 因为 restart 瞬间完成。
 </p>
@@ -196,9 +196,9 @@ heir / give away 看着眼熟？对！rust 的 memory 的 lifecycle 里的 owner
 </div>
 </div>
 
-<div id="outline-container-orgb0472a1" class="outline-2">
-<h2 id="orgb0472a1">不要滥用 let it crash</h2>
-<div class="outline-text-2" id="text-orgb0472a1">
+<div id="outline-container-orgf7fd1ca" class="outline-2">
+<h2 id="orgf7fd1ca">不要滥用 let it crash</h2>
+<div class="outline-text-2" id="text-orgf7fd1ca">
 <p>
 尽管 let it crash 有诸多好处，我们也不该毫无节制地使用它。孔子他老人家说：过犹不及。满汉全席天天吃也会恶心，再好的思想，不该用的时候还用，也会「樯橹灰飞烟灭」。
 </p>
@@ -231,6 +231,7 @@ heir / give away 看着眼熟？对！rust 的 memory 的 lifecycle 里的 owner
 </div>
 <div id="postamble" class="status">
 <footer>
+  <div id="div-gitment"></div>
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
@@ -238,22 +239,19 @@ heir / give away 看着眼熟？对！rust 的 memory 的 lifecycle 里的 owner
     {
         var gitment = new Gitment(
             {
-                id: pageId,
-                owner: owner,
-                repo: repo,
+                id: blogcfg.comment_page_id,
+                owner: blogcfg.comment_owner,
+                repo: blogcfg.comment_repo,
                 oauth: {
                     client_id: 'a9fe69dfa6b5f560747b',
                     client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
                 },
             }
         );
-        const container =document.createElement('div');
-        container.id="div-gitment";
-        setTimeout(function()
-                   {
-                       document.body.appendChild(container);
-                       gitment.render('div-gitment');
-                   }, 500);
+        //const container =document.createElement('div');
+        //container.id="div-gitment";
+        //document.body.appendChild(container);
+        gitment.render('div-gitment');
     }
   </script>
   

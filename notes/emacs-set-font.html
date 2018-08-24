@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 17:03 -->
+<!-- 2018-08-24 Fri 17:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>About</title>
@@ -46,9 +46,9 @@
 </p>
 </div>
 
-<div id="outline-container-orgc0878ef" class="outline-2">
-<h2 id="orgc0878ef">终端登陆后，再使用桌面环境打开出现：</h2>
-<div class="outline-text-2" id="text-orgc0878ef">
+<div id="outline-container-org76d61fd" class="outline-2">
+<h2 id="org76d61fd">终端登陆后，再使用桌面环境打开出现：</h2>
+<div class="outline-text-2" id="text-org76d61fd">
 <p>
 Error (frameset): Font ‘tty’ is not defined
 </p>
@@ -60,9 +60,9 @@ Error (frameset): Font ‘tty’ is not defined
 </div>
 </div>
 
-<div id="outline-container-orga13a379" class="outline-2">
-<h2 id="orga13a379">定义字体后</h2>
-<div class="outline-text-2" id="text-orga13a379">
+<div id="outline-container-org6a277f0" class="outline-2">
+<h2 id="org6a277f0">定义字体后</h2>
+<div class="outline-text-2" id="text-org6a277f0">
 <p>
 "Error (frameset): Font `tty' is not defined
 </p>
@@ -75,9 +75,9 @@ Error (frameset): Font ‘tty’ is not defined
 </div>
 </div>
 
-<div id="outline-container-org1f238af" class="outline-2">
-<h2 id="org1f238af">Windows10 下中文卡顿</h2>
-<div class="outline-text-2" id="text-org1f238af">
+<div id="outline-container-org3f3bfeb" class="outline-2">
+<h2 id="org3f3bfeb">Windows10 下中文卡顿</h2>
+<div class="outline-text-2" id="text-org3f3bfeb">
 <p>
 使用宋体或微软雅黑
 </p>
@@ -86,6 +86,7 @@ Error (frameset): Font ‘tty’ is not defined
 </div>
 <div id="postamble" class="status">
 <footer>
+  <div id="div-gitment"></div>
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
@@ -93,22 +94,19 @@ Error (frameset): Font ‘tty’ is not defined
     {
         var gitment = new Gitment(
             {
-                id: pageId,
-                owner: owner,
-                repo: repo,
+                id: blogcfg.comment_page_id,
+                owner: blogcfg.comment_owner,
+                repo: blogcfg.comment_repo,
                 oauth: {
                     client_id: 'a9fe69dfa6b5f560747b',
                     client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
                 },
             }
         );
-        const container =document.createElement('div');
-        container.id="div-gitment";
-        setTimeout(function()
-                   {
-                       document.body.appendChild(container);
-                       gitment.render('div-gitment');
-                   }, 500);
+        //const container =document.createElement('div');
+        //container.id="div-gitment";
+        //document.body.appendChild(container);
+        gitment.render('div-gitment');
     }
   </script>
   

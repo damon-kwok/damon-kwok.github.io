@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-24 Fri 17:03 -->
+<!-- 2018-08-24 Fri 17:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sitemap</title>
@@ -46,14 +46,6 @@
 <li><a href="articles.html">articles</a></li>
 <li><a href="links.html">links</a></li>
 <li><a href="notes.html">notes</a></li>
-<li>notes
-<ul class="org-ul">
-<li><a href="notes/dpt-rp1.html">dpt-rp1</a></li>
-<li><a href="notes/code-as-date.html">code-as-date</a></li>
-<li><a href="notes/after-install-ubuntu.html">after-install-ubuntu</a></li>
-<li><a href="notes/first-blog.html">first-blog</a></li>
-<li><a href="notes/emacs-set-font.html">emacs-set-font</a></li>
-</ul></li>
 <li>articles
 <ul class="org-ul">
 <li><a href="articles/functional-programming-languages.html">functional-programming-languages</a></li>
@@ -65,10 +57,19 @@
 <li><a href="articles/awosome-erlang.html">awosome-erlang</a></li>
 <li><a href="articles/a-erlang-programmer-dialogure.html">a-erlang-programmer-dialogure</a></li>
 </ul></li>
+<li>notes
+<ul class="org-ul">
+<li><a href="notes/dpt-rp1.html">dpt-rp1</a></li>
+<li><a href="notes/code-as-date.html">code-as-date</a></li>
+<li><a href="notes/after-install-ubuntu.html">after-install-ubuntu</a></li>
+<li><a href="notes/first-blog.html">first-blog</a></li>
+<li><a href="notes/emacs-set-font.html">emacs-set-font</a></li>
+</ul></li>
 </ul>
 </div>
 <div id="postamble" class="status">
 <footer>
+  <div id="div-gitment"></div>
   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
   <script>
@@ -76,22 +77,19 @@
     {
         var gitment = new Gitment(
             {
-                id: pageId,
-                owner: owner,
-                repo: repo,
+                id: blogcfg.comment_page_id,
+                owner: blogcfg.comment_owner,
+                repo: blogcfg.comment_repo,
                 oauth: {
                     client_id: 'a9fe69dfa6b5f560747b',
                     client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
                 },
             }
         );
-        const container =document.createElement('div');
-        container.id="div-gitment";
-        setTimeout(function()
-                   {
-                       document.body.appendChild(container);
-                       gitment.render('div-gitment');
-                   }, 500);
+        //const container =document.createElement('div');
+        //container.id="div-gitment";
+        //document.body.appendChild(container);
+        gitment.render('div-gitment');
     }
   </script>
   
