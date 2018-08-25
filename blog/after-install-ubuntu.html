@@ -3,20 +3,20 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-25 Sat 15:43 -->
+<!-- 2018-08-25 Sat 16:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="damon-kwok" />
+<!-- begin:org-html-head -->
 <link rel="icon" type="image/png" href="img/emacs.ico">
 <link rel="shortcut icon" href="img/emacs.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" type="image/png" href="img/emacs.png">
 <link rel="icon" type="image/png" sizes="144x144" href="img/emacs.png">
-
 <link rel="stylesheet" type="text/css" href="/style/default.css" />
-
-<script src="script/init.js" />
+<script src="script/init.js"></script>
+<!-- send:org-html-head -->
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -43,7 +43,7 @@
 <body>
 <div id="preamble" class="status">
 <header>
-    <nav>BLOG</nav>
+    <nav>Damon Kwok's BLOG</nav>
     <ul class="menu">
         <li><a href="/">Index</a></li>
         <li><a href="/blog.html">Blog</a></li>
@@ -57,28 +57,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org409610f">Base</a></li>
-<li><a href="#org813a20c">Chromium</a></li>
-<li><a href="#org6322981">多媒体解码</a></li>
-<li><a href="#org6ac665a">zip unzip</a></li>
-<li><a href="#orga4b5628">download tool</a></li>
-<li><a href="#orgb7a1cdb">Emacs</a></li>
-<li><a href="#org19ad4bd">Codelite:</a></li>
-<li><a href="#orgf2f41ac">ROS</a></li>
-<li><a href="#orgdffe022">oh-my-zsh</a></li>
-<li><a href="#orgeea2773">Autoware</a></li>
-<li><a href="#org1a20e44">rtags</a></li>
-<li><a href="#orgdfdf7be">gdebi</a></li>
-<li><a href="#orge4dd5cd">Driver</a></li>
-<li><a href="#org0dc4875">Clean</a></li>
-<li><a href="#org16a6101">VPN</a></li>
-<li><a href="#org4aa4d2a">ntfsfix</a></li>
-<li><a href="#org9c0618f">shell脚本中怎么判断发行版？</a></li>
-<li><a href="#org4ad9dbd">机器人俱乐部</a></li>
-<li><a href="#org15e446c">Ubuntu常见问题</a></li>
-<li><a href="#org08e3be5">Emacs-C++</a></li>
-<li><a href="#org03a11c3">ROS</a></li>
-<li><a href="#org60b6c69">Emacs-WM</a></li>
+<li><a href="#org96619ce">Base</a></li>
+<li><a href="#org9c309cd">Chromium</a></li>
+<li><a href="#orgdae2b94">多媒体解码</a></li>
+<li><a href="#orgec07617">zip unzip</a></li>
+<li><a href="#org49bcfc6">download tool</a></li>
+<li><a href="#orgf56451f">Emacs</a></li>
+<li><a href="#org7bf9a3b">Codelite:</a></li>
+<li><a href="#orgc8afe75">ROS</a></li>
+<li><a href="#org395ebe8">oh-my-zsh</a></li>
+<li><a href="#org7ff726b">Autoware</a></li>
+<li><a href="#org4458644">rtags</a></li>
+<li><a href="#org50a1d12">gdebi</a></li>
+<li><a href="#org55db56f">Driver</a></li>
+<li><a href="#orgad4bd00">Clean</a></li>
+<li><a href="#org636436e">VPN</a></li>
+<li><a href="#org2018daf">ntfsfix</a></li>
+<li><a href="#org701cb43">shell脚本中怎么判断发行版？</a></li>
+<li><a href="#orgfeed5cc">机器人俱乐部</a></li>
+<li><a href="#orge25719c">Ubuntu常见问题</a></li>
+<li><a href="#org8a93ff7">Emacs-C++</a></li>
+<li><a href="#org3688027">ROS</a></li>
+<li><a href="#orgb0df707">Emacs-WM</a></li>
 </ul>
 </div>
 </div>
@@ -140,72 +140,72 @@ sh -c "$(curl -fsSL <a href="https://raw.githubusercontent.com/robbyrussell/oh-m
 <code>=========================================================</code>
 </p>
 
-<div id="outline-container-org409610f" class="outline-2">
-<h2 id="org409610f">Base</h2>
-<div class="outline-text-2" id="text-org409610f">
+<div id="outline-container-org96619ce" class="outline-2">
+<h2 id="org96619ce">Base</h2>
+<div class="outline-text-2" id="text-org96619ce">
 <p>
 sudo apt update &amp;&amp; sudo apt dist-upgrade &amp;&amp; sudo apt install build-essential git subversion curl wget zip unzip zsh 
 </p>
 </div>
 </div>
 
-<div id="outline-container-org813a20c" class="outline-2">
-<h2 id="org813a20c">Chromium</h2>
-<div class="outline-text-2" id="text-org813a20c">
+<div id="outline-container-org9c309cd" class="outline-2">
+<h2 id="org9c309cd">Chromium</h2>
+<div class="outline-text-2" id="text-org9c309cd">
 <p>
 sudo apt-get install chromium-browser
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6322981" class="outline-2">
-<h2 id="org6322981">多媒体解码</h2>
-<div class="outline-text-2" id="text-org6322981">
+<div id="outline-container-orgdae2b94" class="outline-2">
+<h2 id="orgdae2b94">多媒体解码</h2>
+<div class="outline-text-2" id="text-orgdae2b94">
 <p>
 sudo apt-get install ubuntu-restricted-extras
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6ac665a" class="outline-2">
-<h2 id="org6ac665a">zip unzip</h2>
-<div class="outline-text-2" id="text-org6ac665a">
+<div id="outline-container-orgec07617" class="outline-2">
+<h2 id="orgec07617">zip unzip</h2>
+<div class="outline-text-2" id="text-orgec07617">
 <p>
 sudo apt-get install unace p7zip-rar sharutils rar arj lunzip lzip unzip zip
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga4b5628" class="outline-2">
-<h2 id="orga4b5628">download tool</h2>
-<div class="outline-text-2" id="text-orga4b5628">
+<div id="outline-container-org49bcfc6" class="outline-2">
+<h2 id="org49bcfc6">download tool</h2>
+<div class="outline-text-2" id="text-org49bcfc6">
 <p>
 sudo apt-get install uget
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb7a1cdb" class="outline-2">
-<h2 id="orgb7a1cdb">Emacs</h2>
-<div class="outline-text-2" id="text-orgb7a1cdb">
+<div id="outline-container-orgf56451f" class="outline-2">
+<h2 id="orgf56451f">Emacs</h2>
+<div class="outline-text-2" id="text-orgf56451f">
 <p>
 sudo add-apt-repository -y ppa:ubuntu-elisp &amp;&amp; sudo apt-get update &amp;&amp; sudo apt-get install emacs-snapshot
 </p>
 </div>
 </div>
 
-<div id="outline-container-org19ad4bd" class="outline-2">
-<h2 id="org19ad4bd">Codelite:</h2>
-<div class="outline-text-2" id="text-org19ad4bd">
+<div id="outline-container-org7bf9a3b" class="outline-2">
+<h2 id="org7bf9a3b">Codelite:</h2>
+<div class="outline-text-2" id="text-org7bf9a3b">
 <p>
 sudo apt-key adv &#x2013;fetch-keys <a href="http://repos.codelite.org/CodeLite.asc">http://repos.codelite.org/CodeLite.asc</a> &amp;&amp; sudo apt-add-repository 'deb <a href="https://repos.codelite.org/ubuntu/">https://repos.codelite.org/ubuntu/</a> xenial universe' &amp;&amp; sudo apt-get install codelite wxcrafter
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf2f41ac" class="outline-2">
-<h2 id="orgf2f41ac">ROS</h2>
-<div class="outline-text-2" id="text-orgf2f41ac">
+<div id="outline-container-orgc8afe75" class="outline-2">
+<h2 id="orgc8afe75">ROS</h2>
+<div class="outline-text-2" id="text-orgc8afe75">
 <p>
 sudo sh -c 'echo "deb <a href="http://packages.ros.org/ros/ubuntu">http://packages.ros.org/ros/ubuntu</a> $(lsb<sub>release</sub> -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv &#x2013;keyserver hkp://ha.pool.sks-keyservers.net:80 &#x2013;recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
@@ -233,9 +233,9 @@ sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool
 </div>
 
 
-<div id="outline-container-orgdffe022" class="outline-2">
-<h2 id="orgdffe022">oh-my-zsh</h2>
-<div class="outline-text-2" id="text-orgdffe022">
+<div id="outline-container-org395ebe8" class="outline-2">
+<h2 id="org395ebe8">oh-my-zsh</h2>
+<div class="outline-text-2" id="text-org395ebe8">
 <p>
 sh -c "\((curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 sh -c "\)(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a> -O -)"
@@ -243,9 +243,9 @@ sh -c "\)(wget <a href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh
 </div>
 </div>
 
-<div id="outline-container-orgeea2773" class="outline-2">
-<h2 id="orgeea2773">Autoware</h2>
-<div class="outline-text-2" id="text-orgeea2773">
+<div id="outline-container-org7ff726b" class="outline-2">
+<h2 id="org7ff726b">Autoware</h2>
+<div class="outline-text-2" id="text-org7ff726b">
 <p>
 sudo apt-get install ros-kinetic-desktop-full ros-kinetic-nmea-msgs ros-kinetic-nmea-navsat-driver ros-kinetic-sound-play ros-kinetic-jsk-visualization ros-kinetic-grid-map ros-kinetic-gps-common
 </p>
@@ -281,27 +281,27 @@ source ~/.zshrc
 </div>
 </div>
 
-<div id="outline-container-org1a20e44" class="outline-2">
-<h2 id="org1a20e44">rtags</h2>
-<div class="outline-text-2" id="text-org1a20e44">
+<div id="outline-container-org4458644" class="outline-2">
+<h2 id="org4458644">rtags</h2>
+<div class="outline-text-2" id="text-org4458644">
 <ul class="org-ul">
 <li>require: llvm clang libclang-dev</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdfdf7be" class="outline-2">
-<h2 id="orgdfdf7be">gdebi</h2>
-<div class="outline-text-2" id="text-orgdfdf7be">
+<div id="outline-container-org50a1d12" class="outline-2">
+<h2 id="org50a1d12">gdebi</h2>
+<div class="outline-text-2" id="text-org50a1d12">
 <p>
 sudo apt-get install gdebi
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge4dd5cd" class="outline-2">
-<h2 id="orge4dd5cd">Driver</h2>
-<div class="outline-text-2" id="text-orge4dd5cd">
+<div id="outline-container-org55db56f" class="outline-2">
+<h2 id="org55db56f">Driver</h2>
+<div class="outline-text-2" id="text-org55db56f">
 <p>
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update &amp;&amp; sudo apt-get install nvidia-387
@@ -316,9 +316,9 @@ pip install ipython rope jedi flake8 importmagic autopep8 yapf
 </div>
 </div>
 
-<div id="outline-container-org0dc4875" class="outline-2">
-<h2 id="org0dc4875">Clean</h2>
-<div class="outline-text-2" id="text-org0dc4875">
+<div id="outline-container-orgad4bd00" class="outline-2">
+<h2 id="orgad4bd00">Clean</h2>
+<div class="outline-text-2" id="text-orgad4bd00">
 <p>
 sudo apt-get autoremove
 </p>
@@ -329,9 +329,9 @@ sudo apt-get autoremove
 </div>
 </div>
 
-<div id="outline-container-org16a6101" class="outline-2">
-<h2 id="org16a6101">VPN</h2>
-<div class="outline-text-2" id="text-org16a6101">
+<div id="outline-container-org636436e" class="outline-2">
+<h2 id="org636436e">VPN</h2>
+<div class="outline-text-2" id="text-org636436e">
 <p>
 sudo openconnect tokyo.link.ac.cn:4433
 smart
@@ -341,18 +341,18 @@ shiqingbao
 </div>
 </div>
 
-<div id="outline-container-org4aa4d2a" class="outline-2">
-<h2 id="org4aa4d2a">ntfsfix</h2>
-<div class="outline-text-2" id="text-org4aa4d2a">
+<div id="outline-container-org2018daf" class="outline-2">
+<h2 id="org2018daf">ntfsfix</h2>
+<div class="outline-text-2" id="text-org2018daf">
 <p>
 sudo ntfsfix /dev/sdb1
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9c0618f" class="outline-2">
-<h2 id="org9c0618f">shell脚本中怎么判断发行版？</h2>
-<div class="outline-text-2" id="text-org9c0618f">
+<div id="outline-container-org701cb43" class="outline-2">
+<h2 id="org701cb43">shell脚本中怎么判断发行版？</h2>
+<div class="outline-text-2" id="text-org701cb43">
 <p>
 <a href="https://segmentfault.com/q/1010000009829086">https://segmentfault.com/q/1010000009829086</a>
 </p>
@@ -363,9 +363,9 @@ cat /etc/os-release
 </div>
 </div>
 
-<div id="outline-container-org4ad9dbd" class="outline-2">
-<h2 id="org4ad9dbd">机器人俱乐部</h2>
-<div class="outline-text-2" id="text-org4ad9dbd">
+<div id="outline-container-orgfeed5cc" class="outline-2">
+<h2 id="orgfeed5cc">机器人俱乐部</h2>
+<div class="outline-text-2" id="text-orgfeed5cc">
 <p>
 <a href="http://rosclub.cn/">http://rosclub.cn/</a>
 </p>
@@ -401,9 +401,9 @@ pip install yapf
 </div>
 </div>
 
-<div id="outline-container-org15e446c" class="outline-2">
-<h2 id="org15e446c">Ubuntu常见问题</h2>
-<div class="outline-text-2" id="text-org15e446c">
+<div id="outline-container-orge25719c" class="outline-2">
+<h2 id="orge25719c">Ubuntu常见问题</h2>
+<div class="outline-text-2" id="text-orge25719c">
 <ul class="org-ul">
 <li>E: flAbsPath on ./var/lib/dpkg/status failed - realpath (2: No such file or directory)</li>
 </ul>
@@ -428,9 +428,9 @@ sudo apt-get check
 </div>
 
 
-<div id="outline-container-org08e3be5" class="outline-2">
-<h2 id="org08e3be5">Emacs-C++</h2>
-<div class="outline-text-2" id="text-org08e3be5">
+<div id="outline-container-org8a93ff7" class="outline-2">
+<h2 id="org8a93ff7">Emacs-C++</h2>
+<div class="outline-text-2" id="text-org8a93ff7">
 <p>
 <a href="http://syamajala.github.io/c-ide.html">http://syamajala.github.io/c-ide.html</a>
 </p>
@@ -445,9 +445,9 @@ sudo apt-get check
 </div>
 </div>
 
-<div id="outline-container-org03a11c3" class="outline-2">
-<h2 id="org03a11c3">ROS</h2>
-<div class="outline-text-2" id="text-org03a11c3">
+<div id="outline-container-org3688027" class="outline-2">
+<h2 id="org3688027">ROS</h2>
+<div class="outline-text-2" id="text-org3688027">
 <p>
 <a href="http://wiki.ros.org/Client%20Libraries">http://wiki.ros.org/Client Libraries</a>
 </p>
@@ -458,9 +458,9 @@ sudo apt-get check
 </div>
 </div>
 
-<div id="outline-container-org60b6c69" class="outline-2">
-<h2 id="org60b6c69">Emacs-WM</h2>
-<div class="outline-text-2" id="text-org60b6c69">
+<div id="outline-container-orgb0df707" class="outline-2">
+<h2 id="orgb0df707">Emacs-WM</h2>
+<div class="outline-text-2" id="text-orgb0df707">
 <p>
 <a href="http://www.howardism.org/Technical/Emacs/new-window-manager.html">http://www.howardism.org/Technical/Emacs/new-window-manager.html</a>
 </p>

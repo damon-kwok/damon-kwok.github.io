@@ -3,25 +3,25 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-25 Sat 15:43 -->
+<!-- 2018-08-25 Sat 16:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="damon-kwok" />
+<!-- begin:org-html-head -->
 <link rel="icon" type="image/png" href="img/emacs.ico">
 <link rel="shortcut icon" href="img/emacs.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" type="image/png" href="img/emacs.png">
 <link rel="icon" type="image/png" sizes="144x144" href="img/emacs.png">
-
 <link rel="stylesheet" type="text/css" href="/style/default.css" />
-
-<script src="script/init.js" />
+<script src="script/init.js"></script>
+<!-- send:org-html-head -->
 </head>
 <body>
 <div id="preamble" class="status">
 <header>
-    <nav>BLOG</nav>
+    <nav>Damon Kwok's BLOG</nav>
     <ul class="menu">
         <li><a href="/">Index</a></li>
         <li><a href="/blog.html">Blog</a></li>
@@ -35,47 +35,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga83e467">一、经历</a></li>
-<li><a href="#org80e152b">二、困惑</a></li>
-<li><a href="#orgdc80b28">三、Erlang是什么</a></li>
-<li><a href="#org0aa9e10">四、Erlang的语言特性</a>
+<li><a href="#org9a10749">一、经历</a></li>
+<li><a href="#org314b319">二、困惑</a></li>
+<li><a href="#org541573a">三、Erlang是什么</a></li>
+<li><a href="#org8d04a03">四、Erlang的语言特性</a>
 <ul>
-<li><a href="#org56bc4bb">1.简单小巧</a></li>
-<li><a href="#org1f9ba3c">2.模式匹配</a></li>
-<li><a href="#org811dbf8">3.变量单次赋值</a></li>
-<li><a href="#orgc54f00d">4.丰富的libs</a></li>
-<li><a href="#org76dfdcb">5.灵活多样的错误处理</a></li>
-<li><a href="#orgba367e3">6.代码热替换</a></li>
-<li><a href="#org9efa344">7.天生的分布式</a></li>
-<li><a href="#org055064a">8.超强的并发性</a></li>
-<li><a href="#orgf1631fa">9.多核支持</a></li>
-<li><a href="#org08c7f6c">10.跨平台</a></li>
-<li><a href="#org9d8cca5">11.开源</a></li>
+<li><a href="#org31d9671">1.简单小巧</a></li>
+<li><a href="#org95c66e1">2.模式匹配</a></li>
+<li><a href="#orgbfb443e">3.变量单次赋值</a></li>
+<li><a href="#orgec21ed0">4.丰富的libs</a></li>
+<li><a href="#org2f946a0">5.灵活多样的错误处理</a></li>
+<li><a href="#org82ff114">6.代码热替换</a></li>
+<li><a href="#org7f7753f">7.天生的分布式</a></li>
+<li><a href="#org947e87a">8.超强的并发性</a></li>
+<li><a href="#org552c472">9.多核支持</a></li>
+<li><a href="#orgda57bb8">10.跨平台</a></li>
+<li><a href="#orgd8649be">11.开源</a></li>
 </ul>
 </li>
-<li><a href="#orga0b788a">五、Erlang与外界的交互</a></li>
-<li><a href="#orgbdb8d22">六、Erlang应用场景</a></li>
-<li><a href="#org9af8970">七、Erlang的学习过程</a>
+<li><a href="#orgd96b519">五、Erlang与外界的交互</a></li>
+<li><a href="#org1c4f6b0">六、Erlang应用场景</a></li>
+<li><a href="#org761811e">七、Erlang的学习过程</a>
 <ul>
-<li><a href="#org2fc0481">1.         安装首先从Erlang官方网站，下载安装Erlang（http://www.erlang.org/download.html）</a></li>
-<li><a href="#org51ff8a0">2.         认真阅读《programming erlang》（中文版图书已经问世），并不断动手练习书中的例程。</a></li>
-<li><a href="#org32e4ec3">3.         遇到问题时，不要退却，坚持下去找到解决办法</a></li>
-<li><a href="#org6ea2a28">4.         对语言熟悉时，浏览一些好的开源项目</a></li>
-<li><a href="#org08fe071">5.         有信心时，开始动手做一个小项目</a></li>
-<li><a href="#orgfc3d45f">6.         不间断的与大家交流，共同提高</a></li>
-<li><a href="#org04a833c">可能遇到的困难：</a>
+<li><a href="#org79fd578">1.         安装首先从Erlang官方网站，下载安装Erlang（http://www.erlang.org/download.html）</a></li>
+<li><a href="#orga55019e">2.         认真阅读《programming erlang》（中文版图书已经问世），并不断动手练习书中的例程。</a></li>
+<li><a href="#org1698440">3.         遇到问题时，不要退却，坚持下去找到解决办法</a></li>
+<li><a href="#orgfb51be8">4.         对语言熟悉时，浏览一些好的开源项目</a></li>
+<li><a href="#org9fb3b51">5.         有信心时，开始动手做一个小项目</a></li>
+<li><a href="#orgc1f4a22">6.         不间断的与大家交流，共同提高</a></li>
+<li><a href="#org47d654b">可能遇到的困难：</a>
 <ul>
-<li><a href="#orgd3ad69b">a)         对于语法的不适应？</a></li>
-<li><a href="#org489cad8">b)        有些数据类型不清楚？</a></li>
-<li><a href="#orgb5cce9d">c)         中文资料的缺乏？</a></li>
+<li><a href="#org59b4c65">a)         对于语法的不适应？</a></li>
+<li><a href="#orgcbb62ea">b)        有些数据类型不清楚？</a></li>
+<li><a href="#orgfcef617">c)         中文资料的缺乏？</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org0462235">八、Erlang开源项目</a></li>
-<li><a href="#org01b4110">九、遇到问题</a></li>
-<li><a href="#org3da8539">十、推荐阅读</a></li>
-<li><a href="#org694fa5d">十一、推荐网站</a></li>
+<li><a href="#org1afafa2">八、Erlang开源项目</a></li>
+<li><a href="#orgd4175b2">九、遇到问题</a></li>
+<li><a href="#orgb946666">十、推荐阅读</a></li>
+<li><a href="#org9af10da">十一、推荐网站</a></li>
 </ul>
 </div>
 </div>
@@ -103,9 +103,9 @@ Erlang不能错过的盛宴（快步进入Erlang的世界）
 现在，让我们迎接Erlang盛宴！
 </p>
 
-<div id="outline-container-orga83e467" class="outline-2">
-<h2 id="orga83e467">一、经历</h2>
-<div class="outline-text-2" id="text-orga83e467">
+<div id="outline-container-org9a10749" class="outline-2">
+<h2 id="org9a10749">一、经历</h2>
+<div class="outline-text-2" id="text-org9a10749">
 <p>
 2007年11月在koders.com搜索代码时，发现*.erl格式的源文件，感叹开发语言的花样百出，此时，我觉得erlang是一个丑陋的小家伙，看名字就没有对它提起多少兴趣。
 </p>
@@ -124,9 +124,9 @@ Erlang不能错过的盛宴（快步进入Erlang的世界）
 </div>
 </div>
 
-<div id="outline-container-org80e152b" class="outline-2">
-<h2 id="org80e152b">二、困惑</h2>
-<div class="outline-text-2" id="text-org80e152b">
+<div id="outline-container-org314b319" class="outline-2">
+<h2 id="org314b319">二、困惑</h2>
+<div class="outline-text-2" id="text-org314b319">
 <p>
 面对一个新的事务，我们本性都会充满好奇，可是作为程序员，很多时候对于新的语言我们都充满了抵触：这个新东西值得学习么？它会不会让我抛弃旧爱？它文档丰富么？是不是很难理解？它的前景如何?······相信大家跟我有一样的苦恼。
 </p>
@@ -137,9 +137,9 @@ Erlang不能错过的盛宴（快步进入Erlang的世界）
 </div>
 </div>
 
-<div id="outline-container-orgdc80b28" class="outline-2">
-<h2 id="orgdc80b28">三、Erlang是什么</h2>
-<div class="outline-text-2" id="text-orgdc80b28">
+<div id="outline-container-org541573a" class="outline-2">
+<h2 id="org541573a">三、Erlang是什么</h2>
+<div class="outline-text-2" id="text-org541573a">
 <p>
 Erlang是什么是我们最先要面对的问题，只有清楚了它是什么，我们才能做出我们的决定。可见这个问题的重要性，它决定了很多读者是否会继续看下去！非常紧张。
 </p>
@@ -174,13 +174,13 @@ Erlang支持对数据的位操作，拥有丰富的数据持久化机制。
 </div>
 </div>
 
-<div id="outline-container-org0aa9e10" class="outline-2">
-<h2 id="org0aa9e10">四、Erlang的语言特性</h2>
-<div class="outline-text-2" id="text-org0aa9e10">
+<div id="outline-container-org8d04a03" class="outline-2">
+<h2 id="org8d04a03">四、Erlang的语言特性</h2>
+<div class="outline-text-2" id="text-org8d04a03">
 </div>
-<div id="outline-container-org56bc4bb" class="outline-3">
-<h3 id="org56bc4bb">1.简单小巧</h3>
-<div class="outline-text-3" id="text-org56bc4bb">
+<div id="outline-container-org31d9671" class="outline-3">
+<h3 id="org31d9671">1.简单小巧</h3>
+<div class="outline-text-3" id="text-org31d9671">
 <p>
 Erlang中只有8种基本的数据类型：
 </p>
@@ -194,9 +194,9 @@ integer、float、atom、reference、fun、port、pid、bitstring
 </p>
 </div>
 </div>
-<div id="outline-container-org1f9ba3c" class="outline-3">
-<h3 id="org1f9ba3c">2.模式匹配</h3>
-<div class="outline-text-3" id="text-org1f9ba3c">
+<div id="outline-container-org95c66e1" class="outline-3">
+<h3 id="org95c66e1">2.模式匹配</h3>
+<div class="outline-text-3" id="text-org95c66e1">
 <p>
 在Erlang的函数中，某些语法中，我们可以使用Pattern匹配，这是一个非常好的特性，我们可以让代码自己去决定如何执行 ：
 </p>
@@ -222,17 +222,17 @@ price(banana) -&gt; 1.2.
 </p>
 </div>
 </div>
-<div id="outline-container-org811dbf8" class="outline-3">
-<h3 id="org811dbf8">3.变量单次赋值</h3>
-<div class="outline-text-3" id="text-org811dbf8">
+<div id="outline-container-orgbfb443e" class="outline-3">
+<h3 id="orgbfb443e">3.变量单次赋值</h3>
+<div class="outline-text-3" id="text-orgbfb443e">
 <p>
 这个是一个匪夷所思的特性，变量竟然只能单次赋值！是的Erlang中变量一旦绑定某个数值以后，就不能再次绑定，这样做的好处是便于调试出错（更深层次的原因是Erlang为并发设计，如果变量可以修改，那么就涉及到资源的加锁解锁等问题），当发生错误时，某个变量是什么就永远是什么，不用顺藤摸瓜的查找谁修改过它，省了好多事情。唯一的麻烦就是需要一个信的变量时，你必须再为它想一个名字。
 </p>
 </div>
 </div>
-<div id="outline-container-orgc54f00d" class="outline-3">
-<h3 id="orgc54f00d">4.丰富的libs</h3>
-<div class="outline-text-3" id="text-orgc54f00d">
+<div id="outline-container-orgec21ed0" class="outline-3">
+<h3 id="orgec21ed0">4.丰富的libs</h3>
+<div class="outline-text-3" id="text-orgec21ed0">
 <p>
 Erlang中提供丰富的libs
 </p>
@@ -306,51 +306,51 @@ gs 可以为我们提供某些GUI的功能（基于Tcl/Tk）
 </p>
 </div>
 </div>
-<div id="outline-container-org76dfdcb" class="outline-3">
-<h3 id="org76dfdcb">5.灵活多样的错误处理</h3>
-<div class="outline-text-3" id="text-org76dfdcb">
+<div id="outline-container-org2f946a0" class="outline-3">
+<h3 id="org2f946a0">5.灵活多样的错误处理</h3>
+<div class="outline-text-3" id="text-org2f946a0">
 <p>
 Erlang最初为电信产品的开发，这样的目的，决定了其对错误处理的严格要求。Erlang中提供一般语言所提供的exception，catch，try…catch等语法，同时Erlang支持Link和Monitor两种机制，我们可以将Process连接起来，让他们组成一个整体，某个Process出错，或推出时，其他Process都具有得知其推出的能力。而Monitor顾名思义，可以用来监控某个Process，判断其是否退出或出错。所有的这些Erlang都提供内在支持，我们快速的开发坚固的产品，不在是奢望。
 </p>
 </div>
 </div>
-<div id="outline-container-orgba367e3" class="outline-3">
-<h3 id="orgba367e3">6.代码热替换</h3>
-<div class="outline-text-3" id="text-orgba367e3">
+<div id="outline-container-org82ff114" class="outline-3">
+<h3 id="org82ff114">6.代码热替换</h3>
+<div class="outline-text-3" id="text-org82ff114">
 <p>
 你的产品想不间断的更新么？Erlang可以满足你这个需求，Erlang会在运行时自动将旧的模块进行替换。一切都静悄悄。
 </p>
 </div>
 </div>
-<div id="outline-container-org9efa344" class="outline-3">
-<h3 id="org9efa344">7.天生的分布式</h3>
-<div class="outline-text-3" id="text-org9efa344">
+<div id="outline-container-org7f7753f" class="outline-3">
+<h3 id="org7f7753f">7.天生的分布式</h3>
+<div class="outline-text-3" id="text-org7f7753f">
 <p>
 Erlang天生适合分布式应用开发，其很多的BIF（内建函数，相API）都具有分布式版本，我们可以通过BIF在远程机器上创建Process，可以向远程机器上的某个Process发送消息。在分布式应用的开发中，我们可以像C、C＋＋，JAVA等语言一样，通过Socket进行通讯，也可以使用Erlang内嵌的基于Cookie的分布式架构，进行开发。当然也可以两者混合。分布式开发更加方便，快速。Erlang的Process的操作，Error的处理等都对支持分布式操作。
 </p>
 </div>
 </div>
-<div id="outline-container-org055064a" class="outline-3">
-<h3 id="org055064a">8.超强的并发性</h3>
-<div class="outline-text-3" id="text-org055064a">
+<div id="outline-container-org947e87a" class="outline-3">
+<h3 id="org947e87a">8.超强的并发性</h3>
+<div class="outline-text-3" id="text-org947e87a">
 <p>
 由于采用其自身Process，而没有采用操作系统的进程和线程，我们可以创建大规模的并发处理，同时还简化了我们的编程复杂度。我们可以通过几十行代码实现一个并发的TCP服务器，这在其他语言中都想都不敢想！
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf1631fa" class="outline-3">
-<h3 id="orgf1631fa">9.多核支持</h3>
-<div class="outline-text-3" id="text-orgf1631fa">
+<div id="outline-container-org552c472" class="outline-3">
+<h3 id="org552c472">9.多核支持</h3>
+<div class="outline-text-3" id="text-org552c472">
 <p>
 Erlang让您的应用支持多个处理器，您不需要为不同的硬件系统做不同的开发。采用Erlang将最大限度的发挥你的机器性能。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org08c7f6c" class="outline-3">
-<h3 id="org08c7f6c">10.跨平台</h3>
-<div class="outline-text-3" id="text-org08c7f6c">
+<div id="outline-container-orgda57bb8" class="outline-3">
+<h3 id="orgda57bb8">10.跨平台</h3>
+<div class="outline-text-3" id="text-orgda57bb8">
 <p>
 如同JAVA一样，Erlang支持跨平台（其目前支持linux，mac，windows等19种平台），不用为代码的移植而头疼。
 </p>
@@ -361,9 +361,9 @@ Erlang让您的应用支持多个处理器，您不需要为不同的硬件系�
 </div>
 </div>
 
-<div id="outline-container-org9d8cca5" class="outline-3">
-<h3 id="org9d8cca5">11.开源</h3>
-<div class="outline-text-3" id="text-org9d8cca5">
+<div id="outline-container-orgd8649be" class="outline-3">
+<h3 id="orgd8649be">11.开源</h3>
+<div class="outline-text-3" id="text-orgd8649be">
 <p>
 开源是我非常喜欢的一个词汇，开源意味这更加强壮，更加公开，更加的追求平等。开源会让Erlang更好。
 </p>
@@ -371,9 +371,9 @@ Erlang让您的应用支持多个处理器，您不需要为不同的硬件系�
 </div>
 </div>
 
-<div id="outline-container-orga0b788a" class="outline-2">
-<h2 id="orga0b788a">五、Erlang与外界的交互</h2>
-<div class="outline-text-2" id="text-orga0b788a">
+<div id="outline-container-orgd96b519" class="outline-2">
+<h2 id="orgd96b519">五、Erlang与外界的交互</h2>
+<div class="outline-text-2" id="text-orgd96b519">
 <p>
 Erlang可以与其他的语言进行交互，如C、C＋＋，Java。当然也有热心的朋友提供了与其他语言的交互，如果需要你也可以根据Erlang的数据格式，提供一个库，让Erang与您心爱的语言交互。
 </p>
@@ -400,9 +400,9 @@ Port是Erlang最基本的与外界交互的方式，进行交互的双方通过�
 </div>
 </div>
 
-<div id="outline-container-orgbdb8d22" class="outline-2">
-<h2 id="orgbdb8d22">六、Erlang应用场景</h2>
-<div class="outline-text-2" id="text-orgbdb8d22">
+<div id="outline-container-org1c4f6b0" class="outline-2">
+<h2 id="org1c4f6b0">六、Erlang应用场景</h2>
+<div class="outline-text-2" id="text-org1c4f6b0">
 <p>
 分布式产品，网络服务器，客户端，等各种应用环境。
 </p>
@@ -413,64 +413,64 @@ Erlang也可以作为一种快速开发语言，进行原型开发。
 </div>
 </div>
 
-<div id="outline-container-org9af8970" class="outline-2">
-<h2 id="org9af8970">七、Erlang的学习过程</h2>
-<div class="outline-text-2" id="text-org9af8970">
+<div id="outline-container-org761811e" class="outline-2">
+<h2 id="org761811e">七、Erlang的学习过程</h2>
+<div class="outline-text-2" id="text-org761811e">
 </div>
-<div id="outline-container-org2fc0481" class="outline-3">
-<h3 id="org2fc0481">1.         安装首先从Erlang官方网站，下载安装Erlang（<a href="http://www.erlang.org/download.html">http://www.erlang.org/download.html</a>）</h3>
-<div class="outline-text-3" id="text-org2fc0481">
+<div id="outline-container-org79fd578" class="outline-3">
+<h3 id="org79fd578">1.         安装首先从Erlang官方网站，下载安装Erlang（<a href="http://www.erlang.org/download.html">http://www.erlang.org/download.html</a>）</h3>
+<div class="outline-text-3" id="text-org79fd578">
 <p>
 linux：获取源代码，根据说明编译；windows：直接安装
 </p>
 </div>
 </div>
 
-<div id="outline-container-org51ff8a0" class="outline-3">
-<h3 id="org51ff8a0">2.         认真阅读《programming erlang》（中文版图书已经问世），并不断动手练习书中的例程。</h3>
+<div id="outline-container-orga55019e" class="outline-3">
+<h3 id="orga55019e">2.         认真阅读《programming erlang》（中文版图书已经问世），并不断动手练习书中的例程。</h3>
 </div>
 
-<div id="outline-container-org32e4ec3" class="outline-3">
-<h3 id="org32e4ec3">3.         遇到问题时，不要退却，坚持下去找到解决办法</h3>
+<div id="outline-container-org1698440" class="outline-3">
+<h3 id="org1698440">3.         遇到问题时，不要退却，坚持下去找到解决办法</h3>
 </div>
 
-<div id="outline-container-org6ea2a28" class="outline-3">
-<h3 id="org6ea2a28">4.         对语言熟悉时，浏览一些好的开源项目</h3>
+<div id="outline-container-orgfb51be8" class="outline-3">
+<h3 id="orgfb51be8">4.         对语言熟悉时，浏览一些好的开源项目</h3>
 </div>
 
-<div id="outline-container-org08fe071" class="outline-3">
-<h3 id="org08fe071">5.         有信心时，开始动手做一个小项目</h3>
+<div id="outline-container-org9fb3b51" class="outline-3">
+<h3 id="org9fb3b51">5.         有信心时，开始动手做一个小项目</h3>
 </div>
 
-<div id="outline-container-orgfc3d45f" class="outline-3">
-<h3 id="orgfc3d45f">6.         不间断的与大家交流，共同提高</h3>
+<div id="outline-container-orgc1f4a22" class="outline-3">
+<h3 id="orgc1f4a22">6.         不间断的与大家交流，共同提高</h3>
 </div>
 
-<div id="outline-container-org04a833c" class="outline-3">
-<h3 id="org04a833c">可能遇到的困难：</h3>
-<div class="outline-text-3" id="text-org04a833c">
+<div id="outline-container-org47d654b" class="outline-3">
+<h3 id="org47d654b">可能遇到的困难：</h3>
+<div class="outline-text-3" id="text-org47d654b">
 </div>
-<div id="outline-container-orgd3ad69b" class="outline-4">
-<h4 id="orgd3ad69b">a)         对于语法的不适应？</h4>
-<div class="outline-text-4" id="text-orgd3ad69b">
+<div id="outline-container-org59b4c65" class="outline-4">
+<h4 id="org59b4c65">a)         对于语法的不适应？</h4>
+<div class="outline-text-4" id="text-org59b4c65">
 <p>
 坚持看下去，代码继续写下去，我相信1个月，你会喜欢上Erlang的语法
 </p>
 </div>
 </div>
 
-<div id="outline-container-org489cad8" class="outline-4">
-<h4 id="org489cad8">b)        有些数据类型不清楚？</h4>
-<div class="outline-text-4" id="text-org489cad8">
+<div id="outline-container-orgcbb62ea" class="outline-4">
+<h4 id="orgcbb62ea">b)        有些数据类型不清楚？</h4>
+<div class="outline-text-4" id="text-orgcbb62ea">
 <p>
 认真看资料，或者询问朋友，比如我
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb5cce9d" class="outline-4">
-<h4 id="orgb5cce9d">c)         中文资料的缺乏？</h4>
-<div class="outline-text-4" id="text-orgb5cce9d">
+<div id="outline-container-orgfcef617" class="outline-4">
+<h4 id="orgfcef617">c)         中文资料的缺乏？</h4>
+<div class="outline-text-4" id="text-orgfcef617">
 <p>
 Erlang中文的资料会越来越多，此外，Erlang的相关的英文资料也比较容易理解，还是那句话，别怕麻烦
 </p>
@@ -479,9 +479,9 @@ Erlang中文的资料会越来越多，此外，Erlang的相关的英文资料�
 </div>
 </div>
 
-<div id="outline-container-org0462235" class="outline-2">
-<h2 id="org0462235">八、Erlang开源项目</h2>
-<div class="outline-text-2" id="text-org0462235">
+<div id="outline-container-org1afafa2" class="outline-2">
+<h2 id="org1afafa2">八、Erlang开源项目</h2>
+<div class="outline-text-2" id="text-org1afafa2">
 <p>
 排名不分先后
 </p>
@@ -499,9 +499,9 @@ scalaris      分布式的key-value存储
 </div>
 </div>
 
-<div id="outline-container-org01b4110" class="outline-2">
-<h2 id="org01b4110">九、遇到问题</h2>
-<div class="outline-text-2" id="text-org01b4110">
+<div id="outline-container-orgd4175b2" class="outline-2">
+<h2 id="orgd4175b2">九、遇到问题</h2>
+<div class="outline-text-2" id="text-orgd4175b2">
 <p>
 参看Erlang官方文档 <a href="http://www.erlang.org/doc/">http://www.erlang.org/doc/</a>
 </p>
@@ -520,9 +520,9 @@ Google中搜索答案
 </div>
 </div>
 
-<div id="outline-container-org3da8539" class="outline-2">
-<h2 id="org3da8539">十、推荐阅读</h2>
-<div class="outline-text-2" id="text-org3da8539">
+<div id="outline-container-orgb946666" class="outline-2">
+<h2 id="orgb946666">十、推荐阅读</h2>
+<div class="outline-text-2" id="text-orgb946666">
 <p>
 Erlang Design Principles （<a href="http://www.erlang.org/doc/design_principles/part_frame.html">http://www.erlang.org/doc/design_principles/part_frame.html</a>）
 </p>
@@ -536,9 +536,9 @@ Erlang Programming Rules （<a href="http://www.erlang.se/doc/programming_rules.
 </p>
 </div>
 </div>
-<div id="outline-container-org694fa5d" class="outline-2">
-<h2 id="org694fa5d">十一、推荐网站</h2>
-<div class="outline-text-2" id="text-org694fa5d">
+<div id="outline-container-org9af10da" class="outline-2">
+<h2 id="org9af10da">十一、推荐网站</h2>
+<div class="outline-text-2" id="text-org9af10da">
 <p>
 <a href="http://www.erlang.org">http://www.erlang.org</a>
 </p>
