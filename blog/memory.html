@@ -31,44 +31,26 @@
 </header>
 </div>
 <div id="content">
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orga1b299d">About Me</a></li>
-<li><a href="#org56a3543">My Projects</a></li>
-</ul>
-</div>
-</div>
 <hr />
 
 
-<div class="figure">
-<p><img src="https://imgs.xkcd.com/comics/blogging.png" alt="blogging.png" />
+<div class="org-center">
+<p>
+为什么乱码总是写“屯屯屯屯屯屯屯”或是“烫烫烫烫烫烫”？
 </p>
 </div>
 
-<div id="outline-container-orga1b299d" class="outline-2">
-<h2 id="orga1b299d">About Me</h2>
-<div class="outline-text-2" id="text-orga1b299d">
-<ul class="org-ul">
-<li><a href="mailto:damon-kwok@outlook.com">Email</a></li>
-<li><a href="https://github.com/damon-kwok/libknife">Github</a></li>
-<li><a href="https://gitlab.com/damon-kwok">Gitlab</a></li>
-<li><a href="https://itch.io/profile/damon-kwok">itch</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org56a3543" class="outline-2">
-<h2 id="org56a3543">My Projects</h2>
-<div class="outline-text-2" id="text-org56a3543">
-<ul class="org-ul">
-<li><a href="https://github.com/damon-kwok/oh-my-emacs">Oh-My-Emacs</a></li>
-<li><a href="https://github.com/damon-kwok/medusa">Medusa</a></li>
-<li><a href="https://github.com/damon-kwok/libknife">libknife</a></li>
-</ul>
-</div>
-</div>
+<p>
+这种乱码最常见的地方是Visual Studio里。Visual Studio中，未初始化的栈空间用0xCC填充，而未初始化的堆空间用0xCD填充。
+</p>
+
+<p>
+而0xCCCC和0xCDCD在中文GB2312编码中分别对应“烫”字和“屯”字。
+</p>
+
+<p>
+如果一个字符串没有结束符'\0'，输出时就会打印出未初始化的栈或堆空间的内容，这就是大名鼎鼎的“烫烫烫”、“屯屯屯”乱码。
+</p>
 </div>
 <div id="postamble" class="status">
 <footer>

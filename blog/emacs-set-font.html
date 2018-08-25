@@ -35,38 +35,55 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga1b299d">About Me</a></li>
-<li><a href="#org56a3543">My Projects</a></li>
+<li><a href="#org8db5155">终端登陆后，再使用桌面环境打开出现：</a></li>
+<li><a href="#org987240b">定义字体后</a></li>
+<li><a href="#org3833546">Windows10 下中文卡顿</a></li>
 </ul>
 </div>
 </div>
 <hr />
 
-
-<div class="figure">
-<p><img src="https://imgs.xkcd.com/comics/blogging.png" alt="blogging.png" />
+<div class="org-center">
+<p>
+<b>Emacs字体相关问题</b>
 </p>
 </div>
 
-<div id="outline-container-orga1b299d" class="outline-2">
-<h2 id="orga1b299d">About Me</h2>
-<div class="outline-text-2" id="text-orga1b299d">
-<ul class="org-ul">
-<li><a href="mailto:damon-kwok@outlook.com">Email</a></li>
-<li><a href="https://github.com/damon-kwok/libknife">Github</a></li>
-<li><a href="https://gitlab.com/damon-kwok">Gitlab</a></li>
-<li><a href="https://itch.io/profile/damon-kwok">itch</a></li>
-</ul>
+<div id="outline-container-org8db5155" class="outline-2">
+<h2 id="org8db5155">终端登陆后，再使用桌面环境打开出现：</h2>
+<div class="outline-text-2" id="text-org8db5155">
+<p>
+Error (frameset): Font ‘tty’ is not defined
+</p>
+
+<p>
+ (setq desktop-restore-frames nil)
+(desktop-save-mode 1) 
+</p>
 </div>
 </div>
-<div id="outline-container-org56a3543" class="outline-2">
-<h2 id="org56a3543">My Projects</h2>
-<div class="outline-text-2" id="text-org56a3543">
-<ul class="org-ul">
-<li><a href="https://github.com/damon-kwok/oh-my-emacs">Oh-My-Emacs</a></li>
-<li><a href="https://github.com/damon-kwok/medusa">Medusa</a></li>
-<li><a href="https://github.com/damon-kwok/libknife">libknife</a></li>
-</ul>
+
+<div id="outline-container-org987240b" class="outline-2">
+<h2 id="org987240b">定义字体后</h2>
+<div class="outline-text-2" id="text-org987240b">
+<p>
+"Error (frameset): Font `tty' is not defined
+</p>
+
+<p>
+解决办法： 
+(if window-system
+(set-font)))
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3833546" class="outline-2">
+<h2 id="org3833546">Windows10 下中文卡顿</h2>
+<div class="outline-text-2" id="text-org3833546">
+<p>
+使用宋体或微软雅黑
+</p>
 </div>
 </div>
 </div>

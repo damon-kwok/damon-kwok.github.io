@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-08-25 Sat 15:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="damon-kwok" />
+<link rel="icon" type="image/png" href="img/emacs.ico">
+<link rel="shortcut icon" href="img/emacs.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" type="image/png" href="img/emacs.png">
+<link rel="icon" type="image/png" sizes="144x144" href="img/emacs.png">
+
+<link rel="stylesheet" type="text/css" href="/style/default.css" />
+
+<script src="script/init.js" />
+</head>
+<body>
+<div id="preamble" class="status">
+<header>
+    <nav>BLOG</nav>
+    <ul class="menu">
+        <li><a href="/">Index</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/link.html">Link</a></li>
+        <li><a href="/guest_book.html">Guestbook</a></li>
+    </ul>
+</header>
+</div>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2e60d13">环境部署</a>
+<ul>
+<li><a href="#org43f0361">Elixir</a></li>
+<li><a href="#org530be7e">Erlang</a></li>
+<li><a href="#org77a07f2">Clojure</a></li>
+<li><a href="#org6024fd4">Elisp</a></li>
+<li><a href="#org80e5c97">Haskell</a></li>
+<li><a href="#org682e73e">Rust</a></li>
+</ul>
+</li>
+<li><a href="#org64fdbf4">注释</a>
+<ul>
+<li><a href="#orgc0c9301">Elixir</a></li>
+<li><a href="#org969eec6">Erlang</a></li>
+<li><a href="#orgd7c6717">Clojure</a></li>
+<li><a href="#org2789089">Elisp</a></li>
+<li><a href="#orgb233dad">Haskell</a></li>
+<li><a href="#orga5e1b45">Rust</a></li>
+</ul>
+</li>
+<li><a href="#orgba23c36">Last Eval</a>
+<ul>
+<li><a href="#org784b210">Elixir</a></li>
+<li><a href="#org4e7a72a">Erlang</a></li>
+<li><a href="#orgec87050">Clojure</a></li>
+<li><a href="#org56c9169">Haskell</a></li>
+<li><a href="#org9b73031">Rust</a></li>
+</ul>
+</li>
+<li><a href="#orgee7698e">基本数据类型</a>
+<ul>
+<li><a href="#org2aceebd">Elixir</a></li>
+<li><a href="#orgc1c7a0a">Clojure</a></li>
+<li><a href="#org33bcae9">Haskell</a></li>
+</ul>
+</li>
+<li><a href="#org4451052">基本运算符</a>
+<ul>
+<li><a href="#orge1e4886">Elixir</a></li>
+<li><a href="#orgd61de93">Clojure</a></li>
+<li><a href="#org8ae294a">Haskell</a></li>
+</ul>
+</li>
+<li><a href="#org02e40a9">匹配模式</a></li>
+<li><a href="#orge04caf3">字符串</a>
+<ul>
+<li><a href="#org3587146">Elixir</a></li>
+<li><a href="#org7dbe301">Clojure</a></li>
+<li><a href="#orgdde212f">Haskell</a></li>
+<li><a href="#orgeda613c">Rust</a></li>
+</ul>
+</li>
+<li><a href="#orgf0f1ed5">流程控制</a></li>
+<li><a href="#orgc19390d">匿名函数</a>
+<ul>
+<li><a href="#orgc3a76b7">Elixir</a></li>
+<li><a href="#orgec76b2d">Erlang</a></li>
+<li><a href="#org4b24c38">Clojure</a></li>
+<li><a href="#org0ce7da2">Elisp</a></li>
+<li><a href="#orgbd9b16c">Haskell</a></li>
+<li><a href="#org7c5ec65">Rust</a></li>
+<li><a href="#org3cdd526">OCaml</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<hr />
+
+<div class="org-center">
+<p>
+<b>函数编程语言对比</b>
+</p>
+</div>
+
+<div id="outline-container-org2e60d13" class="outline-2">
+<h2 id="org2e60d13">环境部署</h2>
+<div class="outline-text-2" id="text-org2e60d13">
+</div>
+<div id="outline-container-org43f0361" class="outline-3">
+<h3 id="org43f0361">Elixir</h3>
+<div class="outline-text-3" id="text-org43f0361">
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S elixir
+iex
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org530be7e" class="outline-3">
+<h3 id="org530be7e">Erlang</h3>
+<div class="outline-text-3" id="text-org530be7e">
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S erlang <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">erlang-nox</span>
+erl
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org77a07f2" class="outline-3">
+<h3 id="org77a07f2">Clojure</h3>
+<div class="outline-text-3" id="text-org77a07f2">
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S leiningen
+lein repl
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6024fd4" class="outline-3">
+<h3 id="org6024fd4">Elisp</h3>
+<div class="outline-text-3" id="text-org6024fd4">
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S emacs ;;emacs-nox
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org80e5c97" class="outline-3">
+<h3 id="org80e5c97">Haskell</h3>
+<div class="outline-text-3" id="text-org80e5c97">
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S stack
+stack repl
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org682e73e" class="outline-3">
+<h3 id="org682e73e">Rust</h3>
+<div class="outline-text-3" id="text-org682e73e">
+<div class="org-src-container">
+<pre class="src src-shell">pacman -S rust
+</pre>
+</div>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org64fdbf4" class="outline-2">
+<h2 id="org64fdbf4">注释</h2>
+<div class="outline-text-2" id="text-org64fdbf4">
+</div>
+<div id="outline-container-orgc0c9301" class="outline-3">
+<h3 id="orgc0c9301">Elixir</h3>
+<div class="outline-text-3" id="text-orgc0c9301">
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org969eec6" class="outline-3">
+<h3 id="org969eec6">Erlang</h3>
+<div class="outline-text-3" id="text-org969eec6">
+<div class="org-src-container">
+<pre class="src src-elixir">% &#36825;&#26159;&#19968;&#20010;&#27880;&#37322;
+%% &#20989;&#25968;&#19968;&#33324;&#36825;&#26679;&#27880;&#37322;
+%%% &#27169;&#22359;&#19968;&#33324;&#36825;&#26679;&#27880;&#37322;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7c6717" class="outline-3">
+<h3 id="orgd7c6717">Clojure</h3>
+<div class="outline-text-3" id="text-orgd7c6717">
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2789089" class="outline-3">
+<h3 id="org2789089">Elisp</h3>
+<div class="outline-text-3" id="text-org2789089">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#19968;&#20010;&#27880;&#37322;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb233dad" class="outline-3">
+<h3 id="orgb233dad">Haskell</h3>
+<div class="outline-text-3" id="text-orgb233dad">
+<div class="org-src-container">
+<pre class="src src-haskell2">-- 这是一个注释
+{- 这是多行注释 -}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga5e1b45" class="outline-3">
+<h3 id="orga5e1b45">Rust</h3>
+<div class="outline-text-3" id="text-orga5e1b45">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#36825;&#26159;&#21333;&#34892;&#27880;&#37322;</span>
+<span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">...&#36825;&#26159;&#22810;&#34892;&#27880;&#37322; */</span>
+</pre>
+</div>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgba23c36" class="outline-2">
+<h2 id="orgba23c36">Last Eval</h2>
+<div class="outline-text-2" id="text-orgba23c36">
+</div>
+<div id="outline-container-org784b210" class="outline-3">
+<h3 id="org784b210">Elixir</h3>
+<div class="outline-text-3" id="text-org784b210">
+<div class="org-src-container">
+<pre class="src src-elixir">
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e7a72a" class="outline-3">
+<h3 id="org4e7a72a">Erlang</h3>
+<div class="outline-text-3" id="text-org4e7a72a">
+<div class="org-src-container">
+<pre class="src src-elixir">v(1).
+v(2).
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgec87050" class="outline-3">
+<h3 id="orgec87050">Clojure</h3>
+<div class="outline-text-3" id="text-orgec87050">
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="font-weight: bold;">*1</span>
+<span style="font-weight: bold;">*2</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org56c9169" class="outline-3">
+<h3 id="org56c9169">Haskell</h3>
+<div class="outline-text-3" id="text-org56c9169">
+<div class="org-src-container">
+<pre class="src src-haskell2">
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9b73031" class="outline-3">
+<h3 id="org9b73031">Rust</h3>
+<div class="outline-text-3" id="text-org9b73031">
+<div class="org-src-container">
+<pre class="src src-rust">
+</pre>
+</div>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgee7698e" class="outline-2">
+<h2 id="orgee7698e">基本数据类型</h2>
+<div class="outline-text-2" id="text-orgee7698e">
+</div>
+<div id="outline-container-org2aceebd" class="outline-3">
+<h3 id="org2aceebd">Elixir</h3>
+<div class="outline-text-3" id="text-org2aceebd">
+<p>
+整型（integer），浮点（float），布尔（boolean），原子（atom，又称symbol符号），
+字符串（string），列表（list）和元组（tuple）等。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc1c7a0a" class="outline-3">
+<h3 id="orgc1c7a0a">Clojure</h3>
+</div>
+
+<div id="outline-container-org33bcae9" class="outline-3">
+<h3 id="org33bcae9">Haskell</h3>
+<div class="outline-text-3" id="text-org33bcae9">
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org4451052" class="outline-2">
+<h2 id="org4451052">基本运算符</h2>
+<div class="outline-text-2" id="text-org4451052">
+</div>
+<div id="outline-container-orge1e4886" class="outline-3">
+<h3 id="orge1e4886">Elixir</h3>
+<div class="outline-text-3" id="text-orge1e4886">
+<p>
++，-，*，/ div rem
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd61de93" class="outline-3">
+<h3 id="orgd61de93">Clojure</h3>
+</div>
+
+<div id="outline-container-org8ae294a" class="outline-3">
+<h3 id="org8ae294a">Haskell</h3>
+<div class="outline-text-3" id="text-org8ae294a">
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-org02e40a9" class="outline-2">
+<h2 id="org02e40a9">匹配模式</h2>
+<div class="outline-text-2" id="text-org02e40a9">
+<hr />
+</div>
+</div>
+<div id="outline-container-orge04caf3" class="outline-2">
+<h2 id="orge04caf3">字符串</h2>
+<div class="outline-text-2" id="text-orge04caf3">
+</div>
+<div id="outline-container-org3587146" class="outline-3">
+<h3 id="org3587146">Elixir</h3>
+<div class="outline-text-3" id="text-org3587146">
+<div class="org-src-container">
+<pre class="src src-elixir">str=<span style="font-style: italic;">"hello,world!"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7dbe301" class="outline-3">
+<h3 id="org7dbe301">Clojure</h3>
+<div class="outline-text-3" id="text-org7dbe301">
+<div class="org-src-container">
+<pre class="src src-clojure"><span style="font-style: italic;">"hello,world"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdde212f" class="outline-3">
+<h3 id="orgdde212f">Haskell</h3>
+<div class="outline-text-3" id="text-orgdde212f">
+<div class="org-src-container">
+<pre class="src src-haskell2">str="hello,world"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeda613c" class="outline-3">
+<h3 id="orgeda613c">Rust</h3>
+<div class="outline-text-3" id="text-orgeda613c">
+<div class="org-src-container">
+<pre class="src src-rust">
+</pre>
+</div>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="outline-container-orgf0f1ed5" class="outline-2">
+<h2 id="orgf0f1ed5">流程控制</h2>
+<div class="outline-text-2" id="text-orgf0f1ed5">
+<hr />
+</div>
+</div>
+<div id="outline-container-orgc19390d" class="outline-2">
+<h2 id="orgc19390d">匿名函数</h2>
+<div class="outline-text-2" id="text-orgc19390d">
+</div>
+<div id="outline-container-orgc3a76b7" class="outline-3">
+<h3 id="orgc3a76b7">Elixir</h3>
+<div class="outline-text-3" id="text-orgc3a76b7">
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="font-weight: bold; font-style: italic;">func1</span> = <span style="font-weight: bold;">fn</span>(a,b)-&gt; a + b <span style="font-weight: bold;">end</span>
+func1.(1 2)
+
+<span style="font-weight: bold; font-style: italic;">func</span> = &amp;(&amp;1 + &amp;2)
+func.(1,2)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec76b2d" class="outline-3">
+<h3 id="orgec76b2d">Erlang</h3>
+<div class="outline-text-3" id="text-orgec76b2d">
+<div class="org-src-container">
+<pre class="src src-elixir"><span style="font-weight: bold; font-style: italic;">Z</span>=fun(<span style="font-weight: bold; text-decoration: underline;">X</span>,<span style="font-weight: bold; text-decoration: underline;">Y</span>) -&gt; <span style="font-weight: bold; text-decoration: underline;">X</span>+<span style="font-weight: bold; text-decoration: underline;">Y</span> <span style="font-weight: bold;">end</span>.
+func(1,2).
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4b24c38" class="outline-3">
+<h3 id="org4b24c38">Clojure</h3>
+<div class="outline-text-3" id="text-org4b24c38">
+<div class="org-src-container">
+<pre class="src src-clojure">(<span style="font-weight: bold;">fn</span> [a b] (+ a b))
+(<span style="font-weight: bold;">let</span> [func (<span style="font-weight: bold;">fn</span> [a b] (+ a b))] 
+  (func 1 2)) <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">3</span>
+
+#(+ <span style="font-weight: bold; font-style: italic;">%1</span> <span style="font-weight: bold; font-style: italic;">%2</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0ce7da2" class="outline-3">
+<h3 id="org0ce7da2">Elisp</h3>
+<div class="outline-text-3" id="text-org0ce7da2">
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="font-weight: bold;">lambda</span>(a b) (+ a b))
+((<span style="font-weight: bold;">lambda</span>(a b) (+ a b)) 1 2) <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">3</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbd9b16c" class="outline-3">
+<h3 id="orgbd9b16c">Haskell</h3>
+<div class="outline-text-3" id="text-orgbd9b16c">
+<div class="org-src-container">
+<pre class="src src-haskell2">(\a b-&gt; a + b) 1 2 --3
+func = (\a b -&gt; x + b)
+func 1 2 --3
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c5ec65" class="outline-3">
+<h3 id="org7c5ec65">Rust</h3>
+<div class="outline-text-3" id="text-org7c5ec65">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">func</span> = |a,b| a + b; <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">3</span>
+func(1,2); <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">3</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3cdd526" class="outline-3">
+<h3 id="org3cdd526">OCaml</h3>
+<div class="outline-text-3" id="text-org3cdd526">
+<div class="org-src-container">
+<pre class="src src-sml"><span style="font-weight: bold;">let</span> add = <span style="font-weight: bold;">fun</span> <span style="font-weight: bold;">a</span> b -&gt; (a +. b);;
+List.map (<span style="font-weight: bold;">fun</span> <span style="font-weight: bold;">i</span> -&gt; i*2) [1;2;3];;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<footer>
+  <script src="script/render.js"></script>
+  <img src="img/80x15.png"/>
+  本站文章如未特殊声明，默认采用<a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">署名-非商业性使用-相同方式共享 4.0 中国大陆</a>进行许可。
+</footer>
+</div>
+</body>
+</html>
