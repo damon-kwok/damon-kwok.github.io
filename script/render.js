@@ -24,7 +24,7 @@
 if(blogcfg.fork_repo_url!=undefined)
 {
     document.getElementById("forkongithub").style.display="inline";
-    document.getElementById("fork_link").href=repo_url;
+    document.getElementById("fork_link").href=blogcfg.fork_repo_url;
 }
 
 if(blogcfg.comment_page_id!=undefined)
