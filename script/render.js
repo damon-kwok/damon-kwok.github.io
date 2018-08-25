@@ -19,16 +19,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 //Code:
-'use strict';
+//'use strict';
 
 if(blogcfg.fork_repo_url!=undefined)
-{
+{	
+	alert("1111")
     document.getElementById("forkongithub").style.display="inline";
     document.getElementById("fork_link").href=repo_url;
 }
 
 if(blogcfg.comment_page_id!=undefined)
 {
+	alert("2222")
     var gitment = new Gitment(
         {
             id: blogcfg.comment_page_id,
