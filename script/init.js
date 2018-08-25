@@ -19,12 +19,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 //Code:
-//'use strict';
-
+'use strict';
 var blogcfg={};
 var forkme=function(repo_url)
 {
-	alert("forkme!")
     blogcfg.fork_repo_url=repo_url;
 };
 var comment_box=function(pageId,owner,repo)
