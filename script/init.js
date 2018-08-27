@@ -21,10 +21,12 @@
 //Code:
 'use strict';
 var blogcfg={};
+
 var forkme=function(repo_url)
 {
     blogcfg.fork_repo_url=repo_url;
 };
+
 var comment_box=function(pageId,owner,repo)
 {
     blogcfg.comment_page_id = pageId;

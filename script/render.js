@@ -27,23 +27,43 @@ if(blogcfg.fork_repo_url!=undefined)
     document.getElementById("fork_link").href=blogcfg.fork_repo_url;
 }
 
-if(blogcfg.comment_page_id!=undefined)
-{
-    var gitment = new Gitment(
-        {
-            id: blogcfg.comment_page_id,
-            owner: blogcfg.comment_owner,
-            repo: blogcfg.comment_repo,
-            oauth: {
-                client_id: 'a9fe69dfa6b5f560747b',
-                client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
-            },
-        }
-    );
-    //const container =document.createElement('div');
-    //container.id="div-gitment";
-    //document.body.appendChild(container);
-    gitment.render('div-gitment');
-}
+//const container =document.createElement('div');
+//container.id="div-comment";
+//document.body.appendChild(container);
+//gitment.render('div-comment');
+var use_gitment=false;
 
+if(blogcfg.comment_page_id!=undefined)    
+{
+    if(use_gitment) {
+        var gitment = new Gitment(
+            {
+                id: blogcfg.comment_page_id,
+                owner: blogcfg.comment_owner,
+                repo: blogcfg.comment_repo,
+                oauth: {
+                    client_id: 'a9fe69dfa6b5f560747b',
+                    client_secret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
+                },
+            }
+        );
+        
+        gitment.render('div-comment');
+    }
+    else
+    {
+        var gitalk = new Gitalk({
+            clientID: 'a9fe69dfa6b5f560747b',
+            clientSecret: '0d9b030bd291aeeb9b3fb5f4e79902e1fb71506c',
+            repo: blogcfg.comment_repo,
+            owner: blogcfg.comment_owner,
+            admin: [blogcfg.comment_owner],
+            id: blogcfg.comment_page_id,      // Ensure uniqueness and length less than 50
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+
+        gitalk.render('div-comment');
+    }
+
+}
 // render.js ends here
