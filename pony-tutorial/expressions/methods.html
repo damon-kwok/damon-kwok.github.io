@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Pony 教程  | 方法（Methods）</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('/dist/fonts/icon.eot?52m981');
+        src: url('/dist/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+             url('/dist/fonts/icon.woff?52m981')
+               format('woff'),
+             url('/dist/fonts/icon.ttf?52m981')
+               format('truetype'),
+             url('/dist/fonts/icon.svg?52m981#icon')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link href="/dist/css/app.css" rel="stylesheet">
+    <link href="/dist/css/highlight.css" rel="stylesheet">
+    <link href="/dist/css/icon.css" rel="stylesheet">
+    <link href="/dist/css/pony.css" rel="stylesheet">
+
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="方法（Methods）" />
+<meta property="og:description" content="All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
+Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter when we talked about actors.
+Can I have some code outside of any methods like I do in Python?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tutorial.ponylang.io/expressions/methods.html" />
+
+<meta itemprop="name" content="方法（Methods）">
+<meta itemprop="description" content="All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
+Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter when we talked about actors.
+Can I have some code outside of any methods like I do in Python?">
+
+<meta itemprop="wordCount" content="1600">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="方法（Methods）"/>
+<meta name="twitter:description" content="All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
+Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter when we talked about actors.
+Can I have some code outside of any methods like I do in Python?"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-pony-brown">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Pony 教程
+    </a>
+    <div class="flex-l items-center">
+      
+      
+<div hidden>
+  <span id="new-window-0">Opens in a new window</span>
+  <span id="new-window-1">Opens an external site</span>
+  <span id="new-window-2">Opens an external site in a new window</span>
+</div>
+
+
+
+<a href="https://www.twitter.com/ponylang" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-describedby="new-window-0">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main role="main">
+      
+  <article class="w-100 ph4 pb5 pb6-ns pt1 pt3-ns">
+    <div class="order-0 w-20 dn db-l doc-menu" id="doc-menu">
+      <div class="order-0 w-20 mt2 mb2" id="search-wrapper">
+  <input id="search-box" type="search" placeholder="search" />
+</div>
+
+      
+<nav role="navigation">
+  <ul class="list pa0 nl2">
+    
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".getting-started">入门（Getting Started）</a>
+        <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              What You Need
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: Your First Pony Program
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World: How It Works
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">类型系统（Types）</a>
+        <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              类型系统概览
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              类（Classes）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              基元类（Primitives）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              并发单元（Actors）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              特征和接口（Traits and Interfaces）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              结构体（Structs）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              类型别名（Type Aliases）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              类型表达式（Type Expressions）
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".expressions">表达式（Expressions）</a>
+        <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray db">
+          <li class="f6 fw4">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              字面量（Literals）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              变量（Variables）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              运算符（Operators）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              算术运算符（Arithmetic）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              流程控制（Control Structures）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+              方法（Methods）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              错误（Errors）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              比较运算（Equality in Pony）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              语法糖（Sugar）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              object关键字（Object Literals）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Partial Application
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".reference-capabilities">引用权能（Reference Capabilities）</a>
+        <ul class="reference-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              引用权能（Reference Capabilities）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              引用权能保证（Reference Capability Guarantees）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              转让和破坏性读取（Consume and Destructive Read）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              权能借用（Recovering Capabilities）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              别名（Aliasing）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Passing and Sharing References
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              权能包含关系（Capability Subtyping）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              权能合并（Combining Capabilities）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Arrow Types aka Viewpoints
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Reference Capability Matrix
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能（Object Capabilities）</a>
+        <ul class="object-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Object Capabilities
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Trust Boundary
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">模式匹配（Pattern Matching）</a>
+        <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              匹配表达式（Match Expressions）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              as操作符（As Operator）
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">泛型（Generics）</a>
+        <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              泛型和引用权能（Generics and Reference Capabilities）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              泛型约束（Constraints）
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">包（Packages）</a>
+        <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              包机制（Package System）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              包的使用方式（Use Statement）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              标准库（Standard Library）
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">测试（Testing）</a>
+        <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Testing with Ponytest
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
+        <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Calling C from Pony
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Linking to C Libraries
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              C ABI
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Callbacks
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">陷阱（Gotchas）</a>
+        <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Divide by Zero
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Scheduling
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Function Call Side Effects
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Recursion
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">下一步？（Where Next?）</a>
+        <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">附录（Appendices）</a>
+        <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
+          <li class="f6 fw4">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              概述（Overview）
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              PONYPATH
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Lexicon
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Symbol Lookup Cheatsheet
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Keywords
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Examples
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Whitespace
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Compiler Arguments
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Memory Allocation at Runtime
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Garbage Collection with Pony-ORCA
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Platform-dependent code
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              A Short Guide to Pony Error Messages
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Program Annotations
+            </a>
+          </li>
+          <li class="f6 fw4">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Serialisation
+            </a>
+          </li>
+        </ul>
+      </li>
+  </ul>
+</nav>
+
+    </div>
+    <div class="flex-l" id="the-body"><div class="order-2 w-100 w-20-l ph5-m ph0-l mb4 sticky dn db-l" id="context-menu"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">What's in this document</p>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#constructors">Constructors</a></li>
+    <li><a href="#calling">Calling</a></li>
+    <li><a href="#default-arguments">Default arguments</a></li>
+    <li><a href="#named-arguments">Named arguments</a></li>
+    <li><a href="#chaining">Chaining</a></li>
+    <li><a href="#anonymous-methods">Anonymous methods</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+    <li><a href="#precedence">Precedence</a></li>
+  </ul>
+</nav>
+  </div>
+
+
+
+
+</div><div class="order-1 w-60-l mw9 ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns" style="flex-grow:1;">
+        <div class="order-0 mt4 w-100 center mw7" style="clear: both;">
+          <a id="doc-menu-toggle" class="icon icon-menu" href="javascript:void(0)" onClick="hideShowDM()"></a><a id="context-menu-toggle" class="icon icon-menu" href="javascript:void(0)" onClick="hideShowCM()"></a></div>
+
+        <div class="documentation-copy center mw7" id="content">
+          <header class="mt4 w-100">
+            <p class="f6 b helvetica tracked">
+                
+              表达式（EXPRESSIONS）
+            </p>
+            <h1 class="f1 athelas mb1">方法（Methods）</h1>
+          </header>
+
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.</p>
+<p>Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter <a href="/types/actors.html#behaviours">when we talked about actors</a>.</p>
+<p><strong>Can I have some code outside of any methods like I do in Python?</strong> No. All Pony code must be within a method.</p>
+<h2 id="functions">Functions</h2>
+<p>Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values. If the return type is omitted then the function will have a return value of <code>None</code>.</p>
+<pre><code class="language-pony" data-lang="pony">class C
+  fun add(x: U32, y: U32): U32 =&gt;
+    x + y
+
+  fun nop() =&gt;
+    add(1, 2)  // Pointless, we ignore the result
+</code></pre><p>The function parameters (if any) are specified in parentheses after the function name. Functions that don&rsquo;t take any parameters still need to have the parentheses.</p>
+<p>Each parameter is given a name and a type. In our example function <code>add</code> has 2 parameters, <code>x</code> and <code>y</code>, both of which are type <code>U32</code>. The values passed to a function call (the <code>1</code> and <code>2</code> in our example) are called arguments and when the call is made they are evaluated and assigned to the parameters. Parameters may not be assigned to within the function - they are effectively declared <code>let</code>.</p>
+<p>After the parameters comes the return type. If nothing will be returned this is simply omitted.</p>
+<p>After the return value, there&rsquo;s a <code>=&gt;</code> and then finally the function body. The value returned is simply the value of the function body (remember that everything is an expression), which is simply the value of the last command in the function.</p>
+<p>If you want to exit a function early then use the <code>return</code> command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then <code>return</code> should appear on its own, without a value.</p>
+<p><strong>Can I overload functions by argument type?</strong> No, you cannot have multiple methods with the same name in the same type.</p>
+<h2 id="constructors">Constructors</h2>
+<p>Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention, the main constructor of each type (if there is such a thing for any given type) is called <code>create</code>.</p>
+<pre><code class="language-pony" data-lang="pony">class Foo
+  var _x: U32
+
+  new create() =&gt;
+    _x = 0
+
+  new from_int(x: U32) =&gt;
+    _x = x
+</code></pre><p>The purpose of a constructor is to set up the internal state of the object being created. To ensure this is done constructors must initialise all the fields in the object being constructed.</p>
+<p><strong>Can I exit a constructor early?</strong> Yes. Just then use the <code>return</code> command without a value. The object must already be in a legal state to do this.</p>
+<h2 id="calling">Calling</h2>
+<p>As in many other languages, methods in Pony are called by providing the arguments within parentheses after the method name. The parentheses are required even if there are no arguments being passed to the method.</p>
+<pre><code class="language-pony" data-lang="pony">class Foo
+  fun hello(name: String): String =&gt;
+    &quot;hello &quot; + name
+
+  fun f() =&gt;
+    let a = hello(&quot;Fred&quot;)
+</code></pre><p>Constructors are usually called &ldquo;on&rdquo; a type, by specifying the type that is to be created. To do this just specify the type, followed by a dot, followed by the name of the constructor you want to call.</p>
+<pre><code class="language-pony" data-lang="pony">class Foo
+  var _x: U32
+
+  new create() =&gt;
+    _x = 0
+
+  new from_int(x: U32) =&gt;
+    _x = x
+
+class Bar
+  fun f() =&gt;
+    var a: Foo = Foo.create()
+    var b: Foo = Foo.from_int(3)
+</code></pre><p>Functions are always called on an object. Again just specify the object, followed by a dot, followed by the name of the function to call. If the object to call on is omitted then the current object is used (i.e. <code>this</code>).</p>
+<pre><code class="language-pony" data-lang="pony">class Foo
+  var _x: U32
+
+  new create() =&gt;
+    _x = 0
+
+  new from_int(x: U32) =&gt;
+    _x = x
+
+  fun get(): U32 =&gt;
+    _x
+
+class Bar
+  fun f() =&gt;
+    var a: Foo = Foo.from_int(3)
+    var b: U32 = a.get()
+    var c: U32 = g(b)
+
+  fun g(x: U32): U32 =&gt;
+    x + 1
+
+</code></pre><p>Constructors can also be called on an expression. Here an object is created of the same type as the specified expression - this is equivalent to directly specifying the type.</p>
+<pre><code class="language-pony" data-lang="pony">class Foo
+  var _x: U32
+
+  new create() =&gt;
+    _x = 0
+
+  new from_int(x: U32) =&gt;
+    _x = x
+
+class Bar
+  fun f() =&gt;
+    var a: Foo = Foo.create()
+    var b: Foo = a.from_int(3)
+</code></pre><p>We can even reuse the variable name in the assignment expression to call the constructor.</p>
+<pre><code class="language-pony" data-lang="pony">class Bar
+  fun f() =&gt;
+    var a: Foo = a.create()
+</code></pre><p>Here we specify that <code>var a</code> is type <code>Foo</code>, then proceed to use <code>a</code> to call the constructor, <code>create()</code>, for objects of type <code>Foo</code>.</p>
+<h2 id="default-arguments">Default arguments</h2>
+<p>When defining a method you can provide default values for any of the arguments. The caller then has the choice to use the values you have provided or to provide their own. Default argument values are specified with a <code>=</code> after the parameter name.</p>
+<pre><code class="language-pony" data-lang="pony">class Coord
+  var _x: U32
+  var _y: U32
+
+  new create(x: U32 = 0, y: U32 = 0) =&gt;
+    _x = x
+    _y = y
+
+class Bar
+  fun f() =&gt;
+    var a: Coord = Coord.create()     // Contains (0, 0)
+    var b: Coord = Coord.create(3)    // Contains (3, 0)
+    var c: Coord = Coord.create(3, 4) // Contains (3, 4)
+</code></pre><p><strong>Do I have to provide default values for all of my arguments?</strong> No, you can provide defaults for as many, or as few, as you like.</p>
+<h2 id="named-arguments">Named arguments</h2>
+<p>So far, when calling methods we have always given all the arguments in order. This is known as using <strong>positional</strong> arguments. However, we can also specify the arguments in any order by specifying their names. This is known as using <strong>named</strong> arguments.</p>
+<p>To call a method using named arguments the <code>where</code> keyword is used, followed by the named arguments and their values.</p>
+<pre><code class="language-pony" data-lang="pony">class Coord
+  var _x: U32
+  var _y: U32
+
+  new create(x: U32 = 0, y: U32 = 0) =&gt;
+    _x = x
+    _y = y
+
+class Bar
+  fun f() =&gt;
+    var a: Coord = Coord.create(3, 4) // Contains (3, 4)
+    var b: Coord = Coord.create(where y = 4, x = 3) // Contains (3, 4)
+</code></pre><p>Note how in <code>b</code> above, the arguments were given out of order by using <code>where</code> followed using the name of the arguments.</p>
+<p><strong>Should I specify <code>where</code> for each named argument?</strong> No. There must be only one <code>where</code> in a method call.</p>
+<p>Named and positional arguments can be used together in a single call. Just start with the positional arguments you want to specify, then a <code>where</code> and finally the named arguments. But be careful, each argument must be specified only once.</p>
+<p>Default arguments can also be used in combination with positional and named arguments - just miss out any for which you want to use the default.</p>
+<pre><code class="language-pony" data-lang="pony">class Foo
+  fun f(a: U32 = 1, b: U32 = 2, c: U32 = 3, d: U32 = 4, e: U32 = 5): U32  =&gt;
+    0
+
+  fun g() =&gt;
+    f(6, 7 where d = 8)
+    // Equivalent to:
+    f(6, 7, 3, 8, 5)
+</code></pre><p><strong>Can I call using positional arguments but miss out the first one?</strong> No. If you use positional arguments they must be the first ones in the call.</p>
+<h2 id="chaining">Chaining</h2>
+<p>Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is <code>object.&gt;method()</code>, which is roughly equivalent to <code>(object.method() ; object)</code>. Chaining a method discards its normal return value.</p>
+<pre><code class="language-pony" data-lang="pony">primitive Printer
+  fun print_two_strings(out: StdStream, s1: String, s2: String) =&gt;
+    out.&gt;print(s1).&gt;print(s2)
+    // Equivalent to:
+    out.print(s1)
+    out.print(s2)
+    out
+</code></pre><p>Note that the last <code>.&gt;</code> in a chain can be a <code>.</code> if the return value of the last call matters.</p>
+<pre><code class="language-pony" data-lang="pony">interface Factory
+  fun add_option(o: Option)
+  fun make_object(): Object
+
+primitive Foo
+  fun object_wrong(f: Factory, o1: Option, o2: Option): Object =&gt;
+    f.&gt;add_option(o1).&gt;add_option(o2).&gt;make_object() // Error! The expression returns a Factory
+
+  fun object_right(f: Factory, o1: Option, o2: Option): Object =&gt;
+    f.&gt;add_option(o1).&gt;add_option(o2).make_object() // Works. The expression returns an Object
+</code></pre><h2 id="anonymous-methods">Anonymous methods</h2>
+<p>Pony has anonymous methods (or Lambdas). They look like this:</p>
+<pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
+
+actor Main
+  new create(env: Env) =&gt;
+    let list_of_numbers = List[U32].from([1; 2; 3; 4])
+    let is_odd = {(n: U32): Bool =&gt; (n % 2) == 1}
+    for odd_number in list_of_numbers.filter(is_odd).values() do
+      env.out.print(odd_number.string())
+    end
+</code></pre><p>They are presented more in-depth in the <a href="/expressions/object-literals.html">Object Literals section</a>.</p>
+<h2 id="privacy">Privacy</h2>
+<p>In Pony, method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.</p>
+<p><strong>Can I start my method name with 2 (or more) underscores?</strong> No. If the first character is an underscore then the second one MUST be a lower case letter.</p>
+<h2 id="precedence">Precedence</h2>
+<p>We have talked about <a href="/expressions/ops.html#precedence">precedence of operators</a> before, and in Pony, method calls and field accesses have higher precedence than any operators.</p>
+<p>To sum up, in complex expressions,</p>
+<ol>
+<li>Method calls and field accesses have higher precedence than any operators.</li>
+<li>Unary operator have higher precedence than infix operators.</li>
+<li>When mixing infix operators in complex expressions, we must use parentheses to specify precedences explicitly.</li>
+</ol>
+</main>
+        </div>
+        <div id="search-results" class="center mw7 dn"></div>
+      </div>
+    </div>
+  </article>
+
+    </main>
+    
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/pony.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.5/lunr.min.js"></script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  var toggleBtns = document.getElementsByClassName('js-toggle')
+  for (var i = 0; i < toggleBtns.length; i++) {
+    toggleBtns[i].addEventListener('click', toggleClass, false)
+  }
+
+  var myToggleBtns = document.getElementsByClassName('hide-show-toggle')
+  for (var i = 0; i < myToggleBtns.length; i++) {
+    myToggleBtns[i].addEventListener('click', hideShow, false)
+  }
+
+function hideShowDM() {
+  var menu = document.getElementById("doc-menu")
+  var thebody = document.getElementById("the-body")
+  if (window.getComputedStyle(menu).display == "none") {
+    menu.style.display = "block";
+    thebody.style.left = "300px";
+  } else {
+    menu.style.display = "none";
+    thebody.style.left = "0px";
+  }
+}
+
+function hideShowCM() {
+  var menu = document.getElementById("context-menu")
+  if (window.getComputedStyle(menu).display == "none") {
+    menu.style.display = "block";
+  } else {
+    menu.style.display = "none";
+  }
+}
+
+function toggleClass() {
+  
+  var content = this.dataset.target.split(' ')
+  
+  var mobileCurrentlyOpen = document.querySelector('.mobilemenu:not(.dn)')
+  var desktopCurrentlyOpen = document.querySelector('.desktopmenu:not(.dn)')
+  var desktopActive = document.querySelector('.desktopmenu:not(.dn)')
+
+  
+  for (var i = 0; i < content.length; i++) {
+    var matches = document.querySelectorAll(content[i]);
+    
+    [].forEach.call(matches, function(dom) {
+        dom.classList.contains('dn') ?
+        dom.classList.remove('dn') :
+        dom.classList.add('dn');
+         return false;
+       });
+        
+      if (mobileCurrentlyOpen) mobileCurrentlyOpen.classList.add('dn')
+      if (desktopCurrentlyOpen) desktopCurrentlyOpen.classList.add('dn')
+      if (desktopActive) desktopActive.classList.remove('db')
+
+    }
+  }
+
+var Pony = {};
+
+
+Pony.Search = (function() {
+  var that = {}
+  that.lunrIndex = undefined;
+  that.pages = [];
+
+  that.doSearch = function(query) {
+    var resultsContainer = $('#search-results');
+    var contentContainer = $('#content');
+    
+    var results = this.lunrIndex.search(query).map(function(result) {
+      
+        return {
+            page: that.pages[result.ref],
+            metadata: result.matchData.metadata
+        };
+    });
+
+    
+    resultsContainer.empty();
+    resultsContainer.append(
+        $("<header>", {class: "mt4 w-100"}).append(
+            $("<p>", {class: "f6 b helvetica tracked", text: "SEARCH RESULTS"}))
+    );
+    var resList = $("<ul>", {id: "search-result-list"});
+
+    
+    results.slice(0, 100).forEach(function(result) {
+        var res = $("<li>");
+        var div = $("<div>", {class: "search-result"});
+        div.append($("<a>", {
+          href: result.page.uri,
+          text: result.page.title,
+          class: "search-result-title"
+        }));
+        var p = $("<p>", {
+            class: "search-result-summary"
+        });
+        var highlighted = that.highlightResult(result.page.summary, result.metadata);
+        p.append(highlighted);
+        div.append(p);
+        res.append(div);
+        resList.append(res);
+    });
+    resultsContainer.append(resList);
+
+    
+    contentContainer.addClass("dn");
+    resultsContainer.removeClass("dn");
+  };
+
+  that.highlightResult = function(text, metadata) {
+      var span = $("<span>");
+      for (var key in metadata) {
+        var summary_metadata = metadata[key]["summary"];
+        if (summary_metadata !== undefined && summary_metadata["position"] !== undefined) {
+            var position_metadata = summary_metadata["position"];
+            var last_pos = 0;
+            summary_metadata["position"].forEach(function(elem) {
+                span.append(
+                    $("<span>", {text: text.slice(last_pos, elem[0])})
+                );
+                span.append(
+                    $("<span>", {
+                        class: "highlighted",
+                        text: text.slice(elem[0], elem[0] + elem[1])})
+                );
+                last_pos = elem[0] + elem[1];
+            });
+            span.append(
+                $("<span>", {text: text.slice(last_pos, text.length)})
+            );
+        } else {
+          span.text(text);
+        }
+      }
+      return span;
+  };
+
+  that.initLunr = function(onSuccess) {
+      $.getJSON("/index.json")
+        .done(function(index) {
+           
+           that.pages = index;
+           that.lunrIndex = lunr(function() {
+             this.metadataWhitelist = ['position']; 
+             this.field("title", { boost: 10 });
+             this.field("tags", { boost: 5 });
+             this.field("categories", { boost: 5 });
+             this.field("content");
+             this.field("summary", {boost: 0});
+             this.ref("i");
+
+             index.forEach(function (page, idx) {
+                 page["i"] = idx;
+                 this.add(page)
+               },
+               this
+             );
+           });
+           onSuccess();
+        })
+        .fail(function(jqxhr, textStatus, error) {
+          var err = textStatus + ", " + error;
+          console.error("Error getting search index file:", err);
+        });
+    }
+  that.setUpSearchUI = function() {
+    $('#search-box').keyup(function() {
+        var query = $(this).val();
+        if (query.length < 2) {
+            if (query.length == 0) {
+                $('#content').removeClass('dn');
+                $('#search-results').empty().addClass('dn');
+            }
+            return;
+        }
+        if (that.lunrIndex === undefined) {
+            that.initLunr(function () {
+              that.doSearch(query);
+            });
+        } else {
+            that.doSearch(query);
+        }
+    });
+  }
+  return that;
+})();
+
+
+
+
+$(document).ready(function() {
+  Pony.Search.setUpSearchUI();
+});
+</script>
+
+  </body>
+</html>
