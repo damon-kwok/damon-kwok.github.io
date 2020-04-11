@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | What You Need</title>
+    <title>Pony 教程  | 准备工作（What You Need）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -18,24 +18,24 @@
     <style>
       @font-face {
         font-family: 'Icon';
-        src: url('/pony-tutorial/dist/fonts/icon.eot?52m981');
-        src: url('/pony-tutorial/dist/fonts/icon.eot?#iefix52m981')
+        src: url('/dist/fonts/icon.eot?52m981');
+        src: url('/dist/fonts/icon.eot?#iefix52m981')
                format('embedded-opentype'),
-             url('/pony-tutorial/dist/fonts/icon.woff?52m981')
+             url('/dist/fonts/icon.woff?52m981')
                format('woff'),
-             url('/pony-tutorial/dist/fonts/icon.ttf?52m981')
+             url('/dist/fonts/icon.ttf?52m981')
                format('truetype'),
-             url('/pony-tutorial/dist/fonts/icon.svg?52m981#icon')
+             url('/dist/fonts/icon.svg?52m981#icon')
                format('svg');
         font-weight: normal;
         font-style: normal;
       }
     </style>
 
-    <link href="/pony-tutorial/dist/css/app.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/highlight.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/icon.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/pony.css" rel="stylesheet">
+    <link href="/dist/css/app.css" rel="stylesheet">
+    <link href="/dist/css/highlight.css" rel="stylesheet">
+    <link href="/dist/css/icon.css" rel="stylesheet">
+    <link href="/dist/css/pony.css" rel="stylesheet">
 
     
 
@@ -45,27 +45,33 @@
 
     
 
-    <meta property="og:title" content="What You Need" />
-<meta property="og:description" content="To get started, you&rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&rsquo;t want to install the compiler you can use the Pony&rsquo;s Playground.
-The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
-A text editor While you can write code using any editor, it&rsquo;s nice to use one with some support for the language." />
+    <meta property="og:title" content="准备工作（What You Need）" />
+<meta property="og:description" content="首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&rsquo;s Playground也是可以的。
+Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C&#43;&#43; Build Tools。
+文本编辑器 While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
-<meta itemprop="name" content="What You Need">
-<meta itemprop="description" content="To get started, you&rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&rsquo;t want to install the compiler you can use the Pony&rsquo;s Playground.
-The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
-A text editor While you can write code using any editor, it&rsquo;s nice to use one with some support for the language.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="290">
+<meta property="og:url" content="https://tutorial.ponylang.io/getting-started/what-you-need.html" />
+<meta property="article:modified_time" content="2020-04-11T21:01:59+08:00" />
+<meta itemprop="name" content="准备工作（What You Need）">
+<meta itemprop="description" content="首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&rsquo;s Playground也是可以的。
+Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C&#43;&#43; Build Tools。
+文本编辑器 While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own.">
+<meta itemprop="dateModified" content="2020-04-11T21:01:59&#43;08:00" />
+<meta itemprop="wordCount" content="94">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="What You Need"/>
-<meta name="twitter:description" content="To get started, you&rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&rsquo;t want to install the compiler you can use the Pony&rsquo;s Playground.
-The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
-A text editor While you can write code using any editor, it&rsquo;s nice to use one with some support for the language."/>
+<meta name="twitter:title" content="准备工作（What You Need）"/>
+<meta name="twitter:description" content="首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&rsquo;s Playground也是可以的。
+Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C&#43;&#43; Build Tools。
+文本编辑器 While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own."/>
 
   </head>
 
@@ -77,7 +83,7 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
     <div class="bg-pony-brown">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://damon-kwok.github.io/pony-tutorial/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
       Pony 教程
     </a>
     <div class="flex-l items-center">
@@ -103,7 +109,7 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
 
 
 
-<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+<a href="https://github.com/damon-kwok/pony-tutorial-zh_CN" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -140,22 +146,22 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".getting-started">入门（Getting Started）</a>
         <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray db">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              What You Need
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+              准备工作（What You Need）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Hello World: Your First Pony Program
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Hello World: How It Works
             </a>
           </li>
@@ -166,47 +172,47 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">类型系统（Types）</a>
         <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型系统概览
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类（Classes）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               基元类（Primitives）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               并发单元（Actors）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               特征和接口（Traits and Interfaces）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               结构体（Structs）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型别名（Type Aliases）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型表达式（Type Expressions）
             </a>
           </li>
@@ -217,62 +223,62 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".expressions">表达式（Expressions）</a>
         <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               字面量（Literals）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               变量（Variables）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               运算符（Operators）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               算术运算符（Arithmetic）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               流程控制（Control Structures）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               方法（Methods）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               错误（Errors）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               比较运算（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               语法糖（Sugar）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               object关键字（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Partial Application
             </a>
           </li>
@@ -283,57 +289,57 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".reference-capabilities">引用权能（Reference Capabilities）</a>
         <ul class="reference-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               引用权能（Reference Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               引用权能保证（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能借用（Recovering Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               别名（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Passing and Sharing References
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能包含关系（Capability Subtyping）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能合并（Combining Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Arrow Types aka Viewpoints
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Reference Capability Matrix
             </a>
           </li>
@@ -344,17 +350,17 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能（Object Capabilities）</a>
         <ul class="object-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Object Capabilities
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Trust Boundary
             </a>
           </li>
@@ -365,17 +371,17 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">模式匹配（Pattern Matching）</a>
         <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               匹配表达式（Match Expressions）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               as操作符（As Operator）
             </a>
           </li>
@@ -386,17 +392,17 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">泛型（Generics）</a>
         <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               泛型和引用权能（Generics and Reference Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               泛型约束（Constraints）
             </a>
           </li>
@@ -407,22 +413,22 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">包（Packages）</a>
         <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               包机制（Package System）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               包的使用方式（Use Statement）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               标准库（Standard Library）
             </a>
           </li>
@@ -433,12 +439,12 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">测试（Testing）</a>
         <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Testing with Ponytest
             </a>
           </li>
@@ -449,27 +455,27 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
         <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Calling C from Pony
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Linking to C Libraries
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               C ABI
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Callbacks
             </a>
           </li>
@@ -480,32 +486,32 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">陷阱（Gotchas）</a>
         <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Divide by Zero
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Garbage Collection
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Scheduling
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Function Call Side Effects
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Recursion
             </a>
           </li>
@@ -516,7 +522,7 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">下一步？（Where Next?）</a>
         <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
@@ -527,72 +533,72 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">附录（Appendices）</a>
         <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               PONYPATH
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Lexicon
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Symbol Lookup Cheatsheet
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Keywords
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Examples
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Whitespace
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Compiler Arguments
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Memory Allocation at Runtime
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Garbage Collection with Pony-ORCA
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Platform-dependent code
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               A Short Guide to Pony Error Messages
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Program Annotations
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Serialisation
             </a>
           </li>
@@ -606,10 +612,10 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#the-pony-compiler">The Pony compiler</a></li>
-    <li><a href="#a-text-editor">A text editor</a></li>
-    <li><a href="#the-compiler">The compiler</a></li>
-    <li><a href="#compiling-your-program">Compiling your program</a></li>
+    <li><a href="#pony编译器">Pony编译器</a></li>
+    <li><a href="#文本编辑器">文本编辑器</a></li>
+    <li><a href="#编译器说明">编译器说明</a></li>
+    <li><a href="#编译你的程序">编译你的程序</a></li>
   </ul>
 </nav>
   </div>
@@ -625,30 +631,45 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
           <header class="mt4 w-100">
             <p class="f6 b helvetica tracked">
                 
-              GETTING STARTED
+              入门（GETTING STARTED）
             </p>
-            <h1 class="f1 athelas mb1">What You Need</h1>
+            <h1 class="f1 athelas mb1">准备工作（What You Need）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>To get started, you&rsquo;ll need a text editor and the <a href="https://github.com/ponylang/ponyc">ponyc</a> compiler. Or if you are on a not supported platform or don&rsquo;t want to install the compiler you can use the <a href="https://playground.ponylang.io/">Pony&rsquo;s Playground</a>.</p>
-<h2 id="the-pony-compiler">The Pony compiler</h2>
-<p>Before you get started, please check out the <a href="https://github.com/ponylang/ponyc/blob/master/INSTALL.md">installation instructions</a> for the Pony compiler.</p>
-<h2 id="a-text-editor">A text editor</h2>
-<p>While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of <a href="https://github.com/ponylang/ponyc#editor-support">editors supporting Pony</a>.</p>
-<h2 id="the-compiler">The compiler</h2>
-<p>Pony is a <em>compiled</em> language, rather than an <em>interpreted</em> one. In fact, it goes even further: Pony is an <em>ahead-of-time</em> (AOT) compiled language, rather than a <em>just-in-time</em> (JIT) compiled language.</p>
-<p>What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own.</p>
-<p>But it also means you need to build your program before you can run it. In an interpreted language or a JIT compiled language, you tend to do things like this to run your program:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>首先，你需要准备一个<a href="https://github.com/ponylang/ponyc#editor-support">文本编辑器</a>和<a href="https://github.com/ponylang/ponyc">Pony</a>编译器。如果你想偷点懒拿直接使用<a href="https://playground.ponylang.io/">Pony&rsquo;s Playground</a>也是可以的。</p>
+<!-- raw HTML omitted -->
+<h2 id="pony编译器">Pony编译器</h2>
+<!-- raw HTML omitted -->
+<p>安装Pony编译器的方法：<a href="https://github.com/ponylang/ponyc/blob/master/INSTALL.md">安装教程</a>。Windows用户可以直接<a href="https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/ponyc-x86-64-pc-windows-msvc.zip">下载Pony</a>。另外在Windows上编译Pony程序你需要安装<a href="https://www.visualstudio.com/vs/community/">VsualStudio</a>或<a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools</a>。</p>
+<!-- raw HTML omitted -->
+<h2 id="文本编辑器">文本编辑器</h2>
+<p>While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of <a href="https://github.com/ponylang/ponyc#editor-support">editors supporting Pony</a>.
+你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对<a href="https://github.com/ponylang/ponyc#editor-support">编辑器的支持情况</a></p>
+<!-- raw HTML omitted -->
+<h2 id="编译器说明">编译器说明</h2>
+<!-- raw HTML omitted -->
+<p>Pony是一个<code>编译型</code>语言，不是<code>解释型</code>的语言。更进一步来说：Pony是一种<code>提前</code>（AOT）编译型语言，而不是<code>即时</code>（JIT）编译型语言。</p>
+<p>What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own.
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。</p>
+<!-- raw HTML omitted -->
+<p>但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python helloworld.py
-</code></pre></div><p>Or maybe you put a <strong>shebang</strong> in your program (like <code>#!/usr/bin/env python</code>), then <code>chmod</code> to set the executable bit, and then do:</p>
+</code></pre></div><!-- raw HTML omitted -->
+<p>或者你可能在代码文件头部加入<code>shebang</code>(<code>#!/usr/bin/env python</code>)，然后使用<code>chmod</code>设置运行权限，然后直接运行：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ./helloworld.py
-</code></pre></div><p>When you use Pony, you don&rsquo;t do any of that!</p>
-<h2 id="compiling-your-program">Compiling your program</h2>
-<p>If you are in the same directory as your program, you can just do:</p>
+</code></pre></div><!-- raw HTML omitted -->
+<p>但是这些方法在Pony中行不通！</p>
+<!-- raw HTML omitted -->
+<h2 id="编译你的程序">编译你的程序</h2>
+<!-- raw HTML omitted -->
+<p>进入代码目录，直接敲<code>ponyc</code>就可以进行编译：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ponyc
-</code></pre></div><p>That tells the Pony compiler that your current working directory contains your source code, and to please compile it. If your source code is in some other directory, you can tell ponyc where it is:</p>
+</code></pre></div><!-- raw HTML omitted -->
+<p>这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ponyc path/to/my/code
-</code></pre></div><p>There are other options as well, but we&rsquo;ll cover those later.</p>
+</code></pre></div><!-- raw HTML omitted -->
+<p>还有一些其他编译选项，我们将在后面介绍。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

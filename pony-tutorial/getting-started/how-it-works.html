@@ -18,24 +18,24 @@
     <style>
       @font-face {
         font-family: 'Icon';
-        src: url('/pony-tutorial/dist/fonts/icon.eot?52m981');
-        src: url('/pony-tutorial/dist/fonts/icon.eot?#iefix52m981')
+        src: url('/dist/fonts/icon.eot?52m981');
+        src: url('/dist/fonts/icon.eot?#iefix52m981')
                format('embedded-opentype'),
-             url('/pony-tutorial/dist/fonts/icon.woff?52m981')
+             url('/dist/fonts/icon.woff?52m981')
                format('woff'),
-             url('/pony-tutorial/dist/fonts/icon.ttf?52m981')
+             url('/dist/fonts/icon.ttf?52m981')
                format('truetype'),
-             url('/pony-tutorial/dist/fonts/icon.svg?52m981#icon')
+             url('/dist/fonts/icon.svg?52m981#icon')
                format('svg');
         font-weight: normal;
         font-style: normal;
       }
     </style>
 
-    <link href="/pony-tutorial/dist/css/app.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/highlight.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/icon.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/pony.css" rel="stylesheet">
+    <link href="/dist/css/app.css" rel="stylesheet">
+    <link href="/dist/css/highlight.css" rel="stylesheet">
+    <link href="/dist/css/icon.css" rel="stylesheet">
+    <link href="/dist/css/pony.css" rel="stylesheet">
 
     
 
@@ -46,29 +46,44 @@
     
 
     <meta property="og:title" content="Hello World: How It Works" />
-<meta property="og:description" content="Let&rsquo;s look at our helloworld code again:
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) Let&rsquo;s go through that line by line.
-Line 1 actor Main This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C&#43;&#43;, etc. Pony has classes too, which we&rsquo;ll see later.
-The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours." />
+<meta property="og:description" content="首先我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
+第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
+Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
+接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
+In Pony, the type of something always comes after its name and is separated by a colon. In C, C&#43;&#43;, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="og:url" content="https://tutorial.ponylang.io/getting-started/how-it-works.html" />
+<meta property="article:modified_time" content="2020-04-11T21:01:59+08:00" />
 <meta itemprop="name" content="Hello World: How It Works">
-<meta itemprop="description" content="Let&rsquo;s look at our helloworld code again:
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) Let&rsquo;s go through that line by line.
-Line 1 actor Main This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C&#43;&#43;, etc. Pony has classes too, which we&rsquo;ll see later.
-The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="542">
+<meta itemprop="description" content="首先我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
+第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
+Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
+接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
+In Pony, the type of something always comes after its name and is separated by a colon. In C, C&#43;&#43;, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).">
+<meta itemprop="dateModified" content="2020-04-11T21:01:59&#43;08:00" />
+<meta itemprop="wordCount" content="324">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hello World: How It Works"/>
-<meta name="twitter:description" content="Let&rsquo;s look at our helloworld code again:
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) Let&rsquo;s go through that line by line.
-Line 1 actor Main This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C&#43;&#43;, etc. Pony has classes too, which we&rsquo;ll see later.
-The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours."/>
+<meta name="twitter:description" content="首先我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
+第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
+Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
+接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
+In Pony, the type of something always comes after its name and is separated by a colon. In C, C&#43;&#43;, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages)."/>
 
   </head>
 
@@ -80,7 +95,7 @@ The difference between an actor and a class is that an actor can have asynchrono
     <div class="bg-pony-brown">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://damon-kwok.github.io/pony-tutorial/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
       Pony 教程
     </a>
     <div class="flex-l items-center">
@@ -106,7 +121,7 @@ The difference between an actor and a class is that an actor can have asynchrono
 
 
 
-<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+<a href="https://github.com/damon-kwok/pony-tutorial-zh_CN" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -143,22 +158,22 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".getting-started">入门（Getting Started）</a>
         <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray db">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              What You Need
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              准备工作（What You Need）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Hello World: Your First Pony Program
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
               Hello World: How It Works
             </a>
           </li>
@@ -169,47 +184,47 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">类型系统（Types）</a>
         <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型系统概览
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类（Classes）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               基元类（Primitives）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               并发单元（Actors）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               特征和接口（Traits and Interfaces）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               结构体（Structs）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型别名（Type Aliases）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型表达式（Type Expressions）
             </a>
           </li>
@@ -220,62 +235,62 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".expressions">表达式（Expressions）</a>
         <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               字面量（Literals）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               变量（Variables）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               运算符（Operators）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               算术运算符（Arithmetic）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               流程控制（Control Structures）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               方法（Methods）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               错误（Errors）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               比较运算（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               语法糖（Sugar）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               object关键字（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Partial Application
             </a>
           </li>
@@ -286,57 +301,57 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".reference-capabilities">引用权能（Reference Capabilities）</a>
         <ul class="reference-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               引用权能（Reference Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               引用权能保证（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能借用（Recovering Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               别名（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Passing and Sharing References
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能包含关系（Capability Subtyping）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能合并（Combining Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Arrow Types aka Viewpoints
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Reference Capability Matrix
             </a>
           </li>
@@ -347,17 +362,17 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能（Object Capabilities）</a>
         <ul class="object-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Object Capabilities
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Trust Boundary
             </a>
           </li>
@@ -368,17 +383,17 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">模式匹配（Pattern Matching）</a>
         <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               匹配表达式（Match Expressions）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               as操作符（As Operator）
             </a>
           </li>
@@ -389,17 +404,17 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">泛型（Generics）</a>
         <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               泛型和引用权能（Generics and Reference Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               泛型约束（Constraints）
             </a>
           </li>
@@ -410,22 +425,22 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">包（Packages）</a>
         <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               包机制（Package System）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               包的使用方式（Use Statement）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               标准库（Standard Library）
             </a>
           </li>
@@ -436,12 +451,12 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">测试（Testing）</a>
         <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Testing with Ponytest
             </a>
           </li>
@@ -452,27 +467,27 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
         <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Calling C from Pony
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Linking to C Libraries
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               C ABI
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Callbacks
             </a>
           </li>
@@ -483,32 +498,32 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">陷阱（Gotchas）</a>
         <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Divide by Zero
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Garbage Collection
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Scheduling
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Function Call Side Effects
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Recursion
             </a>
           </li>
@@ -519,7 +534,7 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">下一步？（Where Next?）</a>
         <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
@@ -530,72 +545,72 @@ The difference between an actor and a class is that an actor can have asynchrono
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">附录（Appendices）</a>
         <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               PONYPATH
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Lexicon
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Symbol Lookup Cheatsheet
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Keywords
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Examples
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Whitespace
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Compiler Arguments
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Memory Allocation at Runtime
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Garbage Collection with Pony-ORCA
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Platform-dependent code
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               A Short Guide to Pony Error Messages
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Program Annotations
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Serialisation
             </a>
           </li>
@@ -609,10 +624,10 @@ The difference between an actor and a class is that an actor can have asynchrono
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#line-1">Line 1</a></li>
-    <li><a href="#line-2">Line 2</a></li>
-    <li><a href="#line-3">Line 3</a></li>
-    <li><a href="#thats-it">That&rsquo;s it!</a></li>
+    <li><a href="#第一行">第一行</a></li>
+    <li><a href="#第二行">第二行</a></li>
+    <li><a href="#第三行">第三行</a></li>
+    <li><a href="#总结">总结</a></li>
   </ul>
 </nav>
   </div>
@@ -628,38 +643,51 @@ The difference between an actor and a class is that an actor can have asynchrono
           <header class="mt4 w-100">
             <p class="f6 b helvetica tracked">
                 
-              GETTING STARTED
+              入门（GETTING STARTED）
             </p>
             <h1 class="f1 athelas mb1">Hello World: How It Works</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Let&rsquo;s look at our <code>helloworld</code> code again:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>首先我们来看一下<code>helloworld</code>代码：</p>
 <pre><code class="language-pony" data-lang="pony">actor Main
   new create(env: Env) =&gt;
     env.out.print(&quot;Hello, world!&quot;)
-</code></pre><p>Let&rsquo;s go through that line by line.</p>
-<h2 id="line-1">Line 1</h2>
+</code></pre><!-- raw HTML omitted -->
+<p>接下来我们逐行解释。</p>
+<!-- raw HTML omitted -->
+<h2 id="第一行">第一行</h2>
 <pre><code class="language-pony" data-lang="pony">actor Main
-</code></pre><p>This is a <strong>type declaration</strong>. The keyword <code>actor</code> means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we&rsquo;ll see later.</p>
-<p>The difference between an actor and a class is that an actor can have <strong>asynchronous</strong> methods, called <strong>behaviours</strong>. We&rsquo;ll talk more about that later.</p>
-<p>A Pony program has to have a <code>Main</code> actor. It&rsquo;s kind of like the <code>main</code> function in C or C++, or the <code>main</code> method in Java, or the <code>Main</code> method in C#. It&rsquo;s where the action starts.</p>
-<h2 id="line-2">Line 2</h2>
+</code></pre><!-- raw HTML omitted -->
+<p>这是一个<code>类型声明</code>。关键字<code>actor</code>表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲解。</p>
+<!-- raw HTML omitted -->
+<p>actor和类的区别是：actor可以<code>异步执行</code>函数，这些函数在Pony中被称为<code>行为（behaviours）</code>。后面会讲到。</p>
+<!-- raw HTML omitted -->
+<p>Pony程序中的<code>Main</code>actor跟C、C++中的<code>main</code>函数，或者Java、C#中的<code>Main</code>方法类似，都是表示程序的入口。</p>
+<!-- raw HTML omitted -->
+<h2 id="第二行">第二行</h2>
 <pre><code class="language-pony" data-lang="pony">  new create(env: Env) =&gt;
-</code></pre><p>This is a <strong>constructor</strong>. The keyword <code>new</code> means it&rsquo;s a function that creates a new instance of the type. In this case, it creates a new <strong>Main</strong>.</p>
-<p>Unlike other languages, constructors in Pony have names. That means there can be more than one way to construct an instance of a type. In this case, the name of the constructor is <code>create</code>.</p>
-<p>The parameters of a function come next. In this case, our constructor has a single parameter called <code>env</code> that is of the type <code>Env</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这是一个<code>构造函数</code>。关键字<code>new</code>表示它可以创建类型实例，这个实例的类型就是<code>Main</code>。</p>
+<!-- raw HTML omitted -->
+<p>和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数<code>create</code>。</p>
+<!-- raw HTML omitted -->
+<p>接下来构造函数的参数。这里我们的构造函数里定义了一个名为<code>env</code>的参数，类型为<code>Env</code>。</p>
 <p>In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say <code>Env env</code>, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).</p>
 <p>It turns out, our <code>Main</code> actor <strong>has</strong> to have a constructor called <code>create</code> that takes a single parameter of type <code>Env</code>. That&rsquo;s how all programs start! So the beginning of your program is essentially the body of that constructor.</p>
 <p><strong>Wait, what&rsquo;s the body?</strong> It&rsquo;s the code that comes after the <code>=&gt;</code>.</p>
-<h2 id="line-3">Line 3</h2>
+<!-- raw HTML omitted -->
+<h2 id="第三行">第三行</h2>
 <pre><code class="language-pony" data-lang="pony">    env.out.print(&quot;Hello, world!&quot;)
 </code></pre><p>This is your program! What the heck is it doing?</p>
 <p>In Pony, a dot is either a field access or a method call, much like other languages. If the name after the dot has parentheses after it, it&rsquo;s a method call. Otherwise, it&rsquo;s a field access.</p>
 <p>So here, we start with a reference to <code>env</code>. We then look up the field <code>out</code> on our object <code>env</code>. As it happens, that field represents <strong>stdout</strong>, i.e. usually it means printing to your console. Then, we call the <code>print</code> method on <code>env.out</code>. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a <strong>string literal</strong>, i.e. the stuff in double quotes.</p>
 <p>In Pony, string literals can be in double quotes, <code>&quot;</code>, in which case they follow C/C++ style escaping (using stuff like \n), or they can be triple-quoted, <code>&quot;&quot;&quot;</code> like in Python, in which case they are considered raw data.</p>
 <p><strong>What&rsquo;s an Env, anyway?</strong> It&rsquo;s the &ldquo;environment&rdquo; your program was invoked with. That means it has command line arguments, environment variables, <strong>stdin</strong>, <strong>stdout</strong>, and <strong>stderr</strong>. Pony has no global variables, so these things are explicitly passed to your program.</p>
-<h2 id="thats-it">That&rsquo;s it!</h2>
-<p>Really, that&rsquo;s it. The program begins by creating a <code>Main</code> actor, and in the constructor, we print &ldquo;Hello, world!&rdquo; to <strong>stdout</strong>. Next, we&rsquo;ll start diving into the Pony type system.</p>
+<!-- raw HTML omitted -->
+<h2 id="总结">总结</h2>
+<!-- raw HTML omitted -->
+<p>就是这样。Pony程序开始运行时会创建一个名字为<code>Main</code> actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到<code>标准输出流</code>。接下来我们会讲解Pony的类型系统。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

@@ -2,45 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>概述（Overview） on Pony 教程</title>
-    <link>https://damon-kwok.github.io/pony-tutorial/getting-started.html</link>
+    <link>https://tutorial.ponylang.io/getting-started.html</link>
     <description>Recent content in 概述（Overview） on Pony 教程</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
-	<atom:link href="https://damon-kwok.github.io/pony-tutorial/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tutorial.ponylang.io/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello World: How It Works</title>
-      <link>https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html</link>
+      <link>https://tutorial.ponylang.io/getting-started/how-it-works.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html</guid>
-      <description>Let&amp;rsquo;s look at our helloworld code again:
-actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;) Let&amp;rsquo;s go through that line by line.
-Line 1 actor Main This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we&amp;rsquo;ll see later.
-The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours.</description>
+      <guid>https://tutorial.ponylang.io/getting-started/how-it-works.html</guid>
+      <description>首先我们来看一下helloworld代码：
+actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;) 接下来我们逐行解释。
+第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
+Pony程序中的Mainactor跟C、C++中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
+第二行 new create(env: Env) =&amp;gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
+接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
+In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).</description>
     </item>
     
     <item>
       <title>Hello World: Your First Pony Program</title>
-      <link>https://damon-kwok.github.io/pony-tutorial/getting-started/hello-world.html</link>
+      <link>https://tutorial.ponylang.io/getting-started/hello-world.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/hello-world.html</guid>
+      <guid>https://tutorial.ponylang.io/getting-started/hello-world.html</guid>
       <description>Now that you&amp;rsquo;ve successfully installed the Pony compiler, let&amp;rsquo;s start programming! Our first program will be a very traditional one. We&amp;rsquo;re going to print &amp;ldquo;Hello, world!&amp;quot;. First, create a directory called helloworld:
 $ mkdir helloworld $ cd helloworld Does the name of the directory matter? Yes, it does. It&amp;rsquo;s the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in.</description>
     </item>
     
     <item>
-      <title>What You Need</title>
-      <link>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</link>
+      <title>准备工作（What You Need）</title>
+      <link>https://tutorial.ponylang.io/getting-started/what-you-need.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</guid>
-      <description>To get started, you&amp;rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&amp;rsquo;t want to install the compiler you can use the Pony&amp;rsquo;s Playground.
-The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
-A text editor While you can write code using any editor, it&amp;rsquo;s nice to use one with some support for the language.</description>
+      <guid>https://tutorial.ponylang.io/getting-started/what-you-need.html</guid>
+      <description>首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&amp;rsquo;s Playground也是可以的。
+Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
+文本编辑器 While you can write code using any editor, it&amp;rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&amp;rsquo;s a complete program, all on its own.</description>
     </item>
     
   </channel>
