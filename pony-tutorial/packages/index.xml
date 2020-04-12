@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>概述（Overview） on Pony 教程</title>
-    <link>https://damon-kwok.github.io/packages.html</link>
+    <link>https://damon-kwok.github.io/pony-tutorial/packages.html</link>
     <description>Recent content in 概述（Overview） on Pony 教程</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
-	<atom:link href="https://damon-kwok.github.io/packages/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://damon-kwok.github.io/pony-tutorial/packages/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>包机制（Package System）</title>
-      <link>https://damon-kwok.github.io/packages/package-system.html</link>
+      <link>https://damon-kwok.github.io/pony-tutorial/packages/package-system.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://damon-kwok.github.io/packages/package-system.html</guid>
+      <guid>https://damon-kwok.github.io/pony-tutorial/packages/package-system.html</guid>
       <description>Pony code is organised into packages. Each program and library is a single package, possibly using other packages.
 The package structure The package is the basic unit of code in Pony. It corresponds directly to a directory in the file system, all Pony source files within that directory are within that package. Note that this does not include files in any sub-directories.
 Every source file is within exactly one package. Hence all Pony code is in packages.</description>
@@ -23,20 +23,20 @@ Every source file is within exactly one package. Hence all Pony code is in packa
     
     <item>
       <title>包的使用方式（Use Statement）</title>
-      <link>https://damon-kwok.github.io/packages/use-statement.html</link>
+      <link>https://damon-kwok.github.io/pony-tutorial/packages/use-statement.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://damon-kwok.github.io/packages/use-statement.html</guid>
+      <guid>https://damon-kwok.github.io/pony-tutorial/packages/use-statement.html</guid>
       <description>To use a package in your code you need to have a use command. This tells the compiler to find the package you need and make the types defined in it available to you. Every Pony file that needs to know about a type from a package must have a use command for it.
 Use commands are a similar concept to Python and Java &amp;ldquo;import&amp;rdquo;, C/C++ &amp;ldquo;#include&amp;rdquo; and C# &amp;ldquo;using&amp;rdquo; commands, but not exactly the same.</description>
     </item>
     
     <item>
       <title>标准库（Standard Library）</title>
-      <link>https://damon-kwok.github.io/packages/standard-library.html</link>
+      <link>https://damon-kwok.github.io/pony-tutorial/packages/standard-library.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://damon-kwok.github.io/packages/standard-library.html</guid>
+      <guid>https://damon-kwok.github.io/pony-tutorial/packages/standard-library.html</guid>
       <description>The Pony standard library is a collection of packages that can each be used as needed to provide a variety of functionality. For example, the files package provides file access and the collections package provides generic lists, maps, sets and so on.
 There is also a special package in the standard library called builtin. This contains various types that the compiler has to treat specially and are so common that all Pony code needs to know about them.</description>
     </item>
