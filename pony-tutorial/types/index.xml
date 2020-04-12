@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>概述（Overview） on Pony 教程</title>
-    <link>https://tutorial.ponylang.io/types.html</link>
+    <link>https://damon-kwok.github.io/types.html</link>
     <description>Recent content in 概述（Overview） on Pony 教程</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
-	<atom:link href="https://tutorial.ponylang.io/types/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://damon-kwok.github.io/types/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>基元类（Primitives）</title>
-      <link>https://tutorial.ponylang.io/types/primitives.html</link>
+      <link>https://damon-kwok.github.io/types/primitives.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/primitives.html</guid>
+      <guid>https://damon-kwok.github.io/types/primitives.html</guid>
       <description>primitive（基元类） 和 class（类） 有两点主要区别：
  基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段意味着primitive不会产生副作用。只有一个实例意味着，如果您的代码以 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&amp;quot;machine word&amp;rdquo; primitives除外）。
 primitive 有什么用途？ 基元类有三种主要用途（如果算上内置的&amp;quot;machine word&amp;rdquo; primitives则有四种）。
@@ -25,10 +25,10 @@ primitive 有什么用途？ 基元类有三种主要用途（如果算上内置
     
     <item>
       <title>并发单元（Actors）</title>
-      <link>https://tutorial.ponylang.io/types/actors.html</link>
+      <link>https://damon-kwok.github.io/types/actors.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/actors.html</guid>
+      <guid>https://damon-kwok.github.io/types/actors.html</guid>
       <description>actor 和 类 类似，但是有一个关键区别：actor可以有 行为 。
 Behaviours 行为 行为 类似于 函数，不过函数是 同步执行 的，但是行为是 异步执行 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。
 但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。
@@ -46,10 +46,10 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
     
     <item>
       <title>特征和接口（Traits and Interfaces）</title>
-      <link>https://tutorial.ponylang.io/types/traits-and-interfaces.html</link>
+      <link>https://damon-kwok.github.io/types/traits-and-interfaces.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/traits-and-interfaces.html</guid>
+      <guid>https://damon-kwok.github.io/types/traits-and-interfaces.html</guid>
       <description>Like other object-oriented languages, Pony has subtyping. That is, some types serve as categories that other types can be members of.
 There are two kinds of subtyping in programming languages: nominal and structural. They&amp;rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!
 Nominal subtyping This kind of subtyping is called nominal because it is all about names.
@@ -58,10 +58,10 @@ If you&amp;rsquo;ve done object-oriented programming before, you may have seen a
     
     <item>
       <title>类型别名（Type Aliases）</title>
-      <link>https://tutorial.ponylang.io/types/type-aliases.html</link>
+      <link>https://damon-kwok.github.io/types/type-aliases.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/type-aliases.html</guid>
+      <guid>https://damon-kwok.github.io/types/type-aliases.html</guid>
       <description>A type alias is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.
 We&amp;rsquo;ll give a couple examples of using type aliases, just to get the feel of them.
 Enumerations One way to use type aliases is to express an enumeration.</description>
@@ -69,10 +69,10 @@ Enumerations One way to use type aliases is to express an enumeration.</descript
     
     <item>
       <title>类型系统概览</title>
-      <link>https://tutorial.ponylang.io/types/at-a-glance.html</link>
+      <link>https://damon-kwok.github.io/types/at-a-glance.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/at-a-glance.html</guid>
+      <guid>https://damon-kwok.github.io/types/at-a-glance.html</guid>
       <description>Pony是一种静态类型的语言，和Java，C＃，C++等语言类似。编译器知道你的程序中所有的数据类型。有别于动态类型的语言（例如Python，Lua，JavaScript和Ruby）。
 静态语言与动态语言究竟有何不同？ 在两种语言中，数据都具有数据类型。那有什么区别呢？
 在 动态类型 语言中，变量可以在不同的时间指向不同类型的对象。这很灵活，比如一个变量x，你可以为其分配一个整数，然后为其赋值一个字符串，编译器或解释器不会报错。
@@ -88,10 +88,10 @@ Pony的类型系统可以为我们带来什么保证？ Pony类型的系统提�
     
     <item>
       <title>类型表达式（Type Expressions）</title>
-      <link>https://tutorial.ponylang.io/types/type-expressions.html</link>
+      <link>https://damon-kwok.github.io/types/type-expressions.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/type-expressions.html</guid>
+      <guid>https://damon-kwok.github.io/types/type-expressions.html</guid>
       <description>到目前为止，我们已经学习过的类型都可以应用在在 类型表达式（type expressions） 中。如果您熟悉面向对象的编程，那你可能会觉得这个叫法很奇怪，但是它们在函数式编程中很常见。 类型表达式 也称为 代数数据类型 。
 有三种类型表达式：（元组）tuples ， （类型联合体）unions 和 （集合）intersections 。
 元组（Tuples） 一个 元组 是一个类型序列。列入，如果想要一个字符串后面跟着一个U64整数，可以这样写：
@@ -107,10 +107,10 @@ Intersections（类型集合） 类型集合 使用&amp;amp;作为元素分隔�
     
     <item>
       <title>类（Classes）</title>
-      <link>https://tutorial.ponylang.io/types/classes.html</link>
+      <link>https://damon-kwok.github.io/types/classes.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/classes.html</guid>
+      <guid>https://damon-kwok.github.io/types/classes.html</guid>
       <description>和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
 What goes in a class? 一个类的组成：
@@ -124,10 +124,10 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
     
     <item>
       <title>结构体（Structs）</title>
-      <link>https://tutorial.ponylang.io/types/structs.html</link>
+      <link>https://damon-kwok.github.io/types/structs.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/types/structs.html</guid>
+      <guid>https://damon-kwok.github.io/types/structs.html</guid>
       <description>一个“结构”类似于一个“类”。有几个非常重要的区别。您将在整个Pony代码中使用类。您将很少使用结构。我们将在本教程的[C-FFI章]（/ c-ffi.html）中更深入地讨论结构。同时，这是对结构基础的简短介绍。
 Structs are &amp;ldquo;classes for FFI&amp;rdquo; A struct is a class like mechanism used to pass data back and forth with C code via Pony&amp;rsquo;s Foreign Function Interface.
 struct是类似于类的机制，用于通过Pony的外函数接口与C代码来回传递数据。 像类一样，Pony结构可以包含字段和方法。与类不同，Pony结构与C结构具有相同的二进制布局，并且可以在C函数中透明使用。结构没有类型描述符，这意味着它们不能用于代数类型或实现特征/接口。

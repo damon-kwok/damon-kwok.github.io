@@ -60,7 +60,7 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
 在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，演员应该只执行顺序要执行的操作。其他任何东西都可以分解为另一个actor，使其自动并行。
 在下面的示例中，Main actor调用了一个行为call_me_later，正如我们所知，该行为是_asynchronous_，因此我们无需等待它运行就可以继续。然后，我们运行方法“ env.out.print”，它也是_asynchronous_，并将提供的文本打印到终端。现在，我们已经完成了在Main角色中执行代码的工作，我们先前调用的行为最终将运行，并且将打印最后的文本。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tutorial.ponylang.io/types/actors.html" />
+<meta property="og:url" content="https://damon-kwok.github.io/types/actors.html" />
 <meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
 <meta itemprop="name" content="并发单元（Actors）">
 <meta itemprop="description" content="actor 和 类 类似，但是有一个关键区别：actor可以有 行为 。
@@ -107,7 +107,7 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
     <div class="bg-pony-brown">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="https://damon-kwok.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
       Pony 教程
     </a>
     <div class="flex-l items-center">

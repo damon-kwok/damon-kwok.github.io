@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>概述（Overview） on Pony 教程</title>
-    <link>https://tutorial.ponylang.io/getting-started.html</link>
+    <link>https://damon-kwok.github.io/getting-started.html</link>
     <description>Recent content in 概述（Overview） on Pony 教程</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
-	<atom:link href="https://tutorial.ponylang.io/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://damon-kwok.github.io/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hello World</title>
-      <link>https://tutorial.ponylang.io/getting-started/hello-world.html</link>
+      <link>https://damon-kwok.github.io/getting-started/hello-world.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/getting-started/hello-world.html</guid>
+      <guid>https://damon-kwok.github.io/getting-started/hello-world.html</guid>
       <description>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&amp;quot;hello,world!&amp;ldquo;开始。首先n欻关键一个目录：helloworld：
 $ mkdir helloworld $ cd helloworld 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
 文件中敲入下面的代码：
@@ -26,10 +26,10 @@ $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！�
     
     <item>
       <title>代码含义</title>
-      <link>https://tutorial.ponylang.io/getting-started/how-it-works.html</link>
+      <link>https://damon-kwok.github.io/getting-started/how-it-works.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/getting-started/how-it-works.html</guid>
+      <guid>https://damon-kwok.github.io/getting-started/how-it-works.html</guid>
       <description>首先我们来看一下helloworld代码：
 actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;) 接下来我们逐行解释。
 第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲解。
@@ -51,10 +51,10 @@ Env是什么？ 它是你的程序执行的上下文信息，其中包含命令�
     
     <item>
       <title>准备工作（What You Need）</title>
-      <link>https://tutorial.ponylang.io/getting-started/what-you-need.html</link>
+      <link>https://damon-kwok.github.io/getting-started/what-you-need.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tutorial.ponylang.io/getting-started/what-you-need.html</guid>
+      <guid>https://damon-kwok.github.io/getting-started/what-you-need.html</guid>
       <description>首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&amp;rsquo;s Playground也是可以的。
 Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
 文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
