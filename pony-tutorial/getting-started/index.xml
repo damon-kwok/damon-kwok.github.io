@@ -25,7 +25,26 @@ $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！�
     </item>
     
     <item>
-      <title>代码含义</title>
+      <title>准备工作（What You Need）</title>
+      <link>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</guid>
+      <description>首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&amp;rsquo;s Playground也是可以的。
+Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
+文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
+编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
+但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+$ ./helloworld.py 但是这些方法在Pony中行不通！
+编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。</description>
+    </item>
+    
+    <item>
+      <title>庖丁解牛</title>
       <link>https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -47,25 +66,6 @@ Pony的参数类型总是在参数之后，并且需要用冒号分割。如果�
 Pony中的字符串定义可以使用双引号&amp;quot;也可以使用三引号。双引号的定义方式是C/C++的风格的（支持\n方式的转译）。三引号&amp;quot;&amp;quot;&amp;quot;可以定义是Python风格的原始字符串，内容不会被转译。
 Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
 总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&amp;quot;hello,woeld!&amp;ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。</description>
-    </item>
-    
-    <item>
-      <title>准备工作（What You Need）</title>
-      <link>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</guid>
-      <description>首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&amp;rsquo;s Playground也是可以的。
-Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
-文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
-编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
-这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
-但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
-$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
-$ ./helloworld.py 但是这些方法在Pony中行不通！
-编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
-$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
-$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。</description>
     </item>
     
   </channel>

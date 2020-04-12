@@ -171,11 +171,6 @@
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html</loc>
-    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</loc>
     <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
@@ -222,6 +217,11 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/types/actors.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html</loc>
     <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   

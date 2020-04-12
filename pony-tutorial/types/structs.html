@@ -46,41 +46,44 @@
     
 
     <meta property="og:title" content="结构体（Structs）" />
-<meta property="og:description" content="一个“结构”类似于一个“类”。有几个非常重要的区别。您将在整个Pony代码中使用类。您将很少使用结构。我们将在本教程的[C-FFI章]（/ c-ffi.html）中更深入地讨论结构。同时，这是对结构基础的简短介绍。
-Structs are &ldquo;classes for FFI&rdquo; A struct is a class like mechanism used to pass data back and forth with C code via Pony&rsquo;s Foreign Function Interface.
-struct是类似于类的机制，用于通过Pony的外函数接口与C代码来回传递数据。 像类一样，Pony结构可以包含字段和方法。与类不同，Pony结构与C结构具有相同的二进制布局，并且可以在C函数中透明使用。结构没有类型描述符，这意味着它们不能用于代数类型或实现特征/接口。
-What goes in a struct? 和上课一样！结构由以下几种组合组成：
+<meta property="og:description" content="结构体和类有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的C-FFI章中更深入地讨论结构。这里只做简短介绍。
+结构体是用来做外部交互的 struct和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。
+Pony结构体和类一样也可以包含字段和方法。与类不同的是：Pony的结构体与C结构体具有相同的内存布局，并且可以在C函数互相调用。结构体没有类型描述符，所以它们不能被用于算数类型，也不能用来实现特征和接口。
+What goes in a struct? 结构的构成和类一样：
 1.字段 2.构造函数 3.函数
-字段 Pony struct字段的定义方式与Pony类的定义方式相同，分别使用“ embed”，“ let”和“ var”。嵌入字段嵌入在其父对象中，就像C结构内部的C结构一样。 var / let字段是指向单独分配的对象的指针。
+字段 Pony struct字段的定义方式与Pony类的定义方式相同，可以使用embed，let和 var。embed字段嵌入在其父对象中，就像C结构内部的C结构一样。 var和let字段是指向单独分配的对象的指针。
 例如：
-struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。您先前了解的有关Pony类构造函数的所有知识都适用于结构构造函数。" />
+struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。
+struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/structs.html" />
 <meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
 <meta itemprop="name" content="结构体（Structs）">
-<meta itemprop="description" content="一个“结构”类似于一个“类”。有几个非常重要的区别。您将在整个Pony代码中使用类。您将很少使用结构。我们将在本教程的[C-FFI章]（/ c-ffi.html）中更深入地讨论结构。同时，这是对结构基础的简短介绍。
-Structs are &ldquo;classes for FFI&rdquo; A struct is a class like mechanism used to pass data back and forth with C code via Pony&rsquo;s Foreign Function Interface.
-struct是类似于类的机制，用于通过Pony的外函数接口与C代码来回传递数据。 像类一样，Pony结构可以包含字段和方法。与类不同，Pony结构与C结构具有相同的二进制布局，并且可以在C函数中透明使用。结构没有类型描述符，这意味着它们不能用于代数类型或实现特征/接口。
-What goes in a struct? 和上课一样！结构由以下几种组合组成：
+<meta itemprop="description" content="结构体和类有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的C-FFI章中更深入地讨论结构。这里只做简短介绍。
+结构体是用来做外部交互的 struct和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。
+Pony结构体和类一样也可以包含字段和方法。与类不同的是：Pony的结构体与C结构体具有相同的内存布局，并且可以在C函数互相调用。结构体没有类型描述符，所以它们不能被用于算数类型，也不能用来实现特征和接口。
+What goes in a struct? 结构的构成和类一样：
 1.字段 2.构造函数 3.函数
-字段 Pony struct字段的定义方式与Pony类的定义方式相同，分别使用“ embed”，“ let”和“ var”。嵌入字段嵌入在其父对象中，就像C结构内部的C结构一样。 var / let字段是指向单独分配的对象的指针。
+字段 Pony struct字段的定义方式与Pony类的定义方式相同，可以使用embed，let和 var。embed字段嵌入在其父对象中，就像C结构内部的C结构一样。 var和let字段是指向单独分配的对象的指针。
 例如：
-struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。您先前了解的有关Pony类构造函数的所有知识都适用于结构构造函数。">
+struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。
+struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface.">
 <meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="148">
+<meta itemprop="wordCount" content="113">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="结构体（Structs）"/>
-<meta name="twitter:description" content="一个“结构”类似于一个“类”。有几个非常重要的区别。您将在整个Pony代码中使用类。您将很少使用结构。我们将在本教程的[C-FFI章]（/ c-ffi.html）中更深入地讨论结构。同时，这是对结构基础的简短介绍。
-Structs are &ldquo;classes for FFI&rdquo; A struct is a class like mechanism used to pass data back and forth with C code via Pony&rsquo;s Foreign Function Interface.
-struct是类似于类的机制，用于通过Pony的外函数接口与C代码来回传递数据。 像类一样，Pony结构可以包含字段和方法。与类不同，Pony结构与C结构具有相同的二进制布局，并且可以在C函数中透明使用。结构没有类型描述符，这意味着它们不能用于代数类型或实现特征/接口。
-What goes in a struct? 和上课一样！结构由以下几种组合组成：
+<meta name="twitter:description" content="结构体和类有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的C-FFI章中更深入地讨论结构。这里只做简短介绍。
+结构体是用来做外部交互的 struct和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。
+Pony结构体和类一样也可以包含字段和方法。与类不同的是：Pony的结构体与C结构体具有相同的内存布局，并且可以在C函数互相调用。结构体没有类型描述符，所以它们不能被用于算数类型，也不能用来实现特征和接口。
+What goes in a struct? 结构的构成和类一样：
 1.字段 2.构造函数 3.函数
-字段 Pony struct字段的定义方式与Pony类的定义方式相同，分别使用“ embed”，“ let”和“ var”。嵌入字段嵌入在其父对象中，就像C结构内部的C结构一样。 var / let字段是指向单独分配的对象的指针。
+字段 Pony struct字段的定义方式与Pony类的定义方式相同，可以使用embed，let和 var。embed字段嵌入在其父对象中，就像C结构内部的C结构一样。 var和let字段是指向单独分配的对象的指针。
 例如：
-struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。您先前了解的有关Pony类构造函数的所有知识都适用于结构构造函数。"/>
+struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。
+struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface."/>
 
   </head>
 
@@ -171,7 +174,7 @@ struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var in
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              代码含义
+              庖丁解牛
             </a>
           </li>
         </ul>
@@ -621,12 +624,12 @@ struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var in
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#structs-are-classes-for-ffi">Structs are &ldquo;classes for FFI&rdquo;</a></li>
+    <li><a href="#结构体是用来做外部交互的">结构体是用来做外部交互的</a></li>
     <li><a href="#what-goes-in-a-struct">What goes in a struct?</a>
       <ul>
         <li><a href="#字段">字段</a></li>
         <li><a href="#构造函数">构造函数</a></li>
-        <li><a href="#函数">函数</a></li>
+        <li><a href="#成员函数">成员函数</a></li>
       </ul>
     </li>
     <li><a href="#well-see-structs-again">We&rsquo;ll see structs again</a></li>
@@ -651,14 +654,16 @@ struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var in
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>一个“结构”类似于一个“类”。有几个非常重要的区别。您将在整个Pony代码中使用类。您将很少使用结构。我们将在本教程的[C-FFI章]（/ c-ffi.html）中更深入地讨论结构。同时，这是对结构基础的简短介绍。</p>
-<h2 id="structs-are-classes-for-ffi">Structs are &ldquo;classes for FFI&rdquo;</h2>
-<p>A <code>struct</code> is a class like mechanism used to pass data back and forth with C code via Pony&rsquo;s Foreign Function Interface.</p>
+<p><code>结构体</code>和<code>类</code>有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的<a href="/c-ffi.html">C-FFI章</a>中更深入地讨论结构。这里只做简短介绍。</p>
 <!-- raw HTML omitted -->
-<p>struct是类似于类的机制，用于通过Pony的外函数接口与C代码来回传递数据。 像类一样，Pony结构可以包含字段和方法。与类不同，Pony结构与C结构具有相同的二进制布局，并且可以在C函数中透明使用。结构没有类型描述符，这意味着它们不能用于代数类型或实现特征/接口。</p>
+<h2 id="结构体是用来做外部交互的">结构体是用来做外部交互的</h2>
+<!-- raw HTML omitted -->
+<p><code>struct</code>和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。</p>
+<!-- raw HTML omitted -->
+<p>Pony结构体和类一样也可以包含字段和方法。与类不同的是：Pony的结构体与C结构体具有相同的内存布局，并且可以在C函数互相调用。结构体没有类型描述符，所以它们不能被用于算数类型，也不能用来实现<code>特征</code>和<code>接口</code>。</p>
 <h2 id="what-goes-in-a-struct">What goes in a struct?</h2>
 <!-- raw HTML omitted -->
-<p>和上课一样！结构由以下几种组合组成：</p>
+<p>结构的构成和类一样：</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
@@ -668,7 +673,7 @@ struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var in
 <!-- raw HTML omitted -->
 <h3 id="字段">字段</h3>
 <!-- raw HTML omitted -->
-<p>Pony struct字段的定义方式与Pony类的定义方式相同，分别使用“ embed”，“ let”和“ var”。嵌入字段嵌入在其父对象中，就像C结构内部的C结构一样。 var / let字段是指向单独分配的对象的指针。</p>
+<p>Pony struct字段的定义方式与Pony类的定义方式相同，可以使用<code>embed</code>，<code>let</code>和<code> var</code>。embed字段嵌入在其父对象中，就像C结构内部的C结构一样。 var和let字段是指向单独分配的对象的指针。</p>
 <!-- raw HTML omitted -->
 <p>例如：</p>
 <pre><code class="language-pony" data-lang="pony">struct Inner
@@ -681,7 +686,7 @@ struct Outer
 </code></pre><!-- raw HTML omitted -->
 <h3 id="构造函数">构造函数</h3>
 <!-- raw HTML omitted -->
-<p>与类的构造函数一样，结构体的构造函数也可以设置名称。您先前了解的有关Pony类构造函数的所有知识都适用于结构构造函数。</p>
+<p>与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。</p>
 <pre><code class="language-pony" data-lang="pony">struct Pointer[A]
   &quot;&quot;&quot;
   A Pointer[A] is a raw memory pointer. It has no descriptor and thus can't be
@@ -700,14 +705,15 @@ struct Outer
     &quot;&quot;&quot;
     compile_intrinsic
 </code></pre><!-- raw HTML omitted -->
-<p>这里我们有两个构造函数。一个创建一个新的空Pointer，另一个创建一个Pointer，并为该Pointer指向的类型的许多实例提供空间。如果您不遵循上面示例中看到的所有内容，请不要担心。重要的部分是，它基本上应该看起来像类构造函数示例[我们先前看到的]（/ types / classes.html＃what-goes-in-a-class）。</p>
+<p>这里有两个构造函数。第一个创建一个新的空Pointer，第二个创建分配了内存空间的Pointer。</p>
 <!-- raw HTML omitted -->
-<h3 id="函数">函数</h3>
 <!-- raw HTML omitted -->
-<p>像类一样，结构体也可以有函数。您对Pony类上的函数所了解的所有内容也适用于结构。</p>
+<h3 id="成员函数">成员函数</h3>
+<!-- raw HTML omitted -->
+<p>和类一样，结构体也可以有函数。对Pony类成员函数的所有内容也适用于结构。</p>
 <h2 id="well-see-structs-again">We&rsquo;ll see structs again</h2>
 <!-- raw HTML omitted -->
-<p>在Pony与使用C编写的代码的交互中，结构扮演着重要的角色。我们将在教程的[C-FFI部分]（/ c-ffi.html）中再次看到结构。在那之前，我们可能不会对结构有太多了解。</p>
+<p>在Pony与C代码的交互中，结构体扮演着重要的角色。我们将在教程的<a href="/c-ffi.html">C-FFI部分</a>中详细讲解结构体。现在，我们不需要过多关注结构体。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

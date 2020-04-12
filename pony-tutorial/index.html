@@ -144,7 +144,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              代码含义
+              庖丁解牛
             </a>
           </li>
         </ul>
@@ -594,7 +594,7 @@
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#pony是什么">Pony是什么？</a></li>
+    <li><a href="#pony语言简介">Pony语言简介</a></li>
     <li><a href="#the-pony-philosophy-get-stuff-done">The Pony Philosophy: Get Stuff Done</a></li>
     <li><a href="#guiding-principles">Guiding Principles</a></li>
     <li><a href="#more-help">More help</a></li>
@@ -619,29 +619,29 @@
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>欢迎来到Pony语言教程！阅读这个教程，说明你对Pony感兴趣。很好，接下来我们就来盘它！</p>
+<p>来到这里，说明你对Pony很感兴趣，不感兴趣也没关系，马上你就会感兴趣。多说无益，现在我们就来盘它！</p>
 <!-- raw HTML omitted -->
-<p>本教程假设读者已经有一定的编程经验。</p>
+<p>本教程假设你已经有了一定的编程经验。</p>
 <!-- raw HTML omitted -->
-<h2 id="pony是什么">Pony是什么？</h2>
+<h2 id="pony语言简介">Pony语言简介</h2>
 <!-- raw HTML omitted -->
 <p>Pony是一个 <strong>面向对象</strong> 、内置 <strong>Actor模型</strong> 、 <strong>强调安全性</strong> 的编程语言。Pony拥有类似于Python、Java、C++等语言的 <strong>面向对象</strong> 特性。Pony内置的 <strong>Actor模型</strong> （类似于Erlang、Elixir和Akka），actor看起来像是对象，但是可以 <strong>异步</strong> 执行代码。</p>
 <!-- raw HTML omitted -->
-<p>Pony的 <strong>安全性</strong> ,表现在这几个方面：</p>
+<p>Pony强调的 <strong>安全性</strong> ,表现在这几个方面：</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
-<li>类型安全。</li>
-<li>内存安全。</li>
-<li>异常处理安全</li>
-<li>无数据竞争。Pony中没有提供锁、原子操作等机制。作为替代，</li>
-<li>无死锁。Pony没有提供任何加锁的机制，读写锁、临界区统统不存在，你压根儿用不到，也没有机会用，因此死锁不可能发生！</li>
+<li>类型安全性。</li>
+<li>内存安全性。</li>
+<li>异常处理安全性。</li>
+<li>无数据竞争。Pony中没有提供锁、原子操作等机制。编译器会在 <strong>编译期</strong> 检测出潜在的数据竞争问题。</li>
+<li>无死锁。再说一次：Pony没有锁！临界区、读写锁、自旋锁、统统不存在！</li>
 </ul>
 <!-- raw HTML omitted -->
-<p>后面的章节我们还会讨论更多安全性相关问题，包括 <strong>对象</strong> 和 <strong>引用</strong> 。</p>
+<p>后面的章节我们还会讨论更多安全性相关问题，包括 <strong>对象权能模型</strong> 和 <strong>引用权能</strong> 。</p>
 <h2 id="the-pony-philosophy-get-stuff-done">The Pony Philosophy: Get Stuff Done</h2>
 <p>In the spirit of <a href="http://www.jwz.org/doc/worse-is-better.html">Richard Gabriel</a>, the Pony philosophy is neither &ldquo;the-right-thing&rdquo; nor &ldquo;worse-is-better&rdquo;. It is &ldquo;get-stuff-done&rdquo;.</p>
 <ul>

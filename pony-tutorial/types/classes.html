@@ -49,9 +49,9 @@
 <meta property="og:description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
 What goes in a class? 一个类的组成：
- 字段  构造函数  函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
+ 字段  构造函数  成员函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
-下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
+下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
 构造函数 Pony的构造函数可以起 别名 。和其他语言里一样，构造函数返回一个新的类型实例，但Pony 别名 可以有更多的构造方式。
 声明一个构造函数需要用 new 关键字。
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用." />
@@ -62,9 +62,9 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 <meta itemprop="description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
 What goes in a class? 一个类的组成：
- 字段  构造函数  函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
+ 字段  构造函数  成员函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
-下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
+下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
 构造函数 Pony的构造函数可以起 别名 。和其他语言里一样，构造函数返回一个新的类型实例，但Pony 别名 可以有更多的构造方式。
 声明一个构造函数需要用 new 关键字。
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用.">
@@ -78,9 +78,9 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 <meta name="twitter:description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
 What goes in a class? 一个类的组成：
- 字段  构造函数  函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
+ 字段  构造函数  成员函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
-下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
+下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
 构造函数 Pony的构造函数可以起 别名 。和其他语言里一样，构造函数返回一个新的类型实例，但Pony 别名 可以有更多的构造方式。
 声明一个构造函数需要用 new 关键字。
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用."/>
@@ -174,7 +174,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              代码含义
+              庖丁解牛
             </a>
           </li>
         </ul>
@@ -628,7 +628,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
       <ul>
         <li><a href="#字段">字段</a></li>
         <li><a href="#构造函数">构造函数</a></li>
-        <li><a href="#函数">函数</a></li>
+        <li><a href="#成员函数">成员函数</a></li>
         <li><a href="#销毁函数">销毁函数</a></li>
       </ul>
     </li>
@@ -672,7 +672,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 </ol>
 <!-- raw HTML omitted -->
 <ol start="3">
-<li>函数</li>
+<li>成员函数</li>
 </ol>
 <!-- raw HTML omitted -->
 <h3 id="字段">字段</h3>
@@ -684,7 +684,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 </code></pre><!-- raw HTML omitted -->
 <p>上面例子中，类<code>Wombat</code>有一个<code>String</code>类型的<code>name</code>字段，和一个<code>U64</code>（64位无符号长整形）类型的<code>_hunger_level</code>字段。</p>
 <!-- raw HTML omitted -->
-<p><strong>下划线开头是啥意思？</strong> 它表示 <strong>私有</strong> ，一个 <strong>私有</strong> 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 <strong>构造函数</strong> ， <strong>函数</strong> 和 <strong>行为</strong> ，标识只能在 <strong>包</strong> 内部访问。稍后会讲解到 <strong>包</strong> 的概念。</p>
+<p><strong>下划线开头是啥意思？</strong> 它表示 <strong>私有</strong> ，一个 <strong>私有</strong> 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 <strong>构造函数</strong> ， <strong>成员函数</strong> 和 <strong>行为</strong> ，标识只能在 <strong>包</strong> 内部访问。稍后会讲解到 <strong>包</strong> 的概念。</p>
 <!-- raw HTML omitted -->
 <h3 id="构造函数">构造函数</h3>
 <!-- raw HTML omitted -->
@@ -746,9 +746,9 @@ class Owl
 </code></pre><!-- raw HTML omitted -->
 <p>稍后我们会在<a href="/expressions/sugar.html">语法糖</a>章节中做出详细解释。</p>
 <!-- raw HTML omitted -->
-<h3 id="函数">函数</h3>
+<h3 id="成员函数">成员函数</h3>
 <!-- raw HTML omitted -->
-<p>Pony中的函数类似于Java，C#，C++，Ruby，Python等面向对象语言中的方法（类成员函数）。和构造函数一样它们也可以有参数和返回值类型（注意是_可以有_，不是必须。如果没有明确给出返回值类型，默认为<code>None</code>，表示没有返回值）。</p>
+<p>Pony中的成员函数类似于Java，C#，C++，Ruby，Python等面向对象语言中的方法（类成员函数）。和构造函数一样它们也可以有参数和返回值类型（注意是_可以有_，不是必须。如果没有明确给出返回值类型，默认为<code>None</code>，表示没有返回值）。</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U64
@@ -766,9 +766,9 @@ class Owl
 
   fun ref set_hunger(to: U64 = 0): U64 =&gt; _hunger_level = to
 </code></pre><!-- raw HTML omitted -->
-<p>我们从一个简单的<code>hunger</code>函数开始讲解，它有一个<code>U64</code>返回类型，返回树袋熊当前的口渴等级。这里我们没有使用<code>return</code>关键字，因为我们要返回的<code>_hunger_level</code>是函数的最后一个表达式。</p>
+<p>我们从<code>hunger</code>函数说起：它有一个<code>U64</code>返回类型，返回树袋熊当前的口渴等级。这里我们没有使用<code>return</code>关键字，因为我们要返回的<code>_hunger_level</code>是函数的最后一个表达式。</p>
 <!-- raw HTML omitted -->
-<p><strong>那么Pony中有<code>return</code>关键字吗？</strong> 是的，当你需要在函数中&quot;提前&quot;返回时，也就是说你不希望函数运行到最后一个表达式的时候，就需要用到<code>return</code>关键字。</p>
+<p><strong>Pony中有<code>return</code>关键字吗？</strong> 当然有，当你需要在函数中&quot;提前&quot;返回时，也就是说你不希望函数运行到最后一个表达式的时候，就需要用到<code>return</code>关键字。</p>
 <!-- raw HTML omitted -->
 <p>再来看第二个函数<code>set_hunger</code>，这里出现了 <em>一堆</em> 新概念，让我们来逐步了解一下这些概念。</p>
 <!-- raw HTML omitted -->

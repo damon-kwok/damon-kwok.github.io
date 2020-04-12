@@ -147,7 +147,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              代码含义
+              庖丁解牛
             </a>
           </li>
         </ul>
@@ -608,7 +608,7 @@
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>Pony的类型系统使的它非常与众不同。Pony语言又很多值得关注的点，但是很多新颖的内容和特性都是包含在类型系统。在本章中，我们将探讨类型系统的基础知识。如果您以前使用过静态类型的语言，那么您应该不会感到惊讶。在本章结束时，你就能掌握Pony的类型系统。</p>
+<p>Pony的类型系统非常<code>与众不同</code>。Pony有很多值得关注的特性，大多数特性都包含在类型系统之中。在本章中，我们将学习类型系统的基础知识。如果你以前使用过静态类型语言会很容易理解。在本章结束时，你就能掌握Pony的类型系统。</p>
 
 
 
@@ -656,9 +656,9 @@ Pony的类型系统可以为我们带来什么保证？ Pony类型的系统提�
         <p>和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
 What goes in a class? 一个类的组成：
- 字段  构造函数  函数  字段 和C++、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
+ 字段  构造函数  成员函数  字段 和C++、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
-下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
+下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
 构造函数 Pony的构造函数可以起 别名 。和其他语言里一样，构造函数返回一个新的类型实例，但Pony 别名 可以有更多的构造方式。
 声明一个构造函数需要用 new 关键字。
 class Wombat let name: String var _hunger_level: U64 new create(name': String) =&gt; name = name' _hunger_level = 0 new hungry(name': String, hunger': U64) =&gt; name = name' _hunger_level = hunger' 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用.</p>
@@ -697,7 +697,7 @@ primitive 有什么用途？ 基元类有三种主要用途（如果算上内置
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>actor 和 类 类似，但是有一个关键区别：actor可以有 行为 。
+        <p>actor 和 类 的关键区别：actor可以有 行为 。
 Behaviours 行为 行为 类似于 函数，不过函数是 同步执行 的，但是行为是 异步执行 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。
 但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。
 行为看起来像一个函数，但是它不是由关键字fun定义的，而是使用be关键字。
@@ -744,14 +744,15 @@ If you&rsquo;ve done object-oriented programming before, you may have seen a lot
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>一个“结构”类似于一个“类”。有几个非常重要的区别。您将在整个Pony代码中使用类。您将很少使用结构。我们将在本教程的[C-FFI章]（/ c-ffi.html）中更深入地讨论结构。同时，这是对结构基础的简短介绍。
-Structs are &ldquo;classes for FFI&rdquo; A struct is a class like mechanism used to pass data back and forth with C code via Pony&rsquo;s Foreign Function Interface.
-struct是类似于类的机制，用于通过Pony的外函数接口与C代码来回传递数据。 像类一样，Pony结构可以包含字段和方法。与类不同，Pony结构与C结构具有相同的二进制布局，并且可以在C函数中透明使用。结构没有类型描述符，这意味着它们不能用于代数类型或实现特征/接口。
-What goes in a struct? 和上课一样！结构由以下几种组合组成：
+        <p>结构体和类有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的C-FFI章中更深入地讨论结构。这里只做简短介绍。
+结构体是用来做外部交互的 struct和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。
+Pony结构体和类一样也可以包含字段和方法。与类不同的是：Pony的结构体与C结构体具有相同的内存布局，并且可以在C函数互相调用。结构体没有类型描述符，所以它们不能被用于算数类型，也不能用来实现特征和接口。
+What goes in a struct? 结构的构成和类一样：
 1.字段 2.构造函数 3.函数
-字段 Pony struct字段的定义方式与Pony类的定义方式相同，分别使用“ embed”，“ let”和“ var”。嵌入字段嵌入在其父对象中，就像C结构内部的C结构一样。 var / let字段是指向单独分配的对象的指针。
+字段 Pony struct字段的定义方式与Pony类的定义方式相同，可以使用embed，let和 var。embed字段嵌入在其父对象中，就像C结构内部的C结构一样。 var和let字段是指向单独分配的对象的指针。
 例如：
-struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。您先前了解的有关Pony类构造函数的所有知识都适用于结构构造函数。</p>
+struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。
+struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can't be included in a union or intersection, or be a subtype of any interface.</p>
       
     </div>
   </div>
