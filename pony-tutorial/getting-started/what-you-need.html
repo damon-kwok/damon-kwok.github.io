@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.69.0-DEV" />
+    <meta name="generator" content="Hugo 0.70.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -46,32 +46,50 @@
     
 
     <meta property="og:title" content="准备工作（What You Need）" />
-<meta property="og:description" content="首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&rsquo;s Playground也是可以的。
+<meta property="og:description" content="首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&rsquo;s Playground也是可以的。
 Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C&#43;&#43; Build Tools。
-文本编辑器 While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
 编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
-What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own." />
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
+但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+$ ./helloworld.py 但是这些方法在Pony中行不通！
+编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tutorial.ponylang.io/getting-started/what-you-need.html" />
-<meta property="article:modified_time" content="2020-04-11T21:01:59+08:00" />
+<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
 <meta itemprop="name" content="准备工作（What You Need）">
-<meta itemprop="description" content="首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&rsquo;s Playground也是可以的。
+<meta itemprop="description" content="首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&rsquo;s Playground也是可以的。
 Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C&#43;&#43; Build Tools。
-文本编辑器 While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
 编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
-What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own.">
-<meta itemprop="dateModified" content="2020-04-11T21:01:59&#43;08:00" />
-<meta itemprop="wordCount" content="94">
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
+但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+$ ./helloworld.py 但是这些方法在Pony中行不通！
+编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。">
+<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
+<meta itemprop="wordCount" content="30">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="准备工作（What You Need）"/>
-<meta name="twitter:description" content="首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&rsquo;s Playground也是可以的。
+<meta name="twitter:description" content="首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&rsquo;s Playground也是可以的。
 Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C&#43;&#43; Build Tools。
-文本编辑器 While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
 编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
-What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own."/>
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
+但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+$ ./helloworld.py 但是这些方法在Pony中行不通！
+编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。"/>
 
   </head>
 
@@ -157,12 +175,12 @@ What this means is that once you build your program, you can run it over and ove
           </li>
           <li class="f6 fw4">
             <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Hello World: Your First Pony Program
+              Hello World
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Hello World: How It Works
+              代码含义
             </a>
           </li>
         </ul>
@@ -347,7 +365,7 @@ What this means is that once you build your program, you can run it over and ove
       </li>
       
       <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
-        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能（Object Capabilities）</a>
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能模型（Object Capabilities）</a>
         <ul class="object-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
             <a href="/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
@@ -356,7 +374,7 @@ What this means is that once you build your program, you can run it over and ove
           </li>
           <li class="f6 fw4">
             <a href="/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Object Capabilities
+              对象权能模型（Object Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
@@ -637,21 +655,21 @@ What this means is that once you build your program, you can run it over and ove
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>首先，你需要准备一个<a href="https://github.com/ponylang/ponyc#editor-support">文本编辑器</a>和<a href="https://github.com/ponylang/ponyc">Pony</a>编译器。如果你想偷点懒拿直接使用<a href="https://playground.ponylang.io/">Pony&rsquo;s Playground</a>也是可以的。</p>
+<p>首先，你需要一个<a href="https://github.com/ponylang/ponyc#editor-support">文本编辑器</a>，还有<a href="https://github.com/ponylang/ponyc">Pony</a>编译器。如果你想偷点懒直接使用<a href="https://playground.ponylang.io/">Pony&rsquo;s Playground</a>也是可以的。</p>
 <!-- raw HTML omitted -->
 <h2 id="pony编译器">Pony编译器</h2>
 <!-- raw HTML omitted -->
 <p>安装Pony编译器的方法：<a href="https://github.com/ponylang/ponyc/blob/master/INSTALL.md">安装教程</a>。Windows用户可以直接<a href="https://dl.cloudsmith.io/public/ponylang/releases/raw/versions/latest/ponyc-x86-64-pc-windows-msvc.zip">下载Pony</a>。另外在Windows上编译Pony程序你需要安装<a href="https://www.visualstudio.com/vs/community/">VsualStudio</a>或<a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools</a>。</p>
 <!-- raw HTML omitted -->
 <h2 id="文本编辑器">文本编辑器</h2>
-<p>While you can write code using any editor, it&rsquo;s nice to use one with some support for the language. We maintain a list of <a href="https://github.com/ponylang/ponyc#editor-support">editors supporting Pony</a>.
-你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对<a href="https://github.com/ponylang/ponyc#editor-support">编辑器的支持情况</a></p>
+<!-- raw HTML omitted -->
+<p>你可以用自己喜欢的文本编辑器，这里是Pony对<a href="https://github.com/ponylang/ponyc#editor-support">编辑器的支持列表</a></p>
 <!-- raw HTML omitted -->
 <h2 id="编译器说明">编译器说明</h2>
 <!-- raw HTML omitted -->
 <p>Pony是一个<code>编译型</code>语言，不是<code>解释型</code>的语言。更进一步来说：Pony是一种<code>提前</code>（AOT）编译型语言，而不是<code>即时</code>（JIT）编译型语言。</p>
-<p>What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&rsquo;s a complete program, all on its own.
-这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。</p>
+<!-- raw HTML omitted -->
+<p>这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。</p>
 <!-- raw HTML omitted -->
 <p>但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python helloworld.py

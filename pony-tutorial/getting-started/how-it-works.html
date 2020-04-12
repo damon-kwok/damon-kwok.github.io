@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | Hello World: How It Works</title>
+    <title>Pony 教程  | 代码含义</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.69.0-DEV" />
+    <meta name="generator" content="Hugo 0.70.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -45,7 +45,7 @@
 
     
 
-    <meta property="og:title" content="Hello World: How It Works" />
+    <meta property="og:title" content="代码含义" />
 <meta property="og:description" content="首先我们来看一下helloworld代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
 第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
@@ -54,11 +54,19 @@ Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中
 第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
 和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
 接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-In Pony, the type of something always comes after its name and is separated by a colon. In C, C&#43;&#43;, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages)." />
+Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
+函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
+在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tutorial.ponylang.io/getting-started/how-it-works.html" />
-<meta property="article:modified_time" content="2020-04-11T21:01:59+08:00" />
-<meta itemprop="name" content="Hello World: How It Works">
+<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta itemprop="name" content="代码含义">
 <meta itemprop="description" content="首先我们来看一下helloworld代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
 第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
@@ -67,14 +75,22 @@ Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中
 第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
 和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
 接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-In Pony, the type of something always comes after its name and is separated by a colon. In C, C&#43;&#43;, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).">
-<meta itemprop="dateModified" content="2020-04-11T21:01:59&#43;08:00" />
-<meta itemprop="wordCount" content="324">
+Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
+函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
+在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。">
+<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
+<meta itemprop="wordCount" content="50">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hello World: How It Works"/>
+<meta name="twitter:title" content="代码含义"/>
 <meta name="twitter:description" content="首先我们来看一下helloworld代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
 第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
@@ -83,7 +99,15 @@ Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中
 第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
 和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
 接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-In Pony, the type of something always comes after its name and is separated by a colon. In C, C&#43;&#43;, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages)."/>
+Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
+函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
+在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。"/>
 
   </head>
 
@@ -169,12 +193,12 @@ In Pony, the type of something always comes after its name and is separated by a
           </li>
           <li class="f6 fw4">
             <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Hello World: Your First Pony Program
+              Hello World
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              Hello World: How It Works
+              代码含义
             </a>
           </li>
         </ul>
@@ -359,7 +383,7 @@ In Pony, the type of something always comes after its name and is separated by a
       </li>
       
       <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
-        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能（Object Capabilities）</a>
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能模型（Object Capabilities）</a>
         <ul class="object-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
             <a href="/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
@@ -368,7 +392,7 @@ In Pony, the type of something always comes after its name and is separated by a
           </li>
           <li class="f6 fw4">
             <a href="/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Object Capabilities
+              对象权能模型（Object Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
@@ -645,7 +669,7 @@ In Pony, the type of something always comes after its name and is separated by a
                 
               入门（GETTING STARTED）
             </p>
-            <h1 class="f1 athelas mb1">Hello World: How It Works</h1>
+            <h1 class="f1 athelas mb1">代码含义</h1>
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
@@ -673,17 +697,25 @@ In Pony, the type of something always comes after its name and is separated by a
 <p>和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数<code>create</code>。</p>
 <!-- raw HTML omitted -->
 <p>接下来构造函数的参数。这里我们的构造函数里定义了一个名为<code>env</code>的参数，类型为<code>Env</code>。</p>
-<p>In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say <code>Env env</code>, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).</p>
-<p>It turns out, our <code>Main</code> actor <strong>has</strong> to have a constructor called <code>create</code> that takes a single parameter of type <code>Env</code>. That&rsquo;s how all programs start! So the beginning of your program is essentially the body of that constructor.</p>
-<p><strong>Wait, what&rsquo;s the body?</strong> It&rsquo;s the code that comes after the <code>=&gt;</code>.</p>
+<!-- raw HTML omitted -->
+<p>Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了<code>Env env</code>的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。</p>
+<!-- raw HTML omitted -->
+<p>现在明白了，<code>Main</code> actor 有一个默认构造函数，它接受单个参数，参数类型为<code>Env</code>。程序的入口就是构造函数的函数体。</p>
+<!-- raw HTML omitted -->
+<p><strong>函数体是什么？怎么定义？</strong> 注意看<code>=&gt;</code>后面的代码。</p>
 <!-- raw HTML omitted -->
 <h2 id="第三行">第三行</h2>
 <pre><code class="language-pony" data-lang="pony">    env.out.print(&quot;Hello, world!&quot;)
-</code></pre><p>This is your program! What the heck is it doing?</p>
-<p>In Pony, a dot is either a field access or a method call, much like other languages. If the name after the dot has parentheses after it, it&rsquo;s a method call. Otherwise, it&rsquo;s a field access.</p>
-<p>So here, we start with a reference to <code>env</code>. We then look up the field <code>out</code> on our object <code>env</code>. As it happens, that field represents <strong>stdout</strong>, i.e. usually it means printing to your console. Then, we call the <code>print</code> method on <code>env.out</code>. The stuff inside the parentheses are the arguments to the function. In this case, we are passing a <strong>string literal</strong>, i.e. the stuff in double quotes.</p>
-<p>In Pony, string literals can be in double quotes, <code>&quot;</code>, in which case they follow C/C++ style escaping (using stuff like \n), or they can be triple-quoted, <code>&quot;&quot;&quot;</code> like in Python, in which case they are considered raw data.</p>
-<p><strong>What&rsquo;s an Env, anyway?</strong> It&rsquo;s the &ldquo;environment&rdquo; your program was invoked with. That means it has command line arguments, environment variables, <strong>stdin</strong>, <strong>stdout</strong>, and <strong>stderr</strong>. Pony has no global variables, so these things are explicitly passed to your program.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这个函数体里面就是你的代码。</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，怎么确定一个<code>.</code>的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。</p>
+<!-- raw HTML omitted -->
+<p>这行代码引用了<code>env</code>参数。 首先调用了<code>env</code>的<code>out</code>字段，这个字段表示 <strong>（标准输出流）stdout</strong> ，内容会被输出到控制台。 然后，调用<code>out</code>的<code>print</code>函数，将&quot;hello,world!&ldquo;字符串输出到控制台。</p>
+<!-- raw HTML omitted -->
+<p>Pony中的字符串定义可以使用双引号<code>&quot;</code>也可以使用三引号。双引号的定义方式是C/C++的风格的（支持\n方式的转译）。三引号<code>&quot;&quot;&quot;</code>可以定义是Python风格的原始字符串，内容不会被转译。</p>
+<!-- raw HTML omitted -->
+<p><strong>Env是什么？</strong> 它是你的程序执行的上下文信息，其中包含<code>命令行参数</code>、<code>环境变量</code>、<code>标准输入流</code>、<code>标准输出流</code>、<code>标准错误流</code>。Pony不允许全局变量，所以你可以通过Env来初始化配置。</p>
 <!-- raw HTML omitted -->
 <h2 id="总结">总结</h2>
 <!-- raw HTML omitted -->

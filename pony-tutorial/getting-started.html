@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.69.0-DEV" />
+    <meta name="generator" content="Hugo 0.70.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -18,24 +18,24 @@
     <style>
       @font-face {
         font-family: 'Icon';
-        src: url('/pony-tutorial/dist/fonts/icon.eot?52m981');
-        src: url('/pony-tutorial/dist/fonts/icon.eot?#iefix52m981')
+        src: url('/dist/fonts/icon.eot?52m981');
+        src: url('/dist/fonts/icon.eot?#iefix52m981')
                format('embedded-opentype'),
-             url('/pony-tutorial/dist/fonts/icon.woff?52m981')
+             url('/dist/fonts/icon.woff?52m981')
                format('woff'),
-             url('/pony-tutorial/dist/fonts/icon.ttf?52m981')
+             url('/dist/fonts/icon.ttf?52m981')
                format('truetype'),
-             url('/pony-tutorial/dist/fonts/icon.svg?52m981#icon')
+             url('/dist/fonts/icon.svg?52m981#icon')
                format('svg');
         font-weight: normal;
         font-style: normal;
       }
     </style>
 
-    <link href="/pony-tutorial/dist/css/app.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/highlight.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/icon.css" rel="stylesheet">
-    <link href="/pony-tutorial/dist/css/pony.css" rel="stylesheet">
+    <link href="/dist/css/app.css" rel="stylesheet">
+    <link href="/dist/css/highlight.css" rel="stylesheet">
+    <link href="/dist/css/icon.css" rel="stylesheet">
+    <link href="/dist/css/pony.css" rel="stylesheet">
 
     
 
@@ -44,14 +44,14 @@
     
 
     
-      <link href="https://damon-kwok.github.io/pony-tutorial/getting-started/index.xml" rel="alternate" type="application/rss+xml" title="Pony 教程" />
-      <link href="https://damon-kwok.github.io/pony-tutorial/getting-started/index.xml" rel="feed" type="application/rss+xml" title="Pony 教程" />
+      <link href="https://tutorial.ponylang.io/getting-started/index.xml" rel="alternate" type="application/rss+xml" title="Pony 教程" />
+      <link href="https://tutorial.ponylang.io/getting-started/index.xml" rel="feed" type="application/rss+xml" title="Pony 教程" />
     
 
     <meta property="og:title" content="概述（Overview）" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/getting-started.html" />
+<meta property="og:url" content="https://tutorial.ponylang.io/getting-started.html" />
 
 <meta itemprop="name" content="概述（Overview）">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
@@ -68,7 +68,7 @@
     <div class="bg-pony-brown">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://damon-kwok.github.io/pony-tutorial/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="https://tutorial.ponylang.io/" class="f3 fw2 hover-white no-underline white-90 dib">
       Pony 教程
     </a>
     <div class="flex-l items-center">
@@ -94,7 +94,7 @@
 
 
 
-<a href="https://www.github.com/ponylang/ponyc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
+<a href="https://github.com/damon-kwok/pony-tutorial-zh_CN" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-describedby="new-window-0">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -131,23 +131,23 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2  primary-color" data-target=".getting-started">入门（Getting Started）</a>
         <ul class="getting-started desktopmenu animated fadeIn list pl0 bg-light-gray db">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
+            <a href="/getting-started.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              What You Need
+            <a href="/getting-started/what-you-need.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              准备工作（What You Need）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Hello World: Your First Pony Program
+            <a href="/getting-started/hello-world.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              Hello World
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Hello World: How It Works
+            <a href="/getting-started/how-it-works.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              代码含义
             </a>
           </li>
         </ul>
@@ -157,47 +157,47 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".types">类型系统（Types）</a>
         <ul class="types desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/at-a-glance.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型系统概览
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/classes.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类（Classes）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/primitives.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               基元类（Primitives）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/actors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               并发单元（Actors）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/traits-and-interfaces.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               特征和接口（Traits and Interfaces）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/structs.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               结构体（Structs）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/type-aliases.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型别名（Type Aliases）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/types/type-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               类型表达式（Type Expressions）
             </a>
           </li>
@@ -208,62 +208,62 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".expressions">表达式（Expressions）</a>
         <ul class="expressions desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               字面量（Literals）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/variables.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               变量（Variables）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/ops.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               运算符（Operators）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/arithmetic.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               算术运算符（Arithmetic）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/control-structures.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               流程控制（Control Structures）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/methods.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               方法（Methods）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               错误（Errors）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               比较运算（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/sugar.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               语法糖（Sugar）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               object关键字（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Partial Application
             </a>
           </li>
@@ -274,57 +274,57 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".reference-capabilities">引用权能（Reference Capabilities）</a>
         <ul class="reference-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               引用权能（Reference Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               引用权能保证（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/recovering-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能借用（Recovering Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               别名（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/passing-and-sharing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Passing and Sharing References
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/capability-subtyping.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能包含关系（Capability Subtyping）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/combining-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               权能合并（Combining Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Arrow Types aka Viewpoints
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Reference Capability Matrix
             </a>
           </li>
@@ -332,20 +332,20 @@
       </li>
       
       <li class="f5 w-100 hover-bg-light-gray hover-accent-color-light fw8">
-        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能（Object Capabilities）</a>
+        <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".object-capabilities">对象权能模型（Object Capabilities）</a>
         <ul class="object-capabilities desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Object Capabilities
+            <a href="/object-capabilities/object-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+              对象权能模型（Object Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Trust Boundary
             </a>
           </li>
@@ -356,17 +356,17 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".pattern-matching">模式匹配（Pattern Matching）</a>
         <ul class="pattern-matching desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching/match.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               匹配表达式（Match Expressions）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/pattern-matching/as.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               as操作符（As Operator）
             </a>
           </li>
@@ -377,17 +377,17 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".generics">泛型（Generics）</a>
         <ul class="generics desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics/generics-and-reference-capabilities.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               泛型和引用权能（Generics and Reference Capabilities）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/generics/generic-constraints.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               泛型约束（Constraints）
             </a>
           </li>
@@ -398,22 +398,22 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".packages">包（Packages）</a>
         <ul class="packages desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/package-system.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               包机制（Package System）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/use-statement.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               包的使用方式（Use Statement）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/packages/standard-library.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               标准库（Standard Library）
             </a>
           </li>
@@ -424,12 +424,12 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".testing">测试（Testing）</a>
         <ul class="testing desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/testing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/testing/ponytest.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Testing with Ponytest
             </a>
           </li>
@@ -440,27 +440,27 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".c-ffi">C FFI</a>
         <ul class="c-ffi desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/calling-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Calling C from Pony
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/linking-c.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Linking to C Libraries
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/c-abi.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               C ABI
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/c-ffi/callbacks.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Callbacks
             </a>
           </li>
@@ -471,32 +471,32 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".gotchas">陷阱（Gotchas）</a>
         <ul class="gotchas desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/divide-by-zero.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Divide by Zero
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Garbage Collection
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/scheduling.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Scheduling
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/side-effect-ordering-in-function-call-expressions.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Function Call Side Effects
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/gotchas/recursion.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Recursion
             </a>
           </li>
@@ -507,7 +507,7 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".where-next">下一步？（Where Next?）</a>
         <ul class="where-next desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/where-next.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
@@ -518,72 +518,72 @@
         <a href="javascript:void(0)" class="js-toggle dib w-100 link mid-gray hover-accent-color-light pl2 pr2 pv2 " data-target=".appendices">附录（Appendices）</a>
         <ul class="appendices desktopmenu animated fadeIn list pl0 bg-light-gray dn">
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               概述（Overview）
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/ponypath.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               PONYPATH
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/lexicon.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Lexicon
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/symbol-lookup-cheatsheet.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Symbol Lookup Cheatsheet
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/keywords.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Keywords
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/examples.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Examples
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/whitespace.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Whitespace
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/compiler-args.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Compiler Arguments
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/memory-allocation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Memory Allocation at Runtime
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/garbage-collection.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Garbage Collection with Pony-ORCA
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/platform-dependent-code.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Platform-dependent code
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/error-messages.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               A Short Guide to Pony Error Messages
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/annotations.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Program Annotations
             </a>
           </li>
           <li class="f6 fw4">
-            <a href="/pony-tutorial/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
+            <a href="/appendices/serialisation.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
               Serialisation
             </a>
           </li>
@@ -602,16 +602,21 @@
           <header class="mt4 w-100">
             <p class="f6 b helvetica tracked">
                 
-              GETTING STARTED
+              入门（GETTING STARTED）
             </p>
             <h1 class="f1 athelas mb1">概述（Overview）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>This chapter will get you up and running with Pony from installing the compiler to running your first program.</p>
-<p>As you work your way through this tutorial, you&rsquo;ll likely come across a lot of concepts that are familiar to you from any prior programming languages that you&rsquo;ve had experience with. You&rsquo;ll likely want to skim and skip around through these areas, and that&rsquo;s totally fine.</p>
-<p>However, if you&rsquo;ve never used Pony before, we guarantee that you&rsquo;ll come across concepts that are new to you, which will require close and careful attention if you want to learn and apply them: <a href="/reference-capabilities.html">reference capabilities</a>. These are the core innovation in Pony that make it a unique and compelling offering in the wide world of modern programming languages.</p>
-<p>In this tutorial we start off with familiar basics, and try our best to avoid reference capabilities in the code examples until later on when they can be covered in detail. You should feel free to follow along with the code examples in your own text editor - we absolutely encourage it. Just be aware that as you venture off the beaten path of the curated tutorial, you&rsquo;ll likely run into reference capabilities, and you&rsquo;ll need to thoroughly read and understand the basics of those concepts before you&rsquo;ll really feel fluent and able to work with the compiler as it tries to help you prove the safety of your program.</p>
-<p>Stick with us and read on, even if you need to read through something a few times. Know that the community is here to help as you climb the learning curve and master new concepts that will change the way you think about concurrency.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>本章将带您开始使用Pony，安装编译器运行第一个程序。</p>
+<!-- raw HTML omitted -->
+<p>在学习本教程的过程中，您可能会遇到许多您曾经使用过的编程语言所熟悉的概念。您可能会想跳过这些章节，这完全没问题。</p>
+<!-- raw HTML omitted -->
+<p>不过，如果您以前从未使用过Pony，您肯定会遇到一些陌生的概念，如果想学习和应用Pony，你需要<code>特别的注意</code>：[引用权能](/ reference- abilities.html)章节。这是Pony语言的核心思想，这些<code>特立独行</code>的思想使Pony在众多的现代编程语言的中脱颖而出。</p>
+<!-- raw HTML omitted -->
+<p>在本教程中，我们先从熟悉的基础知识入手，会尽力避免在代码示例中使用<code>引用权能</code>，然后循序渐进的对其进行详细介绍。阅读过程中，强烈建议你将教程中的代码示例，在自己的文本编辑器中敲一遍。请注意，当您冒然跳跃式阅读本教程时，可能会遇到<code>引用权能</code>，想要流畅的通读全教程，必须得先彻底理解这个基础概念。学习过程中配合编译器一起使用，可以帮助你验证教程中代码示例可用性。</p>
+<!-- raw HTML omitted -->
+<p>或许你正急着阅读后面的章节，还请花点时间读完入门章节。你需要了解下社区为你提供了帮助，帮你学习新概念时少走弯路，这将改变你对并发问题的看法。</p>
 
 
 
@@ -624,15 +629,23 @@
         <div class="relative w-100 mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
-      <a href="/pony-tutorial/getting-started/what-you-need.html" class="link black dim">
-        What You Need
+      <a href="/getting-started/what-you-need.html" class="link black dim">
+        准备工作（What You Need）
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>To get started, you&rsquo;ll need a text editor and the ponyc compiler. Or if you are on a not supported platform or don&rsquo;t want to install the compiler you can use the Pony&rsquo;s Playground.
-The Pony compiler Before you get started, please check out the installation instructions for the Pony compiler.
-A text editor While you can write code using any editor, it&rsquo;s nice to use one with some support for the language.</p>
+        <p>首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&rsquo;s Playground也是可以的。
+Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
+文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
+编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
+但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+$ ./helloworld.py 但是这些方法在Pony中行不通！
+编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。</p>
       
     </div>
   </div>
@@ -642,14 +655,18 @@ A text editor While you can write code using any editor, it&rsquo;s nice to use 
         <div class="relative w-100 mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
-      <a href="/pony-tutorial/getting-started/hello-world.html" class="link black dim">
-        Hello World: Your First Pony Program
+      <a href="/getting-started/hello-world.html" class="link black dim">
+        Hello World
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>Now that you&rsquo;ve successfully installed the Pony compiler, let&rsquo;s start programming! Our first program will be a very traditional one. We&rsquo;re going to print &ldquo;Hello, world!&quot;. First, create a directory called helloworld:
-$ mkdir helloworld $ cd helloworld Does the name of the directory matter? Yes, it does. It&rsquo;s the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in.</p>
+        <p>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&quot;hello,world!&ldquo;开始。首先n欻关键一个目录：helloworld：
+$ mkdir helloworld $ cd helloworld 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
+文件中敲入下面的代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 编译程序 现在可以编译程序了：
+$ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld 运行程序 现在可以运行程序了：
+$ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。</p>
       
     </div>
   </div>
@@ -659,16 +676,29 @@ $ mkdir helloworld $ cd helloworld Does the name of the directory matter? Yes, i
         <div class="relative w-100 mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
-      <a href="/pony-tutorial/getting-started/how-it-works.html" class="link black dim">
-        Hello World: How It Works
+      <a href="/getting-started/how-it-works.html" class="link black dim">
+        代码含义
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>Let&rsquo;s look at our helloworld code again:
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) Let&rsquo;s go through that line by line.
-Line 1 actor Main This is a type declaration. The keyword actor means we are going to define an actor, which is a bit like a class in Python, Java, C#, C++, etc. Pony has classes too, which we&rsquo;ll see later.
-The difference between an actor and a class is that an actor can have asynchronous methods, called behaviours.</p>
+        <p>首先我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
+第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
+Pony程序中的Mainactor跟C、C++中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
+接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
+Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
+函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
+在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C++的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。</p>
       
     </div>
   </div>

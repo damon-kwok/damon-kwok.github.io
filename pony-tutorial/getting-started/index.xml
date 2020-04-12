@@ -11,7 +11,21 @@
     
     
     <item>
-      <title>Hello World: How It Works</title>
+      <title>Hello World</title>
+      <link>https://tutorial.ponylang.io/getting-started/hello-world.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tutorial.ponylang.io/getting-started/hello-world.html</guid>
+      <description>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&amp;quot;hello,world!&amp;ldquo;开始。首先n欻关键一个目录：helloworld：
+$ mkdir helloworld $ cd helloworld 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
+文件中敲入下面的代码：
+actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;) 编译程序 现在可以编译程序了：
+$ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld 运行程序 现在可以运行程序了：
+$ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。</description>
+    </item>
+    
+    <item>
+      <title>代码含义</title>
       <link>https://tutorial.ponylang.io/getting-started/how-it-works.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -24,17 +38,15 @@ Pony程序中的Mainactor跟C、C++中的main函数，或者Java、C#中的Main�
 第二行 new create(env: Env) =&amp;gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
 和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
 接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-In Pony, the type of something always comes after its name and is separated by a colon. In C, C++, Java or C#, you might say Env env, but we do it the other way around (like Go, Pascal, Rust, TypeScript, and a bunch of other languages).</description>
-    </item>
-    
-    <item>
-      <title>Hello World: Your First Pony Program</title>
-      <link>https://tutorial.ponylang.io/getting-started/hello-world.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tutorial.ponylang.io/getting-started/hello-world.html</guid>
-      <description>Now that you&amp;rsquo;ve successfully installed the Pony compiler, let&amp;rsquo;s start programming! Our first program will be a very traditional one. We&amp;rsquo;re going to print &amp;ldquo;Hello, world!&amp;quot;. First, create a directory called helloworld:
-$ mkdir helloworld $ cd helloworld Does the name of the directory matter? Yes, it does. It&amp;rsquo;s the name of your program! By default when your program is compiled, the resulting executable binary will have the same name as the directory your program lives in.</description>
+Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
+函数体是什么？怎么定义？ 注意看=&amp;gt;后面的代码。
+第三行 env.out.print(&amp;quot;Hello, world!&amp;quot;) 这个函数体里面就是你的代码。
+在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&amp;quot;hello,world!&amp;ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&amp;quot;也可以使用三引号。双引号的定义方式是C/C++的风格的（支持\n方式的转译）。三引号&amp;quot;&amp;quot;&amp;quot;可以定义是Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&amp;quot;hello,woeld!&amp;ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。</description>
     </item>
     
     <item>
@@ -43,11 +55,17 @@ $ mkdir helloworld $ cd helloworld Does the name of the directory matter? Yes, i
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tutorial.ponylang.io/getting-started/what-you-need.html</guid>
-      <description>首先，你需要准备一个文本编辑器和Pony编译器。如果你想偷点懒拿直接使用Pony&amp;rsquo;s Playground也是可以的。
+      <description>首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&amp;rsquo;s Playground也是可以的。
 Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
-文本编辑器 While you can write code using any editor, it&amp;rsquo;s nice to use one with some support for the language. We maintain a list of editors supporting Pony. 你可以使用任何喜欢的文本编辑器，如果想更好支持Pony语言可以先了解一下Pony对编辑器的支持情况
+文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
 编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
-What this means is that once you build your program, you can run it over and over again without needing a compiler or a virtual machine or anything else. It&amp;rsquo;s a complete program, all on its own.</description>
+这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
+但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+$ ./helloworld.py 但是这些方法在Pony中行不通！
+编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。</description>
     </item>
     
   </channel>

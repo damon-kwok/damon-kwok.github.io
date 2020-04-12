@@ -3,401 +3,401 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/error-messages.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/error-messages.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/arrow-types.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/arrow-types.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/pattern-matching/as.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/pattern-matching/as.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/c-ffi/c-abi.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/c-ffi/c-abi.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/c-ffi/callbacks.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/c-ffi/callbacks.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/c-ffi/calling-c.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/c-ffi/calling-c.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/categories.html</loc>
+    <loc>https://tutorial.ponylang.io/categories.html</loc>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/compiler-args.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/compiler-args.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/gotchas/divide-by-zero.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/gotchas/divide-by-zero.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/examples.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/examples.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/gotchas/side-effect-ordering-in-function-call-expressions.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/gotchas/side-effect-ordering-in-function-call-expressions.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/gotchas/garbage-collection.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/gotchas/garbage-collection.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/garbage-collection.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/garbage-collection.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/getting-started/hello-world.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/getting-started/hello-world.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/keywords.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/keywords.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/lexicon.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/lexicon.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/c-ffi/linking-c.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/c-ffi/linking-c.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/memory-allocation.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/memory-allocation.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/object-literals.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/object-capabilities/object-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/partial-application.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/object-literals.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/passing-and-sharing.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/platform-dependent-code.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/passing-and-sharing.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/platform-dependent-code.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/ponypath.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/annotations.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/ponypath.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/gotchas/recursion.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/annotations.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/capability-matrix.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/gotchas/recursion.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/gotchas/scheduling.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/capability-matrix.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/serialisation.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/gotchas/scheduling.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/symbol-lookup-cheatsheet.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/serialisation.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/tags.html</loc>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/symbol-lookup-cheatsheet.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/testing/ponytest.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/tags.html</loc>
+    <loc>https://tutorial.ponylang.io/object-capabilities/trust-boundary.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/testing/ponytest.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices/whitespace.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/object-capabilities/trust-boundary.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/getting-started/how-it-works.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/getting-started/what-you-need.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/getting-started/what-you-need.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices/whitespace.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/aliasing.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/aliasing.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/packages/package-system.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/packages/package-system.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/packages/use-statement.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/packages/use-statement.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/pattern-matching/match.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/pattern-matching/match.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/variables.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/variables.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/primitives.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/primitives.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/literals.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/literals.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/object-capabilities/object-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/actors.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/actors.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/guarantees.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/guarantees.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/reference-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/reference-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/methods.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/methods.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/recovering-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/recovering-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/capability-subtyping.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/capability-subtyping.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/combining-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/combining-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/packages/standard-library.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/packages/standard-library.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/appendices.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/appendices.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/c-ffi.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/c-ffi.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/generics.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/generics.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/getting-started.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/getting-started.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/gotchas.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/gotchas.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/object-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/object-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/packages.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/packages.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/pattern-matching.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/pattern-matching.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/testing.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/testing.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/where-next.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/where-next.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/equality.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/equality.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/generics/generics-and-reference-capabilities.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/generics/generics-and-reference-capabilities.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/generics/generic-constraints.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/generics/generic-constraints.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/control-structures.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/control-structures.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/traits-and-interfaces.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/traits-and-interfaces.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/arithmetic.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/arithmetic.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/type-aliases.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/type-aliases.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/at-a-glance.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/at-a-glance.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/type-expressions.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/type-expressions.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/classes.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/classes.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/types/structs.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/types/structs.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/sugar.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/sugar.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/consume-and-destructive-read.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/reference-capabilities/consume-and-destructive-read.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/ops.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/ops.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/expressions/errors.html</loc>
-    <lastmod>2020-04-11T18:34:49+08:00</lastmod>
+    <loc>https://tutorial.ponylang.io/expressions/errors.html</loc>
+    <lastmod>2020-04-11T21:02:47+08:00</lastmod>
   </url>
   
 </urlset>
