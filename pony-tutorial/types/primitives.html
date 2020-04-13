@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -47,31 +47,28 @@
 
     <meta property="og:title" content="基元类（Primitives）" />
 <meta property="og:description" content="primitive（基元类） 和 class（类） 有两点主要区别：
- 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段意味着primitive不会产生副作用。只有一个实例意味着，如果您的代码以 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
-primitive 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
-1.作为&quot;标记值&rdquo;。例如，Pony经常使用 primitive None来表示某事物没有值。当然，它确实具有一个值，以便您可以检查它是什么，并且该值是“无”的单个实例。 2.作为&quot;枚举&quot;类型。通过具有 primitive 类型的 union ，您可以具有类型安全的枚举。稍后我们将介绍 union 类型。 3.作为&quot;函数集合&rdquo;。由于基元可以具有函数，因此可以将函数分组为基元类型。您可以在标准库中看到这一点，例如，路径处理功能在 primitive Path中分组。
-// 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env." />
+ 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段就天然具备不可变性不会产生副作用。只有一个实例的意味着 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
+基元类 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
+ 作为&quot;标记值&rdquo;。例如，Pony经常使用None基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是None的实例。 作为&quot;枚举&quot;类型。通过创建 primitive 类型的 union ，可以使用类型安全的枚举。稍后我们将介绍 union 类型。 作为&quot;函数集合&rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在Path中（Path就是一个基元类）。  // 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/primitives.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
 <meta itemprop="name" content="基元类（Primitives）">
 <meta itemprop="description" content="primitive（基元类） 和 class（类） 有两点主要区别：
- 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段意味着primitive不会产生副作用。只有一个实例意味着，如果您的代码以 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
-primitive 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
-1.作为&quot;标记值&rdquo;。例如，Pony经常使用 primitive None来表示某事物没有值。当然，它确实具有一个值，以便您可以检查它是什么，并且该值是“无”的单个实例。 2.作为&quot;枚举&quot;类型。通过具有 primitive 类型的 union ，您可以具有类型安全的枚举。稍后我们将介绍 union 类型。 3.作为&quot;函数集合&rdquo;。由于基元可以具有函数，因此可以将函数分组为基元类型。您可以在标准库中看到这一点，例如，路径处理功能在 primitive Path中分组。
-// 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env.">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="147">
+ 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段就天然具备不可变性不会产生副作用。只有一个实例的意味着 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
+基元类 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
+ 作为&quot;标记值&rdquo;。例如，Pony经常使用None基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是None的实例。 作为&quot;枚举&quot;类型。通过创建 primitive 类型的 union ，可以使用类型安全的枚举。稍后我们将介绍 union 类型。 作为&quot;函数集合&rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在Path中（Path就是一个基元类）。  // 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env.">
+<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="wordCount" content="143">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="基元类（Primitives）"/>
 <meta name="twitter:description" content="primitive（基元类） 和 class（类） 有两点主要区别：
- 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段意味着primitive不会产生副作用。只有一个实例意味着，如果您的代码以 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
-primitive 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
-1.作为&quot;标记值&rdquo;。例如，Pony经常使用 primitive None来表示某事物没有值。当然，它确实具有一个值，以便您可以检查它是什么，并且该值是“无”的单个实例。 2.作为&quot;枚举&quot;类型。通过具有 primitive 类型的 union ，您可以具有类型安全的枚举。稍后我们将介绍 union 类型。 3.作为&quot;函数集合&rdquo;。由于基元可以具有函数，因此可以将函数分组为基元类型。您可以在标准库中看到这一点，例如，路径处理功能在 primitive Path中分组。
-// 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env."/>
+ 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段就天然具备不可变性不会产生副作用。只有一个实例的意味着 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
+基元类 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
+ 作为&quot;标记值&rdquo;。例如，Pony经常使用None基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是None的实例。 作为&quot;枚举&quot;类型。通过创建 primitive 类型的 union ，可以使用类型安全的枚举。稍后我们将介绍 union 类型。 作为&quot;函数集合&rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在Path中（Path就是一个基元类）。  // 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env."/>
 
   </head>
 
@@ -612,7 +609,7 @@ primitive 有什么用途？ 基元类有三种主要用途（如果算上内置
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#__primitive__-有什么用途"><strong>primitive</strong> 有什么用途？</a></li>
+    <li><a href="#__基元类__-有什么用途"><strong>基元类</strong> 有什么用途？</a></li>
     <li><a href="#内置基元类">内置基元类</a></li>
     <li><a href="#基元类的初始化和销毁">基元类的初始化和销毁</a></li>
   </ul>
@@ -646,17 +643,19 @@ primitive 有什么用途？ 基元类有三种主要用途（如果算上内置
 <li>一个 <strong>基元类</strong> 只会产生一个实例。</li>
 </ol>
 <!-- raw HTML omitted -->
-<p>没有字段意味着primitive不会产生副作用。只有一个实例意味着，如果您的代码以 <strong>primitive</strong> 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。</p>
+<p>没有字段就天然具备不可变性不会产生副作用。只有一个实例的意味着 <strong>primitive</strong> 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。</p>
 <!-- raw HTML omitted -->
-<h2 id="__primitive__-有什么用途"><strong>primitive</strong> 有什么用途？</h2>
+<h2 id="__基元类__-有什么用途"><strong>基元类</strong> 有什么用途？</h2>
 <!-- raw HTML omitted -->
 <p>基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p>1.作为&quot;标记值&rdquo;。例如，Pony经常使用 <strong>primitive</strong> <code>None</code>来表示某事物没有值。当然，它确实具有一个值，以便您可以检查它是什么，并且该值是“无”的单个实例。
-2.作为&quot;枚举&quot;类型。通过具有 <strong>primitive</strong> 类型的 <strong>union</strong> ，您可以具有类型安全的枚举。稍后我们将介绍 <strong>union</strong> 类型。
-3.作为&quot;函数集合&rdquo;。由于基元可以具有函数，因此可以将函数分组为基元类型。您可以在标准库中看到这一点，例如，路径处理功能在 <strong>primitive</strong> <code>Path</code>中分组。</p>
+<ol>
+<li>作为&quot;标记值&rdquo;。例如，Pony经常使用<code>None</code>基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是<code>None</code>的实例。</li>
+<li>作为&quot;枚举&quot;类型。通过创建 <strong>primitive</strong> 类型的 <strong>union</strong> ，可以使用类型安全的枚举。稍后我们将介绍 <strong>union</strong> 类型。</li>
+<li>作为&quot;函数集合&rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在<code>Path</code>中（Path就是一个基元类）。</li>
+</ol>
 <pre><code class="language-pony" data-lang="pony">// 2 &quot;marker values&quot;
 primitive OpenedDoor
 primitive ClosedDoor
@@ -682,7 +681,7 @@ actor Main
     env.out.print(&quot;Is door open? &quot; + isDoorOpen.string())
     env.out.print(&quot;2 + 3 = &quot; + BasicMath.add(2,3).string())
 </code></pre><!-- raw HTML omitted -->
-<p>primitive非常强大，尤其是作为枚举使用时。与其他语言中的枚举不同，枚举中的每个“值”都是完整类型，这使得将数据和函数附加到枚举值变得容易。</p>
+<p>基元类非常强大，尤其是作为枚举使用时。与其他语言中的枚举不同，Pony中枚举的每个<code>值</code>都是一个完整类型，因此可以将数据和函数附加到枚举值上。</p>
 <!-- raw HTML omitted -->
 <h2 id="内置基元类">内置基元类</h2>
 <!-- raw HTML omitted -->
@@ -692,19 +691,19 @@ actor Main
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
-<li><strong>布尔</strong> 。这是一个1位值，可能为true或false。</li>
-<li><strong>ISize，ILong，I8，I16，I32，I6​​4，I128</strong> 。各种宽度的有符号整数。</li>
-<li><strong>USize，ULong，U8，U16，U32，U64，U128</strong> 。各种宽度的无符号整数。</li>
-<li><strong>F32，F64</strong> 。各种宽度的浮点数。</li>
+<li><strong>Bool</strong> 。这是一个1位值，true或false。</li>
+<li><strong>ISize，ILong，I8，I16，I32，I6​​4，I128</strong> 。有符号整数。</li>
+<li><strong>USize，ULong，U8，U16，U32，U64，U128</strong> 。无符号整数。</li>
+<li><strong>F32，F64</strong> 。浮点数。</li>
 </ul>
 <!-- raw HTML omitted -->
 <p><strong>ISize / USize</strong> 对应于本机类型<code>size_t</code>的位宽，该位宽因平台而异。 <strong>ILong / ULong</strong> 类似地对应于本机类型<code> long</code>的位宽，该位宽也因平台而异。在所有Pony支持的平台上，本机<code>int</code>的位宽均相同，您可以使用 <strong>I32 / U32</strong> 来实现。</p>
 <!-- raw HTML omitted -->
 <h2 id="基元类的初始化和销毁">基元类的初始化和销毁</h2>
 <!-- raw HTML omitted -->
-<p>基元可以具有两个特殊功能，<code>_init</code>和<code>_final</code>。在任何actor开始之前都会调用<code>_init</code>。在所有参与者都终止之后，将调用<code>_final</code>。这两个函数不带参数。不同的primitives的<code>_init</code>和<code>_final</code>函数始终按顺序执行。</p>
+<p>基元类有两个特殊的成员函数，<code>_init</code>和<code>_final</code>。在任何actor开始之前都会调用<code>_init</code>。在所有参与者都终止之后，将调用<code>_final</code>。这两个函数不带参数。不同的基元类的<code>_init</code>和<code>_final</code>函数始终按顺序执行。</p>
 <!-- raw HTML omitted -->
-<p>一个常见的用例是初始化和清理C语言的库，而不会承担actor不当使用的风险。</p>
+<p>一个常见的用例是初始化和清理C语言的库，而不用承担actor不当使用的风险。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

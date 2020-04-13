@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -65,7 +65,7 @@ Env是什么？ 它是你的程序执行的上下文信息，其中包含命令�
 总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-12T16:41:15+08:00" />
 <meta itemprop="name" content="庖丁解牛">
 <meta itemprop="description" content="首先我们来看一下helloworld代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
@@ -84,7 +84,7 @@ Pony的参数类型总是在参数之后，并且需要用冒号分割。如果�
 Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
 Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
 总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-12T16:41:15&#43;08:00" />
 <meta itemprop="wordCount" content="50">
 
 

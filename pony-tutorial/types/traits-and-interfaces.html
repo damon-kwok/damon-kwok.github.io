@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -46,29 +46,47 @@
     
 
     <meta property="og:title" content="特征和接口（Traits and Interfaces）" />
-<meta property="og:description" content="Like other object-oriented languages, Pony has subtyping. That is, some types serve as categories that other types can be members of.
-There are two kinds of subtyping in programming languages: nominal and structural. They&rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!
-Nominal subtyping This kind of subtyping is called nominal because it is all about names.
-If you&rsquo;ve done object-oriented programming before, you may have seen a lot of discussion about single inheritance, multiple inheritance, mixins, traits, and similar concepts." />
+<meta property="og:description" content="与其他面向对象的语言一样，Pony具有 多态性（subtyping） 。也就是说，某些类型充当 categories ，其他类型可以成为其成员。
+编程语言的实现上有两种 多态（subtyping） 类型： 声明式（nominal）多态 和 结构化（structural）多态 。它们有细微的不同，大多数编程语言只会选择一种实现。但是Pony两种都实现了！
+声明式多态（Nominal subtyping） 这种多态的实现被称为 声明式 ，因为它需要你明确指出你要实现的 类型名 。
+如果你有过面向对象编程经验，你应该熟悉 继承（单） 、 多重继承 、 组合 、 特征 或类似的概念，所有的这些都属于 声明式多态
+核心思想是您有一个声明与某种类别类型有关系的类型。例如，在Java中，类（具体类型）可以实现某个接口（抽象类型）。在Java中，这表示这个类必须要实现指定抽象接口。编译器将检查该类是否实现了此抽象类型需要的所有接口。
+Pony的特征（Traits）：声明式多态（Nominal subtyping） Pony使用 特征（trait） 来实现声明式多态。trait 的定义看上去有点像 class ，但是它使用关键字trait，并且不能有任何字段。
+trait Named fun name(): String =&gt; &quot;Bob&quot; class Bob is Named 上面代码中，我们定义了一个名为Named的特征，他又一个名为name()的成员函数，返回类型是字符串。它还提供了name()函数的默认实现，返回字符串&quot;Bob&rdquo;。
+接着定义了类名为Bob的类。Bob在明确的声明自己实现了Named特征。在Pony中，我们把这成为 Bob拥有Named特征 ，或者说 Bob就是Named 。
+我们看到Bob并没有定义name()函数，所以它会使用特征中的默认实现。如果特征对name()函数没有做出默认实现，则编译器就会报一个错告知：Bob没有实现name()。
+trait Named fun name(): String =&gt; &quot;Bob&quot; trait Bald fun hair(): Bool =&gt; false class Bob is (Named &amp; Bald) 一个类可以同时具备多个特征。在上面的示例中，Bob类同时提供了Named和Bald特征。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/traits-and-interfaces.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
 <meta itemprop="name" content="特征和接口（Traits and Interfaces）">
-<meta itemprop="description" content="Like other object-oriented languages, Pony has subtyping. That is, some types serve as categories that other types can be members of.
-There are two kinds of subtyping in programming languages: nominal and structural. They&rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!
-Nominal subtyping This kind of subtyping is called nominal because it is all about names.
-If you&rsquo;ve done object-oriented programming before, you may have seen a lot of discussion about single inheritance, multiple inheritance, mixins, traits, and similar concepts.">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="669">
+<meta itemprop="description" content="与其他面向对象的语言一样，Pony具有 多态性（subtyping） 。也就是说，某些类型充当 categories ，其他类型可以成为其成员。
+编程语言的实现上有两种 多态（subtyping） 类型： 声明式（nominal）多态 和 结构化（structural）多态 。它们有细微的不同，大多数编程语言只会选择一种实现。但是Pony两种都实现了！
+声明式多态（Nominal subtyping） 这种多态的实现被称为 声明式 ，因为它需要你明确指出你要实现的 类型名 。
+如果你有过面向对象编程经验，你应该熟悉 继承（单） 、 多重继承 、 组合 、 特征 或类似的概念，所有的这些都属于 声明式多态
+核心思想是您有一个声明与某种类别类型有关系的类型。例如，在Java中，类（具体类型）可以实现某个接口（抽象类型）。在Java中，这表示这个类必须要实现指定抽象接口。编译器将检查该类是否实现了此抽象类型需要的所有接口。
+Pony的特征（Traits）：声明式多态（Nominal subtyping） Pony使用 特征（trait） 来实现声明式多态。trait 的定义看上去有点像 class ，但是它使用关键字trait，并且不能有任何字段。
+trait Named fun name(): String =&gt; &quot;Bob&quot; class Bob is Named 上面代码中，我们定义了一个名为Named的特征，他又一个名为name()的成员函数，返回类型是字符串。它还提供了name()函数的默认实现，返回字符串&quot;Bob&rdquo;。
+接着定义了类名为Bob的类。Bob在明确的声明自己实现了Named特征。在Pony中，我们把这成为 Bob拥有Named特征 ，或者说 Bob就是Named 。
+我们看到Bob并没有定义name()函数，所以它会使用特征中的默认实现。如果特征对name()函数没有做出默认实现，则编译器就会报一个错告知：Bob没有实现name()。
+trait Named fun name(): String =&gt; &quot;Bob&quot; trait Bald fun hair(): Bool =&gt; false class Bob is (Named &amp; Bald) 一个类可以同时具备多个特征。在上面的示例中，Bob类同时提供了Named和Bald特征。">
+<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="wordCount" content="133">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="特征和接口（Traits and Interfaces）"/>
-<meta name="twitter:description" content="Like other object-oriented languages, Pony has subtyping. That is, some types serve as categories that other types can be members of.
-There are two kinds of subtyping in programming languages: nominal and structural. They&rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!
-Nominal subtyping This kind of subtyping is called nominal because it is all about names.
-If you&rsquo;ve done object-oriented programming before, you may have seen a lot of discussion about single inheritance, multiple inheritance, mixins, traits, and similar concepts."/>
+<meta name="twitter:description" content="与其他面向对象的语言一样，Pony具有 多态性（subtyping） 。也就是说，某些类型充当 categories ，其他类型可以成为其成员。
+编程语言的实现上有两种 多态（subtyping） 类型： 声明式（nominal）多态 和 结构化（structural）多态 。它们有细微的不同，大多数编程语言只会选择一种实现。但是Pony两种都实现了！
+声明式多态（Nominal subtyping） 这种多态的实现被称为 声明式 ，因为它需要你明确指出你要实现的 类型名 。
+如果你有过面向对象编程经验，你应该熟悉 继承（单） 、 多重继承 、 组合 、 特征 或类似的概念，所有的这些都属于 声明式多态
+核心思想是您有一个声明与某种类别类型有关系的类型。例如，在Java中，类（具体类型）可以实现某个接口（抽象类型）。在Java中，这表示这个类必须要实现指定抽象接口。编译器将检查该类是否实现了此抽象类型需要的所有接口。
+Pony的特征（Traits）：声明式多态（Nominal subtyping） Pony使用 特征（trait） 来实现声明式多态。trait 的定义看上去有点像 class ，但是它使用关键字trait，并且不能有任何字段。
+trait Named fun name(): String =&gt; &quot;Bob&quot; class Bob is Named 上面代码中，我们定义了一个名为Named的特征，他又一个名为name()的成员函数，返回类型是字符串。它还提供了name()函数的默认实现，返回字符串&quot;Bob&rdquo;。
+接着定义了类名为Bob的类。Bob在明确的声明自己实现了Named特征。在Pony中，我们把这成为 Bob拥有Named特征 ，或者说 Bob就是Named 。
+我们看到Bob并没有定义name()函数，所以它会使用特征中的默认实现。如果特征对name()函数没有做出默认实现，则编译器就会报一个错告知：Bob没有实现name()。
+trait Named fun name(): String =&gt; &quot;Bob&quot; trait Bald fun hair(): Bool =&gt; false class Bob is (Named &amp; Bald) 一个类可以同时具备多个特征。在上面的示例中，Bob类同时提供了Named和Bald特征。"/>
 
   </head>
 
@@ -609,10 +627,10 @@ If you&rsquo;ve done object-oriented programming before, you may have seen a lot
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#nominal-subtyping">Nominal subtyping</a></li>
-    <li><a href="#traits-nominal-subtyping">Traits: nominal subtyping</a></li>
-    <li><a href="#structural-subtyping">Structural subtyping</a></li>
-    <li><a href="#interfaces-structural-subtyping">Interfaces: structural subtyping</a></li>
+    <li><a href="#声明式多态nominal-subtyping">声明式多态（Nominal subtyping）</a></li>
+    <li><a href="#pony的特征traits声明式多态nominal-subtyping">Pony的特征（Traits）：声明式多态（Nominal subtyping）</a></li>
+    <li><a href="#结构化多态structural-subtyping">结构化多态（Structural subtyping）</a></li>
+    <li><a href="#pony的接口interfaces-结构化多态structural-subtyping">Pony的接口（Interfaces）: 结构化多态（structural subtyping）</a></li>
   </ul>
 </nav>
   </div>
@@ -633,21 +651,32 @@ If you&rsquo;ve done object-oriented programming before, you may have seen a lot
             <h1 class="f1 athelas mb1">特征和接口（Traits and Interfaces）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Like other object-oriented languages, Pony has <strong>subtyping</strong>. That is, some types serve as <em>categories</em> that other types can be members of.</p>
-<p>There are two kinds of <strong>subtyping</strong> in programming languages: <strong>nominal</strong> and <strong>structural</strong>. They&rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!</p>
-<h2 id="nominal-subtyping">Nominal subtyping</h2>
-<p>This kind of subtyping is called <strong>nominal</strong> because it is all about <strong>names</strong>.</p>
-<p>If you&rsquo;ve done object-oriented programming before, you may have seen a lot of discussion about <em>single inheritance</em>, <em>multiple inheritance</em>, <em>mixins</em>, <em>traits</em>, and similar concepts. These are all examples of <strong>nominal subtyping</strong>.</p>
-<p>The core idea is that you have a type that declares it has a relationship to some category type. In Java, for example, a <strong>class</strong> (a concrete type) can <strong>implement</strong> an <strong>interface</strong> (a category type). In Java, this means the class is now in the category that the interface represents. The compiler will check that the class actually provides everything it needs to.</p>
-<h2 id="traits-nominal-subtyping">Traits: nominal subtyping</h2>
-<p>Pony has nominal subtyping, using <strong>traits</strong>. A <strong>trait</strong> looks a bit like a <strong>class</strong>, but it uses the keyword <code>trait</code> and it can&rsquo;t have any fields.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>与其他面向对象的语言一样，Pony具有 <strong>多态性（subtyping）</strong> 。也就是说，某些类型充当 <em>categories</em> ，其他类型可以成为其成员。</p>
+<!-- raw HTML omitted -->
+<p>编程语言的实现上有两种 <strong>多态（subtyping）</strong> 类型： <strong>声明式（nominal）多态</strong> 和 <strong>结构化（structural）多态</strong> 。它们有细微的不同，大多数编程语言只会选择一种实现。但是Pony两种都实现了！</p>
+<!-- raw HTML omitted -->
+<h2 id="声明式多态nominal-subtyping">声明式多态（Nominal subtyping）</h2>
+<!-- raw HTML omitted -->
+<p>这种多态的实现被称为 <strong>声明式</strong> ，因为它需要你明确指出你要实现的 <strong>类型名</strong> 。</p>
+<!-- raw HTML omitted -->
+<p>如果你有过面向对象编程经验，你应该熟悉 <em>继承（单）</em> 、 <em>多重继承</em> 、 <em>组合</em> 、 <em>特征</em> 或类似的概念，所有的这些都属于 <strong>声明式多态</strong></p>
+<!-- raw HTML omitted -->
+<p>核心思想是您有一个声明与某种类别类型有关系的类型。例如，在Java中，类（具体类型）可以实现某个接口（抽象类型）。在Java中，这表示这个类必须要实现指定抽象接口。编译器将检查该类是否实现了此抽象类型需要的所有接口。</p>
+<!-- raw HTML omitted -->
+<h2 id="pony的特征traits声明式多态nominal-subtyping">Pony的特征（Traits）：声明式多态（Nominal subtyping）</h2>
+<!-- raw HTML omitted -->
+<p>Pony使用 <strong>特征（trait）</strong> 来实现声明式多态。<strong>trait</strong> 的定义看上去有点像 <strong>class</strong> ，但是它使用关键字trait，并且不能有任何字段。</p>
 <pre><code class="language-pony" data-lang="pony">trait Named
   fun name(): String =&gt; &quot;Bob&quot;
 
 class Bob is Named
-</code></pre><p>Here, we have a trait <code>Named</code> that has a single function <code>name</code> that returns a String. It also provides a default implementation of <code>name</code> that returns the string literal &ldquo;Bob&rdquo;.</p>
-<p>We also have a class <code>Bob</code> that says it <code>is Named</code>. This means <code>Bob</code> is in the <code>Named</code> category. In Pony, we say <em>Bob provides Named</em>, or sometimes simply <em>Bob is Named</em>.</p>
-<p>Since <code>Bob</code> doesn&rsquo;t have its own <code>name</code> function, it uses the one from the trait. If the trait&rsquo;s function didn&rsquo;t have a default implementation, the compiler would complain that <code>Bob</code> had no implementation of <code>name</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>上面代码中，我们定义了一个名为<code>Named</code>的特征，他又一个名为<code>name()</code>的成员函数，返回类型是字符串。它还提供了<code>name()</code>函数的默认实现，返回字符串&quot;Bob&rdquo;。</p>
+<!-- raw HTML omitted -->
+<p>接着定义了类名为<code>Bob</code>的类。<code>Bob在</code>明确的声明自己实现了<code>Named</code>特征。在Pony中，我们把这成为 <em>Bob拥有Named特征</em> ，或者说 <em>Bob就是Named</em> 。</p>
+<!-- raw HTML omitted -->
+<p>我们看到<code>Bob</code>并没有定义<code>name()</code>函数，所以它会使用特征中的默认实现。如果特征对<code>name()</code>函数没有做出默认实现，则编译器就会报一个错告知：<code>Bob</code>没有实现<code>name()</code>。</p>
 <pre><code class="language-pony" data-lang="pony">trait Named
   fun name(): String =&gt; &quot;Bob&quot;
 
@@ -655,7 +684,8 @@ trait Bald
   fun hair(): Bool =&gt; false
 
  class Bob is (Named &amp; Bald)
-</code></pre><p>It is possible for a class to have relationships with multiple categories. In the above example, the class <code>Bob</code> <em>provides both Named and Bald</em>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>一个类可以同时具备多个特征。在上面的示例中，<code>Bob</code>类同时提供了Named和Bald特征。</p>
 <pre><code class="language-pony" data-lang="pony">trait Named
   fun name(): String =&gt; &quot;Bob&quot;
 
@@ -663,22 +693,34 @@ trait Bald is Named
   fun hair(): Bool =&gt; false
 
  class Bob is Bald
-</code></pre><p>It is also possible to combine categories together. In the example above, all <code>Bald</code> classes are automatically <code>Named</code>. Consequently, the <code>Bob</code> class has access to both hair() and name() default implementation of their respective trait. One can think of the <code>Bald</code> category to be more specific than the <code>Named</code> one.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>特征是支持组合的。在上面的示例中，所有<code>Bald</code>特征类被声明为包含<code>Named</code>特征。因此，<code>Bob</code>类可以访问两个特征类中的hair()和name()函数的默认实现。从语义上来说，我们可以认为Bald是一个更加明确的特征：Named泛指一个人的基础特征拥有一个名字，Bald更加明确的去描述是否有头发，然后我们使用这套规则描述一个没有头发的老头<code>Bob</code>。</p>
 <pre><code class="language-pony" data-lang="pony">class Larry
   fun name(): String =&gt; &quot;Larry&quot;
-</code></pre><p>Here, we have a class <code>Larry</code> that has a <code>name</code> function with the same signature. But <code>Larry</code> does <strong>not</strong> provide <code>Named</code>!</p>
-<p><strong>Wait, why not?</strong> Because <code>Larry</code> doesn&rsquo;t say it <code>is Named</code>. Remember, traits are <strong>nominal</strong>: a type that wants to provide a trait has to explicitly declare that it does. And <code>Larry</code> doesn&rsquo;t.</p>
-<h2 id="structural-subtyping">Structural subtyping</h2>
-<p>There&rsquo;s another kind of subtyping, where the name doesn&rsquo;t matter. It&rsquo;s called <strong>structural subtyping</strong>, which means that it&rsquo;s all about how a type is built, and nothing to do with names.</p>
-<p>A concrete type is a member of a structural category if it happens to have all the needed elements, no matter what it happens to be called.</p>
-<p>If you&rsquo;ve used Go, you&rsquo;ll recognise that Go interfaces are structural types.</p>
-<h2 id="interfaces-structural-subtyping">Interfaces: structural subtyping</h2>
-<p>Pony has structural subtyping too, using <strong>interfaces</strong>. Interfaces look like traits, but they use the keyword <code>interface</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这个示例中，我们定义了一个名为<code>Larry</code>的类，该类也具备<code>name()</code>函数。但是<code>Larry</code>不是一个<code>Named</code>。</p>
+<!-- raw HTML omitted -->
+<p><strong>等等，为什么不是呢？</strong> 因为它并没有声明自己具备<code>Named</code>特征！ 请记住，特征需要 <strong>声明（nominal）</strong> ：想要提供特征的类型必须显式的声明。<code>Larry</code>确实没有声明。</p>
+<!-- raw HTML omitted -->
+<h2 id="结构化多态structural-subtyping">结构化多态（Structural subtyping）</h2>
+<!-- raw HTML omitted -->
+<p>多态还有另一种实现方式，无需明确声明，这种被称为 <strong>结构化多态</strong> ，这意味着这与类型的构建方式有关，与名称无关。</p>
+<!-- raw HTML omitted -->
+<p>结构化多态的实现思路是，如果一个类型A恰好具备一个结构类别B所有必需的成员，那么A就是B。</p>
+<!-- raw HTML omitted -->
+<p>如果你用过Go语言，你会自然而然的想到Go的<code>interface</code>就是结构化多态的实现。</p>
+<!-- raw HTML omitted -->
+<h2 id="pony的接口interfaces-结构化多态structural-subtyping">Pony的接口（Interfaces）: 结构化多态（structural subtyping）</h2>
+<!-- raw HTML omitted -->
+<p>Pony也支持结构化多态，用 <em>接口（interfaces）</em>_ 就可以做到。接口看起来和特征差不多，不过它用<code>interface</code>定义。</p>
 <pre><code class="language-pony" data-lang="pony">interface HasName
   fun name(): String
-</code></pre><p>Here, <code>HasName</code> looks a lot like <code>Named</code>, except it&rsquo;s an interface instead of a trait. This means both <code>Bob</code> and <code>Larry</code> provide <code>HasName</code>! The programmers that wrote <code>Bob</code> and <code>Larry</code> don&rsquo;t even have to be aware that <code>HasName</code> exists.</p>
-<p>Pony interfaces can have functions with default implementations as well. A type will only pick those up if it explicitly declares that it <code>is</code> that interface.</p>
-<p><strong>Should I use traits or interfaces in my own code?</strong> Both! Interfaces are more flexible, so if you&rsquo;re not sure what you want, use an interface. But traits are a powerful tool as well: they stop <em>accidental subtyping</em>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>上面的示例中，我们看到<code>HasName</code>接口和之前的<code>Named</code>特征，除了定义用的关键字不同外，似乎没多大区别。还记得<code>Larry</code>吗？&ldquo;<code>Larry</code>不是一个<code>Named</code>&rdquo;，但是&quot;<code>Larry</code>却是是一个<code>HasName</code>&rdquo;，&ldquo;<code>Bob</code>也是一个<code>HasName</code>&rdquo;。但是程序中没有任何地方声明<code>Bob</code>和<code>Larry</code>与<code>HasName</code>有什么关联。</p>
+<!-- raw HTML omitted -->
+<p>Pony的接口也可以具有默认实现的功能。如果类型明确声明它是该接口，则该类型将仅接受这些类型。</p>
+<!-- raw HTML omitted -->
+<p><strong>我应该在自己的代码中使用特征还是接口？</strong> 相信我，你两种都用的着！接口更加灵活，因此，如果不确定自己想要什么，请使用接口。但是特征也是一个强大的工具：它可以帮你检查子类型实现的完整性。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

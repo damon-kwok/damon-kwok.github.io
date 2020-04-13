@@ -17,10 +17,9 @@
       
       <guid>https://damon-kwok.github.io/pony-tutorial/types/primitives.html</guid>
       <description>primitive（基元类） 和 class（类） 有两点主要区别：
- 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段意味着primitive不会产生副作用。只有一个实例意味着，如果您的代码以 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&amp;quot;machine word&amp;rdquo; primitives除外）。
-primitive 有什么用途？ 基元类有三种主要用途（如果算上内置的&amp;quot;machine word&amp;rdquo; primitives则有四种）。
-1.作为&amp;quot;标记值&amp;rdquo;。例如，Pony经常使用 primitive None来表示某事物没有值。当然，它确实具有一个值，以便您可以检查它是什么，并且该值是“无”的单个实例。 2.作为&amp;quot;枚举&amp;quot;类型。通过具有 primitive 类型的 union ，您可以具有类型安全的枚举。稍后我们将介绍 union 类型。 3.作为&amp;quot;函数集合&amp;rdquo;。由于基元可以具有函数，因此可以将函数分组为基元类型。您可以在标准库中看到这一点，例如，路径处理功能在 primitive Path中分组。
-// 2 &amp;quot;marker values&amp;quot; primitive OpenedDoor primitive ClosedDoor // An &amp;quot;enumeration&amp;quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&amp;gt; a + b fun multiply(a: U64, b: U64): U64 =&amp;gt; a * b actor Main new create(env: Env) =&amp;gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&amp;gt; true | ClosedDoor =&amp;gt; false end env.</description>
+ 基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段就天然具备不可变性不会产生副作用。只有一个实例的意味着 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&amp;quot;machine word&amp;rdquo; primitives除外）。
+基元类 有什么用途？ 基元类有三种主要用途（如果算上内置的&amp;quot;machine word&amp;rdquo; primitives则有四种）。
+ 作为&amp;quot;标记值&amp;rdquo;。例如，Pony经常使用None基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是None的实例。 作为&amp;quot;枚举&amp;quot;类型。通过创建 primitive 类型的 union ，可以使用类型安全的枚举。稍后我们将介绍 union 类型。 作为&amp;quot;函数集合&amp;rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在Path中（Path就是一个基元类）。  // 2 &amp;quot;marker values&amp;quot; primitive OpenedDoor primitive ClosedDoor // An &amp;quot;enumeration&amp;quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&amp;gt; a + b fun multiply(a: U64, b: U64): U64 =&amp;gt; a * b actor Main new create(env: Env) =&amp;gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&amp;gt; true | ClosedDoor =&amp;gt; false end env.</description>
     </item>
     
     <item>
@@ -30,18 +29,18 @@ primitive 有什么用途？ 基元类有三种主要用途（如果算上内置
       
       <guid>https://damon-kwok.github.io/pony-tutorial/types/actors.html</guid>
       <description>actor 和 类 的关键区别：actor可以有 行为 。
-Behaviours 行为 行为 类似于 函数，不过函数是 同步执行 的，但是行为是 异步执行 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。
-但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。
-行为看起来像一个函数，但是它不是由关键字fun定义的，而是使用be关键字。
-和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何功能的接收器上调用行为），您不能为行为指定返回类型。
-那么行为会返回什么呢？ 行为总是返回None，就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
-actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&amp;gt; name = name&#39; be eat(amount: U64) =&amp;gt; _hunger_level = _hunger_level - amount.min(_hunger_level) Here we have an Aardvark that can eat asynchronously. Clever Aardvark. 在这里，我们有一个可以异步进餐的“土豚”。聪明的土豚。
-消息处理 如果您熟悉基于语言的语言（例如Erlang），那么您将熟悉“消息传递”的概念。演员之间就是这样交流的。行为等同于小马。当您调用演员的行为时，您正在向其发送消息。
-如果您不熟悉消息传递，则不必担心。我们已经覆盖了您。所有内容将在下面说明。
-并发 由于行为是异步的，因此可以同时运行一系列行为的主体。这正是Pony所做的。 Pony运行时具有自己的协作调度程序，默认情况下，该调度程序的线程数等于您计算机上的CPU内核数。每个调度程序线程可以在任何给定时间执行参与者行为，因此Pony程序自然是并发的。
-执行次序 Actor本身是有序的。也就是说，每个actor一次只能执行一个行为。这意味着可以在不考虑并发性的情况下编写actor中的所有代码：不需要锁，信号量或类似的东西。
-在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，演员应该只执行顺序要执行的操作。其他任何东西都可以分解为另一个actor，使其自动并行。
-在下面的示例中，Main actor调用了一个行为call_me_later，正如我们所知，该行为是_asynchronous_，因此我们无需等待它运行就可以继续。然后，我们运行方法“ env.out.print”，它也是_asynchronous_，并将提供的文本打印到终端。现在，我们已经完成了在Main角色中执行代码的工作，我们先前调用的行为最终将运行，并且将打印最后的文本。</description>
+Behaviours 行为 行为 和 函数 的区别：函数是 同步执行 的，行为是 异步执行 的。当您调用一个函数时，该函数将立即执行，并且立即就可以得到返回值。函数就像其他面向对象语言中的方法调用一样。
+行为被调用后 不会 立即执行。相反，该行为的将在未来的某个时间执行。
+行为看起来很像一个函数，但它不是用关键字fun定义的，而是用be关键字。
+和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何权能接收器上调用行为），但不能为行为指定返回类型。
+那么行为会返回什么呢？ 行为总是返回None（None基元类的实例），就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
+actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&amp;gt; name = name&#39; be eat(amount: U64) =&amp;gt; _hunger_level = _hunger_level - amount.min(_hunger_level) 在这个例子里，我们定义了一个可以异步进餐的土拨鼠。
+消息处理 如果您熟悉基于actor模型的语言（例如Erlang），那么你对&amp;quot;消息传递&amp;quot;的概念一定很熟悉了。actor之间就是这样交流的。Pony中的行为等价于Erlang中的消息。当您调用actor的行为时，相当于在向其发送消息。
+如果您不熟悉消息传递，也不必担心。所有内容将在下面说明。
+并发 由于行为是异步执行的，因此可以同时运行很多个行为，这在Pony程序中的很常见。Pony程序在运行的时候会启动一个调度器，默认情况下，该调度器的线程数等于您计算机上的CPU内核数。每个调度器的线程随时待命执行actor的行为，因此Pony程序是原生并发的。
+执行次序 Actor自身是有序的，（译者注：一个actor同一时间只会归属于一个调度器线程），并且每个actor一次只能执行一个行为。编写actor的代码：不需要锁，信号量或类似的东西。
+在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，actor运行的时候只会按照顺序执行操作。在下面的示例中，Main actor调用了一个行为call_me_later，该行为 异步执行 ，因此我们无需等待它运行就可以继续。然后，我们运行方法 env.out.print，它也是 异步执行的 ，并将文本输出到控制台。现在，我们已经了解了Main actor的工作机制，尝试运行下程序吧。
+actor Main new create(env: Env) =&amp;gt; call_me_later(env) env.</description>
     </item>
     
     <item>
@@ -50,10 +49,16 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/types/traits-and-interfaces.html</guid>
-      <description>Like other object-oriented languages, Pony has subtyping. That is, some types serve as categories that other types can be members of.
-There are two kinds of subtyping in programming languages: nominal and structural. They&amp;rsquo;re subtly different, and most programming languages only have one or the other. Pony has both!
-Nominal subtyping This kind of subtyping is called nominal because it is all about names.
-If you&amp;rsquo;ve done object-oriented programming before, you may have seen a lot of discussion about single inheritance, multiple inheritance, mixins, traits, and similar concepts.</description>
+      <description>与其他面向对象的语言一样，Pony具有 多态性（subtyping） 。也就是说，某些类型充当 categories ，其他类型可以成为其成员。
+编程语言的实现上有两种 多态（subtyping） 类型： 声明式（nominal）多态 和 结构化（structural）多态 。它们有细微的不同，大多数编程语言只会选择一种实现。但是Pony两种都实现了！
+声明式多态（Nominal subtyping） 这种多态的实现被称为 声明式 ，因为它需要你明确指出你要实现的 类型名 。
+如果你有过面向对象编程经验，你应该熟悉 继承（单） 、 多重继承 、 组合 、 特征 或类似的概念，所有的这些都属于 声明式多态
+核心思想是您有一个声明与某种类别类型有关系的类型。例如，在Java中，类（具体类型）可以实现某个接口（抽象类型）。在Java中，这表示这个类必须要实现指定抽象接口。编译器将检查该类是否实现了此抽象类型需要的所有接口。
+Pony的特征（Traits）：声明式多态（Nominal subtyping） Pony使用 特征（trait） 来实现声明式多态。trait 的定义看上去有点像 class ，但是它使用关键字trait，并且不能有任何字段。
+trait Named fun name(): String =&amp;gt; &amp;quot;Bob&amp;quot; class Bob is Named 上面代码中，我们定义了一个名为Named的特征，他又一个名为name()的成员函数，返回类型是字符串。它还提供了name()函数的默认实现，返回字符串&amp;quot;Bob&amp;rdquo;。
+接着定义了类名为Bob的类。Bob在明确的声明自己实现了Named特征。在Pony中，我们把这成为 Bob拥有Named特征 ，或者说 Bob就是Named 。
+我们看到Bob并没有定义name()函数，所以它会使用特征中的默认实现。如果特征对name()函数没有做出默认实现，则编译器就会报一个错告知：Bob没有实现name()。
+trait Named fun name(): String =&amp;gt; &amp;quot;Bob&amp;quot; trait Bald fun hair(): Bool =&amp;gt; false class Bob is (Named &amp;amp; Bald) 一个类可以同时具备多个特征。在上面的示例中，Bob类同时提供了Named和Bald特征。</description>
     </item>
     
     <item>
@@ -82,7 +87,7 @@ Enumerations One way to use type aliases is to express an enumeration.</descript
 类型系统越强大，在编译时就可以从程序获得越多有用的信息（用来分析）。
 动态类型是否也可以保证？ 可以是可以，但需要是在运行时间才能处理。例如，如果您调用一个不存在的方法，会触发到某种异常。但是，只有在运行到这行代码时，才会触发。
 Pony的类型系统可以为我们带来什么保证？ Pony类型的系统提供了很多保证，甚至比其他静态类型的语言还要多。
- 能通过编译，就不会崩溃。 永远不会有未处理的异常。 没有null类型，不需要判断null。 无数据竞争。 不会出现死锁。 代码权能安全性。 所有消息传递为 causal （不可以！）  上述的概念中有一些你现在可以理解。还有一些不能理解的概念暂时可以无需关心（例如权能安全性和因果消息传递），但稍后我们将介绍这些概念。
+ 能通过编译，就不会崩溃。 永远不会有未处理的异常。 没有null类型，不需要判断null。 无数据竞争。 不会出现死锁。 代码权能安全性。 causal. (Not casual!)  上述的概念中有一些你现在可以理解。还有一些不能理解的概念暂时可以无需关心（例如权能安全性和因果消息传递），但稍后我们将介绍这些概念。
 用Pony的FFI调用其他种语言编写的代码，Pony是否能调用的代码做出类型保证？ 很不幸，并不能。 Pony的类型系统保证性仅适用于Pony编写的代码。用其他语言编写的代码，需要其他语言来提供保证。</description>
     </item>
     
@@ -113,7 +118,7 @@ Intersections（类型集合） 类型集合 使用&amp;amp;作为元素分隔�
       <guid>https://damon-kwok.github.io/pony-tutorial/types/classes.html</guid>
       <description>和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
-What goes in a class? 一个类的组成：
+类的组成部分 一个类的组成：
  字段  构造函数  成员函数  字段 和C++、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
 下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。

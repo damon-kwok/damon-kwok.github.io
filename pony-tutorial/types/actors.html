@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -47,55 +47,55 @@
 
     <meta property="og:title" content="并发单元（Actors）" />
 <meta property="og:description" content="actor 和 类 的关键区别：actor可以有 行为 。
-Behaviours 行为 行为 类似于 函数，不过函数是 同步执行 的，但是行为是 异步执行 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。
-但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。
-行为看起来像一个函数，但是它不是由关键字fun定义的，而是使用be关键字。
-和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何功能的接收器上调用行为），您不能为行为指定返回类型。
-那么行为会返回什么呢？ 行为总是返回None，就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
-actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&gt; name = name&#39; be eat(amount: U64) =&gt; _hunger_level = _hunger_level - amount.min(_hunger_level) Here we have an Aardvark that can eat asynchronously. Clever Aardvark. 在这里，我们有一个可以异步进餐的“土豚”。聪明的土豚。
-消息处理 如果您熟悉基于语言的语言（例如Erlang），那么您将熟悉“消息传递”的概念。演员之间就是这样交流的。行为等同于小马。当您调用演员的行为时，您正在向其发送消息。
-如果您不熟悉消息传递，则不必担心。我们已经覆盖了您。所有内容将在下面说明。
-并发 由于行为是异步的，因此可以同时运行一系列行为的主体。这正是Pony所做的。 Pony运行时具有自己的协作调度程序，默认情况下，该调度程序的线程数等于您计算机上的CPU内核数。每个调度程序线程可以在任何给定时间执行参与者行为，因此Pony程序自然是并发的。
-执行次序 Actor本身是有序的。也就是说，每个actor一次只能执行一个行为。这意味着可以在不考虑并发性的情况下编写actor中的所有代码：不需要锁，信号量或类似的东西。
-在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，演员应该只执行顺序要执行的操作。其他任何东西都可以分解为另一个actor，使其自动并行。
-在下面的示例中，Main actor调用了一个行为call_me_later，正如我们所知，该行为是_asynchronous_，因此我们无需等待它运行就可以继续。然后，我们运行方法“ env.out.print”，它也是_asynchronous_，并将提供的文本打印到终端。现在，我们已经完成了在Main角色中执行代码的工作，我们先前调用的行为最终将运行，并且将打印最后的文本。" />
+Behaviours 行为 行为 和 函数 的区别：函数是 同步执行 的，行为是 异步执行 的。当您调用一个函数时，该函数将立即执行，并且立即就可以得到返回值。函数就像其他面向对象语言中的方法调用一样。
+行为被调用后 不会 立即执行。相反，该行为的将在未来的某个时间执行。
+行为看起来很像一个函数，但它不是用关键字fun定义的，而是用be关键字。
+和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何权能接收器上调用行为），但不能为行为指定返回类型。
+那么行为会返回什么呢？ 行为总是返回None（None基元类的实例），就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
+actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&gt; name = name&#39; be eat(amount: U64) =&gt; _hunger_level = _hunger_level - amount.min(_hunger_level) 在这个例子里，我们定义了一个可以异步进餐的土拨鼠。
+消息处理 如果您熟悉基于actor模型的语言（例如Erlang），那么你对&quot;消息传递&quot;的概念一定很熟悉了。actor之间就是这样交流的。Pony中的行为等价于Erlang中的消息。当您调用actor的行为时，相当于在向其发送消息。
+如果您不熟悉消息传递，也不必担心。所有内容将在下面说明。
+并发 由于行为是异步执行的，因此可以同时运行很多个行为，这在Pony程序中的很常见。Pony程序在运行的时候会启动一个调度器，默认情况下，该调度器的线程数等于您计算机上的CPU内核数。每个调度器的线程随时待命执行actor的行为，因此Pony程序是原生并发的。
+执行次序 Actor自身是有序的，（译者注：一个actor同一时间只会归属于一个调度器线程），并且每个actor一次只能执行一个行为。编写actor的代码：不需要锁，信号量或类似的东西。
+在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，actor运行的时候只会按照顺序执行操作。在下面的示例中，Main actor调用了一个行为call_me_later，该行为 异步执行 ，因此我们无需等待它运行就可以继续。然后，我们运行方法 env.out.print，它也是 异步执行的 ，并将文本输出到控制台。现在，我们已经了解了Main actor的工作机制，尝试运行下程序吧。
+actor Main new create(env: Env) =&gt; call_me_later(env) env." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/actors.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
 <meta itemprop="name" content="并发单元（Actors）">
 <meta itemprop="description" content="actor 和 类 的关键区别：actor可以有 行为 。
-Behaviours 行为 行为 类似于 函数，不过函数是 同步执行 的，但是行为是 异步执行 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。
-但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。
-行为看起来像一个函数，但是它不是由关键字fun定义的，而是使用be关键字。
-和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何功能的接收器上调用行为），您不能为行为指定返回类型。
-那么行为会返回什么呢？ 行为总是返回None，就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
-actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&gt; name = name&#39; be eat(amount: U64) =&gt; _hunger_level = _hunger_level - amount.min(_hunger_level) Here we have an Aardvark that can eat asynchronously. Clever Aardvark. 在这里，我们有一个可以异步进餐的“土豚”。聪明的土豚。
-消息处理 如果您熟悉基于语言的语言（例如Erlang），那么您将熟悉“消息传递”的概念。演员之间就是这样交流的。行为等同于小马。当您调用演员的行为时，您正在向其发送消息。
-如果您不熟悉消息传递，则不必担心。我们已经覆盖了您。所有内容将在下面说明。
-并发 由于行为是异步的，因此可以同时运行一系列行为的主体。这正是Pony所做的。 Pony运行时具有自己的协作调度程序，默认情况下，该调度程序的线程数等于您计算机上的CPU内核数。每个调度程序线程可以在任何给定时间执行参与者行为，因此Pony程序自然是并发的。
-执行次序 Actor本身是有序的。也就是说，每个actor一次只能执行一个行为。这意味着可以在不考虑并发性的情况下编写actor中的所有代码：不需要锁，信号量或类似的东西。
-在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，演员应该只执行顺序要执行的操作。其他任何东西都可以分解为另一个actor，使其自动并行。
-在下面的示例中，Main actor调用了一个行为call_me_later，正如我们所知，该行为是_asynchronous_，因此我们无需等待它运行就可以继续。然后，我们运行方法“ env.out.print”，它也是_asynchronous_，并将提供的文本打印到终端。现在，我们已经完成了在Main角色中执行代码的工作，我们先前调用的行为最终将运行，并且将打印最后的文本。">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="108">
+Behaviours 行为 行为 和 函数 的区别：函数是 同步执行 的，行为是 异步执行 的。当您调用一个函数时，该函数将立即执行，并且立即就可以得到返回值。函数就像其他面向对象语言中的方法调用一样。
+行为被调用后 不会 立即执行。相反，该行为的将在未来的某个时间执行。
+行为看起来很像一个函数，但它不是用关键字fun定义的，而是用be关键字。
+和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何权能接收器上调用行为），但不能为行为指定返回类型。
+那么行为会返回什么呢？ 行为总是返回None（None基元类的实例），就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
+actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&gt; name = name&#39; be eat(amount: U64) =&gt; _hunger_level = _hunger_level - amount.min(_hunger_level) 在这个例子里，我们定义了一个可以异步进餐的土拨鼠。
+消息处理 如果您熟悉基于actor模型的语言（例如Erlang），那么你对&quot;消息传递&quot;的概念一定很熟悉了。actor之间就是这样交流的。Pony中的行为等价于Erlang中的消息。当您调用actor的行为时，相当于在向其发送消息。
+如果您不熟悉消息传递，也不必担心。所有内容将在下面说明。
+并发 由于行为是异步执行的，因此可以同时运行很多个行为，这在Pony程序中的很常见。Pony程序在运行的时候会启动一个调度器，默认情况下，该调度器的线程数等于您计算机上的CPU内核数。每个调度器的线程随时待命执行actor的行为，因此Pony程序是原生并发的。
+执行次序 Actor自身是有序的，（译者注：一个actor同一时间只会归属于一个调度器线程），并且每个actor一次只能执行一个行为。编写actor的代码：不需要锁，信号量或类似的东西。
+在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，actor运行的时候只会按照顺序执行操作。在下面的示例中，Main actor调用了一个行为call_me_later，该行为 异步执行 ，因此我们无需等待它运行就可以继续。然后，我们运行方法 env.out.print，它也是 异步执行的 ，并将文本输出到控制台。现在，我们已经了解了Main actor的工作机制，尝试运行下程序吧。
+actor Main new create(env: Env) =&gt; call_me_later(env) env.">
+<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="wordCount" content="104">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="并发单元（Actors）"/>
 <meta name="twitter:description" content="actor 和 类 的关键区别：actor可以有 行为 。
-Behaviours 行为 行为 类似于 函数，不过函数是 同步执行 的，但是行为是 异步执行 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。
-但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。
-行为看起来像一个函数，但是它不是由关键字fun定义的，而是使用be关键字。
-和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何功能的接收器上调用行为），您不能为行为指定返回类型。
-那么行为会返回什么呢？ 行为总是返回None，就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
-actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&gt; name = name&#39; be eat(amount: U64) =&gt; _hunger_level = _hunger_level - amount.min(_hunger_level) Here we have an Aardvark that can eat asynchronously. Clever Aardvark. 在这里，我们有一个可以异步进餐的“土豚”。聪明的土豚。
-消息处理 如果您熟悉基于语言的语言（例如Erlang），那么您将熟悉“消息传递”的概念。演员之间就是这样交流的。行为等同于小马。当您调用演员的行为时，您正在向其发送消息。
-如果您不熟悉消息传递，则不必担心。我们已经覆盖了您。所有内容将在下面说明。
-并发 由于行为是异步的，因此可以同时运行一系列行为的主体。这正是Pony所做的。 Pony运行时具有自己的协作调度程序，默认情况下，该调度程序的线程数等于您计算机上的CPU内核数。每个调度程序线程可以在任何给定时间执行参与者行为，因此Pony程序自然是并发的。
-执行次序 Actor本身是有序的。也就是说，每个actor一次只能执行一个行为。这意味着可以在不考虑并发性的情况下编写actor中的所有代码：不需要锁，信号量或类似的东西。
-在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，演员应该只执行顺序要执行的操作。其他任何东西都可以分解为另一个actor，使其自动并行。
-在下面的示例中，Main actor调用了一个行为call_me_later，正如我们所知，该行为是_asynchronous_，因此我们无需等待它运行就可以继续。然后，我们运行方法“ env.out.print”，它也是_asynchronous_，并将提供的文本打印到终端。现在，我们已经完成了在Main角色中执行代码的工作，我们先前调用的行为最终将运行，并且将打印最后的文本。"/>
+Behaviours 行为 行为 和 函数 的区别：函数是 同步执行 的，行为是 异步执行 的。当您调用一个函数时，该函数将立即执行，并且立即就可以得到返回值。函数就像其他面向对象语言中的方法调用一样。
+行为被调用后 不会 立即执行。相反，该行为的将在未来的某个时间执行。
+行为看起来很像一个函数，但它不是用关键字fun定义的，而是用be关键字。
+和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何权能接收器上调用行为），但不能为行为指定返回类型。
+那么行为会返回什么呢？ 行为总是返回None（None基元类的实例），就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。
+actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;: String) =&gt; name = name&#39; be eat(amount: U64) =&gt; _hunger_level = _hunger_level - amount.min(_hunger_level) 在这个例子里，我们定义了一个可以异步进餐的土拨鼠。
+消息处理 如果您熟悉基于actor模型的语言（例如Erlang），那么你对&quot;消息传递&quot;的概念一定很熟悉了。actor之间就是这样交流的。Pony中的行为等价于Erlang中的消息。当您调用actor的行为时，相当于在向其发送消息。
+如果您不熟悉消息传递，也不必担心。所有内容将在下面说明。
+并发 由于行为是异步执行的，因此可以同时运行很多个行为，这在Pony程序中的很常见。Pony程序在运行的时候会启动一个调度器，默认情况下，该调度器的线程数等于您计算机上的CPU内核数。每个调度器的线程随时待命执行actor的行为，因此Pony程序是原生并发的。
+执行次序 Actor自身是有序的，（译者注：一个actor同一时间只会归属于一个调度器线程），并且每个actor一次只能执行一个行为。编写actor的代码：不需要锁，信号量或类似的东西。
+在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，actor运行的时候只会按照顺序执行操作。在下面的示例中，Main actor调用了一个行为call_me_later，该行为 异步执行 ，因此我们无需等待它运行就可以继续。然后，我们运行方法 env.out.print，它也是 异步执行的 ，并将文本输出到控制台。现在，我们已经了解了Main actor的工作机制，尝试运行下程序吧。
+actor Main new create(env: Env) =&gt; call_me_later(env) env."/>
 
   </head>
 
@@ -667,15 +667,15 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
 <p><strong>actor</strong> 和 <strong>类</strong> 的关键区别：actor可以有 <strong>行为</strong> 。</p>
 <h2 id="behaviours-行为">Behaviours 行为</h2>
 <!-- raw HTML omitted -->
-<p><strong>行为</strong> 类似于 <strong>函数</strong>，不过函数是 <em>同步执行</em> 的，但是行为是 <em>异步执行</em> 的。换句话说，当您调用一个函数时，该函数将立即执行，并且立即就可以得到函数的返回值。函数就像其他面向对象语言中的方法调用一样。</p>
+<p><strong>行为</strong> 和 <strong>函数</strong> 的区别：函数是 <em>同步执行</em> 的，行为是 <em>异步执行</em> 的。当您调用一个函数时，该函数将立即执行，并且立即就可以得到返回值。函数就像其他面向对象语言中的方法调用一样。</p>
 <!-- raw HTML omitted -->
-<p>但是调用行为，__不会__立即执行。相反，该行为的将在将来某个不确定的时间执行。</p>
+<p>行为被调用后 <strong>不会</strong> 立即执行。相反，该行为的将在未来的某个时间执行。</p>
 <!-- raw HTML omitted -->
-<p>行为看起来像一个函数，但是它不是由关键字<code>fun</code>定义的，而是使用<code>be</code>关键字。</p>
+<p>行为看起来很像一个函数，但它不是用关键字<code>fun</code>定义的，而是用<code>be</code>关键字。</p>
 <!-- raw HTML omitted -->
-<p>和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何功能的接收器上调用行为），您不能为行为指定返回类型。</p>
+<p>和函数一样，行为也可以具有参数。与函数不同，它没有接收器功能（可以在任何权能接收器上调用行为），但不能为行为指定返回类型。</p>
 <!-- raw HTML omitted -->
-<p><strong>那么行为会返回什么呢？</strong> 行为总是返回<code>None</code>，就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。</p>
+<p><strong>那么行为会返回什么呢？</strong> 行为总是返回<code>None</code>（None基元类的实例），就像没有显式的返回类型的函数一样，它们无法返回所计算的内容（因为调用时它们尚未运行）。</p>
 <pre><code class="language-pony" data-lang="pony">actor Aardvark
   let name: String
   var _hunger_level: U64 = 0
@@ -685,26 +685,26 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
 
   be eat(amount: U64) =&gt;
     _hunger_level = _hunger_level - amount.min(_hunger_level)
-</code></pre><p>Here we have an <code>Aardvark</code> that can eat asynchronously. Clever Aardvark.
-在这里，我们有一个可以异步进餐的“土豚”。聪明的土豚。</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在这个例子里，我们定义了一个可以异步进餐的<code>土拨鼠</code>。</p>
 <!-- raw HTML omitted -->
 <h2 id="消息处理">消息处理</h2>
 <!-- raw HTML omitted -->
-<p>如果您熟悉基于语言的语言（例如Erlang），那么您将熟悉“消息传递”的概念。演员之间就是这样交流的。行为等同于小马。当您调用演员的行为时，您正在向其发送消息。</p>
+<p>如果您熟悉基于actor模型的语言（例如Erlang），那么你对&quot;消息传递&quot;的概念一定很熟悉了。actor之间就是这样交流的。Pony中的行为等价于Erlang中的消息。当您调用actor的行为时，相当于在向其发送消息。</p>
 <!-- raw HTML omitted -->
-<p>如果您不熟悉消息传递，则不必担心。我们已经覆盖了您。所有内容将在下面说明。</p>
+<p>如果您不熟悉消息传递，也不必担心。所有内容将在下面说明。</p>
 <!-- raw HTML omitted -->
 <h2 id="并发">并发</h2>
 <!-- raw HTML omitted -->
-<p>由于行为是异步的，因此可以同时运行一系列行为的主体。这正是Pony所做的。 Pony运行时具有自己的协作调度程序，默认情况下，该调度程序的线程数等于您计算机上的CPU内核数。每个调度程序线程可以在任何给定时间执行参与者行为，因此Pony程序自然是并发的。</p>
+<p>由于行为是异步执行的，因此可以同时运行很多个行为，这在Pony程序中的很常见。Pony程序在运行的时候会启动一个调度器，默认情况下，该调度器的线程数等于您计算机上的CPU内核数。每个调度器的线程随时待命执行actor的行为，因此Pony程序是原生并发的。</p>
 <!-- raw HTML omitted -->
 <h2 id="执行次序">执行次序</h2>
 <!-- raw HTML omitted -->
-<p>Actor本身是有序的。也就是说，每个actor一次只能执行一个行为。这意味着可以在不考虑并发性的情况下编写actor中的所有代码：不需要锁，信号量或类似的东西。</p>
+<p>Actor自身是有序的，（译者注：一个actor同一时间只会归属于一个调度器线程），并且每个actor一次只能执行一个行为。编写actor的代码：不需要锁，信号量或类似的东西。</p>
 <!-- raw HTML omitted -->
-<p>在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，演员应该只执行顺序要执行的操作。其他任何东西都可以分解为另一个actor，使其自动并行。</p>
+<p>在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，actor运行的时候只会按照顺序执行操作。<!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
-<p>在下面的示例中，<code>Main</code> actor调用了一个行为<code>call_me_later</code>，正如我们所知，该行为是_asynchronous_，因此我们无需等待它运行就可以继续。然后，我们运行方法“ env.out.print”，它也是_asynchronous_，并将提供的文本打印到终端。现在，我们已经完成了在Main角色中执行代码的工作，我们先前调用的行为最终将运行，并且将打印最后的文本。</p>
+<p>在下面的示例中，<code>Main</code> actor调用了一个行为<code>call_me_later</code>，该行为 <em>异步执行</em> ，因此我们无需等待它运行就可以继续。然后，我们运行方法<code> env.out.print</code>，它也是 <em>异步执行的</em> ，并将文本输出到控制台。现在，我们已经了解了Main actor的工作机制，尝试运行下程序吧。</p>
 <pre><code class="language-pony" data-lang="pony">actor Main
   new create(env: Env) =&gt;
     call_me_later(env)
@@ -713,24 +713,24 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
   be call_me_later(env: Env) =&gt;
     env.out.print(&quot;This is printed last&quot;)
 </code></pre><!-- raw HTML omitted -->
-<p>由于所有这些代码都在同一个actor中运行，并且对其他行为<code>env.out.print</code>的调用也都是顺序的，因此我们可以确保始终在 <strong>before</strong> 之前打印出<code>&quot;This is printed last&quot;</code>。</p>
+<p>所有代码都在同一个actor中运行，并且对其他行为<code>env.out.print</code>的调用也都是顺序的，因此始终会先输出<code>&quot;This is printed first&quot;</code>后输出<code>&quot;This is printed last&quot;</code>。</p>
 <!-- raw HTML omitted -->
 <h2 id="为什么这些代码时安全的">为什么这些代码时安全的？</h2>
 <!-- raw HTML omitted -->
-<p>因为Pony拥有 <strong>权能安全类型系统</strong> 。在谈论函数接收器参考功能之前，我们已经简要提到了引用权能。简短的版本是它们是对类型的注释，这些注释使所有这些并行性安全无任何运行时开销。</p>
+<p>得益于Pony的 <strong>权能安全的类型系统</strong> 。之前在讨论函数接收器<code>引用权能</code>的时候，我们已经简单的介绍了<code>引用权能</code>。它们是对类型的注释，这些注释使得Pony在处理并行问题上没有任何运行时开销。</p>
 <!-- raw HTML omitted -->
-<p>稍后我们将深入介绍参考功能。</p>
+<p>稍后我们将深入介绍<code>引用权能</code>。</p>
 <!-- raw HTML omitted -->
 <h2 id="actor的开销非常低">Actor的开销非常低</h2>
 <!-- raw HTML omitted -->
-<p>如果您以前做过并发编程，您将知道线程可能很昂贵。上下文切换可能会导致问题，每个线程都需要一个堆栈（可能会占用很多内存），并且您需要大量的锁和其他机制来编写线程安全的代码。</p>
+<p>如果您以前做过并发编程，你一定很清楚线程的开销非常昂贵。上下文切换可能会导致一系列问题，每个线程都需要一个堆栈（这会占用很多内存），并且您需要大量的锁和其他机制来辅助编写线程安全的代码。</p>
 <!-- raw HTML omitted -->
-<p>但是演员很便宜。真便宜。与对象相比，演员的额外开销约为256个字节的内存。字节，而不是千字节！而且没有锁，也没有上下文切换。除了少数几个额外的内存字节外，没有执行的actor不会消耗资源。</p>
+<p>但是actor的开销可以忽略不计。与类对象相比，actor的额外开销大约为256个字节的内存。注意是字节，而不是千字节！而且没有锁，也没有上下文切换。除了少数几个额外的内存字节外，没有执行的actor不会消耗资源。</p>
 <!-- raw HTML omitted -->
-<p>编写一个使用成千上万演员的Pony程序是很正常的。</p>
+<p>一个程序中使用成千上万的actor对Pony来说是再正常不过的事。</p>
 <h2 id="actor-finalisers">Actor finalisers</h2>
 <!-- raw HTML omitted -->
-<p>像班级一样，演员可以有终结者。终结器的定义是相同的（<code>fun _final（）</code>）。类终结者的所有保证和限制也对演员终结者有效。另外，参与者的终结器被调用后，它将不再收到任何其他消息。</p>
+<p>和类一样，actor也有销毁函数。销毁函数的定义也是（<code>fun _final（）</code>）。类的销毁函数的所有保证和限制也对actor有效。另外，actor的销毁函数被调用后，就不会再收到任何消息。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -51,12 +51,12 @@ class Foo fun fn(x: U64) =&gt; None actor Main new create(env: Env) =&gt; var x:
 Expressions for arguments in function calls are evaluated before the expression for the function receiver." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/gotchas/side-effect-ordering-in-function-call-expressions.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
 <meta itemprop="name" content="Function Call Side Effects">
 <meta itemprop="description" content="Consider the following code:
 class Foo fun fn(x: U64) =&gt; None actor Main new create(env: Env) =&gt; var x: U64 = 0 try foo()?.fn(x = 42) end env.out.print(x.string()) fun foo(): Foo ? =&gt; error What do you think it will print? Probably 0 right? Or maybe you realized this code is in the gotchas section so it must be 42. If you went with 42, you&rsquo;d be right. Why?
 Expressions for arguments in function calls are evaluated before the expression for the function receiver.">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
 <meta itemprop="wordCount" content="138">
 
 

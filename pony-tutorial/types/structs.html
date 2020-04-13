@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -57,7 +57,7 @@ struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var in
 struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/structs.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
 <meta itemprop="name" content="结构体（Structs）">
 <meta itemprop="description" content="结构体和类有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的C-FFI章中更深入地讨论结构。这里只做简短介绍。
 结构体是用来做外部交互的 struct和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。
@@ -68,7 +68,7 @@ What goes in a struct? 结构的构成和类一样：
 例如：
 struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。
 struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface.">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
 <meta itemprop="wordCount" content="113">
 
 

@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.70.0-DEV" />
+    <meta name="generator" content="Hugo 0.69.0-DEV" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -48,7 +48,7 @@
     <meta property="og:title" content="类（Classes）" />
 <meta property="og:description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
-What goes in a class? 一个类的组成：
+类的组成部分 一个类的组成：
  字段  构造函数  成员函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
 下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
@@ -57,19 +57,19 @@ class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/classes.html" />
-<meta property="article:modified_time" content="2020-04-11T21:02:47+08:00" />
+<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
 <meta itemprop="name" content="类（Classes）">
 <meta itemprop="description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
-What goes in a class? 一个类的组成：
+类的组成部分 一个类的组成：
  字段  构造函数  成员函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
 下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
 构造函数 Pony的构造函数可以起 别名 。和其他语言里一样，构造函数返回一个新的类型实例，但Pony 别名 可以有更多的构造方式。
 声明一个构造函数需要用 new 关键字。
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用.">
-<meta itemprop="dateModified" content="2020-04-11T21:02:47&#43;08:00" />
-<meta itemprop="wordCount" content="307">
+<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="wordCount" content="303">
 
 
 
@@ -77,7 +77,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 <meta name="twitter:title" content="类（Classes）"/>
 <meta name="twitter:description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
-What goes in a class? 一个类的组成：
+类的组成部分 一个类的组成：
  字段  构造函数  成员函数  字段 和C&#43;&#43;、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：var,let和embed。var字段可以初始化和反复赋值，但是let字段初始化后无法再次赋值,embed字段比较复杂，详情参考变量章节。
 class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat有一个String类型的name字段，和一个U64（64位无符号长整形）类型的_hunger_level字段。
 下划线开头是啥意思？ 它表示 私有 ，一个 私有 字段只能在类内部使用，外部无法访问。下划线同样可以作用于 构造函数 ， 成员函数 和 行为 ，标识只能在 包 内部访问。稍后会讲解到 包 的概念。
@@ -624,7 +624,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-goes-in-a-class">What goes in a class?</a>
+    <li><a href="#类的组成部分">类的组成部分</a>
       <ul>
         <li><a href="#字段">字段</a></li>
         <li><a href="#构造函数">构造函数</a></li>
@@ -659,7 +659,8 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 <pre><code class="language-pony" data-lang="pony">class Wombat
 </code></pre><!-- raw HTML omitted -->
 <p><strong>所有的类型都必须以大写字母开头吗？</strong> 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。</p>
-<h2 id="what-goes-in-a-class">What goes in a class?</h2>
+<!-- raw HTML omitted -->
+<h2 id="类的组成部分">类的组成部分</h2>
 <!-- raw HTML omitted -->
 <p>一个类的组成：</p>
 <!-- raw HTML omitted -->
