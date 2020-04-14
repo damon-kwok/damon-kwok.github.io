@@ -17,11 +17,16 @@
       
       <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/hello-world.html</guid>
       <description>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&amp;quot;hello,world!&amp;ldquo;开始。首先创建一个目录：helloworld：
-$ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是是您的程序最终输出的名称！默认情况下，在编译程序时，生成的可执行二进制文件将与程序所在的目录具有相同的名称。您还可以在命令行上使用&amp;ndash;bin-name或-b选项设置名称。
+$ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是你的程序最终输的名！默认情况下，在编译程序时，生成的可执行二进制文件将使用源码的目录名。你可以在命令行上使用&amp;ndash;bin-name或-b选项指定想要的文件名。
 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
-Does the name of the file matter? Not to the compiler, no. Pony doesn&amp;rsquo;t care about filenames other than that they end in .pony. But it might matter to you! By giving files good names, it can be easier to find the code you&amp;rsquo;re looking for later.
+__文件名重要吗？__对编译器来说不重要。 Pony除了以.pony结尾的文件名外，不关心文件名。但这可能对你很重要！给源文件起个好名字，以后可以更轻松定位代码。
 文件中敲入下面的代码：
-actor Main new create(env: Env) =&amp;gt; env.</description>
+actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;) 编译程序 现在可以编译程序了：
+$ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld （如果你想要Docker中使用Pony，可以这么做：$ docker run -v Some_Absolute_Path/helloworld:/src/main ponylang/ponyc，需要将helloworld目录的路径换成自己的。）
+你会发现，它在当前目录进行了构建，.，Pony对代码进行了优化，并创建了一些目标文件（如果您不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果您是C/C++程序员，那对你来说可能是有意义的，否则你可以忽略它。
+等等，Pony也进行链接了吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
+运行程序 现在可以运行程序了：
+$ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。</description>
     </item>
     
     <item>
