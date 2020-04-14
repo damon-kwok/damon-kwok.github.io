@@ -37,8 +37,19 @@ class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&amp;gt; _f =
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/variables.html</guid>
-      <description>Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
-局部变量 Local variables in Pony work very much as they do in other languages, allowing you to store temporary values while you perform calculations. Local variables live within a chunk of code (they are local to that chunk) and are created every time that code chunk executes and disposed of when it completes.</description>
+      <description>和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
+局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
+var x: String = &amp;quot;Hello&amp;quot; var y = &amp;quot;Hello&amp;quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&amp;quot;Hello&amp;quot;。
+定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+下面示例中x，y和z定义方式是等价的。
+var x: String = &amp;quot;Hello&amp;quot; var y = &amp;quot;Hello&amp;quot; var z: String z = &amp;quot;Hello&amp;quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
+变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+if a &amp;gt; b then var x = &amp;quot;a is bigger&amp;quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
+var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。</description>
     </item>
     
     <item>
@@ -52,10 +63,23 @@ Values!
 Where do we want them?
 In our Pony programs!
 Say no more
-Every programming language has literals to encode values of certain types, and so does Pony.
-In Pony you can express booleans, numeric types, characters, strings and arrays as literals.
-Bool型 There is true, there is false. That&amp;rsquo;s it.
-数值型 Numeric literals can be used to encode any signed or unsigned integer or floating point number.</description>
+每一种编程语言都会有字面量对数据的类型进行描述，Pony也不例外。
+Pony表达式中常用的字面量有：布尔、数值、字符、字符串、数组。
+Bool型 布尔类型有两个可选值：true 和 false。
+数字型 数字型字面量包括：有符号整数、无符号整数和浮点数。
+在大多数情况下，Pony可以从上下文中推导出具体的数据类型（这包括，分配给字段或局部变量或作为方法/行为调用的参数）。
+可以使用以下一种数字类型的构造函数来帮助编译器确定字面量的具体类型：
+ U8, U16, U32, U64, U128, USize, ULong I8, I16, I32, I64, I128, ISize, ILong F32, F64  let my_explicit_unsigned: U32 = 42_000 let my_constructor_unsigned = U8(1) let my_constructor_float = F64(1.234) 整数可以以十进制，十六进制或二进制形式给出：
+let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	//十六进制 let my_binary_int: I32 = 0b10000000000	//二进制 浮点文字以标准浮点或科学计数法表示：</description>
+    </item>
+    
+    <item>
+      <title>异常处理（Errors）</title>
+      <link>https://damon-kwok.github.io/pony-tutorial/expressions/errors.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://damon-kwok.github.io/pony-tutorial/expressions/errors.html</guid>
+      <description>Pony doesn&amp;rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C++ et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&amp;rsquo;s take a look at how you work with Pony&amp;rsquo;s error and then how it differs from the exceptions you might be used to.</description>
     </item>
     
     <item>
@@ -86,8 +110,13 @@ if None is None then // TRUE! // There is only 1 None so the identity is the sam
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/control-structures.html</guid>
-      <description>To do real work in a program you have to be able to make decisions, iterate through collections of items and perform actions repeatedly. For this, you need control structures. Pony has control structures that will be familiar to programmers who have used most languages, such as if, while and for, but in Pony, they work slightly differently.
-Conditionals The simplest control structure is the good old if. It allows you to perform some action only when a condition is true.</description>
+      <description>在程序开发过程中，你需要能够对条件做出判断，对集合进行遍历，或者重复执行一些逻辑。因此，流程控制必不可少。Pony具有你在其他语言中所熟悉的流程控制控制，例如if，while和for，但是在Pony中，它们的工作方式略有不同。
+条件判断（Conditionals） if是最简单的流程控制控制。它仅在条件为真时才允许您执行某些操作。在Pony中的用法：
+if a &amp;gt; b then env.out.print(&amp;quot;a is bigger&amp;quot;) end 可以像在C语言中那样使用整数和指针作为条件吗？ 不行。在Pony中，if条件必须是布尔类型，即条件的返回值值始终为true或false。如果要判断数字a是否不为0，则需要明确的使用a！= 0。这个限制让Pony程序避免了潜在的类型错误。
+需要在条件失败时的执行一些逻辑，只需添加一个else：
+if a &amp;gt; b then env.out.print(&amp;quot;a is bigger&amp;quot;) else env.out.print(&amp;quot;a is not bigger&amp;quot;) end 通常，您想要检测和处理多种条件，可以嵌套if语句，但这有点丑陋：
+if a == b then env.out.print(&amp;quot;they are the same&amp;quot;) else if a &amp;gt; b then env.out.print(&amp;quot;a is bigger&amp;quot;) else env.out.print(&amp;quot;b bigger&amp;quot;) end end 作为替代方案，Pony提供了结合了else和if的elseif关键字。这与其他语言中else if相同，并且每个if可以有任意数量的elseif：
+if a == b then env.out.print(&amp;quot;they are the same&amp;quot;) elseif a &amp;gt; b then env.</description>
     </item>
     
     <item>
@@ -96,8 +125,14 @@ Conditionals The simplest control structure is the good old if. It allows you to
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/arithmetic.html</guid>
-      <description>Arithmetic is about the stuff you learn to do with numbers in primary school: Addition, Subtraction, Multiplication, Division and so on. Piece of cake. We all know that stuff. We nonetheless want to spend a whole section on this topic, because when it comes to computers the devil is in the details.
-As introduced in Primitives numeric types in Pony are represented as a special kind of primitive that maps to machine words.</description>
+      <description>算术运算就是你在小学中学到的与数字有关的概念：加法，减法，乘法，除法等。小菜一碟。人人都知道这个东西。尽管如此，还是希望花点时间阅读下这一节教程，因为牵扯到计算机，魔鬼总是隐藏在细节中。
+在基元类章节中介绍过，Pony中的数字类型是一种映射到机器码的特殊原语。整数类型和浮点类型都支持一组丰富的算术运算和位运算。中缀运算符，在数字基元类型上作为普通函数实现。
+Pony语言专注于两个目标，性能和安全性。这两个目标有时会发生冲突。对于整数和浮点数的算术尤其如此。为了确保代码安全，应在每个可能发生计算操的作上检查溢出，被零除和其他错误情况。 Pony尝试在编译时强制执行尽可能多的安全性检查，但是对算术运算的检查只能在运行时进行。另一方面，从代码的性能角度考虑，应尽快的执行整数算术运算，并在尽可能少的CPU周期内执行完毕。检查溢出是昂贵的，导致溢出的简单危险算术是廉价的。
+Pony提供了不同的算术运算方式，使程序员可以自由选择最适合他们的操作：安全但较慢的操作或不太安全但快速的操作，因为性能对于某些应用场景至关重要。
+整数（Integers） 默认的算术运算符（Ponys default Arithmetic） 在处理整数的+, -, *, /算术运算上，Pony使用了一些技巧，试图平衡对性能和正确性的需求。所有默认的算术运算都不会暴露任何未定义的行为或错误条件。这意味着它可以处理上溢/下溢和零除的情况。上溢/下溢使用对带符号整数的补全来适当地环绕语义来处理。在这方面，我们得到如下行为：
+// unsigned wrap-around on overflow U32.max_value() + 1 == 0 // signed wrap-around on overflow/underflow I32.min_value() - 1 == I32.max_value() 除零是一种特殊情况，它会影响除法运算符/和取余%运算符。在数学中，零除是不确定的。为了避免将除法定义为部分除法，在除数为零时引发错误或在这种情况下引入未定义的行为，当除数为0时，将 normal 除法定义为0。如果不小心使用，可能会导致无提示错误。选择部分和校验的算术以除以零。
+与Unsafe Arithmetic 相比，默认算法具有一点点运行时开销，因为它与unsafe变体不同，它会检测并处理溢出和除零的情况。
+    Operator Method Description     + add() wrap around on over-/underflow   - sub() wrap around on over-/underflow   * mul() wrap around on over-/underflow   / div() x / 0 = 0   % rem() x % 0 = 0   %% mod() x %% 0 = 0   - neg() wrap around on over-/underflow   &amp;gt;&amp;gt; shr() filled with zeros, so x &amp;gt;&amp;gt; 1 == x/2 is true   &amp;lt;&amp;lt; shl() filled with zeros, so x &amp;lt;&amp;lt; 1 == x*2 is true     非安全的算术运算符（Unsafe Arithmetic） 不安全的整数算术接近于C语言中的整数算术所期望的结果。不做任何检查， raw speed ，上溢，下溢或被零除的可能性。像在C中一样，上溢，下溢和被零除的情况是不确定的。在这些情况下，请勿依赖结果。它可以是任何东西，并且高度特定于平台。被零除甚至可能会用SIGFPE使程序崩溃。我们的建议是仅在确保可以排除这些情况时才使用这些运算符。</description>
     </item>
     
     <item>
@@ -116,18 +151,13 @@ Apply Many Pony classes have a function called apply which performs whatever act
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/ops.html</guid>
-      <description>中缀运算符 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
-1 + 2 a &amp;lt; b Pony has pretty much the same set of infix operators as other languages.
-Operator aliasing Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument.</description>
-    </item>
-    
-    <item>
-      <title>错误（Errors）</title>
-      <link>https://damon-kwok.github.io/pony-tutorial/expressions/errors.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://damon-kwok.github.io/pony-tutorial/expressions/errors.html</guid>
-      <description>Pony doesn&amp;rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C++ et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&amp;rsquo;s take a look at how you work with Pony&amp;rsquo;s error and then how it differs from the exceptions you might be used to.</description>
+      <description>中缀运算符（Infix Operators） 中缀运算符需要两个操作数，位于操作数之间。算术和比较运算符是最常见的中缀运算符：
+1 + 2 a &amp;lt; b Pony的中缀运算符集和其他语言基本一致。
+运算符别名（Operator aliasing） Pony中的大多数中缀运算符都是函数的别名。左边的操作数是调用函数的接收器，右边的操作数作为参数传递。例如，下面的两个表达式是等效的：
+x + y x.add(y) +不是只能用于特性类型的特殊符号。任何类型都可以提供自己的add函数，然后可以根据需要对该类型使用+。
+在定义自己的add函数时，对参数类型或返回类型没有限制。 +的右侧必须与参数类型匹配，并且+表达式将具有add函数返回的类型。
+下面的代码是自定义+运算符的完整示例：
+// Define a suitable type class Pair var _x: U32 = 0 var _y: U32 = 0 new create(x: U32, y: U32) =&amp;gt; _x = x _y = y // Define a + function fun add(other: Pair): Pair =&amp;gt; Pair(_x + other._x, _y + other._y) // Now let&#39;s use it class Foo fun foo() =&amp;gt; var x = Pair(1, 2) var y = Pair(3, 4) var z = x + y 使用类型联合体或f界多态性可以在某种程度上重载中缀运算符，但这不在本教程的讨论范围之内。有关更多信息，请参考Pony标准库。</description>
     </item>
     
   </channel>

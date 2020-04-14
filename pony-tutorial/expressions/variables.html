@@ -46,23 +46,56 @@
     
 
     <meta property="og:title" content="变量（Variables）" />
-<meta property="og:description" content="Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
-局部变量 Local variables in Pony work very much as they do in other languages, allowing you to store temporary values while you perform calculations. Local variables live within a chunk of code (they are local to that chunk) and are created every time that code chunk executes and disposed of when it completes." />
+<meta property="og:description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
+局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
+定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+下面示例中x，y和z定义方式是等价的。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
+变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
+var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/variables.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-13T18:18:28+08:00" />
 <meta itemprop="name" content="变量（Variables）">
-<meta itemprop="description" content="Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
-局部变量 Local variables in Pony work very much as they do in other languages, allowing you to store temporary values while you perform calculations. Local variables live within a chunk of code (they are local to that chunk) and are created every time that code chunk executes and disposed of when it completes.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1400">
+<meta itemprop="description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
+局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
+定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+下面示例中x，y和z定义方式是等价的。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
+变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
+var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。">
+<meta itemprop="dateModified" content="2020-04-13T18:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="449">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="变量（Variables）"/>
-<meta name="twitter:description" content="Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.
-局部变量 Local variables in Pony work very much as they do in other languages, allowing you to store temporary values while you perform calculations. Local variables live within a chunk of code (they are local to that chunk) and are created every time that code chunk executes and disposed of when it completes."/>
+<meta name="twitter:description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
+局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
+定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+下面示例中x，y和z定义方式是等价的。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
+变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
+var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。"/>
 
   </head>
 
@@ -250,7 +283,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              错误（Errors）
+              异常处理（Errors）
             </a>
           </li>
           <li class="f6 fw4">
@@ -606,7 +639,7 @@
     <li><a href="#局部变量">局部变量</a></li>
     <li><a href="#var和let">var和let</a></li>
     <li><a href="#字段">字段</a></li>
-    <li><a href="#内嵌字段embedded-fields">内嵌字段（Embedded Fields）</a></li>
+    <li><a href="#embedded-fields">Embedded Fields</a></li>
     <li><a href="#全局变量">全局变量</a></li>
     <li><a href="#隐藏shadowing">隐藏（Shadowing）</a></li>
   </ul>
@@ -629,60 +662,82 @@
             <h1 class="f1 athelas mb1">变量（Variables）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Like most other programming languages Pony allows you to store data in variables. There are a few different kinds of variables which have different lifetimes and are used for slightly different purposes.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。</p>
 <!-- raw HTML omitted -->
 <h2 id="局部变量">局部变量</h2>
-<p>Local variables in Pony work very much as they do in other languages, allowing you to store temporary values while you perform calculations. Local variables live within a chunk of code (they are <em>local</em> to that chunk) and are created every time that code chunk executes and disposed of when it completes.</p>
-<p>To define a local variable the <code>var</code> keyword is used (<code>let</code> can also be used, but we&rsquo;ll get to that later). Right after the <code>var</code> comes the variable&rsquo;s name, and then you can (optionally) put a <code>:</code> followed by the variable&rsquo;s type. For example:</p>
+<!-- raw HTML omitted -->
+<p>Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 <em>local</em> ），并在每次进入代码块时自动创建，并在代码块结束时销毁。</p>
+<!-- raw HTML omitted -->
+<p>定义局部变量，可以使用关键字<code>var</code>（也可以使用<code>let</code>，但是我们稍后再讲）。在<code>var</code>后面紧跟着的时变量的名称，变量名后面加上一个<code>：</code>可以设置（可选）变量的类型。例如：</p>
 <pre><code class="language-pony" data-lang="pony">var x: String = &quot;Hello&quot;
-</code></pre><p>Here, we&rsquo;re assigning the <strong>string literal</strong> <code>&quot;Hello&quot;</code> to <code>x</code>.</p>
-<p>You don&rsquo;t have to give a value to the variable when you define it: you can assign one later if you prefer. If you try to read the value from a variable before you&rsquo;ve assigned one, the compiler will complain instead of allowing the dreaded <em>uninitialised variable</em> bug.</p>
-<p>Every variable has a type, but you don&rsquo;t have to specify it in the declaration if you provide an initial value. The compiler will automatically use the type of the initial value of the variable.</p>
-<p>The following definitions of <code>x</code>, <code>y</code> and <code>z</code> are all effectively identical.</p>
+var y = &quot;Hello&quot;
+</code></pre><!-- raw HTML omitted -->
+<p>上面示例中，创建了一个字符串类型的变量<code>x</code>，并赋值为<code>&quot;Hello&quot;</code>。</p>
+<!-- raw HTML omitted -->
+<p>定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： <em>uninitialized variable</em> 。</p>
+<!-- raw HTML omitted -->
+<p>每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。</p>
+<!-- raw HTML omitted -->
+<p>下面示例中x，y和z定义方式是等价的。</p>
 <pre><code class="language-pony" data-lang="pony">var x: String = &quot;Hello&quot;
 
 var y = &quot;Hello&quot;
 
 var z: String
 z = &quot;Hello&quot;
-</code></pre><p><strong>Can I miss out both the type and initial value for a variable?</strong> No. The compiler will complain that it can&rsquo;t figure out a type for that variable.</p>
-<p>All local variable names start with a lowercase letter. If you want to you can end them with a <em>prime</em> <code>'</code> (or more than one) which is useful when you need a second variable with almost the same meaning as the first. For example, you might have one variable called <code>time</code> and another called <code>time'</code>.</p>
-<p>The chunk of code that a variable lives in is known as its <strong>scope</strong>. Exactly what its scope is depends on where it is defined. For example, the scope of a variable defined within the <code>then</code> expression of an <code>if</code> statement is that <code>then</code> expression. We haven&rsquo;t looked at <code>if</code> statements yet, but they&rsquo;re very similar to every other language.</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>我可以同时省略变量的类型和初始值吗？</strong> 不行。这样的话编译器无法确定变量的类型。</p>
+<!-- raw HTML omitted -->
+<p>所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号<code>'</code>结尾，当您规避变量重名问题时，会很有用。例如，有一个名为<code>time</code>的变量，另一个变量名可以用<code>time'</code>。</p>
+<!-- raw HTML omitted -->
+<p>变量所在的代码块称为 <strong>作用域（scope）</strong> 。作用域范围取决于它的定义位置。例如，在<code>if</code>语句的<code>then</code>表达式中定义的变量的作用域就是该<code>then</code>表达式。虽然我们还没有讲到<code>if</code>语句，不过它与其他种语言中的用法是相似的。</p>
 <pre><code class="language-pony" data-lang="pony">if a &gt; b then
   var x = &quot;a is bigger&quot;
   env.out.print(x)  // OK
 end
 
 env.out.print(x)  // Illegal
-</code></pre><p>Variables only exist from when they are defined until the end of the current scope. For our variable <code>x</code> this is the <code>end</code> at the end of the then expression: after that, it cannot be used.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>变量定义后仅在作用域结束前有效。对于变量<code>x</code>，它的有效范围是<code>then</code>表达式到结尾的的<code>end</code>之间：在那之后，就无法再使用它了。</p>
 <!-- raw HTML omitted -->
 <h2 id="var和let">var和let</h2>
-<p>Local variables are declared with either a <code>var</code> or a <code>let</code>. Using <code>var</code> means the variable can be assigned and reassigned as many times as you like. Using <code>let</code> means the variable can only be assigned once.</p>
+<!-- raw HTML omitted -->
+<p>局部变量用<code>var</code>或<code>let</code>声明。使用<code>var</code>表示这个变量可以反复赋值。使用<code>let</code>表示这个是常量只能赋值一次，无法被修改。</p>
 <pre><code class="language-pony" data-lang="pony">var x: U32 = 3
 let y: U32 = 4
 x = 5  // OK
 y = 6  // Error, y is let
-</code></pre><p>Using <code>let</code> instead of <code>var</code> also means the variable has to be assigned immediately.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>使用<code>let</code>时必须赋初值。</p>
 <pre><code class="language-pony" data-lang="pony">let x: U32 = 3 // Ok
 let y: U32 // Error, can't declare a let local without assigning to it
 y = 6 // Error, can't reassign to a let local
-</code></pre><p>Note that a variable having been declared with <code>let</code> only restricts reassignment, and does not influence the mutability of the object it references. This is the job of reference capabilities, explained later in this tutorial.</p>
-<p>You never have to declare variables as <code>let</code>, but if you know you&rsquo;re never going to change what a variable references then using <code>let</code> is a good way to catch errors. It can also serve as a useful comment, indicating what is referenced is not meant to be changed.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>注意，用<code>let</code>声明的变量只有自身的重新赋值受到限制，并且不影响其引用的对象的可变性。这是<code>引用权能</code>中的内容，本教程后面的章节将对此进行说明。</p>
+<!-- raw HTML omitted -->
+<p>变量不时必须要声明为<code>let</code>，但是如果您知道永远不会更改变量引用的内容，那么使用<code>let</code>是个好主义。这也时一种有用的类型注释，指示所引用的内容不能更改。</p>
 <!-- raw HTML omitted -->
 <h2 id="字段">字段</h2>
-<p>In Pony, fields are variables that live within objects. They work like fields in other object-oriented languages.</p>
-<p>Fields have the same lifetime as the object they&rsquo;re in, rather than being scoped. They are set up by the object constructor and disposed of along with the object.</p>
-<p>If the name of a field starts with <code>_</code>, it&rsquo;s <strong>private</strong>. That means only the type the field is in can have code that reads or writes that field. Otherwise, the field is <strong>public</strong> and can be read or written from anywhere.</p>
-<p>Just like local variables, fields can be <code>var</code> or <code>let</code>. Nevertheless, rules for field assignment differ a bit from variable assignment. No matter the type of the field (either <code>var</code> or <code>let</code>), either:</p>
-<ol>
-<li>an initial value has to be assigned in their definition or</li>
-<li>an initial value has to be assigned in the constructor method.</li>
-</ol>
-<p>In the example below, the initial value of the two fields of the class <code>Wombat</code> is assigned at the definition level:</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，字段是存在于对象中的变量。它们像其他面向对象语言中的字段一样工作。</p>
+<!-- raw HTML omitted -->
+<p>字段与它们所在的对象具有相同的生存期，而不是被限制范围。它们由对象构造函数设置，并与对象一起处理。</p>
+<!-- raw HTML omitted -->
+<p>如果字段名称以“ <em>”开头，则为__private</em>_。这意味着只有该字段所在的类型才能具有读取或写入该字段的代码。否则，该字段为__public__，可以从任何地方读取或写入。</p>
+<!-- raw HTML omitted -->
+<p>和局部变量一样，字段也可以用var或let定义。但是，字段分配的规则与变量分配有所不同。无论字段的类型（<code>var</code>还是<code>let</code>），都需要遵守下面的约定：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>1.必须在其定义中分配一个初始值（或第2条）
+2.必须在构造方法中分配一个初始值。</p>
+<!-- raw HTML omitted -->
+<p>在下面的示例中，类<code>Wombat</code>的两个字段在定义时分配了初始值：</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String = &quot;Fantastibat&quot;
   var _hunger_level: U32 = 0
-</code></pre><p>Alternatively, these fields could be assigned in the constructor method:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>也可以在构造函数中设置这些字段：</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U32
@@ -690,8 +745,10 @@ y = 6 // Error, can't reassign to a let local
   new create(hunger: U32) =&gt;
     name = &quot;Fantastibat&quot;
     _hunger_level = hunger
-</code></pre><p>If the assignment is not done at the definition level or in the constructor, an error is raised by the compiler. This is true for both <code>var</code> and <code>let</code> fields.</p>
-<p>Please note that the assignment of a value to a field has to be explicit. The below example raises an error when compiled, even when the field is of <code>var</code> type:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>如果在定义和在构造函数中都没有初始化字段，就会引发编译错误。对于<code>var</code>和<code>let</code>字段都是如此。</p>
+<!-- raw HTML omitted -->
+<p>请注意，必须将字段的值进行明确的初始化。下面示例尝试其他函数中初始化字段，在编译时会引发错误，即便该字段是<code>var</code>类型的也不行：</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U64
@@ -703,8 +760,10 @@ y = 6 // Error, can't reassign to a let local
 
   fun ref set_hunger_level(hunger_level: U64) =&gt;
     _hunger_level = hunger_level
-</code></pre><p>We will see later in the Methods section that a class can have several constructors. For now, just remember that if the assignment of a field is not done at the definition level, it has to be done in each constructor of the class the field belongs to.</p>
-<p>As for variables, using <code>var</code> means a field can be assigned and reassigned as many times as you like in the class. Using <code>let</code> means the field can only be assigned once.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>稍后在<code>方法</code>章节中，我们将看到一个类可以具有多个构造函数。现在，请记住，如果没有在定义时对字段做出初始化，就必须在该字段所属的类的每个构造函数中进行赋值。</p>
+<!-- raw HTML omitted -->
+<p>使用<code>var</code>声明的字段可以多次赋值。使用<code>let</code>声明的字段只能被初始化一次。</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U64
@@ -718,18 +777,25 @@ y = 6 // Error, can't reassign to a let local
 
   fun ref set_name(name' : String) =&gt;
     name = name' // Error, can't assign to a let definition more than once
-</code></pre><p><strong>Can field declarations appear after methods?</strong> No. If <code>var</code> or <code>let</code> keywords appear after a <code>fun</code> or <code>be</code> declaration, they will be treated as variables within the method body rather than fields within the type declaration. As a result, fields must appear prior to methods in the type declaration</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>可以在类成员函数中声明字段吗？</strong> 当然不行。如果<code>var</code>或<code>let</code>关键字出现在<code>fun</code>或<code>be</code>声明之后，它们将被视为方法中的局部变量，而不是类型声明中的字段。字段必须出现在类型声明中的所有方法之前。</p>
+<h2 id="embedded-fields">Embedded Fields</h2>
 <!-- raw HTML omitted -->
-<h2 id="内嵌字段embedded-fields">内嵌字段（Embedded Fields）</h2>
 <p>Unlike local variables, some types of fields can be declared using <code>embed</code>. Specifically, only classes or structs can be embedded - interfaces, traits, primitives and numeric types cannot. A field declared using <code>embed</code> is similar to one declared using <code>let</code>, but at the implementation level, the memory for the embedded class is laid out directly within the outer class. Contrast this with <code>let</code> or <code>var</code>, where the implementation uses pointers to reference the field class. Embedded fields can be passed to other functions in exactly the same way as <code>let</code> or <code>var</code> fields. Embedded fields must be initialised from a constructor expression.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p><strong>Why would I use <code>embed</code>?</strong> <code>embed</code> avoids a pointer indirection when accessing a field and a separate memory allocation when creating that field. By default, it is advised to use <code>embed</code> if possible. However, since an embedded field is allocated alongside its parent object, exterior references to the field forbids garbage collection of the parent, which can result in higher memory usage if a field outlives its parent. Use <code>let</code> if this is a concern for you.</p>
 <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <h2 id="全局变量">全局变量</h2>
-<p>Some programming languages have <strong>global variables</strong> that can be accessed from anywhere in the code. What a bad idea! Pony doesn&rsquo;t have global variables at all.</p>
+<!-- raw HTML omitted -->
+<p>很多编程语言都允许全局变量，可以从代码中的任何位置对其进行访问。这是个糟糕的做法！Pony中没有全局变量。</p>
 <!-- raw HTML omitted -->
 <h2 id="隐藏shadowing">隐藏（Shadowing）</h2>
-<p>Some programming languages let you declare a variable with the same name as an existing variable, and then there are rules about which one you get. This is called <em>shadowing</em>, and it&rsquo;s a source of bugs. If you accidentally shadow a variable in Pony, the compiler will complain.</p>
-<p>If you need a variable with <em>nearly</em> the same name, you can use a prime <code>'</code>.</p>
+<!-- raw HTML omitted -->
+<p>有些编程语言（类如Rust）允许你声明一个与现有变量同名的变量，替代旧的。这个方式还被美其名曰 <em>隐藏（shadowing）</em> ，这容易引发bug，Pony中不允许这么做。如果你不小心在Pony中隐藏了变量，编译时会报错。</p>
+<!-- raw HTML omitted -->
+<p>如果您需要一个 <em>同名变量</em> ，可以用前面提到的方式：使用<code>'</code>符号。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

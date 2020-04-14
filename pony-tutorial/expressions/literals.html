@@ -51,25 +51,33 @@ Values!
 Where do we want them?
 In our Pony programs!
 Say no more
-Every programming language has literals to encode values of certain types, and so does Pony.
-In Pony you can express booleans, numeric types, characters, strings and arrays as literals.
-Bool型 There is true, there is false. That&rsquo;s it.
-数值型 Numeric literals can be used to encode any signed or unsigned integer or floating point number." />
+每一种编程语言都会有字面量对数据的类型进行描述，Pony也不例外。
+Pony表达式中常用的字面量有：布尔、数值、字符、字符串、数组。
+Bool型 布尔类型有两个可选值：true 和 false。
+数字型 数字型字面量包括：有符号整数、无符号整数和浮点数。
+在大多数情况下，Pony可以从上下文中推导出具体的数据类型（这包括，分配给字段或局部变量或作为方法/行为调用的参数）。
+可以使用以下一种数字类型的构造函数来帮助编译器确定字面量的具体类型：
+ U8, U16, U32, U64, U128, USize, ULong I8, I16, I32, I64, I128, ISize, ILong F32, F64  let my_explicit_unsigned: U32 = 42_000 let my_constructor_unsigned = U8(1) let my_constructor_float = F64(1.234) 整数可以以十进制，十六进制或二进制形式给出：
+let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	//十六进制 let my_binary_int: I32 = 0b10000000000	//二进制 浮点文字以标准浮点或科学计数法表示：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/literals.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-13T18:18:28+08:00" />
 <meta itemprop="name" content="字面量（Literals）">
 <meta itemprop="description" content="What do we want?
 Values!
 Where do we want them?
 In our Pony programs!
 Say no more
-Every programming language has literals to encode values of certain types, and so does Pony.
-In Pony you can express booleans, numeric types, characters, strings and arrays as literals.
-Bool型 There is true, there is false. That&rsquo;s it.
-数值型 Numeric literals can be used to encode any signed or unsigned integer or floating point number.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1132">
+每一种编程语言都会有字面量对数据的类型进行描述，Pony也不例外。
+Pony表达式中常用的字面量有：布尔、数值、字符、字符串、数组。
+Bool型 布尔类型有两个可选值：true 和 false。
+数字型 数字型字面量包括：有符号整数、无符号整数和浮点数。
+在大多数情况下，Pony可以从上下文中推导出具体的数据类型（这包括，分配给字段或局部变量或作为方法/行为调用的参数）。
+可以使用以下一种数字类型的构造函数来帮助编译器确定字面量的具体类型：
+ U8, U16, U32, U64, U128, USize, ULong I8, I16, I32, I64, I128, ISize, ILong F32, F64  let my_explicit_unsigned: U32 = 42_000 let my_constructor_unsigned = U8(1) let my_constructor_float = F64(1.234) 整数可以以十进制，十六进制或二进制形式给出：
+let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	//十六进制 let my_binary_int: I32 = 0b10000000000	//二进制 浮点文字以标准浮点或科学计数法表示：">
+<meta itemprop="dateModified" content="2020-04-13T18:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="494">
 
 
 
@@ -80,10 +88,14 @@ Values!
 Where do we want them?
 In our Pony programs!
 Say no more
-Every programming language has literals to encode values of certain types, and so does Pony.
-In Pony you can express booleans, numeric types, characters, strings and arrays as literals.
-Bool型 There is true, there is false. That&rsquo;s it.
-数值型 Numeric literals can be used to encode any signed or unsigned integer or floating point number."/>
+每一种编程语言都会有字面量对数据的类型进行描述，Pony也不例外。
+Pony表达式中常用的字面量有：布尔、数值、字符、字符串、数组。
+Bool型 布尔类型有两个可选值：true 和 false。
+数字型 数字型字面量包括：有符号整数、无符号整数和浮点数。
+在大多数情况下，Pony可以从上下文中推导出具体的数据类型（这包括，分配给字段或局部变量或作为方法/行为调用的参数）。
+可以使用以下一种数字类型的构造函数来帮助编译器确定字面量的具体类型：
+ U8, U16, U32, U64, U128, USize, ULong I8, I16, I32, I64, I128, ISize, ILong F32, F64  let my_explicit_unsigned: U32 = 42_000 let my_constructor_unsigned = U8(1) let my_constructor_float = F64(1.234) 整数可以以十进制，十六进制或二进制形式给出：
+let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	//十六进制 let my_binary_int: I32 = 0b10000000000	//二进制 浮点文字以标准浮点或科学计数法表示："/>
 
   </head>
 
@@ -271,7 +283,7 @@ Bool型 There is true, there is false. That&rsquo;s it.
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              错误（Errors）
+              异常处理（Errors）
             </a>
           </li>
           <li class="f6 fw4">
@@ -625,7 +637,7 @@ Bool型 There is true, there is false. That&rsquo;s it.
       <nav id="TableOfContents">
   <ul>
     <li><a href="#bool型">Bool型</a></li>
-    <li><a href="#数值型">数值型</a></li>
+    <li><a href="#数字型">数字型</a></li>
     <li><a href="#字符型">字符型</a>
       <ul>
         <li><a href="#多重字符multibyte-character-literals">多重字符（Multibyte Character literals）</a></li>
@@ -635,12 +647,12 @@ Bool型 There is true, there is false. That&rsquo;s it.
       <ul>
         <li><a href="#字符串和编码">字符串和编码</a></li>
         <li><a href="#多行字符串triple-quoted-strings">多行字符串（Triple quoted Strings）</a></li>
-        <li><a href="#string-literal-instances">String Literal Instances</a></li>
+        <li><a href="#字符串示例">字符串示例：</a></li>
       </ul>
     </li>
     <li><a href="#数组array-literals">数组（Array Literals）</a>
       <ul>
-        <li><a href="#接口type-inference">接口（Type inference）</a></li>
+        <li><a href="#类型接口type-inference">类型接口（Type inference）</a></li>
         <li><a href="#as表达式">as表达式</a></li>
         <li><a href="#数组和引用">数组和引用</a></li>
       </ul>
@@ -670,16 +682,22 @@ Bool型 There is true, there is false. That&rsquo;s it.
 <p><em><strong>Where do we want them?</strong></em></p>
 <p>In our Pony programs!</p>
 <p><strong>Say no more</strong></p>
-<p>Every programming language has literals to encode values of certain types, and so does Pony.</p>
-<p>In Pony you can express booleans, numeric types, characters, strings and arrays as literals.</p>
+<!-- raw HTML omitted -->
+<p>每一种编程语言都会有字面量对数据的类型进行描述，Pony也不例外。</p>
+<!-- raw HTML omitted -->
+<p>Pony表达式中常用的字面量有：布尔、数值、字符、字符串、数组。</p>
 <!-- raw HTML omitted -->
 <h2 id="bool型">Bool型</h2>
-<p>There is <code>true</code>, there is <code>false</code>. That&rsquo;s it.</p>
 <!-- raw HTML omitted -->
-<h2 id="数值型">数值型</h2>
-<p>Numeric literals can be used to encode any signed or unsigned integer or floating point number.</p>
-<p>In most cases Pony is able to infer the concrete type of the literal from the context where it is used (e.g. assignment to a field or local variable or as argument to a method/behaviour call).</p>
-<p>It is possible to help the compiler determine the concrete type of the literal using a constructor of one of the numeric types:</p>
+<p>布尔类型有两个可选值：<code>true</code> 和 <code>false</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="数字型">数字型</h2>
+<!-- raw HTML omitted -->
+<p>数字型字面量包括：有符号整数、无符号整数和浮点数。</p>
+<!-- raw HTML omitted -->
+<p>在大多数情况下，Pony可以从上下文中推导出具体的数据类型（这包括，分配给字段或局部变量或作为方法/行为调用的参数）。</p>
+<!-- raw HTML omitted -->
+<p>可以使用以下一种数字类型的构造函数来帮助编译器确定字面量的具体类型：</p>
 <ul>
 <li>U8, U16, U32, U64, U128, USize, ULong</li>
 <li>I8, I16, I32, I64, I128, ISize, ILong</li>
@@ -688,39 +706,47 @@ Bool型 There is true, there is false. That&rsquo;s it.
 <pre><code class="language-pony" data-lang="pony">let my_explicit_unsigned: U32 = 42_000
 let my_constructor_unsigned = U8(1)
 let my_constructor_float = F64(1.234)
-</code></pre><p>Integer literals can be given as decimal, hexadecimal or binary:</p>
-<pre><code class="language-pony" data-lang="pony">let my_decimal_int: I32 = 1024
-let my_hexadecimal_int: I32 = 0x400
-let my_binary_int: I32 = 0b10000000000
-</code></pre><p>Floating Point literals are expressed as standard floating point or scientific notation:</p>
-<pre><code class="language-pony" data-lang="pony">let my_double_precision_float: F64 = 0.009999999776482582092285156250
-let my_scientific_float: F32 = 42.12e-4
+</code></pre><!-- raw HTML omitted -->
+<p>整数可以以十进制，十六进制或二进制形式给出：</p>
+<pre><code class="language-pony" data-lang="pony">let my_decimal_int: I32 = 1024 			//十进制
+let my_hexadecimal_int: I32 = 0x400		//十六进制
+let my_binary_int: I32 = 0b10000000000	//二进制
+</code></pre><!-- raw HTML omitted -->
+<p>浮点文字以标准浮点或科学计数法表示：</p>
+<pre><code class="language-pony" data-lang="pony">let my_double_precision_float: F64 = 0.009999999776482582092285156250 //标准浮点数
+let my_scientific_float: F32 = 42.12e-4 //科学计数法
 </code></pre><!-- raw HTML omitted -->
 <h2 id="字符型">字符型</h2>
-<p>Character literals are enclosed with single quotes (<code>'</code>).</p>
-<p>Character literals, unlike String literals, encode to a single numeric value. Usually this is a single byte, a <code>U8</code>. But they can be coerced to any integer type:</p>
+<!-- raw HTML omitted -->
+<p>字符使用单引号<code>'</code>包裹。</p>
+<!-- raw HTML omitted -->
+<p>字符和字符串有很大区别，它表示的是一个有符号数字。一个字节即是一个<code>U8</code>。但是它们可以被转换为任意整数类型：</p>
 <pre><code class="language-pony" data-lang="pony">let big_a: U8 = 'A'                 // 65
 let hex_escaped_big_a: U8 = '\x41'  // 65
 let newline: U32 = '\n'             // 10
-</code></pre><p>The following escape sequences are supported:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>下面是Pony支持的字符转义：</p>
 <ul>
 <li><code>\x4F</code> hex escape sequence with 2 hex digits (up to 0xFF)</li>
 <li><code>\a</code>, <code>\b</code>, <code>\e</code>, <code>\f</code>, <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\v</code>, <code>\\</code>, <code>\0</code>, <code>\'</code></li>
 </ul>
 <!-- raw HTML omitted -->
 <h3 id="多重字符multibyte-character-literals">多重字符（Multibyte Character literals）</h3>
-<p>It is possible to have character literals that contain multiple characters. The resulting integer value is constructed byte by byte with each character representing a single byte in the resulting integer, the last character being the least significant byte:</p>
+<!-- raw HTML omitted -->
+<p>Pony的字符字面量可以包含多个字符。生成的整数值是逐字节构造的，每个字符代表生成的整数中的单个字节，最后一个字符是最低有效字节：</p>
 <pre><code class="language-pony" data-lang="pony">let multiByte: U64 = 'ABCD' // 0x41424344
 </code></pre><!-- raw HTML omitted -->
 <h2 id="字符串">字符串</h2>
-<p>String literals are enclosed with double quotes <code>&quot;</code> or triple-quoted <code>&quot;&quot;&quot;</code>. They can contain any kind of bytes and various escape sequences:</p>
+<!-- raw HTML omitted -->
+<p>字符串使用<code>&quot;</code>或<code>&quot;&quot;&quot;</code>包裹。可以包含任意类型的字节或转义字符：</p>
 <ul>
 <li><code>\u00FE</code> unicode escape sequence with 4 hex digits encoding one code point</li>
 <li><code>\u10FFFE</code> unicode escape sequence with 6 hex digits encoding one code point</li>
 <li><code>\x4F</code> hex escape sequence for unicode letters with 2 hex digits (up to 0xFF)</li>
 <li><code>\a</code>, <code>\b</code>, <code>\e</code>, <code>\f</code>, <code>\n</code>, <code>\r</code>, <code>\t</code>, <code>\v</code>, <code>\\</code>, <code>\0</code>, <code>\&quot;</code></li>
 </ul>
-<p>Each escape sequence encodes a full character, not byte.</p>
+<!-- raw HTML omitted -->
+<p>每个转义序列编码一个完整字符，而不是字节。</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;format&quot;
 
 actor Main
@@ -735,7 +761,8 @@ actor Main
       env.out.print(Format.int[U8](b, FormatHex))
     end
 
-</code></pre><p>All string literals support multiline strings:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>Pony字符串支持多行定义：</p>
 <pre><code class="language-pony" data-lang="pony">
 let stacked_ponies = &quot;
 🐎
@@ -744,13 +771,17 @@ let stacked_ponies = &quot;
 &quot;
 </code></pre><!-- raw HTML omitted -->
 <h3 id="字符串和编码">字符串和编码</h3>
-<p>String Literals contain the bytes that were read from their source code file. Their actual value thus depends on the encoding of their source.</p>
-<p>Consider the following example:</p>
+<!-- raw HTML omitted -->
+<p>字符串的文字如果从其源代码文件中定义。那么，它们的实际值取决于其源码文件的编码格式。</p>
+<!-- raw HTML omitted -->
+<p>请看下面的示例：</p>
 <pre><code class="language-pony" data-lang="pony">let u_umlaut = &quot;ü&quot;
-</code></pre><p>If the file containing this code is encoded as <em>UTF-8</em> the byte-value of <code>u_umlaut</code> will be: <code>\xc3\xbc</code>. If the file is encoded with <em>ISO-8559-1</em> (Latin-1) its value will be <code>\xfc</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>如果文件编码格式是 <em>UTF-8</em> 那么<code>u_umlaut</code> 的值是: <code>\xc3\xbc</code>。如果文件编码格式是<em>ISO-8559-1</em> (Latin-1) 它的值就是 <code>\xfc</code>。</p>
 <!-- raw HTML omitted -->
 <h3 id="多行字符串triple-quoted-strings">多行字符串（Triple quoted Strings）</h3>
-<p>For embedding multi-line text in string literals, there are triple quoted strings.</p>
+<!-- raw HTML omitted -->
+<p>要在字符串中嵌入多行文本，请将字符串使用三引号引起来的。</p>
 <pre><code class="language-pony" data-lang="pony">let triple_quoted_string_docs =
   &quot;&quot;&quot;
   Triple quoted strings are the way to go for long multiline text.
@@ -766,8 +797,10 @@ let stacked_ponies = &quot;
     removed as well. The first line will be completely removed if it only
     contains whitespace. e.g. this strings first character is `T` not `\n`.
   &quot;&quot;&quot;
-</code></pre><h3 id="string-literal-instances">String Literal Instances</h3>
-<p>When a single string literal is used several times in your Pony program, all of them will be converted to a single common instance. This means they will always be equal based on identity.</p>
+</code></pre><!-- raw HTML omitted -->
+<h3 id="字符串示例">字符串示例：</h3>
+<!-- raw HTML omitted -->
+<p>如果您的Pony程序中有多出使用相同的单字符字符串时，所有这些字符串都将转换为同一个实例。它们始终相等。</p>
 <pre><code class="language-pony" data-lang="pony">let pony = &quot;🐎&quot;
 let another_pony = &quot;🐎&quot;
 if pony is another_pony then
@@ -775,51 +808,63 @@ if pony is another_pony then
 end
 </code></pre><!-- raw HTML omitted -->
 <h2 id="数组array-literals">数组（Array Literals）</h2>
-<p>Array literals are enclosed by square brackets. Array literal elements can be any kind of expressions. They are separated by semicolon or newline:</p>
+<!-- raw HTML omitted -->
+<p>数组的值需要用方括号括起来。数组的元素可以是任何类型的表达式。元素之间用分号<code>;</code>或换行符分隔：</p>
 <pre><code class="language-pony" data-lang="pony">let my_literal_array =
   [
     &quot;first&quot;; &quot;second&quot;
     &quot;third one on a new line&quot;
   ]
 </code></pre><!-- raw HTML omitted -->
-<h3 id="接口type-inference">接口（Type inference）</h3>
-<p>If the type of the array is not specified, the resulting type of the literal array expression is <code>Array[T] ref</code> where <code>T</code> (the type of the elements) is inferred as the union of all the element types:</p>
+<h3 id="类型接口type-inference">类型接口（Type inference）</h3>
+<!-- raw HTML omitted -->
+<p>如果没有指定数组的类型，数组表达式的返回类型默认为<code>Array [T] ref</code>，并且，将T（元素的类型）推导为所有元素类型的并集：</p>
 <pre><code class="language-pony" data-lang="pony">let my_heterogenous_array =
   [
     U64(42)
     &quot;42&quot;
     U64.min_value()
   ]
-</code></pre><p>In the above example the resulting array type will be <code>Array[(U64|String)] ref</code> because the array contains <code>String</code> and <code>U64</code> elements.</p>
-<p>If the variable or call argument the array literal is assigned to has a type, the literal is coerced to that type:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在上面的示例中，由于数组包含String和U64元素，因此生成的数组类型为<code>Array [(U64 | String)] ref</code>。</p>
+<!-- raw HTML omitted -->
+<p>如果将分配给数组的元素是其他类型，Pony将会强制转换为数组的定义类型（译者注：不用担心，如果传入的类型无法被转换编译时就会报错）：</p>
 <pre><code class="language-pony" data-lang="pony">let my_stringable_array: Array[Stringable] ref =
   [
     U64(0xA)
     &quot;0xA&quot;
   ]
-</code></pre><p>Here <code>my_stringable_array</code> is coerced to <code>Array[Stringable] ref</code>. This works because <code>Stringable</code> is a trait that both <code>String</code> and <code>U64</code> implement.</p>
-<p>It is also possible to return an array with a different <a href="/reference-capabilities.html">Reference Capability</a> than <code>ref</code> just by specifying it on the type:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这里，<code>my_stringable_array</code>被强制转换为<code>Array [Stringable] ref</code>。之所以能编译通过，是因为String和U64都实现了<code>Stringable</code>特征。</p>
+<!-- raw HTML omitted -->
+<p>通过在数组上指定类型说明符<code>val</code>，可以与[ref]不同的<a href="/reference-capabilities.html">引用权能（Reference Capability）</a>的数组：</p>
 <pre><code class="language-pony" data-lang="pony">let my_immutable_array: Array[Stringable] val =
   [
     U64(0xBEEF)
     &quot;0xBEEF&quot;
   ]
-</code></pre><p>This way array literals can be used for creating arrays of any <a href="/reference-capabilities.html">Reference Capability</a>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>你可以创建任何<a href="/reference-capabilities.html">引用权能（Reference Capability）</a>的数组类型。</p>
 <!-- raw HTML omitted -->
 <h3 id="as表达式">as表达式</h3>
-<p>It is also possible to give the literal a hint on what kind of type it should coerce the array elements to using an <code>as</code> Expression. The expression with the desired array element type needs to be added right after the opening square bracket, delimited by a colon:</p>
+<!-- raw HTML omitted -->
+<p>也有可能使用<code>as</code>表达式来提示数组元素的类型。提示表达式需要在方括号后添加，还要加上冒号：</p>
 <pre><code class="language-pony" data-lang="pony">let my_as_array =
   [ as Stringable:
     U64(0xFFEF)
     &quot;0xFFEF&quot;
     U64(1 + 1)
   ]
-</code></pre><p>This array literal is coerced to be an <code>Array[Stringable] ref</code> according to the <code>as</code> expression.</p>
-<p>If a type is specified on the left-hand side, it needs to exactly match the type in the <code>as</code> expression.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这个as表达式，约束此数组类型为：<code>Array [Stringable] ref</code>。</p>
+<!-- raw HTML omitted -->
+<p>如果在左侧指定了类型，则需要数组元素与<code>as</code>表达式中的类型完全匹配。</p>
 <!-- raw HTML omitted -->
 <h3 id="数组和引用">数组和引用</h3>
-<p>Constructing an array with a literal creates new references to its elements. Thus, to be 100% technically correct, array literal elements are inferred to be the alias of the actual element type. If all elements are of type <code>T</code> the array literal will be inferred as <code>Array[T!] ref</code> that is as an array of aliases of the type <code>T</code>.</p>
-<p>It is thus necessary to use elements that can have more than one reference of the same type (e.g. types with <code>val</code> or <code>ref</code> capability) or use ephemeral types for other capabilities (as returned from <a href="/types/classes.html#constructors">constructors</a> or the <a href="/reference-capabilities/consume-and-destructive-read.html">consume expression</a>).</p>
+<!-- raw HTML omitted -->
+<p>用字面量构造一个数组会创建对其元素的新引用。因此，为了确保100%的正确性，会将数组元素推导为实际元素类型的别名。如果所有元素的类型均为T，则将数组的北行会被推导为<code>Array [T!] ref</code>，即类型别名为T的数组。</p>
+<!-- raw HTML omitted -->
+<p>要使用具有多种引用权能的数组（例如val和ref引用权能类型）可以参考下（<a href="/types/classes.html#constructors">构造函数</a>和<a href="/reference-capabilities/consume-and-destructive-read.html">所有权转让</a>章节）。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

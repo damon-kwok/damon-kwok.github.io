@@ -16,12 +16,12 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/getting-started/hello-world.html</guid>
-      <description>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&amp;quot;hello,world!&amp;ldquo;开始。首先n欻关键一个目录：helloworld：
-$ mkdir helloworld $ cd helloworld 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
+      <description>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&amp;quot;hello,world!&amp;ldquo;开始。首先创建一个目录：helloworld：
+$ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是是您的程序最终输出的名称！默认情况下，在编译程序时，生成的可执行二进制文件将与程序所在的目录具有相同的名称。您还可以在命令行上使用&amp;ndash;bin-name或-b选项设置名称。
+代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
+Does the name of the file matter? Not to the compiler, no. Pony doesn&amp;rsquo;t care about filenames other than that they end in .pony. But it might matter to you! By giving files good names, it can be easier to find the code you&amp;rsquo;re looking for later.
 文件中敲入下面的代码：
-actor Main new create(env: Env) =&amp;gt; env.out.print(&amp;quot;Hello, world!&amp;quot;) 编译程序 现在可以编译程序了：
-$ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld 运行程序 现在可以运行程序了：
-$ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。</description>
+actor Main new create(env: Env) =&amp;gt; env.</description>
     </item>
     
     <item>

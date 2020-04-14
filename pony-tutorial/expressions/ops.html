@@ -46,26 +46,38 @@
     
 
     <meta property="og:title" content="运算符（Operators）" />
-<meta property="og:description" content="中缀运算符 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
-1 &#43; 2 a &lt; b Pony has pretty much the same set of infix operators as other languages.
-Operator aliasing Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument." />
+<meta property="og:description" content="中缀运算符（Infix Operators） 中缀运算符需要两个操作数，位于操作数之间。算术和比较运算符是最常见的中缀运算符：
+1 &#43; 2 a &lt; b Pony的中缀运算符集和其他语言基本一致。
+运算符别名（Operator aliasing） Pony中的大多数中缀运算符都是函数的别名。左边的操作数是调用函数的接收器，右边的操作数作为参数传递。例如，下面的两个表达式是等效的：
+x &#43; y x.add(y) &#43;不是只能用于特性类型的特殊符号。任何类型都可以提供自己的add函数，然后可以根据需要对该类型使用&#43;。
+在定义自己的add函数时，对参数类型或返回类型没有限制。 &#43;的右侧必须与参数类型匹配，并且&#43;表达式将具有add函数返回的类型。
+下面的代码是自定义&#43;运算符的完整示例：
+// Define a suitable type class Pair var _x: U32 = 0 var _y: U32 = 0 new create(x: U32, y: U32) =&gt; _x = x _y = y // Define a &#43; function fun add(other: Pair): Pair =&gt; Pair(_x &#43; other._x, _y &#43; other._y) // Now let&#39;s use it class Foo fun foo() =&gt; var x = Pair(1, 2) var y = Pair(3, 4) var z = x &#43; y 使用类型联合体或f界多态性可以在某种程度上重载中缀运算符，但这不在本教程的讨论范围之内。有关更多信息，请参考Pony标准库。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/ops.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-13T18:18:28+08:00" />
 <meta itemprop="name" content="运算符（Operators）">
-<meta itemprop="description" content="中缀运算符 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
-1 &#43; 2 a &lt; b Pony has pretty much the same set of infix operators as other languages.
-Operator aliasing Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1052">
+<meta itemprop="description" content="中缀运算符（Infix Operators） 中缀运算符需要两个操作数，位于操作数之间。算术和比较运算符是最常见的中缀运算符：
+1 &#43; 2 a &lt; b Pony的中缀运算符集和其他语言基本一致。
+运算符别名（Operator aliasing） Pony中的大多数中缀运算符都是函数的别名。左边的操作数是调用函数的接收器，右边的操作数作为参数传递。例如，下面的两个表达式是等效的：
+x &#43; y x.add(y) &#43;不是只能用于特性类型的特殊符号。任何类型都可以提供自己的add函数，然后可以根据需要对该类型使用&#43;。
+在定义自己的add函数时，对参数类型或返回类型没有限制。 &#43;的右侧必须与参数类型匹配，并且&#43;表达式将具有add函数返回的类型。
+下面的代码是自定义&#43;运算符的完整示例：
+// Define a suitable type class Pair var _x: U32 = 0 var _y: U32 = 0 new create(x: U32, y: U32) =&gt; _x = x _y = y // Define a &#43; function fun add(other: Pair): Pair =&gt; Pair(_x &#43; other._x, _y &#43; other._y) // Now let&#39;s use it class Foo fun foo() =&gt; var x = Pair(1, 2) var y = Pair(3, 4) var z = x &#43; y 使用类型联合体或f界多态性可以在某种程度上重载中缀运算符，但这不在本教程的讨论范围之内。有关更多信息，请参考Pony标准库。">
+<meta itemprop="dateModified" content="2020-04-13T18:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="389">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="运算符（Operators）"/>
-<meta name="twitter:description" content="中缀运算符 Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:
-1 &#43; 2 a &lt; b Pony has pretty much the same set of infix operators as other languages.
-Operator aliasing Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument."/>
+<meta name="twitter:description" content="中缀运算符（Infix Operators） 中缀运算符需要两个操作数，位于操作数之间。算术和比较运算符是最常见的中缀运算符：
+1 &#43; 2 a &lt; b Pony的中缀运算符集和其他语言基本一致。
+运算符别名（Operator aliasing） Pony中的大多数中缀运算符都是函数的别名。左边的操作数是调用函数的接收器，右边的操作数作为参数传递。例如，下面的两个表达式是等效的：
+x &#43; y x.add(y) &#43;不是只能用于特性类型的特殊符号。任何类型都可以提供自己的add函数，然后可以根据需要对该类型使用&#43;。
+在定义自己的add函数时，对参数类型或返回类型没有限制。 &#43;的右侧必须与参数类型匹配，并且&#43;表达式将具有add函数返回的类型。
+下面的代码是自定义&#43;运算符的完整示例：
+// Define a suitable type class Pair var _x: U32 = 0 var _y: U32 = 0 new create(x: U32, y: U32) =&gt; _x = x _y = y // Define a &#43; function fun add(other: Pair): Pair =&gt; Pair(_x &#43; other._x, _y &#43; other._y) // Now let&#39;s use it class Foo fun foo() =&gt; var x = Pair(1, 2) var y = Pair(3, 4) var z = x &#43; y 使用类型联合体或f界多态性可以在某种程度上重载中缀运算符，但这不在本教程的讨论范围之内。有关更多信息，请参考Pony标准库。"/>
 
   </head>
 
@@ -253,7 +265,7 @@ Operator aliasing Most infix operators in Pony are actually aliases for function
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              错误（Errors）
+              异常处理（Errors）
             </a>
           </li>
           <li class="f6 fw4">
@@ -606,11 +618,11 @@ Operator aliasing Most infix operators in Pony are actually aliases for function
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#中缀运算符">中缀运算符</a></li>
-    <li><a href="#operator-aliasing">Operator aliasing</a></li>
-    <li><a href="#short-circuiting">Short circuiting</a></li>
-    <li><a href="#unary-operators">Unary operators</a></li>
-    <li><a href="#precedence">Precedence</a></li>
+    <li><a href="#中缀运算符infix-operators">中缀运算符（Infix Operators）</a></li>
+    <li><a href="#运算符别名operator-aliasing">运算符别名（Operator aliasing）</a></li>
+    <li><a href="#短路求值short-circuiting">短路求值（Short circuiting）</a></li>
+    <li><a href="#一元运算符unary-operators">一元运算符（Unary operators）</a></li>
+    <li><a href="#运算符优先级precedence">运算符优先级（Precedence）</a></li>
   </ul>
 </nav>
   </div>
@@ -632,18 +644,25 @@ Operator aliasing Most infix operators in Pony are actually aliases for function
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<h2 id="中缀运算符">中缀运算符</h2>
-<p>Infix operators take two operands and are written between those operands. Arithmetic and comparison operators are the most common:</p>
+<h2 id="中缀运算符infix-operators">中缀运算符（Infix Operators）</h2>
+<!-- raw HTML omitted -->
+<p>中缀运算符需要两个操作数，位于操作数之间。算术和比较运算符是最常见的中缀运算符：</p>
 <pre><code class="language-pony" data-lang="pony">1 + 2
 a &lt; b
-</code></pre><p>Pony has pretty much the same set of infix operators as other languages.</p>
-<h2 id="operator-aliasing">Operator aliasing</h2>
-<p>Most infix operators in Pony are actually aliases for functions. The left operand is the receiver the function is called on and the right operand is passed as an argument. For example, the following expressions are equivalent:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>Pony的中缀运算符集和其他语言基本一致。</p>
+<!-- raw HTML omitted -->
+<h2 id="运算符别名operator-aliasing">运算符别名（Operator aliasing）</h2>
+<!-- raw HTML omitted -->
+<p>Pony中的大多数中缀运算符都是函数的别名。左边的操作数是调用函数的接收器，右边的操作数作为参数传递。例如，下面的两个表达式是等效的：</p>
 <pre><code class="language-pony" data-lang="pony">x + y
 x.add(y)
-</code></pre><p>This means that <code>+</code> is not a special symbol that can only be applied to magic types. Any type can provide its own <code>add</code> function and the programmer can then use <code>+</code> with that type if they want to.</p>
-<p>When defining your own <code>add</code> function there is no restriction on the types of the parameter or the return type. The right side of the <code>+</code> will have to match the parameter type and the whole <code>+</code> expression will have the type that <code>add</code> returns.</p>
-<p>Here&rsquo;s a full example for defining a type which allows the use of <code>+</code>. This is all you need:</p>
+</code></pre><!-- raw HTML omitted -->
+<p><code>+</code>不是只能用于特性类型的特殊符号。任何类型都可以提供自己的<code>add</code>函数，然后可以根据需要对该类型使用<code>+</code>。</p>
+<!-- raw HTML omitted -->
+<p>在定义自己的<code>add</code>函数时，对参数类型或返回类型没有限制。 <code>+</code>的右侧必须与参数类型匹配，并且<code>+</code>表达式将具有<code>add</code>函数返回的类型。</p>
+<!-- raw HTML omitted -->
+<p>下面的代码是自定义<code>+</code>运算符的完整示例：</p>
 <pre><code class="language-pony" data-lang="pony">// Define a suitable type
 class Pair
   var _x: U32 = 0
@@ -663,17 +682,21 @@ class Foo
     var x = Pair(1, 2)
     var y = Pair(3, 4)
     var z = x + y
-</code></pre><p>It is possible to overload infix operators to some degree using union types or f-bounded polymorphism, but this is beyond the scope of this tutorial. See the Pony standard library for further information.</p>
-<p>You do not have to worry about any of this if you don&rsquo;t want to. You can simply use the existing infix operators for numbers just like any other language and not provide them for your own types.</p>
-<p>The full list of infix operators that are aliases for functions is:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>使用类型联合体或f界多态性可以在某种程度上重载中缀运算符，但这不在本教程的讨论范围之内。有关更多信息，请参考<a href="https://stdlib.ponylang.org">Pony标准库</a>。</p>
+<!-- raw HTML omitted -->
+<p>如果您不想，则不必担心任何这些。您可以像使用任何其他语言一样简单地将现有的中缀运算符用于数字，而不必为您自己的类型提供它们。</p>
+<!-- raw HTML omitted -->
+<p>中缀运算符函数别名的完整列表：</p>
 <hr>
+<!-- raw HTML omitted -->
 <table>
 <thead>
 <tr>
-<th>Operator</th>
-<th>Method</th>
-<th>Description</th>
-<th>Note</th>
+<th>运算符</th>
+<th>函数</th>
+<th>描述</th>
+<th>注意</th>
 </tr>
 </thead>
 <tbody>
@@ -902,23 +925,32 @@ class Foo
 </tbody>
 </table>
 <hr>
-<h2 id="short-circuiting">Short circuiting</h2>
-<p>The <code>and</code> and <code>or</code> operators use <strong>short circuiting</strong> when used with Bool variables. This means that the first operand is always evaluated, but the second is only evaluated if it can affect the result.</p>
-<p>For <code>and</code>, if the first operand is <strong>false</strong> then the second operand is not evaluated since it cannot affect the result.</p>
-<p>For <code>or</code>, if the first operand is <strong>true</strong> then the second operand is not evaluated since it cannot affect the result.</p>
-<p>This is a special feature built into the compiler, it cannot be used with operator aliasing for any other type.</p>
-<h2 id="unary-operators">Unary operators</h2>
-<p>The unary operators are handled in the same manner, but with only one operand. For example, the following expressions are equivalent:</p>
+<!-- raw HTML omitted -->
+<h2 id="短路求值short-circuiting">短路求值（Short circuiting）</h2>
+<!-- raw HTML omitted -->
+<p>与Bool变量一起使用时，and和or运算符会采用使用 <strong>短路求值（short circuiting）</strong> 。第一个操作数始终会被求值，第二个操作数仅在对有影响结果时，才会被求值。</p>
+<!-- raw HTML omitted -->
+<p>对于<code>and</code>，如果第一个操作数是 <strong>false</strong> ，则不会对第二个操作数求值，因为它不会影响结果。</p>
+<!-- raw HTML omitted -->
+<p>对于<code>or</code>，如果第一个操作数是 <strong>true</strong> ，则不会对第二个操作数求值，因为它不会影响结果。</p>
+<!-- raw HTML omitted -->
+<p>这是编译器内置的特殊功能，不能与其他类型的运算符别名一起使用。</p>
+<!-- raw HTML omitted -->
+<h2 id="一元运算符unary-operators">一元运算符（Unary operators）</h2>
+<!-- raw HTML omitted -->
+<p>一元运算符的与中缀运算符的别名机制类似，但只有一个操作数。例如，以下表达式是等效的：</p>
 <pre><code class="language-pony" data-lang="pony">-x
 x.neg()
-</code></pre><p>The full list of unary operators that are aliases for functions is:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>一元运算符函数别名的完整列表：</p>
 <hr>
+<!-- raw HTML omitted -->
 <table>
 <thead>
 <tr>
-<th>Operator</th>
-<th>Method</th>
-<th>Description</th>
+<th>运算符</th>
+<th>函数</th>
+<th>描述</th>
 </tr>
 </thead>
 </table>
@@ -931,23 +963,35 @@ x.neg()
 <p>not      | op_not()     | Not, both bitwise and logical
 -~       | neg_unsafe() | Unsafe arithmetic negation</p>
 <hr>
-<h2 id="precedence">Precedence</h2>
-<p>In Pony, unary operators always bind stronger than any infix operators: <code>not a == b</code> will be interpreted as <code>(not a) == b</code> instead of <code>not (a == b)</code>.</p>
-<p>When using infix operators in complex expressions a key question is the <strong>precedence</strong>, i.e. which operator is evaluated first. Given this expression:</p>
+<!-- raw HTML omitted -->
+<h2 id="运算符优先级precedence">运算符优先级（Precedence）</h2>
+<!-- raw HTML omitted -->
+<p>在Pony中，一元运算符的优先级总是比中缀运算符高：<code>not a == b</code>将被解释为<code>（not a）== b</code>而不是<code>not（a == b）</code>。</p>
+<!-- raw HTML omitted -->
+<p>在复杂表达式中使用中缀运算符时， <strong>优先级</strong> 问题很关键。试着评估下面这句表达式的运算符优先级：</p>
 <pre><code class="language-pony" data-lang="pony">1 + 2 * 3  // Compilation failed.
-</code></pre><p>We will get a value of 9 if we evaluate the addition first and 7 if we evaluate the multiplication first. In mathematics, there are rules about the order in which to evaluate operators and most programming languages follow this approach.</p>
-<p>The problem with this is that the programmer has to remember the order and people aren&rsquo;t very good at things like that. Most people will remember to do multiplication before addition, but what about left bit shifting versus bitwise and? Sometimes people misremember (or guess wrong) and that leads to bugs. Worse, those bugs are often very hard to spot.</p>
-<p>Pony takes a different approach and outlaws infix precedence. Any expression where more than one infix operator is used <strong>must</strong> use parentheses to remove the ambiguity. If you fail to do this the compiler will complain.</p>
-<p>This means that the example above is illegal in Pony and should be rewritten as:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>如果我们计算加法，得到的结果为9，如果计算乘法，得到的结果为7。在数学中有一套评估运算符优先级的规则，大多数编程语言都遵循这种方法。</p>
+<!-- raw HTML omitted -->
+<p>这样做的问题是程序员必须记住规则，通常人们对这样的事情不是很擅长。大多数人会记得在加法之前要进行乘法运算，但是左移与按位运算又如何呢？有时人们会忘记（或猜错），这会导致错误。更糟糕的是，这些错误通常很难发现。</p>
+<!-- raw HTML omitted -->
+<p>Pony采取了不同的做法，去避免这个问题。 如果一个表达式中需要使用多个中缀运算符 <strong>必须</strong> 使用括号来消除歧义。如果您不这样做，编译时会报错。</p>
+<!-- raw HTML omitted -->
+<p>上面的示例在Pony中是非法的，正确的写法为：</p>
 <pre><code class="language-pony" data-lang="pony">1 + (2 * 3)  // 7
-</code></pre><p>Repeated use of a single operator, however, is fine:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>如果使用的是相同的运算符就可以省略括号：</p>
 <pre><code class="language-pony" data-lang="pony">1 + 2 + 3  // 6
-</code></pre><p>Meanwhile, mixing unary and infix operators do not need additional parentheses as unary operators always bind more closely, so if our example above used a negative three:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>同时，一元运算符和中缀运算符的混合不需要额外的括号，因为一元运算符总是和操作数紧贴在一起，因此如果上面的示例使用的是负3是没问题的。但是如果用到不同的中缀运算符：</p>
 <pre><code class="language-pony" data-lang="pony">1 + 2 * -3  // Compilation failed.
-</code></pre><p>We would still need parentheses to remove the ambiguity for our infix operators like we did above, but not for the unary arithmetic negative (<code>-</code>):</p>
+</code></pre><!-- raw HTML omitted -->
+<p>仍然需要括号来消除歧义，就像上面所做的一样，但是不需要负数一元运算（<code>-</code>）加括号：</p>
 <pre><code class="language-pony" data-lang="pony">1 + (2 * -3)  // -5
-</code></pre><p>We can see that it makes more sense for the unary operator to be applied before either infix as it only acts on a single number in the expression so it is never ambiguous.</p>
-<p>Unary operators can also be applied to parentheses and act on the result of all operations in those parentheses prior to applying any infix operators outside the parentheses:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>我们可以看到，将一元运算符应用在中缀运算之前更有意义，因为它仅作用于表达式中的单个数字，因此它永远不会模棱两可。</p>
+<!-- raw HTML omitted -->
+<p>一元运算符也可以应用于括号，在括号之外，所有中缀运算符之前，对括号中的运算结果进行操作：</p>
 <pre><code class="language-pony" data-lang="pony">1 + -(2 * -3)  // 7
 </code></pre></main>
         </div>

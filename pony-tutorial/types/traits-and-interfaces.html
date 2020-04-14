@@ -58,7 +58,7 @@ trait Named fun name(): String =&gt; &quot;Bob&quot; class Bob is Named 上面�
 trait Named fun name(): String =&gt; &quot;Bob&quot; trait Bald fun hair(): Bool =&gt; false class Bob is (Named &amp; Bald) 一个类可以同时具备多个特征。在上面的示例中，Bob类同时提供了Named和Bald特征。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/traits-and-interfaces.html" />
-<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
+<meta property="article:modified_time" content="2020-04-13T11:10:46+08:00" />
 <meta itemprop="name" content="特征和接口（Traits and Interfaces）">
 <meta itemprop="description" content="与其他面向对象的语言一样，Pony具有 多态性（subtyping） 。也就是说，某些类型充当 categories ，其他类型可以成为其成员。
 编程语言的实现上有两种 多态（subtyping） 类型： 声明式（nominal）多态 和 结构化（structural）多态 。它们有细微的不同，大多数编程语言只会选择一种实现。但是Pony两种都实现了！
@@ -70,7 +70,7 @@ trait Named fun name(): String =&gt; &quot;Bob&quot; class Bob is Named 上面�
 接着定义了类名为Bob的类。Bob在明确的声明自己实现了Named特征。在Pony中，我们把这成为 Bob拥有Named特征 ，或者说 Bob就是Named 。
 我们看到Bob并没有定义name()函数，所以它会使用特征中的默认实现。如果特征对name()函数没有做出默认实现，则编译器就会报一个错告知：Bob没有实现name()。
 trait Named fun name(): String =&gt; &quot;Bob&quot; trait Bald fun hair(): Bool =&gt; false class Bob is (Named &amp; Bald) 一个类可以同时具备多个特征。在上面的示例中，Bob类同时提供了Named和Bald特征。">
-<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-13T11:10:46&#43;08:00" />
 <meta itemprop="wordCount" content="133">
 
 
@@ -274,7 +274,7 @@ trait Named fun name(): String =&gt; &quot;Bob&quot; trait Bald fun hair(): Bool
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              错误（Errors）
+              异常处理（Errors）
             </a>
           </li>
           <li class="f6 fw4">

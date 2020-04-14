@@ -61,7 +61,7 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
 actor Main new create(env: Env) =&gt; call_me_later(env) env." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/actors.html" />
-<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
+<meta property="article:modified_time" content="2020-04-13T11:10:46+08:00" />
 <meta itemprop="name" content="并发单元（Actors）">
 <meta itemprop="description" content="actor 和 类 的关键区别：actor可以有 行为 。
 Behaviours 行为 行为 和 函数 的区别：函数是 同步执行 的，行为是 异步执行 的。当您调用一个函数时，该函数将立即执行，并且立即就可以得到返回值。函数就像其他面向对象语言中的方法调用一样。
@@ -76,7 +76,7 @@ actor Aardvark let name: String var _hunger_level: U64 = 0 new create(name&#39;:
 执行次序 Actor自身是有序的，（译者注：一个actor同一时间只会归属于一个调度器线程），并且每个actor一次只能执行一个行为。编写actor的代码：不需要锁，信号量或类似的东西。
 在编写Pony代码时，最好不要将actor看作是并行性的单元，而是序列性的单元。也就是说，actor运行的时候只会按照顺序执行操作。在下面的示例中，Main actor调用了一个行为call_me_later，该行为 异步执行 ，因此我们无需等待它运行就可以继续。然后，我们运行方法 env.out.print，它也是 异步执行的 ，并将文本输出到控制台。现在，我们已经了解了Main actor的工作机制，尝试运行下程序吧。
 actor Main new create(env: Env) =&gt; call_me_later(env) env.">
-<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-13T11:10:46&#43;08:00" />
 <meta itemprop="wordCount" content="104">
 
 
@@ -283,7 +283,7 @@ actor Main new create(env: Env) =&gt; call_me_later(env) env."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/errors.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              错误（Errors）
+              异常处理（Errors）
             </a>
           </li>
           <li class="f6 fw4">
