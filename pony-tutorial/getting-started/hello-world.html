@@ -46,48 +46,48 @@
     
 
     <meta property="og:title" content="Hello World" />
-<meta property="og:description" content="你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&quot;hello,world!&ldquo;开始。首先创建一个目录：helloworld：
+<meta property="og:description" content="你已经成功的安装了Pony编译器，我们来编写自己的第一个Pony程序：输出&quot;hello,world!&quot;。首先，创建一个目录：helloworld：
 $ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是你的程序最终输的名！默认情况下，在编译程序时，生成的可执行二进制文件将使用源码的目录名。你可以在命令行上使用&ndash;bin-name或-b选项指定想要的文件名。
 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
-__文件名重要吗？__对编译器来说不重要。 Pony除了以.pony结尾的文件名外，不关心文件名。但这可能对你很重要！给源文件起个好名字，以后可以更轻松定位代码。
-文件中敲入下面的代码：
+__文件名重要吗？__对编译器来说不重要。 Pony只关心源文件的扩展名.pony，不关心文件名。但文件名对你来说很重要！给源文件起个好名字，可以方便以后定位代码。
+在文件中输入下面的代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 编译程序 现在可以编译程序了：
 $ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld （如果你想要Docker中使用Pony，可以这么做：$ docker run -v Some_Absolute_Path/helloworld:/src/main ponylang/ponyc，需要将helloworld目录的路径换成自己的。）
 你会发现，它在当前目录进行了构建，.，Pony对代码进行了优化，并创建了一些目标文件（如果您不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果您是C/C&#43;&#43;程序员，那对你来说可能是有意义的，否则你可以忽略它。
-等等，Pony也进行链接了吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
+构建过程中也进行链接吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
 运行程序 现在可以运行程序了：
 $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/getting-started/hello-world.html" />
-<meta property="article:modified_time" content="2020-04-14T18:26:36+08:00" />
+<meta property="article:modified_time" content="2020-04-14T18:36:19+08:00" />
 <meta itemprop="name" content="Hello World">
-<meta itemprop="description" content="你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&quot;hello,world!&ldquo;开始。首先创建一个目录：helloworld：
+<meta itemprop="description" content="你已经成功的安装了Pony编译器，我们来编写自己的第一个Pony程序：输出&quot;hello,world!&quot;。首先，创建一个目录：helloworld：
 $ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是你的程序最终输的名！默认情况下，在编译程序时，生成的可执行二进制文件将使用源码的目录名。你可以在命令行上使用&ndash;bin-name或-b选项指定想要的文件名。
 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
-__文件名重要吗？__对编译器来说不重要。 Pony除了以.pony结尾的文件名外，不关心文件名。但这可能对你很重要！给源文件起个好名字，以后可以更轻松定位代码。
-文件中敲入下面的代码：
+__文件名重要吗？__对编译器来说不重要。 Pony只关心源文件的扩展名.pony，不关心文件名。但文件名对你来说很重要！给源文件起个好名字，可以方便以后定位代码。
+在文件中输入下面的代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 编译程序 现在可以编译程序了：
 $ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld （如果你想要Docker中使用Pony，可以这么做：$ docker run -v Some_Absolute_Path/helloworld:/src/main ponylang/ponyc，需要将helloworld目录的路径换成自己的。）
 你会发现，它在当前目录进行了构建，.，Pony对代码进行了优化，并创建了一些目标文件（如果您不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果您是C/C&#43;&#43;程序员，那对你来说可能是有意义的，否则你可以忽略它。
-等等，Pony也进行链接了吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
+构建过程中也进行链接吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
 运行程序 现在可以运行程序了：
 $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。">
-<meta itemprop="dateModified" content="2020-04-14T18:26:36&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-14T18:36:19&#43;08:00" />
 <meta itemprop="wordCount" content="62">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hello World"/>
-<meta name="twitter:description" content="你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&quot;hello,world!&ldquo;开始。首先创建一个目录：helloworld：
+<meta name="twitter:description" content="你已经成功的安装了Pony编译器，我们来编写自己的第一个Pony程序：输出&quot;hello,world!&quot;。首先，创建一个目录：helloworld：
 $ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是你的程序最终输的名！默认情况下，在编译程序时，生成的可执行二进制文件将使用源码的目录名。你可以在命令行上使用&ndash;bin-name或-b选项指定想要的文件名。
 代码 Then, create a file in that directory called main.pony. 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
-__文件名重要吗？__对编译器来说不重要。 Pony除了以.pony结尾的文件名外，不关心文件名。但这可能对你很重要！给源文件起个好名字，以后可以更轻松定位代码。
-文件中敲入下面的代码：
+__文件名重要吗？__对编译器来说不重要。 Pony只关心源文件的扩展名.pony，不关心文件名。但文件名对你来说很重要！给源文件起个好名字，可以方便以后定位代码。
+在文件中输入下面的代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 编译程序 现在可以编译程序了：
 $ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld （如果你想要Docker中使用Pony，可以这么做：$ docker run -v Some_Absolute_Path/helloworld:/src/main ponylang/ponyc，需要将helloworld目录的路径换成自己的。）
 你会发现，它在当前目录进行了构建，.，Pony对代码进行了优化，并创建了一些目标文件（如果您不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果您是C/C&#43;&#43;程序员，那对你来说可能是有意义的，否则你可以忽略它。
-等等，Pony也进行链接了吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
+构建过程中也进行链接吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
 运行程序 现在可以运行程序了：
 $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。"/>
 
@@ -654,7 +654,7 @@ $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！�
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>你已经成功的安装了Pony编译器，我们来写点代码吧！我们从输出&quot;hello,world!&ldquo;开始。首先创建一个目录：<code>helloworld</code>：</p>
+<p>你已经成功的安装了Pony编译器，我们来编写自己的第一个Pony程序：输出&quot;hello,world!&quot;。首先，创建一个目录：<code>helloworld</code>：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir helloworld
 $ cd helloworld
 </code></pre></div><!-- raw HTML omitted -->
@@ -664,9 +664,9 @@ $ cd helloworld
 <p>Then, create a file in that directory called <code>main.pony</code>.
 然后用你的文本编辑器在这个目录中新建一个文件：<code>main.pony</code>。</p>
 <!-- raw HTML omitted -->
-<p>__文件名重要吗？__对编译器来说不重要。 Pony除了以<code>.pony</code>结尾的文件名外，不关心文件名。但这可能对你很重要！给源文件起个好名字，以后可以更轻松定位代码。</p>
+<p>__文件名重要吗？__对编译器来说不重要。 Pony只关心源文件的扩展名<code>.pony</code>，不关心文件名。但文件名对你来说很重要！给源文件起个好名字，可以方便以后定位代码。</p>
 <!-- raw HTML omitted -->
-<p>文件中敲入下面的代码：</p>
+<p>在文件中输入下面的代码：</p>
 <pre><code class="language-pony" data-lang="pony">actor Main
   new create(env: Env) =&gt;
     env.out.print(&quot;Hello, world!&quot;)
@@ -686,7 +686,7 @@ Linking ./helloworld
 <!-- raw HTML omitted -->
 <p>你会发现，它在当前目录进行了构建，<code>.</code>，Pony对代码进行了优化，并创建了一些目标文件（如果您不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果您是C/C++程序员，那对你来说可能是有意义的，否则你可以忽略它。</p>
 <!-- raw HTML omitted -->
-<p><strong>等等，Pony也进行链接了吗？</strong> 是的。Pony不需要额外的构建程序（例如<code>make</code>），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。</p>
+<p><strong>构建过程中也进行链接吗？</strong> 是的。Pony不需要额外的构建程序（例如<code>make</code>），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。</p>
 <!-- raw HTML omitted -->
 <h2 id="运行程序">运行程序</h2>
 <!-- raw HTML omitted -->
