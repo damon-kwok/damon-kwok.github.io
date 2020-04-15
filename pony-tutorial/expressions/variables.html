@@ -61,7 +61,7 @@ var和let 局部变量用var或let声明。使用var表示这个变量可以反�
 var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/variables.html" />
-<meta property="article:modified_time" content="2020-04-13T18:18:28+08:00" />
+<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
 <meta itemprop="name" content="变量（Variables）">
 <meta itemprop="description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
 局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
@@ -76,7 +76,7 @@ var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &q
 if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
 var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
 var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。">
-<meta itemprop="dateModified" content="2020-04-13T18:18:28&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
 <meta itemprop="wordCount" content="449">
 
 
@@ -288,7 +288,7 @@ var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时�
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              比较运算（Equality in Pony）
+              比较（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
@@ -298,12 +298,12 @@ var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时�
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              object关键字（Object Literals）
+              匿名对象（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Partial Application
+              柯里化（Partial Application）
             </a>
           </li>
         </ul>
@@ -793,7 +793,7 @@ y = 6 // Error, can't reassign to a let local
 <!-- raw HTML omitted -->
 <h2 id="隐藏shadowing">隐藏（Shadowing）</h2>
 <!-- raw HTML omitted -->
-<p>有些编程语言（类如Rust）允许你声明一个与现有变量同名的变量，替代旧的。这个方式还被美其名曰 <em>隐藏（shadowing）</em> ，这容易引发bug，Pony中不允许这么做。如果你不小心在Pony中隐藏了变量，编译时会报错。</p>
+<p>有些编程语言（类如<a href="https://www.rust-lang.org/zh-CN/">Rust</a>、<a href="https://reasonml.github.io/zh-CN/">Reason</a>）允许你声明一个与现有变量同名的变量，替代旧的。这个方式还被美其名曰 <em>隐藏（shadowing）</em> ，这容易引发bug，Pony中不允许这么做。如果你不小心在Pony中隐藏了变量，编译时会报错。</p>
 <!-- raw HTML omitted -->
 <p>如果您需要一个 <em>同名变量</em> ，可以用前面提到的方式：使用<code>'</code>符号。</p>
 </main>

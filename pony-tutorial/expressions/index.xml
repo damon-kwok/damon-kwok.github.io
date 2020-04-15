@@ -11,24 +11,19 @@
     
     
     <item>
-      <title>object关键字（Object Literals）</title>
+      <title>匿名对象（Object Literals）</title>
       <link>https://damon-kwok.github.io/pony-tutorial/expressions/object-literals.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/object-literals.html</guid>
-      <description>Sometimes it&amp;rsquo;s really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.
-But Pony is statically typed, so an object literal also creates an anonymous type that the object literal fulfills. This is similar to anonymous classes in Java and C#.</description>
-    </item>
-    
-    <item>
-      <title>Partial Application</title>
-      <link>https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html</guid>
-      <description>Partial application lets us supply some of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.
-A simple case A simple case is to create a &amp;ldquo;callback&amp;rdquo; function. For example:
-class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&amp;gt; _f = (_f + add) * mul class Bar fun apply() =&amp;gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) This is a bit of a silly example, but hopefully, the idea is clear.</description>
+      <description>有时候，能够内联地写一个完整的对象是非常方便的。在Pony中，这被称为匿名对象，它做的事情和JavaScript中的匿名对象差不多：它可以生成一个可以立即使用的对象。
+但是Pony是静态类型的，所以一个匿名对象也会创建一个匿名类，这个匿名对象会满足这个匿名类。这类似于Java和C#中的匿名类。在Pony中，匿名类型可以提供任意数量的特征和接口。
+匿名类和匿名对象是什么？（What&amp;rsquo;s this look like, then?） 匿名类表达式与类（class）的定义基本相同，object表达式构建了一个匿名类并返回它的的实例，这个实例被称为匿名对象。匿名类和普通类有一些细微的区别，下面是一个简单的例子:
+object fun apply(): String =&amp;gt; &amp;quot;hi&amp;quot; end 很简单明了。让我们对其进行扩展，提供一个Hashable特征的实现，以便编译器能够确保匿名类型满足该接口。也可以用相同的方法来提供其他特征。
+object is Hashable fun apply(): String =&amp;gt; &amp;quot;hi&amp;quot; fun hash(): USize =&amp;gt; this().hash() end 我们不能给匿名对象指定构造函数，因为它本身 就是 一个构造函数。那么我们如何分配字段呢？直接声明就行了。例如:
+use &amp;quot;collections&amp;quot; class Foo fun foo(str: String): Hashable =&amp;gt; object is Hashable let s: String = str fun apply(): String =&amp;gt; s fun hash(): USize =&amp;gt; s.hash() end 在匿名对象所在的作用域中声明和初始化局部变量，等同于在类的构造函数中定义和初始化字段， 匿名类的所有的成员汉书都可以 捕获（capturing） 这些变量当做字段去实用。这非常有趣！它让我们有任意复杂的可以有多个入口点(例如，你可以在一个闭包上调用函数)的。
+默认情况下，带有字段的匿名对象将以ref（引用权能的一种权限类型）方式返回，除非你通过在object关键字后显示的指定一个引用权能的类型来声明权限。例如，一个带有sendable权限的对象可以在需要时可以声明为iso:
+use &amp;quot;collections&amp;quot; class Foo fun foo(str: String): Hashable iso^ =&amp;gt; object iso is Hashable let s: String = str fun apply(): String =&amp;gt; s fun hash(): USize =&amp;gt; s.</description>
     </item>
     
     <item>
@@ -79,7 +74,19 @@ let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	/
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/errors.html</guid>
-      <description>Pony doesn&amp;rsquo;t feature exceptions as you might be familiar with them from languages like Python, Java, C++ et al. It does, however, provide a simple partial function mechanism to aid in error handling. Partial functions and the error keyword used to raise them look similar to exceptions in other languages but have some important semantic differences. Let&amp;rsquo;s take a look at how you work with Pony&amp;rsquo;s error and then how it differs from the exceptions you might be used to.</description>
+      <description>你可能熟悉Python、Ruby、Java、C++等语言中的异常处理方式，Pony中有所不同，Pony提供了一个更简单的机制来帮助处理异常。Pony触发异常的方式与其他语言有一些重要的语义区别，Pony用error（还有as）关键字和偏函数(Partial functions)来触发异常。让我们看看Pony是如何处理异常的，然后和你习惯的语言对比一下有什么不同。
+异常的触发和处理(Raising and handling errors) 使用error可以触发一个异常。可以任何时候都可以使用error。此时后续代码会停止执行，调用链被解除，逻辑跳寻找并转到异常处理代码块中继续执行。异常处理机制是在编译时会进行检查，确保在运行时不会导致整个程序崩溃。
+异常处理程序是使用try-else语法声明的。
+try callA() if not callB() then error end callC() else callD() end 在上面的代码中，callA()总是会被执行，callB()也会被执行。如果callB()的返回值为true，那么我们将按照正常方式继续执行callC()，那么callD()将不会被执行。
+但是，如果callB()返回false，则会触发一个异常。此时，执行将停止，寻找并执行最近的异常处理程序。在本例中，else中的callD()将被执行。
+在这两种情况下，程序都将继续执行try end后面的逻辑。
+必须提供一个异常处理程序吗? 不需要。try可以单独工作。如果不提供else，则不会执行任何异常处理操作,直接转转到try表达式之后继续执行。
+如果有一些可能会触发异常的逻辑，但你不需要在发生后做出处理(比如:一个文件存在的话就读取它的内容)，可以把这段逻辑里面放在一个try中,不需要提供else。
+try // Do something that may raise an error end __异常处理逻辑中需要做些什么? __ 无所谓。如果您提供了一个异常处理程序，那么它必须包含一些代码，具体执行些什么逻辑取决于你自己。
+一个try代码块的返回值是什么?try的返回值是try的最后一个表达式的值，如果出现过程中出现了异常，就使用else子句中的最后一个表达式的值。如果出现了一个异常，并且没有提供else子句，那么返回值将是None。
+偏函数(Partial functions) Pony并不要求像前面的例子那样立即处理所有的异常。函数执行时可能触发异常，而这些异常可以由调用它们的代码处理。这些被称为偏函数(Partial functions)(这是一个数学术语，意思是对于所有可能的输入(即参数)没有定义返回值的函数)。偏函数必须在函数签名(定义返回类型)之后和调用位置(右括号之后)加上?。
+下面示例，如果输入为负数，那么接受有符号整数的阶乘函数就会出错。这个函数只在有效的输入时才会正确执行。
+fun factorial(x: I32): I32 ? =&amp;gt; if x &amp;lt; 0 then error end if x == 0 then 1 else x * factorial(x - 1)?</description>
     </item>
     
     <item>
@@ -88,20 +95,49 @@ let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	/
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/methods.html</guid>
-      <description>All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
-Behaviours are used for handling asynchronous messages sent to actors, which we&amp;rsquo;ve seen in the &amp;ldquo;Types&amp;rdquo; chapter when we talked about actors.
-Can I have some code outside of any methods like I do in Python?</description>
+      <description>在Pony中，所有的执行逻辑（代码）都被放在方法中。方法有三种：函数、构造函数和行为。所有的方法都要写在类型定义中（例如：类、基元类、actor等），不存在全局函数或全局行为。
+行为用于处理发送给参与者的异步消息，我们在类型系统章节中已经讲解过行为。
+可以像Python那样在任何方法之外添加一些代码吗？ 不行。所有的Pony代码都必须在一个方法中。
+函数（Functions） Pony的函数与其他语言中的函数（或方法）非常相似。它们可以具有0个或多个参数，以及0个或1个返回值（如果需要像Go语言的多返回值可以使用元组）。如果省略了返回类型，则该函数的返回值将为None。
+class C fun add(x: U32, y: U32): U32 =&amp;gt; x + y fun nop() =&amp;gt; add(1, 2) // Pointless, we ignore the result 函数参数（如果有）在函数名称后的括号中指定。即便没有任何参数的函数定义时，括号也不能省略。
+每个参数都有一个名称和类型。在我们的示例函数中，add函数有两个参数x和y，它们都是U32类型。传递给函数调用的值（示例中为1和 2）称为实参（arguments），并且在进行调用时会对其求值并分配给形参（parameters）。形参虽然没有明确给出声明的方式，但实际上它们被声明为let。
+形参后面的的是返回类型。如果不需要返回值，可以省略。
+返回值后面是=&amp;gt;，最后是函数体。返回值是函数体表达式的执行结果（请记住，所有内容都是表达式），也就是函数中最后一条表达式的值。
+如果想从函数中提前返回，可以使用return表达式。如果函数具有返回类型，需要为return提供一个值。如果该函数没有返回类型，单独用return就行。
+可以按参数类型重载函数吗？ 不行，同一个类型中不允许出现重名的方法。
+构造函数（Constructors） 跟其他语言一样，Pony的构造函数也是用于初始化对象。不同的是，Pony构造函数可以自定义函数名字，也可以使用任意数量和类型的参数。Pony的默认构造函数（所有的类型定义都一样）为create。
+class Foo var _x: U32 new create() =&amp;gt; _x = 0 new from_int(x: U32) =&amp;gt; _x = x 构造函数的作用，是为了在创建对象时初始化对象内部状态。Pony中构造函数必须对所有字段做出初始化。
+可以从构造函数中提前返回吗？ 是的。使用不带值的return命令。但是要确保return前所有字段都已经进行了初始化。
+方法调用（Calling） 方法的调用与其他语言一样，通过在方法名称后的括号内提供参数来调用。即使没有参数需要传递，也需要括号。
+class Foo fun hello(name: String): String =&amp;gt; &amp;quot;hello &amp;quot; + name fun f() =&amp;gt; let a = hello(&amp;quot;Fred&amp;quot;) 要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名：</description>
     </item>
     
     <item>
-      <title>比较运算（Equality in Pony）</title>
+      <title>柯里化（Partial Application）</title>
+      <link>https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html</guid>
+      <description>柯里化（Partial Application）允许我们对构造函数、函数或行为设置 部分 参数，然后返回一个新函数，以便后面再填充其余的参数。
+一个简单的例子 这里有一个简单的例子，创建一个回调函数。例如:
+class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&amp;gt; _f = (_f + add) * mul class Bar fun apply() =&amp;gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) 这是一个有点傻的示例，但希望，思路是清楚的。我们在foo上柯里化了addmul函数，把接收者绑定到foo上，把add参数绑定为3。我们得到一个返回值它是一个匿名对象：f，它有一个apply方法，接受一个mul参数。当它被调用时，它执行foo.addmul (3,mul)。
+我们也可以绑定所有的参数：
+let f = foo~addmul(3, 4) f() 也不提绑定任何实参：
+let f = foo~addmul() f(3, 4) 命名传参（之前讲过的无序传参方式） 命名传参的方式允许柯里化（Partial Application）以任意顺序绑定参数，而不只是从左到右。例如:
+let f = foo~addmul(where mul = 4) f(3) 在这里，我们绑定了mul参数，但未绑定add。</description>
+    </item>
+    
+    <item>
+      <title>比较（Equality in Pony）</title>
       <link>https://damon-kwok.github.io/pony-tutorial/expressions/equality.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/equality.html</guid>
-      <description>Pony features two forms of equality: by structure and by identity.
-Identity equality Identity equality checks in Pony are done via the is keyword. is verifies that the two items are the same.
-if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&amp;quot;hi&amp;quot;) let b = Foo(&amp;quot;hi&amp;quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP!</description>
+      <description>Pony有两种形式的平等:结构平等和身份平等。
+类型比较（Identity equality） Pony中的类型检查是通过is关键字来完成的。is可以判断两个类型是否相同。
+if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&amp;quot;hi&amp;quot;) let b = Foo(&amp;quot;hi&amp;quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP! TRUE! end 结构化比较（Structural equality） Pony的结构化比较是通过中缀运算符==来完成的。它可以判断同的数据是否具有相同的值。如果被比较结果为true，可以认为它们具有相同的值。
+可以通过实现fun eq(that: box-&amp;gt;Foo): Bool来自定义对比逻辑。注意，因为==是一个中缀操作符，eq必须定义在左边的操作数上，而右边的操作数必须是Foo类型。
+class Foo let _a: String new create(a: String) =&amp;gt; _a = a fun eq(that: box-&amp;gt;Foo): Bool =&amp;gt; this.</description>
     </item>
     
     <item>
@@ -141,8 +177,19 @@ Pony提供了不同的算术运算方式，使程序员可以自由选择最适�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/expressions/sugar.html</guid>
-      <description>Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.
-Apply Many Pony classes have a function called apply which performs whatever action is most common for that type. Pony allows you to omit the word apply and just attempt to do a call directly on the object.</description>
+      <description>Pony允许你编写代码时做一些简化，让代码更简洁、易读。使用语法糖是可选的，如果您愿意，你可以始终使用完整的书写方式。
+Apply语法糖 许多Pony类都有一个名为apply的函数，该函数可以执行一些该类型最常见的操作。Pony允许你省略apply这个函数名，直接从对象调用。所以:
+var foo = Foo.create() foo() 等同于：
+var foo = Foo.create() foo.apply() 需要参数的话可以像调用普通方法那样去添加。
+var foo = Foo.create() foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create() foo.apply(x, 37 where crash = false) 必须要提供参数吗? 是的，只有apply会为你自动添加，正确的参数数量和类型必须你自己提供。默认传参和命名传参的机制可以正常使用。
+如果apply会被自动添加，那我怎么调用其他函数？ 只有直接调用对象时才添加apply，其他时候不会。编译器能判断什么时候该添加apply。
+Create语法糖 要实例化对象，你需要指定类型并调用构造函数。Pony允许你忽略构造函数，并将为您插入一个create()调用。所以:
+var foo = Foo 等同于：
+var foo = Foo.create() 通常，类型在表达式中是不被求值的，因此省略掉构造函数并不会造成歧义。记住，类型是很容易被识别的，因为它始终是以大写字母开头。
+如果create需要参数，可以直接在后面加括号传入。默认参数和命名传参机制都可以正常使用。
+var foo = Foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create(x, 37 where crash = false) 如果我想使用一个名字不是create的构造函数怎么做?</description>
     </item>
     
     <item>

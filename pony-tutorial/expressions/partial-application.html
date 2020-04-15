@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | Partial Application</title>
+    <title>Pony 教程  | 柯里化（Partial Application）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,27 +45,39 @@
 
     
 
-    <meta property="og:title" content="Partial Application" />
-<meta property="og:description" content="Partial application lets us supply some of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.
-A simple case A simple case is to create a &ldquo;callback&rdquo; function. For example:
-class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f &#43; add) * mul class Bar fun apply() =&gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) This is a bit of a silly example, but hopefully, the idea is clear." />
+    <meta property="og:title" content="柯里化（Partial Application）" />
+<meta property="og:description" content="柯里化（Partial Application）允许我们对构造函数、函数或行为设置 部分 参数，然后返回一个新函数，以便后面再填充其余的参数。
+一个简单的例子 这里有一个简单的例子，创建一个回调函数。例如:
+class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f &#43; add) * mul class Bar fun apply() =&gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) 这是一个有点傻的示例，但希望，思路是清楚的。我们在foo上柯里化了addmul函数，把接收者绑定到foo上，把add参数绑定为3。我们得到一个返回值它是一个匿名对象：f，它有一个apply方法，接受一个mul参数。当它被调用时，它执行foo.addmul (3,mul)。
+我们也可以绑定所有的参数：
+let f = foo~addmul(3, 4) f() 也不提绑定任何实参：
+let f = foo~addmul() f(3, 4) 命名传参（之前讲过的无序传参方式） 命名传参的方式允许柯里化（Partial Application）以任意顺序绑定参数，而不只是从左到右。例如:
+let f = foo~addmul(where mul = 4) f(3) 在这里，我们绑定了mul参数，但未绑定add。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
-<meta itemprop="name" content="Partial Application">
-<meta itemprop="description" content="Partial application lets us supply some of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.
-A simple case A simple case is to create a &ldquo;callback&rdquo; function. For example:
-class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f &#43; add) * mul class Bar fun apply() =&gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) This is a bit of a silly example, but hopefully, the idea is clear.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="327">
+<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta itemprop="name" content="柯里化（Partial Application）">
+<meta itemprop="description" content="柯里化（Partial Application）允许我们对构造函数、函数或行为设置 部分 参数，然后返回一个新函数，以便后面再填充其余的参数。
+一个简单的例子 这里有一个简单的例子，创建一个回调函数。例如:
+class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f &#43; add) * mul class Bar fun apply() =&gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) 这是一个有点傻的示例，但希望，思路是清楚的。我们在foo上柯里化了addmul函数，把接收者绑定到foo上，把add参数绑定为3。我们得到一个返回值它是一个匿名对象：f，它有一个apply方法，接受一个mul参数。当它被调用时，它执行foo.addmul (3,mul)。
+我们也可以绑定所有的参数：
+let f = foo~addmul(3, 4) f() 也不提绑定任何实参：
+let f = foo~addmul() f(3, 4) 命名传参（之前讲过的无序传参方式） 命名传参的方式允许柯里化（Partial Application）以任意顺序绑定参数，而不只是从左到右。例如:
+let f = foo~addmul(where mul = 4) f(3) 在这里，我们绑定了mul参数，但未绑定add。">
+<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="101">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Partial Application"/>
-<meta name="twitter:description" content="Partial application lets us supply some of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.
-A simple case A simple case is to create a &ldquo;callback&rdquo; function. For example:
-class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f &#43; add) * mul class Bar fun apply() =&gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) This is a bit of a silly example, but hopefully, the idea is clear."/>
+<meta name="twitter:title" content="柯里化（Partial Application）"/>
+<meta name="twitter:description" content="柯里化（Partial Application）允许我们对构造函数、函数或行为设置 部分 参数，然后返回一个新函数，以便后面再填充其余的参数。
+一个简单的例子 这里有一个简单的例子，创建一个回调函数。例如:
+class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f &#43; add) * mul class Bar fun apply() =&gt; let foo: Foo = Foo let f = foo~addmul(3) f(4) 这是一个有点傻的示例，但希望，思路是清楚的。我们在foo上柯里化了addmul函数，把接收者绑定到foo上，把add参数绑定为3。我们得到一个返回值它是一个匿名对象：f，它有一个apply方法，接受一个mul参数。当它被调用时，它执行foo.addmul (3,mul)。
+我们也可以绑定所有的参数：
+let f = foo~addmul(3, 4) f() 也不提绑定任何实参：
+let f = foo~addmul() f(3, 4) 命名传参（之前讲过的无序传参方式） 命名传参的方式允许柯里化（Partial Application）以任意顺序绑定参数，而不只是从左到右。例如:
+let f = foo~addmul(where mul = 4) f(3) 在这里，我们绑定了mul参数，但未绑定add。"/>
 
   </head>
 
@@ -258,7 +270,7 @@ class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              比较运算（Equality in Pony）
+              比较（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
@@ -268,12 +280,12 @@ class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              object关键字（Object Literals）
+              匿名对象（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              Partial Application
+              柯里化（Partial Application）
             </a>
           </li>
         </ul>
@@ -606,10 +618,10 @@ class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#a-simple-case">A simple case</a></li>
-    <li><a href="#out-of-order-arguments">Out of order arguments</a></li>
-    <li><a href="#partially-applying-a-partial-application">Partially applying a partial application</a></li>
-    <li><a href="#partial-application-is-an-object-literal">Partial application is an object literal</a></li>
+    <li><a href="#一个简单的例子">一个简单的例子</a></li>
+    <li><a href="#命名传参之前讲过的无序传参方式">命名传参（之前讲过的无序传参方式）</a></li>
+    <li><a href="#对柯里化函数进行柯里化partially-applying-a-partial-application">对柯里化函数进行柯里化（Partially applying a partial application）</a></li>
+    <li><a href="#柯里化的返回值是一个匿名对象partial-application-is-an-object-literal">柯里化的返回值是一个匿名对象（Partial application is an object literal）</a></li>
   </ul>
 </nav>
   </div>
@@ -627,12 +639,15 @@ class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f
                 
               表达式（EXPRESSIONS）
             </p>
-            <h1 class="f1 athelas mb1">Partial Application</h1>
+            <h1 class="f1 athelas mb1">柯里化（Partial Application）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Partial application lets us supply <em>some</em> of the arguments to a constructor, function, or behaviour, and get back something that lets us supply the rest of the arguments later.</p>
-<h2 id="a-simple-case">A simple case</h2>
-<p>A simple case is to create a &ldquo;callback&rdquo; function. For example:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p><code>柯里化（Partial Application）</code>允许我们对<code>构造函数</code>、<code>函数</code>或<code>行为</code>设置 <em>部分</em> 参数，然后返回一个新函数，以便后面再填充其余的参数。</p>
+<!-- raw HTML omitted -->
+<h2 id="一个简单的例子">一个简单的例子</h2>
+<!-- raw HTML omitted -->
+<p>这里有一个简单的例子，创建一个<code>回调</code>函数。例如:</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _f: F64 = 0
 
@@ -644,26 +659,37 @@ class Bar
     let foo: Foo = Foo
     let f = foo~addmul(3)
     f(4)
-</code></pre><p>This is a bit of a silly example, but hopefully, the idea is clear. We partially apply the <code>addmul</code> function on <code>foo</code>, binding the receiver to <code>foo</code> and the <code>add</code> argument to <code>3</code>. We get back an object, <code>f</code>, that has an <code>apply</code> method that takes a <code>mul</code> argument. When it&rsquo;s called, it in turn calls <code>foo.addmul(3, mul)</code>.</p>
-<p>We can also bind all the arguments:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这是一个有点傻的示例，但希望，思路是清楚的。我们在<code>foo</code>上柯里化了<code>addmul</code>函数，把接收者绑定到<code>foo</code>上，把<code>add</code>参数绑定为<code>3</code>。我们得到一个返回值它是一个<code>匿名对象</code>：<code>f</code>，它有一个<code>apply</code>方法，接受一个<code>mul</code>参数。当它被调用时，它执行<code>foo.addmul (3,mul)</code>。</p>
+<!-- raw HTML omitted -->
+<p>我们也可以绑定所有的参数：</p>
 <pre><code class="language-pony" data-lang="pony">let f = foo~addmul(3, 4)
 f()
-</code></pre><p>Or even none of the arguments:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>也不提绑定任何实参：</p>
 <pre><code class="language-pony" data-lang="pony">let f = foo~addmul()
 f(3, 4)
-</code></pre><h2 id="out-of-order-arguments">Out of order arguments</h2>
-<p>Partial application with named arguments allows binding arguments in any order, not just left to right. For example:</p>
+</code></pre><!-- raw HTML omitted -->
+<h2 id="命名传参之前讲过的无序传参方式">命名传参（之前讲过的无序传参方式）</h2>
+<!-- raw HTML omitted -->
+<p>命名传参的方式允许<code>柯里化（Partial Application）</code>以任意顺序绑定参数，而不只是从左到右。例如:</p>
 <pre><code class="language-pony" data-lang="pony">let f = foo~addmul(where mul = 4)
 f(3)
-</code></pre><p>Here, we bound the <code>mul</code> argument but left <code>add</code> unbound.</p>
-<h2 id="partially-applying-a-partial-application">Partially applying a partial application</h2>
-<p>Since partial application results in an object with an apply method, we can partially apply the result!</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在这里，我们绑定了<code>mul</code>参数，但未绑定<code>add</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="对柯里化函数进行柯里化partially-applying-a-partial-application">对柯里化函数进行柯里化（Partially applying a partial application）</h2>
+<!-- raw HTML omitted -->
+<p>由于<code>柯里化（Partial Application）</code>会返回一个一个带有<code>apply</code>方法的<code>匿名对象</code>，所以我们对它的返回值再次进行柯里化！</p>
 <pre><code class="language-pony" data-lang="pony">let f = foo~addmul()
 let f2 = f~apply(where mul = 4)
 f2(3)
-</code></pre><h2 id="partial-application-is-an-object-literal">Partial application is an object literal</h2>
-<p>Under the hood, we&rsquo;re assembling an object literal for partial application. It captures some of the lexical scope as fields and has an <code>apply</code> method that takes some, possibly reduced, number of arguments. This is actually done as sugar, by rewriting the abstract syntax tree for partial application to be an object literal, before code generation.</p>
-<p>That means partial application results in an anonymous class and returns a <code>ref</code>. If you need another reference capability, you can wrap partial application in a <code>recover</code> expression.</p>
+</code></pre><!-- raw HTML omitted -->
+<h2 id="柯里化的返回值是一个匿名对象partial-application-is-an-object-literal">柯里化的返回值是一个匿名对象（Partial application is an object literal）</h2>
+<!-- raw HTML omitted -->
+<p>底层实现上，<code>柯里化（Partial Application）</code>会自动封装为一个<code>匿名对象</code>。它捕获从作用域中捕获字段，并有一个<code>apply</code>方法，该方法接受一些参数。这一切都是是在编译阶段，将柯里化的抽象语法树翻译为<code>匿名对象</code>来实现的。</p>
+<!-- raw HTML omitted -->
+<p>这意味着<code>柯里化（Partial Application）</code>将生成一个<code>匿名类</code>并返回一个<code>ref</code>权限的<code>匿名对象</code>。如果你需要其他<code>引用权能</code>，可以将<code>柯里化（Partial Application）</code>封装在一个<code>recover</code>表达式中。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

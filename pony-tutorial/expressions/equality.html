@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | 比较运算（Equality in Pony）</title>
+    <title>Pony 教程  | 比较（Equality in Pony）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,27 +45,33 @@
 
     
 
-    <meta property="og:title" content="比较运算（Equality in Pony）" />
-<meta property="og:description" content="Pony features two forms of equality: by structure and by identity.
-Identity equality Identity equality checks in Pony are done via the is keyword. is verifies that the two items are the same.
-if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP!" />
+    <meta property="og:title" content="比较（Equality in Pony）" />
+<meta property="og:description" content="Pony有两种形式的平等:结构平等和身份平等。
+类型比较（Identity equality） Pony中的类型检查是通过is关键字来完成的。is可以判断两个类型是否相同。
+if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP! TRUE! end 结构化比较（Structural equality） Pony的结构化比较是通过中缀运算符==来完成的。它可以判断同的数据是否具有相同的值。如果被比较结果为true，可以认为它们具有相同的值。
+可以通过实现fun eq(that: box-&gt;Foo): Bool来自定义对比逻辑。注意，因为==是一个中缀操作符，eq必须定义在左边的操作数上，而右边的操作数必须是Foo类型。
+class Foo let _a: String new create(a: String) =&gt; _a = a fun eq(that: box-&gt;Foo): Bool =&gt; this." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/equality.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
-<meta itemprop="name" content="比较运算（Equality in Pony）">
-<meta itemprop="description" content="Pony features two forms of equality: by structure and by identity.
-Identity equality Identity equality checks in Pony are done via the is keyword. is verifies that the two items are the same.
-if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP!">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="363">
+<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta itemprop="name" content="比较（Equality in Pony）">
+<meta itemprop="description" content="Pony有两种形式的平等:结构平等和身份平等。
+类型比较（Identity equality） Pony中的类型检查是通过is关键字来完成的。is可以判断两个类型是否相同。
+if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP! TRUE! end 结构化比较（Structural equality） Pony的结构化比较是通过中缀运算符==来完成的。它可以判断同的数据是否具有相同的值。如果被比较结果为true，可以认为它们具有相同的值。
+可以通过实现fun eq(that: box-&gt;Foo): Bool来自定义对比逻辑。注意，因为==是一个中缀操作符，eq必须定义在左边的操作数上，而右边的操作数必须是Foo类型。
+class Foo let _a: String new create(a: String) =&gt; _a = a fun eq(that: box-&gt;Foo): Bool =&gt; this.">
+<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="181">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="比较运算（Equality in Pony）"/>
-<meta name="twitter:description" content="Pony features two forms of equality: by structure and by identity.
-Identity equality Identity equality checks in Pony are done via the is keyword. is verifies that the two items are the same.
-if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP!"/>
+<meta name="twitter:title" content="比较（Equality in Pony）"/>
+<meta name="twitter:description" content="Pony有两种形式的平等:结构平等和身份平等。
+类型比较（Identity equality） Pony中的类型检查是通过is关键字来完成的。is可以判断两个类型是否相同。
+if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP! TRUE! end 结构化比较（Structural equality） Pony的结构化比较是通过中缀运算符==来完成的。它可以判断同的数据是否具有相同的值。如果被比较结果为true，可以认为它们具有相同的值。
+可以通过实现fun eq(that: box-&gt;Foo): Bool来自定义对比逻辑。注意，因为==是一个中缀操作符，eq必须定义在左边的操作数上，而右边的操作数必须是Foo类型。
+class Foo let _a: String new create(a: String) =&gt; _a = a fun eq(that: box-&gt;Foo): Bool =&gt; this."/>
 
   </head>
 
@@ -258,7 +264,7 @@ if None is None then // TRUE! // There is only 1 None so the identity is the sam
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              比较运算（Equality in Pony）
+              比较（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
@@ -268,12 +274,12 @@ if None is None then // TRUE! // There is only 1 None so the identity is the sam
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              object关键字（Object Literals）
+              匿名对象（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Partial Application
+              柯里化（Partial Application）
             </a>
           </li>
         </ul>
@@ -606,9 +612,9 @@ if None is None then // TRUE! // There is only 1 None so the identity is the sam
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#identity-equality">Identity equality</a></li>
-    <li><a href="#structural-equality">Structural equality</a></li>
-    <li><a href="#primitives-and-equality">Primitives and equality</a></li>
+    <li><a href="#类型比较identity-equality">类型比较（Identity equality）</a></li>
+    <li><a href="#结构化比较structural-equality">结构化比较（Structural equality）</a></li>
+    <li><a href="#基元类的类型比较primitives-and-equality">基元类的类型比较（Primitives and equality）</a></li>
   </ul>
 </nav>
   </div>
@@ -626,12 +632,15 @@ if None is None then // TRUE! // There is only 1 None so the identity is the sam
                 
               表达式（EXPRESSIONS）
             </p>
-            <h1 class="f1 athelas mb1">比较运算（Equality in Pony）</h1>
+            <h1 class="f1 athelas mb1">比较（Equality in Pony）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Pony features two forms of equality: by structure and by identity.</p>
-<h2 id="identity-equality">Identity equality</h2>
-<p>Identity equality checks in Pony are done via the <code>is</code> keyword. <code>is</code> verifies that the two items are the same.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>Pony有两种形式的平等:结构平等和身份平等。</p>
+<!-- raw HTML omitted -->
+<h2 id="类型比较identity-equality">类型比较（Identity equality）</h2>
+<!-- raw HTML omitted -->
+<p>Pony中的类型检查是通过<code>is</code>关键字来完成的。<code>is</code>可以判断两个类型是否相同。</p>
 <pre><code class="language-pony" data-lang="pony">if None is None then
   // TRUE!
   // There is only 1 None so the identity is the same
@@ -648,9 +657,12 @@ let c = a
 if a is c then
   // YUP! TRUE!
 end
-</code></pre><h2 id="structural-equality">Structural equality</h2>
-<p>Structural equality checking in Pony is done via the infix operator <code>==</code>. It verifies that two items have the same value. If the identity of the items being compared is the same, then by definition they have the same value.</p>
-<p>You can define how structural equality is checked on your object by implementing <code>fun eq(that: box-&gt;Foo): Bool</code>. Remember, since <code>==</code> is an infix operator, <code>eq</code> must be defined on the left operand, and the right operand must be of type <code>Foo</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<h2 id="结构化比较structural-equality">结构化比较（Structural equality）</h2>
+<!-- raw HTML omitted -->
+<p>Pony的结构化比较是通过中缀运算符<code>==</code>来完成的。它可以判断同的数据是否具有相同的值。如果被比较结果为<code>true</code>，可以认为它们具有相同的值。</p>
+<!-- raw HTML omitted -->
+<p>可以通过实现<code>fun eq(that: box-&gt;Foo): Bool</code>来自定义对比逻辑。注意，因为<code>==</code>是一个中缀操作符，<code>eq</code>必须定义在左边的操作数上，而右边的操作数必须是<code>Foo</code>类型。</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   let _a: String
 
@@ -680,17 +692,23 @@ actor Main
       // won't print
       e.out.print(&quot;3&quot;)
     end
-</code></pre><p>If you don&rsquo;t define your own <code>eq</code>, you will inherit the default implementation that defines equal by value as being the same as by identity.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>如果没有定义自己的<code>eq</code>，Pony将会提供一个默认实现，该实现只是简单的对比类型是否相同。</p>
 <pre><code class="language-pony" data-lang="pony">interface Equatable[A: Equatable[A] #read]
   fun eq(that: box-&gt;A): Bool =&gt; this is that
   fun ne(that: box-&gt;A): Bool =&gt; not eq(that)
-</code></pre><h2 id="primitives-and-equality">Primitives and equality</h2>
-<p>As you might remember from <a href="https://tutorial.ponylang.io/types/primitives.html">Chapter 2</a>, primitives are the same as classes except for two important differences:</p>
+</code></pre><!-- raw HTML omitted -->
+<h2 id="基元类的类型比较primitives-and-equality">基元类的类型比较（Primitives and equality）</h2>
+<!-- raw HTML omitted -->
+<p>你可能还记得在<a href="https://tutorial.ponylang.io/types/primitives.html">第二章：基元类</a>中讲过，除了两个重要的区别之外，基元类与类有两个重要区别:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li>A primitive has no fields.</li>
-<li>There is only one instance of a user-defined primitive.</li>
+<li>基元类没有字段。</li>
+<li>所有用户自定义的基元类只会有一个实例。</li>
 </ul>
-<p>This means, that every primitive of a given type, is always structurally equal and equal based on identity. So, for example, None is always None.</p>
+<!-- raw HTML omitted -->
+<p>这意味着，同类型的基元类实例在结构上总是相等的，并且是完全相等。例如，所有的<code>None</code>都是同一个实例。</p>
 <pre><code class="language-pony" data-lang="pony">if None is None then
   // this is always true
 end

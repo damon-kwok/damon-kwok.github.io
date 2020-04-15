@@ -46,26 +46,62 @@
     
 
     <meta property="og:title" content="方法（Methods）" />
-<meta property="og:description" content="All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
-Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter when we talked about actors.
-Can I have some code outside of any methods like I do in Python?" />
+<meta property="og:description" content="在Pony中，所有的执行逻辑（代码）都被放在方法中。方法有三种：函数、构造函数和行为。所有的方法都要写在类型定义中（例如：类、基元类、actor等），不存在全局函数或全局行为。
+行为用于处理发送给参与者的异步消息，我们在类型系统章节中已经讲解过行为。
+可以像Python那样在任何方法之外添加一些代码吗？ 不行。所有的Pony代码都必须在一个方法中。
+函数（Functions） Pony的函数与其他语言中的函数（或方法）非常相似。它们可以具有0个或多个参数，以及0个或1个返回值（如果需要像Go语言的多返回值可以使用元组）。如果省略了返回类型，则该函数的返回值将为None。
+class C fun add(x: U32, y: U32): U32 =&gt; x &#43; y fun nop() =&gt; add(1, 2) // Pointless, we ignore the result 函数参数（如果有）在函数名称后的括号中指定。即便没有任何参数的函数定义时，括号也不能省略。
+每个参数都有一个名称和类型。在我们的示例函数中，add函数有两个参数x和y，它们都是U32类型。传递给函数调用的值（示例中为1和 2）称为实参（arguments），并且在进行调用时会对其求值并分配给形参（parameters）。形参虽然没有明确给出声明的方式，但实际上它们被声明为let。
+形参后面的的是返回类型。如果不需要返回值，可以省略。
+返回值后面是=&gt;，最后是函数体。返回值是函数体表达式的执行结果（请记住，所有内容都是表达式），也就是函数中最后一条表达式的值。
+如果想从函数中提前返回，可以使用return表达式。如果函数具有返回类型，需要为return提供一个值。如果该函数没有返回类型，单独用return就行。
+可以按参数类型重载函数吗？ 不行，同一个类型中不允许出现重名的方法。
+构造函数（Constructors） 跟其他语言一样，Pony的构造函数也是用于初始化对象。不同的是，Pony构造函数可以自定义函数名字，也可以使用任意数量和类型的参数。Pony的默认构造函数（所有的类型定义都一样）为create。
+class Foo var _x: U32 new create() =&gt; _x = 0 new from_int(x: U32) =&gt; _x = x 构造函数的作用，是为了在创建对象时初始化对象内部状态。Pony中构造函数必须对所有字段做出初始化。
+可以从构造函数中提前返回吗？ 是的。使用不带值的return命令。但是要确保return前所有字段都已经进行了初始化。
+方法调用（Calling） 方法的调用与其他语言一样，通过在方法名称后的括号内提供参数来调用。即使没有参数需要传递，也需要括号。
+class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fun f() =&gt; let a = hello(&quot;Fred&quot;) 要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/methods.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
 <meta itemprop="name" content="方法（Methods）">
-<meta itemprop="description" content="All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
-Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter when we talked about actors.
-Can I have some code outside of any methods like I do in Python?">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1600">
+<meta itemprop="description" content="在Pony中，所有的执行逻辑（代码）都被放在方法中。方法有三种：函数、构造函数和行为。所有的方法都要写在类型定义中（例如：类、基元类、actor等），不存在全局函数或全局行为。
+行为用于处理发送给参与者的异步消息，我们在类型系统章节中已经讲解过行为。
+可以像Python那样在任何方法之外添加一些代码吗？ 不行。所有的Pony代码都必须在一个方法中。
+函数（Functions） Pony的函数与其他语言中的函数（或方法）非常相似。它们可以具有0个或多个参数，以及0个或1个返回值（如果需要像Go语言的多返回值可以使用元组）。如果省略了返回类型，则该函数的返回值将为None。
+class C fun add(x: U32, y: U32): U32 =&gt; x &#43; y fun nop() =&gt; add(1, 2) // Pointless, we ignore the result 函数参数（如果有）在函数名称后的括号中指定。即便没有任何参数的函数定义时，括号也不能省略。
+每个参数都有一个名称和类型。在我们的示例函数中，add函数有两个参数x和y，它们都是U32类型。传递给函数调用的值（示例中为1和 2）称为实参（arguments），并且在进行调用时会对其求值并分配给形参（parameters）。形参虽然没有明确给出声明的方式，但实际上它们被声明为let。
+形参后面的的是返回类型。如果不需要返回值，可以省略。
+返回值后面是=&gt;，最后是函数体。返回值是函数体表达式的执行结果（请记住，所有内容都是表达式），也就是函数中最后一条表达式的值。
+如果想从函数中提前返回，可以使用return表达式。如果函数具有返回类型，需要为return提供一个值。如果该函数没有返回类型，单独用return就行。
+可以按参数类型重载函数吗？ 不行，同一个类型中不允许出现重名的方法。
+构造函数（Constructors） 跟其他语言一样，Pony的构造函数也是用于初始化对象。不同的是，Pony构造函数可以自定义函数名字，也可以使用任意数量和类型的参数。Pony的默认构造函数（所有的类型定义都一样）为create。
+class Foo var _x: U32 new create() =&gt; _x = 0 new from_int(x: U32) =&gt; _x = x 构造函数的作用，是为了在创建对象时初始化对象内部状态。Pony中构造函数必须对所有字段做出初始化。
+可以从构造函数中提前返回吗？ 是的。使用不带值的return命令。但是要确保return前所有字段都已经进行了初始化。
+方法调用（Calling） 方法的调用与其他语言一样，通过在方法名称后的括号内提供参数来调用。即使没有参数需要传递，也需要括号。
+class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fun f() =&gt; let a = hello(&quot;Fred&quot;) 要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名：">
+<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="499">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="方法（Methods）"/>
-<meta name="twitter:description" content="All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.
-Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter when we talked about actors.
-Can I have some code outside of any methods like I do in Python?"/>
+<meta name="twitter:description" content="在Pony中，所有的执行逻辑（代码）都被放在方法中。方法有三种：函数、构造函数和行为。所有的方法都要写在类型定义中（例如：类、基元类、actor等），不存在全局函数或全局行为。
+行为用于处理发送给参与者的异步消息，我们在类型系统章节中已经讲解过行为。
+可以像Python那样在任何方法之外添加一些代码吗？ 不行。所有的Pony代码都必须在一个方法中。
+函数（Functions） Pony的函数与其他语言中的函数（或方法）非常相似。它们可以具有0个或多个参数，以及0个或1个返回值（如果需要像Go语言的多返回值可以使用元组）。如果省略了返回类型，则该函数的返回值将为None。
+class C fun add(x: U32, y: U32): U32 =&gt; x &#43; y fun nop() =&gt; add(1, 2) // Pointless, we ignore the result 函数参数（如果有）在函数名称后的括号中指定。即便没有任何参数的函数定义时，括号也不能省略。
+每个参数都有一个名称和类型。在我们的示例函数中，add函数有两个参数x和y，它们都是U32类型。传递给函数调用的值（示例中为1和 2）称为实参（arguments），并且在进行调用时会对其求值并分配给形参（parameters）。形参虽然没有明确给出声明的方式，但实际上它们被声明为let。
+形参后面的的是返回类型。如果不需要返回值，可以省略。
+返回值后面是=&gt;，最后是函数体。返回值是函数体表达式的执行结果（请记住，所有内容都是表达式），也就是函数中最后一条表达式的值。
+如果想从函数中提前返回，可以使用return表达式。如果函数具有返回类型，需要为return提供一个值。如果该函数没有返回类型，单独用return就行。
+可以按参数类型重载函数吗？ 不行，同一个类型中不允许出现重名的方法。
+构造函数（Constructors） 跟其他语言一样，Pony的构造函数也是用于初始化对象。不同的是，Pony构造函数可以自定义函数名字，也可以使用任意数量和类型的参数。Pony的默认构造函数（所有的类型定义都一样）为create。
+class Foo var _x: U32 new create() =&gt; _x = 0 new from_int(x: U32) =&gt; _x = x 构造函数的作用，是为了在创建对象时初始化对象内部状态。Pony中构造函数必须对所有字段做出初始化。
+可以从构造函数中提前返回吗？ 是的。使用不带值的return命令。但是要确保return前所有字段都已经进行了初始化。
+方法调用（Calling） 方法的调用与其他语言一样，通过在方法名称后的括号内提供参数来调用。即使没有参数需要传递，也需要括号。
+class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fun f() =&gt; let a = hello(&quot;Fred&quot;) 要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名："/>
 
   </head>
 
@@ -258,7 +294,7 @@ Can I have some code outside of any methods like I do in Python?"/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              比较运算（Equality in Pony）
+              比较（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
@@ -268,12 +304,12 @@ Can I have some code outside of any methods like I do in Python?"/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              object关键字（Object Literals）
+              匿名对象（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Partial Application
+              柯里化（Partial Application）
             </a>
           </li>
         </ul>
@@ -606,15 +642,15 @@ Can I have some code outside of any methods like I do in Python?"/>
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#functions">Functions</a></li>
-    <li><a href="#constructors">Constructors</a></li>
-    <li><a href="#calling">Calling</a></li>
-    <li><a href="#default-arguments">Default arguments</a></li>
-    <li><a href="#named-arguments">Named arguments</a></li>
-    <li><a href="#chaining">Chaining</a></li>
-    <li><a href="#anonymous-methods">Anonymous methods</a></li>
-    <li><a href="#privacy">Privacy</a></li>
-    <li><a href="#precedence">Precedence</a></li>
+    <li><a href="#函数functions">函数（Functions）</a></li>
+    <li><a href="#构造函数constructors">构造函数（Constructors）</a></li>
+    <li><a href="#方法调用calling">方法调用（Calling）</a></li>
+    <li><a href="#参数默认值default-arguments">参数默认值（Default arguments）</a></li>
+    <li><a href="#参数命名named-arguments">参数命名（Named arguments）</a></li>
+    <li><a href="#连续调用chaining">连续调用Chaining</a></li>
+    <li><a href="#匿名方法anonymous-methods">匿名方法（Anonymous methods）</a></li>
+    <li><a href="#私有方法privacy">私有方法（Privacy）</a></li>
+    <li><a href="#调用优先级precedence">调用优先级(Precedence)</a></li>
   </ul>
 </nav>
   </div>
@@ -635,25 +671,38 @@ Can I have some code outside of any methods like I do in Python?"/>
             <h1 class="f1 athelas mb1">方法（Methods）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>All Pony code that actually does something, rather than defining types etc, appears in named blocks which are referred to as methods. There are three kinds of methods: functions, constructors, and behaviours. All methods are attached to type definitions (e.g. classes) - there are no global functions.</p>
-<p>Behaviours are used for handling asynchronous messages sent to actors, which we&rsquo;ve seen in the &ldquo;Types&rdquo; chapter <a href="/pony-tutorial/types/actors.html#behaviours">when we talked about actors</a>.</p>
-<p><strong>Can I have some code outside of any methods like I do in Python?</strong> No. All Pony code must be within a method.</p>
-<h2 id="functions">Functions</h2>
-<p>Pony functions are quite like functions (or methods) in other languages. They can have 0 or more parameters and 0 or 1 return values. If the return type is omitted then the function will have a return value of <code>None</code>.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>在Pony中，所有的执行逻辑（代码）都被放在方法中。方法有三种：函数、构造函数和行为。所有的方法都要写在类型定义中（例如：类、基元类、actor等），不存在全局函数或全局行为。</p>
+<!-- raw HTML omitted -->
+<p>行为用于处理发送给参与者的异步消息，我们在<code>类型系统</code>章节中已经讲解过<a href="/pony-tutorial/types/actors.html#behaviours">行为</a>。</p>
+<!-- raw HTML omitted -->
+<p><strong>可以像Python那样在任何方法之外添加一些代码吗？</strong> 不行。所有的Pony代码都必须在一个方法中。</p>
+<!-- raw HTML omitted -->
+<h2 id="函数functions">函数（Functions）</h2>
+<!-- raw HTML omitted -->
+<p>Pony的函数与其他语言中的函数（或方法）非常相似。它们可以具有0个或多个参数，以及0个或1个返回值（如果需要像Go语言的多返回值可以使用<code>元组</code>）。如果省略了返回类型，则该函数的返回值将为<code>None</code>。</p>
 <pre><code class="language-pony" data-lang="pony">class C
   fun add(x: U32, y: U32): U32 =&gt;
     x + y
 
   fun nop() =&gt;
     add(1, 2)  // Pointless, we ignore the result
-</code></pre><p>The function parameters (if any) are specified in parentheses after the function name. Functions that don&rsquo;t take any parameters still need to have the parentheses.</p>
-<p>Each parameter is given a name and a type. In our example function <code>add</code> has 2 parameters, <code>x</code> and <code>y</code>, both of which are type <code>U32</code>. The values passed to a function call (the <code>1</code> and <code>2</code> in our example) are called arguments and when the call is made they are evaluated and assigned to the parameters. Parameters may not be assigned to within the function - they are effectively declared <code>let</code>.</p>
-<p>After the parameters comes the return type. If nothing will be returned this is simply omitted.</p>
-<p>After the return value, there&rsquo;s a <code>=&gt;</code> and then finally the function body. The value returned is simply the value of the function body (remember that everything is an expression), which is simply the value of the last command in the function.</p>
-<p>If you want to exit a function early then use the <code>return</code> command. If the function has a return type then you need to provide a value to return. If the function does not have a return type then <code>return</code> should appear on its own, without a value.</p>
-<p><strong>Can I overload functions by argument type?</strong> No, you cannot have multiple methods with the same name in the same type.</p>
-<h2 id="constructors">Constructors</h2>
-<p>Pony constructors are used to initialise newly created objects, as in many languages. However, unlike many languages, Pony constructors are named so you can have as many as you like, taking whatever parameters you like. By convention, the main constructor of each type (if there is such a thing for any given type) is called <code>create</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>函数参数（如果有）在函数名称后的括号中指定。即便没有任何参数的函数定义时，括号也不能省略。</p>
+<!-- raw HTML omitted -->
+<p>每个参数都有一个名称和类型。在我们的示例函数中，<code>add</code>函数有两个参数<code>x</code>和<code>y</code>，它们都是<code>U32</code>类型。传递给函数调用的值（示例中为<code>1</code>和<code> 2</code>）称为<code>实参（arguments）</code>，并且在进行调用时会对其求值并分配给<code>形参（parameters）</code>。形参虽然没有明确给出声明的方式，但实际上它们被声明为<code>let</code>。</p>
+<!-- raw HTML omitted -->
+<p>形参后面的的是返回类型。如果不需要返回值，可以省略。</p>
+<!-- raw HTML omitted -->
+<p>返回值后面是<code>=&gt;</code>，最后是函数体。返回值是函数体表达式的执行结果（请记住，所有内容都是表达式），也就是函数中最后一条表达式的值。</p>
+<!-- raw HTML omitted -->
+<p>如果想从函数中提前返回，可以使用<code>return</code>表达式。如果函数具有返回类型，需要为<code>return</code>提供一个值。如果该函数没有返回类型，单独用<code>return</code>就行。</p>
+<!-- raw HTML omitted -->
+<p><strong>可以按参数类型重载函数吗？</strong> 不行，同一个类型中不允许出现重名的方法。</p>
+<!-- raw HTML omitted -->
+<h2 id="构造函数constructors">构造函数（Constructors）</h2>
+<!-- raw HTML omitted -->
+<p>跟其他语言一样，Pony的构造函数也是用于初始化对象。不同的是，Pony构造函数可以自定义函数名字，也可以使用任意数量和类型的参数。Pony的默认构造函数（所有的类型定义都一样）为<code>create</code>。</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _x: U32
 
@@ -662,17 +711,22 @@ Can I have some code outside of any methods like I do in Python?"/>
 
   new from_int(x: U32) =&gt;
     _x = x
-</code></pre><p>The purpose of a constructor is to set up the internal state of the object being created. To ensure this is done constructors must initialise all the fields in the object being constructed.</p>
-<p><strong>Can I exit a constructor early?</strong> Yes. Just then use the <code>return</code> command without a value. The object must already be in a legal state to do this.</p>
-<h2 id="calling">Calling</h2>
-<p>As in many other languages, methods in Pony are called by providing the arguments within parentheses after the method name. The parentheses are required even if there are no arguments being passed to the method.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>构造函数的作用，是为了在创建对象时初始化对象内部状态。Pony中构造函数必须对所有字段做出初始化。</p>
+<!-- raw HTML omitted -->
+<p><strong>可以从构造函数中提前返回吗？</strong> 是的。使用不带值的<code>return</code>命令。但是要确保<code>return</code>前所有字段都已经进行了初始化。</p>
+<!-- raw HTML omitted -->
+<h2 id="方法调用calling">方法调用（Calling）</h2>
+<!-- raw HTML omitted -->
+<p>方法的调用与其他语言一样，通过在方法名称后的括号内提供参数来调用。即使没有参数需要传递，也需要括号。</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   fun hello(name: String): String =&gt;
     &quot;hello &quot; + name
 
   fun f() =&gt;
     let a = hello(&quot;Fred&quot;)
-</code></pre><p>Constructors are usually called &ldquo;on&rdquo; a type, by specifying the type that is to be created. To do this just specify the type, followed by a dot, followed by the name of the constructor you want to call.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名：</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _x: U32
 
@@ -686,7 +740,8 @@ class Bar
   fun f() =&gt;
     var a: Foo = Foo.create()
     var b: Foo = Foo.from_int(3)
-</code></pre><p>Functions are always called on an object. Again just specify the object, followed by a dot, followed by the name of the function to call. If the object to call on is omitted then the current object is used (i.e. <code>this</code>).</p>
+</code></pre><!-- raw HTML omitted -->
+<p>调用对象的函数：对象名后跟一个点，然后是要调用的函数名。如果省略了要调用的对象，则使用当前对象（即<code>this</code>）。</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _x: U32
 
@@ -708,7 +763,8 @@ class Bar
   fun g(x: U32): U32 =&gt;
     x + 1
 
-</code></pre><p>Constructors can also be called on an expression. Here an object is created of the same type as the specified expression - this is equivalent to directly specifying the type.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>构造函数也可以直接调用。相当于用<code>this</code>在调用，创建的对象类型就是当前类型。</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _x: U32
 
@@ -722,13 +778,17 @@ class Bar
   fun f() =&gt;
     var a: Foo = Foo.create()
     var b: Foo = a.from_int(3)
-</code></pre><p>We can even reuse the variable name in the assignment expression to call the constructor.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>我们甚至可以在赋值表达式中用另一个实例名来调用构造函数（上面的示例中）。</p>
 <pre><code class="language-pony" data-lang="pony">class Bar
   fun f() =&gt;
     var a: Foo = a.create()
-</code></pre><p>Here we specify that <code>var a</code> is type <code>Foo</code>, then proceed to use <code>a</code> to call the constructor, <code>create()</code>, for objects of type <code>Foo</code>.</p>
-<h2 id="default-arguments">Default arguments</h2>
-<p>When defining a method you can provide default values for any of the arguments. The caller then has the choice to use the values you have provided or to provide their own. Default argument values are specified with a <code>=</code> after the parameter name.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>来一个更骚的操作，上面例子中，我们用<code>var a</code>声明了一个<code>Foo</code>类型，然后直接使用<code>a</code>调用<code>Foo</code>的构造函数<code>create()</code>创建实例赋值给<code>a</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="参数默认值default-arguments">参数默认值（Default arguments）</h2>
+<!-- raw HTML omitted -->
+<p>在定义方法时，可以为参数提供默认值。调用者可以选择使用默认值，或者提供自己的值。参数的默认值在形参名后面用<code>=</code>指定。</p>
 <pre><code class="language-pony" data-lang="pony">class Coord
   var _x: U32
   var _y: U32
@@ -742,10 +802,14 @@ class Bar
     var a: Coord = Coord.create()     // Contains (0, 0)
     var b: Coord = Coord.create(3)    // Contains (3, 0)
     var c: Coord = Coord.create(3, 4) // Contains (3, 4)
-</code></pre><p><strong>Do I have to provide default values for all of my arguments?</strong> No, you can provide defaults for as many, or as few, as you like.</p>
-<h2 id="named-arguments">Named arguments</h2>
-<p>So far, when calling methods we have always given all the arguments in order. This is known as using <strong>positional</strong> arguments. However, we can also specify the arguments in any order by specifying their names. This is known as using <strong>named</strong> arguments.</p>
-<p>To call a method using named arguments the <code>where</code> keyword is used, followed by the named arguments and their values.</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>我必须为所有的参数提供默认值吗?</strong> 不需要，可以自己决定为哪些参数设置默认值。</p>
+<!-- raw HTML omitted -->
+<h2 id="参数命名named-arguments">参数命名（Named arguments）</h2>
+<!-- raw HTML omitted -->
+<p>到目前为止，在调用方法时，我们总是按顺序给出所有参数。这被称为使用 <strong><code>位置传参</code>或<code>顺序传参</code>（positional arguments）</strong> 。但是，我们也可以通过指定参数的名称来指定传参顺序。这被称为 <strong><code>命名传参</code>或<code>动态传参</code>（named arguments）</strong>。</p>
+<!-- raw HTML omitted -->
+<p>要使用<code>命名传参</code>的方式调用方法，需要使用<code>where</code>关键字，然后是形参名和值。</p>
 <pre><code class="language-pony" data-lang="pony">class Coord
   var _x: U32
   var _y: U32
@@ -758,10 +822,14 @@ class Bar
   fun f() =&gt;
     var a: Coord = Coord.create(3, 4) // Contains (3, 4)
     var b: Coord = Coord.create(where y = 4, x = 3) // Contains (3, 4)
-</code></pre><p>Note how in <code>b</code> above, the arguments were given out of order by using <code>where</code> followed using the name of the arguments.</p>
-<p><strong>Should I specify <code>where</code> for each named argument?</strong> No. There must be only one <code>where</code> in a method call.</p>
-<p>Named and positional arguments can be used together in a single call. Just start with the positional arguments you want to specify, then a <code>where</code> and finally the named arguments. But be careful, each argument must be specified only once.</p>
-<p>Default arguments can also be used in combination with positional and named arguments - just miss out any for which you want to use the default.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>注意，上面示例中的<code>b</code>实例的创建，演示了如何使用<code>where</code>的用法。</p>
+<!-- raw HTML omitted -->
+<p><strong>我需要为每个参数都指定一个<code>where</code>吗?</strong> 不需要。方法调用时只需要一个<code>where</code>。</p>
+<!-- raw HTML omitted -->
+<p>在方法的调用中可以同时使用<code>命名传参</code>和<code>位置传参</code>。从需要的位置开始，使用<code>where</code>关键字就可以了。但是要注意，每个参数只能指定一次。</p>
+<!-- raw HTML omitted -->
+<p><code>默认参数</code>也可以与<code>位置传参</code>和<code>命名传参</code>结合使用——只需要忽略传递默认参数即可。</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   fun f(a: U32 = 1, b: U32 = 2, c: U32 = 3, d: U32 = 4, e: U32 = 5): U32  =&gt;
     0
@@ -770,49 +838,66 @@ class Bar
     f(6, 7 where d = 8)
     // Equivalent to:
     f(6, 7, 3, 8, 5)
-</code></pre><p><strong>Can I call using positional arguments but miss out the first one?</strong> No. If you use positional arguments they must be the first ones in the call.</p>
-<h2 id="chaining">Chaining</h2>
-<p>Method chaining allows you to chain calls on an object without requiring the method to return its receiver. The syntax to call a method and chain the receiver is <code>object.&gt;method()</code>, which is roughly equivalent to <code>(object.method() ; object)</code>. Chaining a method discards its normal return value.</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>使用<code>位置传参</code>调用方法是，是否忽略第一个参数?</strong> 不行。如果使用位置传参，没有设置默认值的参数必须放在前面。（注意：<code>位置传参</code>方式配合<code>默认参数</code>使用时，如果为方法的某个参数设置了默认值，后续的参数都必须给出默认值）。</p>
+<!-- raw HTML omitted -->
+<h2 id="连续调用chaining">连续调用Chaining</h2>
+<!-- raw HTML omitted -->
+<p>方法链接允许您将对对象的调用链接起来，而不需要方法返回其接收器。调用一个方法并链接接收器的语法是<code>object.&gt;method()</code>，它大致相当于<code>(object.method() ; object)</code>。连续调用方法时会丢弃它的正常返回值：</p>
 <pre><code class="language-pony" data-lang="pony">primitive Printer
   fun print_two_strings(out: StdStream, s1: String, s2: String) =&gt;
     out.&gt;print(s1).&gt;print(s2)
-    // Equivalent to:
+    // 等同于：
     out.print(s1)
     out.print(s2)
     out
-</code></pre><p>Note that the last <code>.&gt;</code> in a chain can be a <code>.</code> if the return value of the last call matters.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>注意，如果最后一次调用的返回值很重要的话，可以把<code>.&gt;</code>换成<code>.</code>。</p>
 <pre><code class="language-pony" data-lang="pony">interface Factory
   fun add_option(o: Option)
   fun make_object(): Object
 
 primitive Foo
   fun object_wrong(f: Factory, o1: Option, o2: Option): Object =&gt;
-    f.&gt;add_option(o1).&gt;add_option(o2).&gt;make_object() // Error! The expression returns a Factory
+    f.&gt;add_option(o1).&gt;add_option(o2).&gt;make_object() // 错误! 这个表达式返回的是`Facyory`
 
   fun object_right(f: Factory, o1: Option, o2: Option): Object =&gt;
-    f.&gt;add_option(o1).&gt;add_option(o2).make_object() // Works. The expression returns an Object
-</code></pre><h2 id="anonymous-methods">Anonymous methods</h2>
-<p>Pony has anonymous methods (or Lambdas). They look like this:</p>
+    f.&gt;add_option(o1).&gt;add_option(o2).make_object() // 正确。 这个表达式返回了一个`Object`
+</code></pre><!-- raw HTML omitted -->
+<h2 id="匿名方法anonymous-methods">匿名方法（Anonymous methods）</h2>
+<!-- raw HTML omitted -->
+<p>Pony中可以使用<code>匿名方法</code>（或者叫Lambdas）。看一下示例:</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
 
 actor Main
   new create(env: Env) =&gt;
     let list_of_numbers = List[U32].from([1; 2; 3; 4])
     let is_odd = {(n: U32): Bool =&gt; (n % 2) == 1}
-    for odd_number in list_of_numbers.filter(is_odd).values() do
+    let list_of_odd_numbers = list_of_numbers.filter(is_odd)
+    for odd_number in list_of_odd_numbers.values() do
       env.out.print(odd_number.string())
     end
-</code></pre><p>They are presented more in-depth in the <a href="/expressions/object-literals.html">Object Literals section</a>.</p>
-<h2 id="privacy">Privacy</h2>
-<p>In Pony, method names start either with a lower case letter or with an underscore followed by a lowercase letter. Methods with a leading underscore are private. This means they can only be called by code within the same package. Methods without a leading underscore are public and can be called by anyone.</p>
-<p><strong>Can I start my method name with 2 (or more) underscores?</strong> No. If the first character is an underscore then the second one MUST be a lower case letter.</p>
-<h2 id="precedence">Precedence</h2>
-<p>We have talked about <a href="/expressions/ops.html#precedence">precedence of operators</a> before, and in Pony, method calls and field accesses have higher precedence than any operators.</p>
-<p>To sum up, in complex expressions,</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在<a href="/expressions/object-literals.html">Object Literals section</a>中有更详细的介绍。</p>
+<!-- raw HTML omitted -->
+<h2 id="私有方法privacy">私有方法（Privacy）</h2>
+<!-- raw HTML omitted -->
+<p>在Pony中，方法名只能以小写字母或下划线后跟小写字母开头。下划线开头的方法是私有的。它们只能被当前包中的代码调用。非下划线开头的方法是公有的，可以在外部(其他包)调用。</p>
+<!-- raw HTML omitted -->
+<p><strong>我可以用2个(或更多)下划线来开始我的方法名吗?</strong> 不行。如果第一个字符是下划线，那么第二个字符<code>必须</code>是小写字母。</p>
+<!-- raw HTML omitted -->
+<h2 id="调用优先级precedence">调用优先级(Precedence)</h2>
+<!-- raw HTML omitted -->
+<p>我们之前已经讨论过<a href="/expressions/ops.html#precedence">运算符符优先级</a>，在Pony中，<code>方法调用</code>和<code>字段访问</code>的优先级比所有的运算符都要高。</p>
+<!-- raw HTML omitted -->
+<p>我们来总结回顾一下,在复杂的表达式中:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ol>
-<li>Method calls and field accesses have higher precedence than any operators.</li>
-<li>Unary operator have higher precedence than infix operators.</li>
-<li>When mixing infix operators in complex expressions, we must use parentheses to specify precedences explicitly.</li>
+<li>方法调用和字段访问的优先级高于任何运算符符。</li>
+<li>一元运算符具有比中缀运算符更高的优先级。</li>
+<li>在复杂表达式中混合中缀运算符时，我们必须使用括号来显式地指定前缀。</li>
 </ol>
 </main>
         </div>

@@ -46,23 +46,56 @@
     
 
     <meta property="og:title" content="语法糖（Sugar）" />
-<meta property="og:description" content="Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.
-Apply Many Pony classes have a function called apply which performs whatever action is most common for that type. Pony allows you to omit the word apply and just attempt to do a call directly on the object." />
+<meta property="og:description" content="Pony允许你编写代码时做一些简化，让代码更简洁、易读。使用语法糖是可选的，如果您愿意，你可以始终使用完整的书写方式。
+Apply语法糖 许多Pony类都有一个名为apply的函数，该函数可以执行一些该类型最常见的操作。Pony允许你省略apply这个函数名，直接从对象调用。所以:
+var foo = Foo.create() foo() 等同于：
+var foo = Foo.create() foo.apply() 需要参数的话可以像调用普通方法那样去添加。
+var foo = Foo.create() foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create() foo.apply(x, 37 where crash = false) 必须要提供参数吗? 是的，只有apply会为你自动添加，正确的参数数量和类型必须你自己提供。默认传参和命名传参的机制可以正常使用。
+如果apply会被自动添加，那我怎么调用其他函数？ 只有直接调用对象时才添加apply，其他时候不会。编译器能判断什么时候该添加apply。
+Create语法糖 要实例化对象，你需要指定类型并调用构造函数。Pony允许你忽略构造函数，并将为您插入一个create()调用。所以:
+var foo = Foo 等同于：
+var foo = Foo.create() 通常，类型在表达式中是不被求值的，因此省略掉构造函数并不会造成歧义。记住，类型是很容易被识别的，因为它始终是以大写字母开头。
+如果create需要参数，可以直接在后面加括号传入。默认参数和命名传参机制都可以正常使用。
+var foo = Foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create(x, 37 where crash = false) 如果我想使用一个名字不是create的构造函数怎么做?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/sugar.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
 <meta itemprop="name" content="语法糖（Sugar）">
-<meta itemprop="description" content="Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.
-Apply Many Pony classes have a function called apply which performs whatever action is most common for that type. Pony allows you to omit the word apply and just attempt to do a call directly on the object.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="722">
+<meta itemprop="description" content="Pony允许你编写代码时做一些简化，让代码更简洁、易读。使用语法糖是可选的，如果您愿意，你可以始终使用完整的书写方式。
+Apply语法糖 许多Pony类都有一个名为apply的函数，该函数可以执行一些该类型最常见的操作。Pony允许你省略apply这个函数名，直接从对象调用。所以:
+var foo = Foo.create() foo() 等同于：
+var foo = Foo.create() foo.apply() 需要参数的话可以像调用普通方法那样去添加。
+var foo = Foo.create() foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create() foo.apply(x, 37 where crash = false) 必须要提供参数吗? 是的，只有apply会为你自动添加，正确的参数数量和类型必须你自己提供。默认传参和命名传参的机制可以正常使用。
+如果apply会被自动添加，那我怎么调用其他函数？ 只有直接调用对象时才添加apply，其他时候不会。编译器能判断什么时候该添加apply。
+Create语法糖 要实例化对象，你需要指定类型并调用构造函数。Pony允许你忽略构造函数，并将为您插入一个create()调用。所以:
+var foo = Foo 等同于：
+var foo = Foo.create() 通常，类型在表达式中是不被求值的，因此省略掉构造函数并不会造成歧义。记住，类型是很容易被识别的，因为它始终是以大写字母开头。
+如果create需要参数，可以直接在后面加括号传入。默认参数和命名传参机制都可以正常使用。
+var foo = Foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create(x, 37 where crash = false) 如果我想使用一个名字不是create的构造函数怎么做?">
+<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="145">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="语法糖（Sugar）"/>
-<meta name="twitter:description" content="Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.
-Apply Many Pony classes have a function called apply which performs whatever action is most common for that type. Pony allows you to omit the word apply and just attempt to do a call directly on the object."/>
+<meta name="twitter:description" content="Pony允许你编写代码时做一些简化，让代码更简洁、易读。使用语法糖是可选的，如果您愿意，你可以始终使用完整的书写方式。
+Apply语法糖 许多Pony类都有一个名为apply的函数，该函数可以执行一些该类型最常见的操作。Pony允许你省略apply这个函数名，直接从对象调用。所以:
+var foo = Foo.create() foo() 等同于：
+var foo = Foo.create() foo.apply() 需要参数的话可以像调用普通方法那样去添加。
+var foo = Foo.create() foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create() foo.apply(x, 37 where crash = false) 必须要提供参数吗? 是的，只有apply会为你自动添加，正确的参数数量和类型必须你自己提供。默认传参和命名传参的机制可以正常使用。
+如果apply会被自动添加，那我怎么调用其他函数？ 只有直接调用对象时才添加apply，其他时候不会。编译器能判断什么时候该添加apply。
+Create语法糖 要实例化对象，你需要指定类型并调用构造函数。Pony允许你忽略构造函数，并将为您插入一个create()调用。所以:
+var foo = Foo 等同于：
+var foo = Foo.create() 通常，类型在表达式中是不被求值的，因此省略掉构造函数并不会造成歧义。记住，类型是很容易被识别的，因为它始终是以大写字母开头。
+如果create需要参数，可以直接在后面加括号传入。默认参数和命名传参机制都可以正常使用。
+var foo = Foo(x, 37 where crash = false) 等同于：
+var foo = Foo.create(x, 37 where crash = false) 如果我想使用一个名字不是create的构造函数怎么做?"/>
 
   </head>
 
@@ -255,7 +288,7 @@ Apply Many Pony classes have a function called apply which performs whatever act
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              比较运算（Equality in Pony）
+              比较（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
@@ -265,12 +298,12 @@ Apply Many Pony classes have a function called apply which performs whatever act
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              object关键字（Object Literals）
+              匿名对象（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Partial Application
+              柯里化（Partial Application）
             </a>
           </li>
         </ul>
@@ -603,10 +636,10 @@ Apply Many Pony classes have a function called apply which performs whatever act
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#apply">Apply</a></li>
-    <li><a href="#create">Create</a></li>
-    <li><a href="#combined-create-apply">Combined create-apply</a></li>
-    <li><a href="#update">Update</a></li>
+    <li><a href="#apply语法糖">Apply语法糖</a></li>
+    <li><a href="#create语法糖">Create语法糖</a></li>
+    <li><a href="#create和apply语法糖的组合使用">create和apply语法糖的组合使用</a></li>
+    <li><a href="#update语法糖">Update语法糖</a></li>
   </ul>
 </nav>
   </div>
@@ -627,54 +660,78 @@ Apply Many Pony classes have a function called apply which performs whatever act
             <h1 class="f1 athelas mb1">语法糖（Sugar）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Pony allows you to omit certain small details from your code and will put them back in for you. This is done to help make your code less cluttered and more readable. Using sugar is entirely optional, you can always write out the full version if you prefer.</p>
-<h2 id="apply">Apply</h2>
-<p>Many Pony classes have a function called <code>apply</code> which performs whatever action is most common for that type. Pony allows you to omit the word <code>apply</code> and just attempt to do a call directly on the object. So:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>Pony允许你编写代码时做一些简化，让代码更简洁、易读。使用语法糖是可选的，如果您愿意，你可以始终使用完整的书写方式。</p>
+<h2 id="apply语法糖">Apply语法糖</h2>
+<!-- raw HTML omitted -->
+<p>许多Pony类都有一个名为<code>apply</code>的函数，该函数可以执行一些该类型最常见的操作。Pony允许你省略<code>apply</code>这个函数名，直接从对象调用。所以:</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create()
 foo()
-</code></pre><p>becomes:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create()
 foo.apply()
-</code></pre><p>Any required arguments can be added just like normal method calls.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>需要参数的话可以像调用普通方法那样去添加。</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create()
 foo(x, 37 where crash = false)
-</code></pre><p>becomes:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create()
 foo.apply(x, 37 where crash = false)
-</code></pre><p><strong>Do I still need to provide the arguments to apply?</strong> Yes, only the <code>apply</code> will be added for you, the correct number and type of arguments must be supplied. Default and named arguments can be used as normal.</p>
-<p><strong>How do I call a function foo if apply is added?</strong> The <code>apply</code> sugar is only added when calling an object, not when calling a method. The compiler can tell the difference and only adds the <code>apply</code> when appropriate.</p>
-<h2 id="create">Create</h2>
-<p>To create an object you need to specify the type and call a constructor. Pony allows you to miss out the constructor and will insert a call to <code>create()</code> for you. So:</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>必须要提供参数吗?</strong> 是的，只有<code>apply</code>会为你自动添加，正确的参数数量和类型必须你自己提供。<code>默认传参</code>和<code>命名传参</code>的机制可以正常使用。</p>
+<!-- raw HTML omitted -->
+<p><strong>如果<code>apply</code>会被自动添加，那我怎么调用其他函数？</strong> 只有直接调用对象时才添加<code>apply</code>，其他时候不会。编译器能判断什么时候该添加<code>apply</code>。</p>
+<h2 id="create语法糖">Create语法糖</h2>
+<!-- raw HTML omitted -->
+<p>要实例化对象，你需要指定类型并调用构造函数。Pony允许你忽略构造函数，并将为您插入一个<code>create()</code>调用。所以:</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo
-</code></pre><p>becomes:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create()
-</code></pre><p>Normally types are not valid things to appear in expressions, so omitting the constructor call is not ambiguous. Remember that you can easily spot that a name is a type because it will start with a capital letter.</p>
-<p>If arguments are needed for <code>create</code> these can be provided as if calling the type. Default and named arguments can be used as normal.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>通常，类型在表达式中是不被求值的，因此省略掉构造函数并不会造成歧义。记住，类型是很容易被识别的，因为它始终是以大写字母开头。</p>
+<!-- raw HTML omitted -->
+<p>如果<code>create</code>需要参数，可以直接在后面加括号传入。<code>默认参数</code>和<code>命名传参</code>机制都可以正常使用。</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo(x, 37 where crash = false)
-</code></pre><p>becomes:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create(x, 37 where crash = false)
-</code></pre><p><strong>What if I want to use a constructor that isn&rsquo;t named create?</strong> Then the sugar can&rsquo;t help you and you have to write it out yourself.</p>
-<p><strong>If the create I want to call takes no arguments can I still put in the parentheses?</strong> No. Calls of the form <code>Type()</code> use the combined create-apply sugar (see below). To get <code>Type.create()</code> just use <code>Type</code>.</p>
-<h2 id="combined-create-apply">Combined create-apply</h2>
-<p>If a type has a create constructor that takes no arguments then the create and apply sugar can be used together. Just call on the type and calls to create and apply will be added. The call to create will take no arguments and the call to apply will take whatever arguments are supplied.</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>如果我想使用一个名字不是<code>create</code>的构造函数怎么做?</strong> 不行，语法糖帮不了你，你必须自己把它写出来。</p>
+<!-- raw HTML omitted -->
+<p><strong>如果我要调用的create没有参数，我可以加上括号吗?</strong> 不能加，调用<code>Type()</code>相当于在组合使用<code>create</code>和<code>apply</code>(参见下面)。要调用<code>Type.create()</code>只需使用<code>Type</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="create和apply语法糖的组合使用">create和apply语法糖的组合使用</h2>
+<!-- raw HTML omitted -->
+<p>如果类型有一个不带参数的<code>create</code>构造函数，那么<code>create</code>和<code>apply</code>语法糖可以一起使用。只需调用类型，创建和应用的调用将被添加。对<code>create</code>的调用将不接受任何参数，而对<code>apply</code>的调用将接受提供的任何参数。</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo()
 var bar = Bar(x, 37 where crash = false)
-</code></pre><p>becomes:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">var foo = Foo.create().apply()
 var bar = Bar.create().apply(x, 37 where crash = false)
-</code></pre><p><strong>What if the create has default arguments? Do I get the combined create-apply sugar if I want to use the defaults?</strong> The combined create-apply sugar can only be used when the <code>create</code> constructor has no arguments. If there are default arguments then this sugar cannot be used.</p>
-<h2 id="update">Update</h2>
-<p>The <code>update</code> sugar allows any class to use an assignment to accept data. Many languages allow this for assigning into collections, for example, a simple C array, <code>a[3] = x;</code>.</p>
-<p>In any assignment where the left-hand side is a function call, Pony will translate this to a call to update, with the value from the right-hand side as an extra argument. So:</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>如果create有默认参数怎么办？如果我想使用默认参数，是否能使用<code>create-apply</code>组合语法糖?</strong> 只有当<code>create</code>构造函数没有参数时，才可以使用组合的<code>create-apply</code>语法糖。如果有默认参数，则不能使用。</p>
+<h2 id="update语法糖">Update语法糖</h2>
+<!-- raw HTML omitted -->
+<p><code>update</code>语法糖允许任何类使用赋值的方式来更新数据。在很多语言都可以给集合中的元素赋值，例如，一个简单的C数组<code>a[3] = x;</code>。</p>
+<!-- raw HTML omitted -->
+<p>遇到左边是<code>函数调用</code>的<code>赋值表达式</code>，Pony会将其转换为对<code>update</code>的调用，而右边的值则是一个额外的参数。所以:</p>
 <pre><code class="language-pony" data-lang="pony">foo(37) = x
-</code></pre><p>becomes:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">foo.update(37 where value = x)
-</code></pre><p>The value from the right-hand side of the assignment is always passed to a parameter named <code>value</code>. Any object can allow this syntax simply by providing an appropriate function <code>update</code> with an argument <code>value</code>.</p>
-<p><strong>Does my update function have to have a single parameter that takes an integer?</strong> No, you can define update to take whatever parameters you like, as long as there is one called <code>value</code>. The following are all fine:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>赋值右侧的值总是传递给一个名为<code>value</code>的参数。任何对象都可以简单地通过提供一个<code>update</code>函数和<code>value</code>参数来支持这种语法。</p>
+<!-- raw HTML omitted -->
+<p><strong>我的<code>update</code>函数必须是整数型的参数吗?</strong> 不，你可以自定义参数类型，只要有一个名为<code>value</code>的参数。以下都可以:</p>
 <pre><code class="language-pony" data-lang="pony">foo1(2, 3) = x
 foo2() = x
 foo3(37, &quot;Hello&quot;, 3.5 where a = 2, b = 3) = x
-</code></pre><p><strong>Does it matter where <code>value</code> appears in my parameter list?</strong> Whilst it doesn&rsquo;t strictly matter it is good practice to put <code>value</code> as the last parameter. That way all of the others can be specified by position.</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>参数列表中<code>value</code>的位置有关系吗？</strong> 虽然从严格意义上讲没什么关系，但把<code>value</code>作为最后一个参数是个好习惯。这样，所有其他参数就可以通过<code>位置传参</code>来指定。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

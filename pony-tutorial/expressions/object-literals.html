@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | object关键字（Object Literals）</title>
+    <title>Pony 教程  | 匿名对象（Object Literals）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,24 +45,42 @@
 
     
 
-    <meta property="og:title" content="object关键字（Object Literals）" />
-<meta property="og:description" content="Sometimes it&rsquo;s really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.
-But Pony is statically typed, so an object literal also creates an anonymous type that the object literal fulfills. This is similar to anonymous classes in Java and C#." />
+    <meta property="og:title" content="匿名对象（Object Literals）" />
+<meta property="og:description" content="有时候，能够内联地写一个完整的对象是非常方便的。在Pony中，这被称为匿名对象，它做的事情和JavaScript中的匿名对象差不多：它可以生成一个可以立即使用的对象。
+但是Pony是静态类型的，所以一个匿名对象也会创建一个匿名类，这个匿名对象会满足这个匿名类。这类似于Java和C#中的匿名类。在Pony中，匿名类型可以提供任意数量的特征和接口。
+匿名类和匿名对象是什么？（What&rsquo;s this look like, then?） 匿名类表达式与类（class）的定义基本相同，object表达式构建了一个匿名类并返回它的的实例，这个实例被称为匿名对象。匿名类和普通类有一些细微的区别，下面是一个简单的例子:
+object fun apply(): String =&gt; &quot;hi&quot; end 很简单明了。让我们对其进行扩展，提供一个Hashable特征的实现，以便编译器能够确保匿名类型满足该接口。也可以用相同的方法来提供其他特征。
+object is Hashable fun apply(): String =&gt; &quot;hi&quot; fun hash(): USize =&gt; this().hash() end 我们不能给匿名对象指定构造函数，因为它本身 就是 一个构造函数。那么我们如何分配字段呢？直接声明就行了。例如:
+use &quot;collections&quot; class Foo fun foo(str: String): Hashable =&gt; object is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s.hash() end 在匿名对象所在的作用域中声明和初始化局部变量，等同于在类的构造函数中定义和初始化字段， 匿名类的所有的成员汉书都可以 捕获（capturing） 这些变量当做字段去实用。这非常有趣！它让我们有任意复杂的可以有多个入口点(例如，你可以在一个闭包上调用函数)的。
+默认情况下，带有字段的匿名对象将以ref（引用权能的一种权限类型）方式返回，除非你通过在object关键字后显示的指定一个引用权能的类型来声明权限。例如，一个带有sendable权限的对象可以在需要时可以声明为iso:
+use &quot;collections&quot; class Foo fun foo(str: String): Hashable iso^ =&gt; object iso is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/object-literals.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
-<meta itemprop="name" content="object关键字（Object Literals）">
-<meta itemprop="description" content="Sometimes it&rsquo;s really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.
-But Pony is statically typed, so an object literal also creates an anonymous type that the object literal fulfills. This is similar to anonymous classes in Java and C#.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1270">
+<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta itemprop="name" content="匿名对象（Object Literals）">
+<meta itemprop="description" content="有时候，能够内联地写一个完整的对象是非常方便的。在Pony中，这被称为匿名对象，它做的事情和JavaScript中的匿名对象差不多：它可以生成一个可以立即使用的对象。
+但是Pony是静态类型的，所以一个匿名对象也会创建一个匿名类，这个匿名对象会满足这个匿名类。这类似于Java和C#中的匿名类。在Pony中，匿名类型可以提供任意数量的特征和接口。
+匿名类和匿名对象是什么？（What&rsquo;s this look like, then?） 匿名类表达式与类（class）的定义基本相同，object表达式构建了一个匿名类并返回它的的实例，这个实例被称为匿名对象。匿名类和普通类有一些细微的区别，下面是一个简单的例子:
+object fun apply(): String =&gt; &quot;hi&quot; end 很简单明了。让我们对其进行扩展，提供一个Hashable特征的实现，以便编译器能够确保匿名类型满足该接口。也可以用相同的方法来提供其他特征。
+object is Hashable fun apply(): String =&gt; &quot;hi&quot; fun hash(): USize =&gt; this().hash() end 我们不能给匿名对象指定构造函数，因为它本身 就是 一个构造函数。那么我们如何分配字段呢？直接声明就行了。例如:
+use &quot;collections&quot; class Foo fun foo(str: String): Hashable =&gt; object is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s.hash() end 在匿名对象所在的作用域中声明和初始化局部变量，等同于在类的构造函数中定义和初始化字段， 匿名类的所有的成员汉书都可以 捕获（capturing） 这些变量当做字段去实用。这非常有趣！它让我们有任意复杂的可以有多个入口点(例如，你可以在一个闭包上调用函数)的。
+默认情况下，带有字段的匿名对象将以ref（引用权能的一种权限类型）方式返回，除非你通过在object关键字后显示的指定一个引用权能的类型来声明权限。例如，一个带有sendable权限的对象可以在需要时可以声明为iso:
+use &quot;collections&quot; class Foo fun foo(str: String): Hashable iso^ =&gt; object iso is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s.">
+<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="wordCount" content="329">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="object关键字（Object Literals）"/>
-<meta name="twitter:description" content="Sometimes it&rsquo;s really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.
-But Pony is statically typed, so an object literal also creates an anonymous type that the object literal fulfills. This is similar to anonymous classes in Java and C#."/>
+<meta name="twitter:title" content="匿名对象（Object Literals）"/>
+<meta name="twitter:description" content="有时候，能够内联地写一个完整的对象是非常方便的。在Pony中，这被称为匿名对象，它做的事情和JavaScript中的匿名对象差不多：它可以生成一个可以立即使用的对象。
+但是Pony是静态类型的，所以一个匿名对象也会创建一个匿名类，这个匿名对象会满足这个匿名类。这类似于Java和C#中的匿名类。在Pony中，匿名类型可以提供任意数量的特征和接口。
+匿名类和匿名对象是什么？（What&rsquo;s this look like, then?） 匿名类表达式与类（class）的定义基本相同，object表达式构建了一个匿名类并返回它的的实例，这个实例被称为匿名对象。匿名类和普通类有一些细微的区别，下面是一个简单的例子:
+object fun apply(): String =&gt; &quot;hi&quot; end 很简单明了。让我们对其进行扩展，提供一个Hashable特征的实现，以便编译器能够确保匿名类型满足该接口。也可以用相同的方法来提供其他特征。
+object is Hashable fun apply(): String =&gt; &quot;hi&quot; fun hash(): USize =&gt; this().hash() end 我们不能给匿名对象指定构造函数，因为它本身 就是 一个构造函数。那么我们如何分配字段呢？直接声明就行了。例如:
+use &quot;collections&quot; class Foo fun foo(str: String): Hashable =&gt; object is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s.hash() end 在匿名对象所在的作用域中声明和初始化局部变量，等同于在类的构造函数中定义和初始化字段， 匿名类的所有的成员汉书都可以 捕获（capturing） 这些变量当做字段去实用。这非常有趣！它让我们有任意复杂的可以有多个入口点(例如，你可以在一个闭包上调用函数)的。
+默认情况下，带有字段的匿名对象将以ref（引用权能的一种权限类型）方式返回，除非你通过在object关键字后显示的指定一个引用权能的类型来声明权限。例如，一个带有sendable权限的对象可以在需要时可以声明为iso:
+use &quot;collections&quot; class Foo fun foo(str: String): Hashable iso^ =&gt; object iso is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s."/>
 
   </head>
 
@@ -255,7 +273,7 @@ But Pony is statically typed, so an object literal also creates an anonymous typ
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/equality.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              比较运算（Equality in Pony）
+              比较（Equality in Pony）
             </a>
           </li>
           <li class="f6 fw4">
@@ -265,12 +283,12 @@ But Pony is statically typed, so an object literal also creates an anonymous typ
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/object-literals.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              object关键字（Object Literals）
+              匿名对象（Object Literals）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/expressions/partial-application.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Partial Application
+              柯里化（Partial Application）
             </a>
           </li>
         </ul>
@@ -603,10 +621,10 @@ But Pony is statically typed, so an object literal also creates an anonymous typ
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#whats-this-look-like-then">What&rsquo;s this look like, then?</a></li>
-    <li><a href="#lambdas">Lambdas</a></li>
-    <li><a href="#actor-literals">Actor literals</a></li>
-    <li><a href="#primitive-literals">Primitive literals</a></li>
+    <li><a href="#匿名类和匿名对象是什么whats-this-look-like-then">匿名类和匿名对象是什么？（What&rsquo;s this look like, then?）</a></li>
+    <li><a href="#闭包lambdas">闭包（Lambdas）</a></li>
+    <li><a href="#匿名actoractor-literals">匿名Actor（Actor literals）</a></li>
+    <li><a href="#匿名基元类primitive-literals">匿名基元类（Primitive literals）</a></li>
   </ul>
 </nav>
   </div>
@@ -624,22 +642,27 @@ But Pony is statically typed, so an object literal also creates an anonymous typ
                 
               EXPRESSIONS
             </p>
-            <h1 class="f1 athelas mb1">object关键字（Object Literals）</h1>
+            <h1 class="f1 athelas mb1">匿名对象（Object Literals）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Sometimes it&rsquo;s really convenient to be able to write a whole object inline. In Pony, this is called an object literal, and it does pretty much exactly what an object literal in JavaScript does: it creates an object that you can use immediately.</p>
-<p>But Pony is statically typed, so an object literal also creates an anonymous type that the object literal fulfills. This is similar to anonymous classes in Java and C#. In Pony, an anonymous type can provide any number of traits and interfaces.</p>
-<h2 id="whats-this-look-like-then">What&rsquo;s this look like, then?</h2>
-<p>It basically looks like any other type definition, but with some small differences. Here&rsquo;s a simple one:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>有时候，能够内联地写一个完整的对象是非常方便的。在Pony中，这被称为<code>匿名对象</code>，它做的事情和JavaScript中的<code>匿名对象</code>差不多：它可以生成一个可以立即使用的对象。</p>
+<!-- raw HTML omitted -->
+<p>但是Pony是静态类型的，所以一个<code>匿名对象</code>也会创建一个<code>匿名类</code>，这个<code>匿名对象</code>会满足这个<code>匿名类</code>。这类似于Java和C#中的<code>匿名类</code>。在Pony中，匿名类型可以提供任意数量的特征和接口。</p>
+<h2 id="匿名类和匿名对象是什么whats-this-look-like-then">匿名类和匿名对象是什么？（What&rsquo;s this look like, then?）</h2>
+<!-- raw HTML omitted -->
+<p><code>匿名类</code>表达式与类（<code>class</code>）的定义基本相同，object表达式构建了一个<code>匿名类</code>并返回它的的实例，这个实例被称为<code>匿名对象</code>。<code>匿名类</code>和<code>普通类</code>有一些细微的区别，下面是一个简单的例子:</p>
 <pre><code class="language-pony" data-lang="pony">object
   fun apply(): String =&gt; &quot;hi&quot;
 end
-</code></pre><p>Ok, that&rsquo;s pretty trivial. Let&rsquo;s extend it so that it explicitly provides an interface so that the compiler will make sure the anonymous type fulfills that interface. You can use the same notation to provide traits as well.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>很简单明了。让我们对其进行扩展，提供一个<code>Hashable特征</code>的实现，以便编译器能够确保匿名类型满足该接口。也可以用相同的方法来提供其他<code>特征</code>。</p>
 <pre><code class="language-pony" data-lang="pony">object is Hashable
   fun apply(): String =&gt; &quot;hi&quot;
   fun hash(): USize =&gt; this().hash()
 end
-</code></pre><p>What we can&rsquo;t do is specify constructors in an object literal, because the literal <em>is</em> the constructor. So how do we assign to fields? Well, we just assign to them. For example:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>我们不能给<code>匿名对象</code>指定构造函数，因为它本身 <em>就是</em> 一个构造函数。那么我们如何分配字段呢？直接声明就行了。例如:</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
 
 class Foo
@@ -649,8 +672,10 @@ class Foo
       fun apply(): String =&gt; s
       fun hash(): USize =&gt; s.hash()
     end
-</code></pre><p>When we assign to a field in the constructor, we are <em>capturing</em> from the lexical scope the object literal is in. Pretty fun stuff! It lets us have arbitrarily complex <strong>closures</strong> that can even have multiple entry points (i.e. functions you can call on a closure).</p>
-<p>An object literal with fields is returned as a <code>ref</code> by default unless an explicit reference capability is declared by specifying the capability after the <code>object</code> keyword. For example, an object with sendable captured references can be declared as <code>iso</code> if needed:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在<code>匿名对象</code>所在的作用域中<code>声明和初始化局部变量</code>，等同于在类的构造函数中<code>定义和初始化字段</code>， <code>匿名类</code>的所有的成员汉书都可以 <em>捕获（capturing）</em> 这些变量<code>当做字段</code>去实用。这非常有趣！它让我们有任意复杂的可以有多个入口点(例如，你可以在一个闭包上调用函数)的。</p>
+<!-- raw HTML omitted -->
+<p>默认情况下，带有字段的<code>匿名对象</code>将以<code>ref</code>（<code>引用权能</code>的一种权限类型）方式返回，除非你通过在<code>object</code>关键字后显示的指定一个<code>引用权能</code>的类型来声明权限。例如，一个带有<code>sendable</code>权限的对象可以在需要时可以声明为<code>iso</code>:</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
 
 class Foo
@@ -660,7 +685,8 @@ class Foo
       fun apply(): String =&gt; s
       fun hash(): USize =&gt; s.hash()
     end
-</code></pre><p>We can also implicitly capture values from the lexical scope by using them in the object literal. Sometimes values that aren&rsquo;t local variables, aren&rsquo;t fields, and aren&rsquo;t parameters of a function are called <em>free variables</em>. By using them in a function, we are <em>closing over</em> them - that is, capturing them. The code above could be written without the field <code>s</code>:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>我们还可以通过在<code>匿名对象</code>中使用词法作用域来隐式捕获值。有时，那些不是局部变量、不是字段、也不是函数参数的值被称为 <em>free variables</em> 。通过在函数中使用它们，我们将对它们进行覆盖——也就是捕获它们。上面的代码可以写没有字段<code>s</code>：</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
 
 class Foo
@@ -669,31 +695,39 @@ class Foo
       fun apply(): String =&gt; str
       fun hash(): USize =&gt; str.hash()
     end
-</code></pre><h2 id="lambdas">Lambdas</h2>
-<p>Arbitrarily complex closures are nice, but sometimes we just want a simple closure. In Pony, you can use the lambdas for that. A lambda is written as a function (implicitly named <code>apply</code>) enclosed in curly brackets:</p>
+</code></pre><h2 id="闭包lambdas">闭包（Lambdas）</h2>
+<!-- raw HTML omitted -->
+<p>复杂的<code>匿名对象</code>很有用，但有时我们只想要一个简单的<code>匿名函数</code>。在Pony中，你可以使用<code>闭包（lambdas）</code>。lambda是一个一个函数(被隐式的命名为<code>apply</code>)，写在花括号<code>{}</code>当中:</p>
 <pre><code class="language-pony" data-lang="pony">{(s: String): String =&gt; &quot;lambda: &quot; + s }
-</code></pre><p>This produces the same code as:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于：</p>
 <pre><code class="language-pony" data-lang="pony">object
   fun apply(s: String): String =&gt; &quot;lambda: &quot; + s
 end
-</code></pre><p>The reference capability of the lambda object can be declared by appending it after the closing curly bracket:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>lambda对象的<code>引用权能</code>可以通过在右花括号后声明:</p>
 <pre><code class="language-pony" data-lang="pony">{(s: String): String =&gt; &quot;lambda: &quot; + s } iso
-</code></pre><p>This produces the same code as:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>等同于:</p>
 <pre><code class="language-pony" data-lang="pony">object iso
   fun apply(s: String): String =&gt; &quot;lambda: &quot; + s
 end
-</code></pre><p>Lambdas can be used to capture from the lexical scope in the same way as object literals can assign from the lexical scope to a field. This is done by adding a second argument list after the parameters:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>Lambdas可用于从作用域<code>捕获</code>变量，其方式与<code>匿名对象</code>捕获字段的方式相同。通过在参数之后添加第二个参数列表来实现：</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   new create(env:Env) =&gt;
     foo({(s: String)(env) =&gt; env.out.print(s) })
 
   fun foo(f: {(String)}) =&gt;
     f(&quot;Hello World&quot;)
-</code></pre><p>It&rsquo;s also possible to use a <em>capture list</em> to create new names for things. A capture list is a second parenthesised list after the parameters:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>也可以使用 <em>捕获列表（capture list）</em> 来设置别名。捕获列表在参数之后的第二个括号中：</p>
 <pre><code class="language-pony" data-lang="pony">  new create(env:Env) =&gt;
     foo({(s: String)(myenv = env) =&gt; myenv.out.print(s) })
-</code></pre><p>The type of a lambda is also declared using curly brackets. Within the brackets, the function parameter types are specified within parentheses followed by an optional colon and return type. The example above uses <code>{(String)}</code> to be the type of a lambda function that takes a <code>String</code> as an argument and returns nothing.</p>
-<p>If the lambda object is not declared with a specific reference capability, the reference capability is inferred from the structure of the lambda. If the lambda does not have any captured references, it will be <code>val</code> by default; if it does have captured references, it will be <code>ref</code> by default. The following is an example of a <code>val</code> lambda object:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>lambda的类型也使用花括号声明。在花括号中，函数形参类型在圆括号中指定，后面跟着一个可选的冒号和返回类型。上面的示例使用<code>{(String)}</code>作为lambda函数的形参类型，该函数接受<code>String</code>作为参数，无返回值。</p>
+<!-- raw HTML omitted -->
+<p>如果没有为lambda对象指定<code>引用权能</code>声明，则引用权能的类型将从lambda的结构中推断出来。如果lambda没有捕获到可用权限类型，则默认为<code>val</code>。如果它确实捕获了引用权限，那么默认情况下它将是<code>ref</code>。下面是一个<code>val</code>lambda对象的例子:</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
 
 actor Main
@@ -710,8 +744,10 @@ actor Main
     else
       acc
     end
-</code></pre><p>The <code>reduce</code> method in this example requires the lambda type for the <code>f</code> parameter to require a reference capability of <code>val</code>. The lambda object passed in as an argument does not need to declare an explicit reference capability because <code>val</code> is the default for a lambda that does not capture anything.</p>
-<p>As mentioned previously the lambda desugars to an object literal with an <code>apply</code> method. The reference capability for the <code>apply</code> method defaults to <code>box</code> like any other method. In a lambda that captures this needs to be <code>ref</code> if the function needs to modify any of the captured variables or call <code>ref</code> methods on them. The reference capability for the method (versus the reference capability for the object which was described above) is defined by putting the capability before the parenthesized argument list.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>本例中的<code>reduce</code>方法要求<code>f</code>参数的lambda类型需要<code>val</code>的引用权能。作为参数传入的lambda对象不需要声明显式的<code>引用权能</code>，因为<code>val</code>会被捕获到。</p>
+<!-- raw HTML omitted -->
+<p>如前所述，lambda使用<code>apply</code>方法来处理<code>匿名对象</code>。<code>apply</code>方法的引用权能默认为<code>box</code>，跟其他方法一样。在捕获这个的lambda时，如果函数需要修改捕获的任何变量或对其调用<code>ref</code>方法，则需要修改为<code>ref</code>。方法的引用权能(与上面描述的对象引用权能相比)是通过将该权限放在圆括号中的参数列表之前来定义的。</p>
 <pre><code class="language-pony" data-lang="pony">use &quot;collections&quot;
 
 actor Main
@@ -731,18 +767,27 @@ actor Main
       f(l.shift()?)
       for_each(l, f)
     end
-</code></pre><p>This example declares the type of the apply function that is generated by the lambda expression as being <code>ref</code>. The lambda type declaration for the <code>f</code> parameter in the <code>for_each</code> method also declares it as <code>ref</code>. The reference capability of the lambda type must also be <code>ref</code> so that the method can be called. The lambda object does not need to declare an explicit reference capability because <code>ref</code> is the default for a lambda that has captures.</p>
-<p>The above example also notes a subtle reality of captured references. At first glance one might expect <code>count</code> to have been incremented by the application of <code>f</code>. However, reassigning a reference, <code>count = count + 1</code>, inside a lambda or object literal can never cause a reassignment in the outer scope. If <code>count</code> were an object with reference capabilities permiting mutation, the captured reference could be modified with for example <code>count.increment()</code>. The resulting mutation would be visible to any location holding a reference to the same object as <code>count</code>.</p>
-<h2 id="actor-literals">Actor literals</h2>
-<p>Normally, an object literal is an instance of an anonymous class. To make it an instance of an anonymous actor, just include one or more behaviours in the object literal definition.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>此示例将由lambda表达式生成的<code>apply</code>函数的类型声明为<code>ref</code>。<code>for_each</code>方法中<code>f</code>参数的lambda类型声明也明为<code>ref</code>。lambda类型的引用权能也必须是<code>ref</code>，以便能够调用该方法。lambda对象不需要声明显式引用权能，因为<code>ref</code>会被lambda捕获。</p>
+<!-- raw HTML omitted -->
+<p>上面的例子还要注意到一点，捕获的引用的一个微妙的事实。乍一看，你可能会认为<code>count</code>会随着<code>f</code>的应用而增加。但是，在lambda或<code>匿名对象</code>内部<code>count = count + 1</code>永远不会影响到作用域外的值。如果<code>count</code>是一个具有允许修改的引用功能的对象，例如可以私用<code>count.increment()</code>来修改捕获的引用。就会影响到作用域外部<code>count</code>的值。</p>
+<!-- raw HTML omitted -->
+<h2 id="匿名actoractor-literals">匿名Actor（Actor literals）</h2>
+<!-- raw HTML omitted -->
+<p>通常，<code>匿名对象</code>是<code>匿名类</code>的实例。要使它成为<code>匿名Actor</code>的实例，只需在定义中包含一个或多个<code>行为</code>。</p>
 <pre><code class="language-pony" data-lang="pony">object
   be apply() =&gt; env.out.print(&quot;hi&quot;)
 end
-</code></pre><p>An actor literal is always returned as a <code>tag</code>.</p>
-<h2 id="primitive-literals">Primitive literals</h2>
-<p>When an anonymous type has no fields and no behaviours (like, for example, an object literal declared as a lambda literal), the compiler generates it as an anonymous primitive, unless a non-<code>val</code> reference capability is explicitly given. This means no memory allocation is needed to generate an instance of that type.</p>
-<p>In other words, in Pony, a lambda that doesn&rsquo;t close over anything has no memory allocation overhead. Nice.</p>
-<p>A primitive literal is always returned as a <code>val</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>匿名actor实例总是作为<code>tag（引用权能的一种类型）</code>返回。</p>
+<!-- raw HTML omitted -->
+<h2 id="匿名基元类primitive-literals">匿名基元类（Primitive literals）</h2>
+<!-- raw HTML omitted -->
+<p>当匿名类型没有<code>字段</code>和<code>行为</code>(例如，声明为lambda的<code>匿名对象</code>)时，编译器将其生成为<code>匿名基元类</code>，除非显式地提供了非<code>val</code>引用功能。基元类就意味着不需要额外的内存分配来生成该类型的实例。</p>
+<!-- raw HTML omitted -->
+<p>换句话说，在Pony中，不包含任何字段的lambda没有内存分配开销。这点很棒。</p>
+<!-- raw HTML omitted -->
+<p>匿名基元类总是以<code>val</code>的形式返回。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>
