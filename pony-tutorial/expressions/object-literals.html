@@ -56,7 +56,7 @@ use &quot;collections&quot; class Foo fun foo(str: String): Hashable =&gt; objec
 use &quot;collections&quot; class Foo fun foo(str: String): Hashable iso^ =&gt; object iso is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/object-literals.html" />
-<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta property="article:modified_time" content="2020-04-15T18:16:41+08:00" />
 <meta itemprop="name" content="匿名对象（Object Literals）">
 <meta itemprop="description" content="有时候，能够内联地写一个完整的对象是非常方便的。在Pony中，这被称为匿名对象，它做的事情和JavaScript中的匿名对象差不多：它可以生成一个可以立即使用的对象。
 但是Pony是静态类型的，所以一个匿名对象也会创建一个匿名类，这个匿名对象会满足这个匿名类。这类似于Java和C#中的匿名类。在Pony中，匿名类型可以提供任意数量的特征和接口。
@@ -66,7 +66,7 @@ object is Hashable fun apply(): String =&gt; &quot;hi&quot; fun hash(): USize =&
 use &quot;collections&quot; class Foo fun foo(str: String): Hashable =&gt; object is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s.hash() end 在匿名对象所在的作用域中声明和初始化局部变量，等同于在类的构造函数中定义和初始化字段， 匿名类的所有的成员汉书都可以 捕获（capturing） 这些变量当做字段去实用。这非常有趣！它让我们有任意复杂的可以有多个入口点(例如，你可以在一个闭包上调用函数)的。
 默认情况下，带有字段的匿名对象将以ref（引用权能的一种权限类型）方式返回，除非你通过在object关键字后显示的指定一个引用权能的类型来声明权限。例如，一个带有sendable权限的对象可以在需要时可以声明为iso:
 use &quot;collections&quot; class Foo fun foo(str: String): Hashable iso^ =&gt; object iso is Hashable let s: String = str fun apply(): String =&gt; s fun hash(): USize =&gt; s.">
-<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-15T18:16:41&#43;08:00" />
 <meta itemprop="wordCount" content="329">
 
 

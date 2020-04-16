@@ -17,8 +17,6 @@
 <link rel="stylesheet" type="text/css" href="/style/default.css" />
 <script src="script/init.js"></script>
 <!-- send:org-html-head -->
-<script> comment_box("guest_book.org", 'damon-kwok', 'comments')</script>
-<script> forkme("http://github.com/damon-kwok/damon-kwok.github.io")</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -34,10 +32,44 @@
 </div>
 <div id="content">
 <hr />
+
 <div class="org-center">
 <p>
-<b>Guest Book</b>
+<b>Catkin使用技巧</b> 
 </p>
+</div>
+
+<div id="outline-container-orgfe0ab03" class="outline-2">
+<h2 id="orgfe0ab03">Shared libraries:librobotsdk.so with catkin</h2>
+<div class="outline-text-2" id="text-orgfe0ab03">
+<ul class="org-ul">
+<li>method 1</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Shell">set(EXTRALIB_BIN ${PROJECT_SOURCE_DIR}/lib/librobotsdk.so)
+target_link_libraries(appname ${catkin_LIBRARIES} ${EXTRALIB_BIN})
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>method 2</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Shell">target_link_libraries(appname robotsdk ${catkin_LIBRARIES})
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org9acffc4" class="outline-2">
+<h2 id="org9acffc4">Create shared library:libadd.so</h2>
+<div class="outline-text-2" id="text-org9acffc4">
+<div class="org-src-container">
+<pre class="src src-Shell">add_library(add src/add.cpp)
+</pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">

@@ -46,68 +46,68 @@
     
 
     <meta property="og:title" content="庖丁解牛" />
-<meta property="og:description" content="首先我们来看一下helloworld代码：
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
-第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+<meta property="og:description" content="我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来，逐行解释它们的含义：
+第一行 actor Main 这是一个类型声明。actor关键字表示定义了一个并发执行单元，暂时你只要了解到这是Pony声明Main函数的做法，等同于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲到。
 actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
-Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
-第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
-和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
-接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+Pony程序中的Main actor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。new关键字表示它可以被实例化，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。可以用不同的构造函数创建不同的实例。这里我们用的是默认构造函数create。
+接下来，构造函数的参数。构造函数定义了一个env参数，类型为Env。
+Pony的参数类型在参数名之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、TypeScript、ActionScript、Haxe等语言中）。
 现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
-函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+函数体怎么定义？ 注意看=&gt;后面的代码。
 第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
-在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
-这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
-Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
-Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
-总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。" />
+在Pony中，怎么确定.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout （可以在控制台上输出一些内容）。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号是C/C&#43;&#43;的风格的定义方式（支持字符转译）。三引号&quot;&quot;&quot;可以定义Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony中没有全局变量，需要通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名为Main的actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。下一节讲解Pony的类型系统。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/getting-started/how-it-works.html" />
-<meta property="article:modified_time" content="2020-04-12T16:41:15+08:00" />
+<meta property="article:modified_time" content="2020-04-16T10:30:37+08:00" />
 <meta itemprop="name" content="庖丁解牛">
-<meta itemprop="description" content="首先我们来看一下helloworld代码：
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
-第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+<meta itemprop="description" content="我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来，逐行解释它们的含义：
+第一行 actor Main 这是一个类型声明。actor关键字表示定义了一个并发执行单元，暂时你只要了解到这是Pony声明Main函数的做法，等同于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲到。
 actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
-Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
-第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
-和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
-接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+Pony程序中的Main actor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。new关键字表示它可以被实例化，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。可以用不同的构造函数创建不同的实例。这里我们用的是默认构造函数create。
+接下来，构造函数的参数。构造函数定义了一个env参数，类型为Env。
+Pony的参数类型在参数名之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、TypeScript、ActionScript、Haxe等语言中）。
 现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
-函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+函数体怎么定义？ 注意看=&gt;后面的代码。
 第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
-在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
-这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
-Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
-Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
-总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。">
-<meta itemprop="dateModified" content="2020-04-12T16:41:15&#43;08:00" />
+在Pony中，怎么确定.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout （可以在控制台上输出一些内容）。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号是C/C&#43;&#43;的风格的定义方式（支持字符转译）。三引号&quot;&quot;&quot;可以定义Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony中没有全局变量，需要通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名为Main的actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。下一节讲解Pony的类型系统。">
+<meta itemprop="dateModified" content="2020-04-16T10:30:37&#43;08:00" />
 <meta itemprop="wordCount" content="50">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="庖丁解牛"/>
-<meta name="twitter:description" content="首先我们来看一下helloworld代码：
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
-第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+<meta name="twitter:description" content="我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来，逐行解释它们的含义：
+第一行 actor Main 这是一个类型声明。actor关键字表示定义了一个并发执行单元，暂时你只要了解到这是Pony声明Main函数的做法，等同于Python, Java, C#, C&#43;&#43;等语言中的程序入口。Pony中也有类的概念，后面会讲到。
 actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
-Pony程序中的Mainactor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
-第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
-和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
-接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+Pony程序中的Main actor跟C、C&#43;&#43;中的main函数，或者Java、C#中的Main方法类似，都是程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。new关键字表示它可以被实例化，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。可以用不同的构造函数创建不同的实例。这里我们用的是默认构造函数create。
+接下来，构造函数的参数。构造函数定义了一个env参数，类型为Env。
+Pony的参数类型在参数名之后，并且需要用冒号分割。如果你熟悉C、C&#43;&#43;、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、TypeScript、ActionScript、Haxe等语言中）。
 现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
-函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+函数体怎么定义？ 注意看=&gt;后面的代码。
 第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
-在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
-这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
-Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C&#43;&#43;的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
-Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
-总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。"/>
+在Pony中，怎么确定.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout （可以在控制台上输出一些内容）。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号是C/C&#43;&#43;的风格的定义方式（支持字符转译）。三引号&quot;&quot;&quot;可以定义Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony中没有全局变量，需要通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名为Main的actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。下一节讲解Pony的类型系统。"/>
 
   </head>
 
@@ -673,53 +673,53 @@ Env是什么？ 它是你的程序执行的上下文信息，其中包含命令�
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>首先我们来看一下<code>helloworld</code>代码：</p>
+<p>我们来看一下<code>helloworld</code>代码：</p>
 <pre><code class="language-pony" data-lang="pony">actor Main
   new create(env: Env) =&gt;
     env.out.print(&quot;Hello, world!&quot;)
 </code></pre><!-- raw HTML omitted -->
-<p>接下来我们逐行解释。</p>
+<p>接下来，逐行解释它们的含义：</p>
 <!-- raw HTML omitted -->
 <h2 id="第一行">第一行</h2>
 <pre><code class="language-pony" data-lang="pony">actor Main
 </code></pre><!-- raw HTML omitted -->
-<p>这是一个<code>类型声明</code>。关键字<code>actor</code>表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲解。</p>
+<p>这是一个<code>类型声明</code>。<code>actor</code>关键字表示定义了一个并发执行单元，暂时你只要了解到这是Pony声明Main函数的做法，等同于Python, Java, C#, C++等语言中的程序入口。Pony中也有<code>类</code>的概念，后面会讲到。</p>
 <!-- raw HTML omitted -->
 <p>actor和类的区别是：actor可以<code>异步执行</code>函数，这些函数在Pony中被称为<code>行为（behaviours）</code>。后面会讲到。</p>
 <!-- raw HTML omitted -->
-<p>Pony程序中的<code>Main</code>actor跟C、C++中的<code>main</code>函数，或者Java、C#中的<code>Main</code>方法类似，都是表示程序的入口。</p>
+<p>Pony程序中的<code>Main</code> actor跟C、C++中的<code>main</code>函数，或者Java、C#中的<code>Main</code>方法类似，都是程序的入口。</p>
 <!-- raw HTML omitted -->
 <h2 id="第二行">第二行</h2>
 <pre><code class="language-pony" data-lang="pony">  new create(env: Env) =&gt;
 </code></pre><!-- raw HTML omitted -->
-<p>这是一个<code>构造函数</code>。关键字<code>new</code>表示它可以创建类型实例，这个实例的类型就是<code>Main</code>。</p>
+<p>这是一个<code>构造函数</code>。<code>new</code>关键字表示它可以被<code>实例化</code>，这个实例的类型就是<code>Main</code>。</p>
 <!-- raw HTML omitted -->
-<p>和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数<code>create</code>。</p>
+<p>和其他语言不同，Pony的构造函数可以有名字。可以用不同的构造函数创建不同的实例。这里我们用的是默认构造函数<code>create</code>。</p>
 <!-- raw HTML omitted -->
-<p>接下来构造函数的参数。这里我们的构造函数里定义了一个名为<code>env</code>的参数，类型为<code>Env</code>。</p>
+<p>接下来，构造函数的参数。构造函数定义了一个<code>env</code>参数，类型为<code>Env</code>。</p>
 <!-- raw HTML omitted -->
-<p>Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了<code>Env env</code>的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。</p>
+<p>Pony的参数类型在参数名之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了<code>Env env</code>的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、TypeScript、ActionScript、Haxe等语言中）。</p>
 <!-- raw HTML omitted -->
 <p>现在明白了，<code>Main</code> actor 有一个默认构造函数，它接受单个参数，参数类型为<code>Env</code>。程序的入口就是构造函数的函数体。</p>
 <!-- raw HTML omitted -->
-<p><strong>函数体是什么？怎么定义？</strong> 注意看<code>=&gt;</code>后面的代码。</p>
+<p><strong>函数体怎么定义？</strong> 注意看<code>=&gt;</code>后面的代码。</p>
 <!-- raw HTML omitted -->
 <h2 id="第三行">第三行</h2>
 <pre><code class="language-pony" data-lang="pony">    env.out.print(&quot;Hello, world!&quot;)
 </code></pre><!-- raw HTML omitted -->
 <p>这个函数体里面就是你的代码。</p>
 <!-- raw HTML omitted -->
-<p>在Pony中，怎么确定一个<code>.</code>的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。</p>
+<p>在Pony中，怎么确定<code>.</code>的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。</p>
 <!-- raw HTML omitted -->
-<p>这行代码引用了<code>env</code>参数。 首先调用了<code>env</code>的<code>out</code>字段，这个字段表示 <strong>（标准输出流）stdout</strong> ，内容会被输出到控制台。 然后，调用<code>out</code>的<code>print</code>函数，将&quot;hello,world!&ldquo;字符串输出到控制台。</p>
+<p>这行代码引用了<code>env</code>参数。 首先调用了<code>env</code>的<code>out</code>字段，这个字段表示 <strong>（标准输出流）stdout</strong> （可以在控制台上输出一些内容）。 然后，调用<code>out</code>的<code>print</code>函数，将&quot;hello,world!&ldquo;字符串输出到控制台。</p>
 <!-- raw HTML omitted -->
-<p>Pony中的字符串定义可以使用双引号<code>&quot;</code>也可以使用三引号。双引号的定义方式是C/C++的风格的（支持\n方式的转译）。三引号<code>&quot;&quot;&quot;</code>可以定义是Python风格的原始字符串，内容不会被转译。</p>
+<p>Pony中的字符串定义可以使用双引号<code>&quot;</code>也可以使用三引号。双引号是C/C++的风格的定义方式（支持字符转译）。三引号<code>&quot;&quot;&quot;</code>可以定义Python风格的原始字符串，内容不会被转译。</p>
 <!-- raw HTML omitted -->
-<p><strong>Env是什么？</strong> 它是你的程序执行的上下文信息，其中包含<code>命令行参数</code>、<code>环境变量</code>、<code>标准输入流</code>、<code>标准输出流</code>、<code>标准错误流</code>。Pony不允许全局变量，所以你可以通过Env来初始化配置。</p>
+<p><strong>Env是什么？</strong> 它是程序执行的上下文信息，其中包含<code>命令行参数</code>、<code>环境变量</code>、<code>标准输入流</code>、<code>标准输出流</code>、<code>标准错误流</code>。Pony中没有全局变量，需要通过Env来初始化配置。</p>
 <!-- raw HTML omitted -->
 <h2 id="总结">总结</h2>
 <!-- raw HTML omitted -->
-<p>就是这样。Pony程序开始运行时会创建一个名字为<code>Main</code> actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到<code>标准输出流</code>。接下来我们会讲解Pony的类型系统。</p>
+<p>就是这样。Pony程序开始运行时会创建一个名为<code>Main</code>的actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到<code>标准输出流</code>。下一节讲解Pony的类型系统。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

@@ -46,56 +46,56 @@
     
 
     <meta property="og:title" content="变量（Variables）" />
-<meta property="og:description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
-局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+<meta property="og:description" content="Pony和其他编程语言一样，可以使用变量存储数据。不同种类的变量有不同的生命周期和使用场景。
+局部变量 Pony中的局部变量与其他语言类似，可以在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
 定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
 var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
-定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
-每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+定义变量时可以不用给变量赋初始值：可以稍后再赋值。但是如果使用没有赋值的变量，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+所有变量要指定类型，但是如果在声明时提供了初始值，就可以省略类型，编译器会根据初始值自动推导出变量的类型。
 下面示例中x，y和z定义方式是等价的。
-var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
 所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
-变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+变量所在的代码块称为 作用域（scope） 。作用域的范围取决于定义的位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
 if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
 var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
-var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。" />
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须初始化。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/variables.html" />
-<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta property="article:modified_time" content="2020-04-15T23:52:58+08:00" />
 <meta itemprop="name" content="变量（Variables）">
-<meta itemprop="description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
-局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+<meta itemprop="description" content="Pony和其他编程语言一样，可以使用变量存储数据。不同种类的变量有不同的生命周期和使用场景。
+局部变量 Pony中的局部变量与其他语言类似，可以在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
 定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
 var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
-定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
-每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+定义变量时可以不用给变量赋初始值：可以稍后再赋值。但是如果使用没有赋值的变量，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+所有变量要指定类型，但是如果在声明时提供了初始值，就可以省略类型，编译器会根据初始值自动推导出变量的类型。
 下面示例中x，y和z定义方式是等价的。
-var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
 所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
-变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+变量所在的代码块称为 作用域（scope） 。作用域的范围取决于定义的位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
 if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
 var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
-var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。">
-<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
-<meta itemprop="wordCount" content="449">
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须初始化。">
+<meta itemprop="dateModified" content="2020-04-15T23:52:58&#43;08:00" />
+<meta itemprop="wordCount" content="452">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="变量（Variables）"/>
-<meta name="twitter:description" content="和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
-局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+<meta name="twitter:description" content="Pony和其他编程语言一样，可以使用变量存储数据。不同种类的变量有不同的生命周期和使用场景。
+局部变量 Pony中的局部变量与其他语言类似，可以在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
 定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
 var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
-定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
-每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+定义变量时可以不用给变量赋初始值：可以稍后再赋值。但是如果使用没有赋值的变量，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+所有变量要指定类型，但是如果在声明时提供了初始值，就可以省略类型，编译器会根据初始值自动推导出变量的类型。
 下面示例中x，y和z定义方式是等价的。
-var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
 所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号&#39;结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time&#39;。
-变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+变量所在的代码块称为 作用域（scope） 。作用域的范围取决于定义的位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
 if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
 var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
-var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。"/>
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须初始化。"/>
 
   </head>
 
@@ -663,11 +663,11 @@ var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时�
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。</p>
+<p>Pony和其他编程语言一样，可以使用变量存储数据。不同种类的变量有不同的生命周期和使用场景。</p>
 <!-- raw HTML omitted -->
 <h2 id="局部变量">局部变量</h2>
 <!-- raw HTML omitted -->
-<p>Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 <em>local</em> ），并在每次进入代码块时自动创建，并在代码块结束时销毁。</p>
+<p>Pony中的局部变量与其他语言类似，可以在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 <em>local</em> ），并在每次进入代码块时自动创建，并在代码块结束时销毁。</p>
 <!-- raw HTML omitted -->
 <p>定义局部变量，可以使用关键字<code>var</code>（也可以使用<code>let</code>，但是我们稍后再讲）。在<code>var</code>后面紧跟着的时变量的名称，变量名后面加上一个<code>：</code>可以设置（可选）变量的类型。例如：</p>
 <pre><code class="language-pony" data-lang="pony">var x: String = &quot;Hello&quot;
@@ -675,9 +675,9 @@ var y = &quot;Hello&quot;
 </code></pre><!-- raw HTML omitted -->
 <p>上面示例中，创建了一个字符串类型的变量<code>x</code>，并赋值为<code>&quot;Hello&quot;</code>。</p>
 <!-- raw HTML omitted -->
-<p>定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： <em>uninitialized variable</em> 。</p>
+<p>定义变量时可以不用给变量赋初始值：可以稍后再赋值。但是如果使用没有赋值的变量，编译器会报一个变量还未初始化的错误： <em>uninitialized variable</em> 。</p>
 <!-- raw HTML omitted -->
-<p>每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。</p>
+<p>所有变量要指定类型，但是如果在声明时提供了初始值，就可以省略类型，编译器会根据初始值自动推导出变量的类型。</p>
 <!-- raw HTML omitted -->
 <p>下面示例中x，y和z定义方式是等价的。</p>
 <pre><code class="language-pony" data-lang="pony">var x: String = &quot;Hello&quot;
@@ -687,11 +687,11 @@ var y = &quot;Hello&quot;
 var z: String
 z = &quot;Hello&quot;
 </code></pre><!-- raw HTML omitted -->
-<p><strong>我可以同时省略变量的类型和初始值吗？</strong> 不行。这样的话编译器无法确定变量的类型。</p>
+<p><strong>可以同时省略变量的类型和初始值吗？</strong> 不行。这样的话编译器无法确定变量的类型。</p>
 <!-- raw HTML omitted -->
 <p>所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号<code>'</code>结尾，当您规避变量重名问题时，会很有用。例如，有一个名为<code>time</code>的变量，另一个变量名可以用<code>time'</code>。</p>
 <!-- raw HTML omitted -->
-<p>变量所在的代码块称为 <strong>作用域（scope）</strong> 。作用域范围取决于它的定义位置。例如，在<code>if</code>语句的<code>then</code>表达式中定义的变量的作用域就是该<code>then</code>表达式。虽然我们还没有讲到<code>if</code>语句，不过它与其他种语言中的用法是相似的。</p>
+<p>变量所在的代码块称为 <strong>作用域（scope）</strong> 。作用域的范围取决于定义的位置。例如，在<code>if</code>语句的<code>then</code>表达式中定义的变量的作用域就是该<code>then</code>表达式。虽然我们还没有讲到<code>if</code>语句，不过它与其他种语言中的用法是相似的。</p>
 <pre><code class="language-pony" data-lang="pony">if a &gt; b then
   var x = &quot;a is bigger&quot;
   env.out.print(x)  // OK
@@ -709,35 +709,35 @@ let y: U32 = 4
 x = 5  // OK
 y = 6  // Error, y is let
 </code></pre><!-- raw HTML omitted -->
-<p>使用<code>let</code>时必须赋初值。</p>
+<p>使用<code>let</code>时必须初始化。</p>
 <pre><code class="language-pony" data-lang="pony">let x: U32 = 3 // Ok
 let y: U32 // Error, can't declare a let local without assigning to it
 y = 6 // Error, can't reassign to a let local
 </code></pre><!-- raw HTML omitted -->
-<p>注意，用<code>let</code>声明的变量只有自身的重新赋值受到限制，并且不影响其引用的对象的可变性。这是<code>引用权能</code>中的内容，本教程后面的章节将对此进行说明。</p>
+<p>注意，使用<code>let</code>声明的变量只有重新赋值受到限制，并且不影响其引用的对象的可变性。这是<code>引用权能</code>中的内容，本教程后面的章节将对此进行说明。</p>
 <!-- raw HTML omitted -->
-<p>变量不时必须要声明为<code>let</code>，但是如果您知道永远不会更改变量引用的内容，那么使用<code>let</code>是个好主义。这也时一种有用的类型注释，指示所引用的内容不能更改。</p>
+<p>变量不一定要用<code>let</code>声明，但是如果永远不会更改变量引用的内容，使用<code>let</code>是个好主义。这也是一种类型注释，指示所引用的内容不能更改。</p>
 <!-- raw HTML omitted -->
 <h2 id="字段">字段</h2>
 <!-- raw HTML omitted -->
-<p>在Pony中，字段是存在于对象中的变量。它们像其他面向对象语言中的字段一样工作。</p>
+<p>在Pony中，字段是对象中的变量。跟其他面向对象语言中的字段没有两样。</p>
 <!-- raw HTML omitted -->
-<p>字段与它们所在的对象具有相同的生存期，而不是被限制范围。它们由对象构造函数设置，并与对象一起处理。</p>
+<p>字段与它所在的对象具有相同的生命周期，而不是被限制范围。它们在对象的构造函数内初始化，并与对象一起销毁。</p>
 <!-- raw HTML omitted -->
-<p>如果字段名称以“ <em>”开头，则为__private</em>_。这意味着只有该字段所在的类型才能具有读取或写入该字段的代码。否则，该字段为__public__，可以从任何地方读取或写入。</p>
+<p>如果字段名称以“_”开头，表示 <strong>私有（private）</strong> 。这表示只有该字段所在的类型才能访问该字段。否则，该字段为 <strong>公有（public）</strong> ，可以从外部访问。</p>
 <!-- raw HTML omitted -->
-<p>和局部变量一样，字段也可以用var或let定义。但是，字段分配的规则与变量分配有所不同。无论字段的类型（<code>var</code>还是<code>let</code>），都需要遵守下面的约定：</p>
+<p>和局部变量一样，字段也可以用var或let定义。但是字段分配与变量的初始化方式有所不同。无论字段的类型（<code>var</code>还是<code>let</code>），都需要遵守下面的约定：</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>1.必须在其定义中分配一个初始值（或第2条）
 2.必须在构造方法中分配一个初始值。</p>
 <!-- raw HTML omitted -->
-<p>在下面的示例中，类<code>Wombat</code>的两个字段在定义时分配了初始值：</p>
+<p>在下面的示例中，类<code>Wombat</code>的两个字段在定义时进行了初始值：</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String = &quot;Fantastibat&quot;
   var _hunger_level: U32 = 0
 </code></pre><!-- raw HTML omitted -->
-<p>也可以在构造函数中设置这些字段：</p>
+<p>也可以在构造函数中初始化这些字段：</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U32
@@ -746,9 +746,9 @@ y = 6 // Error, can't reassign to a let local
     name = &quot;Fantastibat&quot;
     _hunger_level = hunger
 </code></pre><!-- raw HTML omitted -->
-<p>如果在定义和在构造函数中都没有初始化字段，就会引发编译错误。对于<code>var</code>和<code>let</code>字段都是如此。</p>
+<p>如果在定义时和构造函数中都没有初始化字段，就会导致编译错误。对于<code>var</code>和<code>let</code>声明的字段都是如此。</p>
 <!-- raw HTML omitted -->
-<p>请注意，必须将字段的值进行明确的初始化。下面示例尝试其他函数中初始化字段，在编译时会引发错误，即便该字段是<code>var</code>类型的也不行：</p>
+<p>注意，字段必须直接初始化。下面示例其他函数中初始化字段，导致了编译错误，即便该字段是<code>var</code>类型也不可以：</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U64
@@ -761,7 +761,7 @@ y = 6 // Error, can't reassign to a let local
   fun ref set_hunger_level(hunger_level: U64) =&gt;
     _hunger_level = hunger_level
 </code></pre><!-- raw HTML omitted -->
-<p>稍后在<code>方法</code>章节中，我们将看到一个类可以具有多个构造函数。现在，请记住，如果没有在定义时对字段做出初始化，就必须在该字段所属的类的每个构造函数中进行赋值。</p>
+<p>在后面的<code>方法</code>章节中，我们会讲到一个类可以有多个构造函数。现在，请记住，如果没有在定义时对字段初始化，就必须在该字段所属类的所有构造函数中进行赋值。</p>
 <!-- raw HTML omitted -->
 <p>使用<code>var</code>声明的字段可以多次赋值。使用<code>let</code>声明的字段只能被初始化一次。</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat

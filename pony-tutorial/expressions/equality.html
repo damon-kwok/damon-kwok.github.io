@@ -53,14 +53,14 @@ if None is None then // TRUE! // There is only 1 None so the identity is the sam
 class Foo let _a: String new create(a: String) =&gt; _a = a fun eq(that: box-&gt;Foo): Bool =&gt; this." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/equality.html" />
-<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta property="article:modified_time" content="2020-04-15T18:16:41+08:00" />
 <meta itemprop="name" content="比较（Equality in Pony）">
 <meta itemprop="description" content="Pony有两种形式的平等:结构平等和身份平等。
 类型比较（Identity equality） Pony中的类型检查是通过is关键字来完成的。is可以判断两个类型是否相同。
 if None is None then // TRUE! // There is only 1 None so the identity is the same end let a = Foo(&quot;hi&quot;) let b = Foo(&quot;hi&quot;) if a is b then // NOPE. THIS IS FALSE end let c = a if a is c then // YUP! TRUE! end 结构化比较（Structural equality） Pony的结构化比较是通过中缀运算符==来完成的。它可以判断同的数据是否具有相同的值。如果被比较结果为true，可以认为它们具有相同的值。
 可以通过实现fun eq(that: box-&gt;Foo): Bool来自定义对比逻辑。注意，因为==是一个中缀操作符，eq必须定义在左边的操作数上，而右边的操作数必须是Foo类型。
 class Foo let _a: String new create(a: String) =&gt; _a = a fun eq(that: box-&gt;Foo): Bool =&gt; this.">
-<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-15T18:16:41&#43;08:00" />
 <meta itemprop="wordCount" content="181">
 
 

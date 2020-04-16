@@ -608,16 +608,16 @@
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>本章将带您开始使用Pony，安装编译器运行第一个程序。</p>
+<p>本章将带你开始使用Pony，安装编译器运行第一个程序。</p>
 <!-- raw HTML omitted -->
-<p>在学习本教程的过程中，您可能会遇到许多您曾经使用过的编程语言所熟悉的概念。您可能会想跳过这些章节，这完全没问题。</p>
+<p>在本教程的学习过程中，你可能会遇到已经熟悉的概念，想跳过这些章节完全没问题。</p>
 <!-- raw HTML omitted -->
-<p>不过，如果您以前从未使用过Pony，您肯定会遇到一些陌生的概念，如果想学习和应用Pony，你需要<code>特别！特别！！的注意</code>：[引用权能](/reference- abilities.html)章节。<strong>引用权能</strong> 是Pony的核心，它让Pony<code>独步天下</code>。</p>
+<p>不过，如果你第一次接触Pony肯定会遇到陌生的概念，如果想使用Pony，你需要<code>特别！特别！！注意</code>：<a href="/reference-abilities.html">引用权能</a>章节。<strong>引用权能</strong> 是Pony的核心，凭借着<code>特立独行</code>的思想使Pony在现代编程语言的中<code>脱颖而出</code>。</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<p>在本教程中，我们先从熟悉的基础知识入手，会尽力避免在代码示例中使用 <strong>引用权能</strong> ，然后循序渐进的对其进行详细介绍。阅读过程中，强烈建议你将教程中的代码示例，在自己的文本编辑器中敲一遍。请注意，当您冒然跳跃式阅读本教程时，可能会遇到 <strong>引用权能</strong> ，想要流畅的通读全教程，必须得先彻底理解这个基础概念。学习过程中配合编译器一起使用，可以帮助你验证教程中代码示例可用性。</p>
+<p>在本教程从熟悉的基础知识入手，会尽力避免在代码示例中使用 <strong>引用权能</strong> ，然后循序渐进的对其介绍。阅读过程中，强烈建议你将教程中的代码在自己的编辑器中敲一遍。注意，当你冒然跳跃式阅读本教程时，可能会遇到 <strong>引用权能</strong> ，想要流畅的通读全文，得先彻底理解 <strong>引用权能</strong> 。学习过程中配合编译器一起使用，可以验证教程中代码示例，加深理解。</p>
 <!-- raw HTML omitted -->
-<p>或许你正急着阅读后面的章节，还请花点时间读完入门章节。你需要了解下社区为你提供了帮助，帮你学习新概念时少走弯路，这将改变你对并发问题的看法。</p>
+<p>或许你正急着阅读后面的章节，稍微花点时间读完入门章节，了解下社区为你提供了哪些帮助，可以少走一些弯路。学习Pony会改变你对并发问题的看法。</p>
 
 
 
@@ -636,17 +636,17 @@
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>首先，你需要一个文本编辑器，还有Pony编译器。如果你想偷点懒直接使用Pony&rsquo;s Playground也是可以的。
-Pony编译器 安装Pony编译器的方法：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
+        <p>你需要一个文本编辑器，还有Pony编译器。如果想偷点懒可以直接使用Pony的Playground。
+Pony编译器 Pony编译器的：安装教程。Windows用户可以直接下载Pony。另外在Windows上编译Pony程序你需要安装VsualStudio或Microsoft C++ Build Tools。
 文本编辑器 你可以用自己喜欢的文本编辑器，这里是Pony对编辑器的支持列表
-编译器说明 Pony是一个编译型语言，不是解释型的语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
-这表示只要你编译成功，就可以拿到其他地方运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整的程序。
-但是这就需要你必须先构建程序，然后才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
-$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python)，然后使用chmod设置运行权限，然后直接运行：
+编译器说明 Pony是一个编译型语言，非解释型语言。更进一步来说：Pony是一种提前（AOT）编译型语言，而不是即时（JIT）编译型语言。
+这表示只要你编译成功，就可以直接运行它，不再需编译器，虚拟机或其他任何运行时。编译出来的是一个完整程序。
+所以你必须先构建程序，才能运行。在解释性语言或JIT编译语言中，你可能会用下面的方式来运行程序：
+$ python helloworld.py 或者你可能在代码文件头部加入shebang(#!/usr/bin/env python3)，然后使用chmod添加运行权限，然后运行：
 $ ./helloworld.py 但是这些方法在Pony中行不通！
-编译你的程序 进入代码目录，直接敲ponyc就可以进行编译：
-$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果你的代码在其他目录里，把目录作为参数告诉编译器就行了：
-$ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介绍。</p>
+编译你的程序 进入代码目录，直接输入ponyc就可以进行编译：
+$ ponyc 这相当于告诉编译器你的代码在当前目录里，请遍历所有源码文件然后编译它们。如果代码在其他目录里，把目录作为参数传入就行了：
+$ ponyc path/to/my/code 还有一些其他编译选项，后面会介绍。</p>
       
     </div>
   </div>
@@ -662,18 +662,18 @@ $ ponyc path/to/my/code 还有一些其他编译选项，我们将在后面介�
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>你已经成功的安装了Pony编译器，我们来编写自己的第一个Pony程序：输出&quot;hello,world!&quot;。首先，创建一个目录：helloworld：
-$ mkdir helloworld $ cd helloworld 目录名称重要吗？ 是的。这将是你的程序最终输的名！默认情况下，在编译程序时，生成的可执行二进制文件将使用源码的目录名。你可以在命令行上使用&ndash;bin-name或-b选项指定想要的文件名。
+        <p>你已经成功的安装了Pony编译器，来试着编写第一个Pony程序：输出&quot;hello,world!&quot;。首先，创建一个目录：helloworld：
+$ mkdir helloworld $ cd helloworld 目录名称重要吗？ 重要。这将是程序编译后的文件名！默认情况下，编译程序生成的可执行文件将使用源码的目录名，想要的文件名需要在命令行上使用--bin-name或-b选项指。
 代码 然后用你的文本编辑器在这个目录中新建一个文件：main.pony。
 文件名重要吗？ 对编译器来说不重要。 Pony只关心源文件的扩展名.pony，不关心文件名。但文件名对你来说很重要！给源文件起个好名字，可以方便以后定位代码。
 在文件中输入下面的代码：
 actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 编译程序 现在可以编译程序了：
-$ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld 如果你想要Docker中使用Pony，可以这么做：
+$ ponyc Building . Building builtin Generating Optimising Writing ./helloworld.o Linking ./helloworld 如果想在Docker中使用Pony，可以这么做：
 $ docker run -v Some_Absolute_Path/helloworld:/src/main ponylang/ponyc 注意，需要将目录路径替换成你自己的。
-你会发现，它在当前目录进行了构建，.，Pony对代码进行了优化，并创建了一些目标文件（如果您不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果您是C/C++程序员，那对你来说可能是有意义的，否则你可以忽略它。
-构建过程中也进行链接吗？ 是的。Pony不需要额外的构建程序（例如make），自己就会处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
-运行程序 现在可以运行程序了：
-$ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！下一节我们会讲解这几行代码的含义。</p>
+你会发现，它在当前目录进行了构建，.，Pony对代码进行了优化，并创建了一些目标文件（如果你不知道那是什么，不用担心） ，然后将其链接到了一个可执行文件中。如果你是C/C++程序员，那对你来说可能是有意义的，否则你可以忽略它。
+构建过程中也进行链接吗？ 没错，Pony不需要额外的构建程序（例如make），自己能处理（包括在链接到C库时处理依赖项的顺序，后面章节会介绍）。
+运行程序 运行程序：
+$ ./helloworld Hello, world! 恭喜你，完成了第一个Pony程序！下节我们讲解代码的含义。</p>
       
     </div>
   </div>
@@ -689,23 +689,23 @@ $ ./helloworld Hello, world! 恭喜，你已经完成了第一个Pony程序！�
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>首先我们来看一下helloworld代码：
-actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来我们逐行解释。
-第一行 actor Main 这是一个类型声明。关键字actor表示我们定义了一个并发单元，但是暂时你只需要了解到这是Pony中的声明Main函数的做法，等同于于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲解。
+        <p>我们来看一下helloworld代码：
+actor Main new create(env: Env) =&gt; env.out.print(&quot;Hello, world!&quot;) 接下来，逐行解释它们的含义：
+第一行 actor Main 这是一个类型声明。actor关键字表示定义了一个并发执行单元，暂时你只要了解到这是Pony声明Main函数的做法，等同于Python, Java, C#, C++等语言中的程序入口。Pony中也有类的概念，后面会讲到。
 actor和类的区别是：actor可以异步执行函数，这些函数在Pony中被称为行为（behaviours）。后面会讲到。
-Pony程序中的Mainactor跟C、C++中的main函数，或者Java、C#中的Main方法类似，都是表示程序的入口。
-第二行 new create(env: Env) =&gt; 这是一个构造函数。关键字new表示它可以创建类型实例，这个实例的类型就是Main。
-和其他语言不同，Pony的构造函数可以有名字。我们可以用不同的构造函数创建特定的实例。这里我们用的是默认构造函数create。
-接下来构造函数的参数。这里我们的构造函数里定义了一个名为env的参数，类型为Env。
-Pony的参数类型总是在参数之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、Typecript等语言中）。
+Pony程序中的Main actor跟C、C++中的main函数，或者Java、C#中的Main方法类似，都是程序的入口。
+第二行 new create(env: Env) =&gt; 这是一个构造函数。new关键字表示它可以被实例化，这个实例的类型就是Main。
+和其他语言不同，Pony的构造函数可以有名字。可以用不同的构造函数创建不同的实例。这里我们用的是默认构造函数create。
+接下来，构造函数的参数。构造函数定义了一个env参数，类型为Env。
+Pony的参数类型在参数名之后，并且需要用冒号分割。如果你熟悉C、C++、Java、C#，你可能习惯了Env env的写法,不过Pony的参数写法其实也是很常见的（比如在Go、Pascal、Rust、TypeScript、ActionScript、Haxe等语言中）。
 现在明白了，Main actor 有一个默认构造函数，它接受单个参数，参数类型为Env。程序的入口就是构造函数的函数体。
-函数体是什么？怎么定义？ 注意看=&gt;后面的代码。
+函数体怎么定义？ 注意看=&gt;后面的代码。
 第三行 env.out.print(&quot;Hello, world!&quot;) 这个函数体里面就是你的代码。
-在Pony中，怎么确定一个.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
-这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout ，内容会被输出到控制台。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
-Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号的定义方式是C/C++的风格的（支持\n方式的转译）。三引号&quot;&quot;&quot;可以定义是Python风格的原始字符串，内容不会被转译。
-Env是什么？ 它是你的程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony不允许全局变量，所以你可以通过Env来初始化配置。
-总结 就是这样。Pony程序开始运行时会创建一个名字为Main actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。接下来我们会讲解Pony的类型系统。</p>
+在Pony中，怎么确定.的作用是字段访问还是方法调用？注意观察小括号。有小括号就是方法调用，没有就是字段访问。
+这行代码引用了env参数。 首先调用了env的out字段，这个字段表示 （标准输出流）stdout （可以在控制台上输出一些内容）。 然后，调用out的print函数，将&quot;hello,world!&ldquo;字符串输出到控制台。
+Pony中的字符串定义可以使用双引号&quot;也可以使用三引号。双引号是C/C++的风格的定义方式（支持字符转译）。三引号&quot;&quot;&quot;可以定义Python风格的原始字符串，内容不会被转译。
+Env是什么？ 它是程序执行的上下文信息，其中包含命令行参数、环境变量、标准输入流、标准输出流、标准错误流。Pony中没有全局变量，需要通过Env来初始化配置。
+总结 就是这样。Pony程序开始运行时会创建一个名为Main的actor实例，然后执行里面的逻辑：打印&quot;hello,woeld!&ldquo;到标准输出流。下一节讲解Pony的类型系统。</p>
       
     </div>
   </div>

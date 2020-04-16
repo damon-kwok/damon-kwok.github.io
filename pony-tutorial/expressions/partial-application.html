@@ -55,7 +55,7 @@ let f = foo~addmul() f(3, 4) 命名传参（之前讲过的无序传参方式）
 let f = foo~addmul(where mul = 4) f(3) 在这里，我们绑定了mul参数，但未绑定add。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/partial-application.html" />
-<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta property="article:modified_time" content="2020-04-15T18:16:41+08:00" />
 <meta itemprop="name" content="柯里化（Partial Application）">
 <meta itemprop="description" content="柯里化（Partial Application）允许我们对构造函数、函数或行为设置 部分 参数，然后返回一个新函数，以便后面再填充其余的参数。
 一个简单的例子 这里有一个简单的例子，创建一个回调函数。例如:
@@ -64,7 +64,7 @@ class Foo var _f: F64 = 0 fun ref addmul(add: F64, mul: F64): F64 =&gt; _f = (_f
 let f = foo~addmul(3, 4) f() 也不提绑定任何实参：
 let f = foo~addmul() f(3, 4) 命名传参（之前讲过的无序传参方式） 命名传参的方式允许柯里化（Partial Application）以任意顺序绑定参数，而不只是从左到右。例如:
 let f = foo~addmul(where mul = 4) f(3) 在这里，我们绑定了mul参数，但未绑定add。">
-<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-15T18:16:41&#43;08:00" />
 <meta itemprop="wordCount" content="101">
 
 

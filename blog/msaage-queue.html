@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Message Queue</title>
+<meta name="generator" content="Org mode" />
+<!-- begin:org-html-head -->
+<link rel="icon" type="image/png" href="img/emacs.ico">
+<link rel="shortcut icon" href="img/emacs.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" type="image/png" href="img/emacs.png">
+<link rel="icon" type="image/png" sizes="144x144" href="img/emacs.png">
+<link rel="stylesheet" type="text/css" href="/style/default.css" />
+<script src="script/init.js"></script>
+<!-- send:org-html-head -->
+</head>
+<body>
+<div id="preamble" class="status">
+<header>
+    <nav>Damon Kwok's BLOG</nav>
+    <ul class="menu">
+        <li><a href="/">Index</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/link.html">Link</a></li>
+        <li><a href="/guest_book.html">Guestbook</a></li>
+    </ul>
+</header>
+</div>
+<div id="content">
+<h1 class="title">Message Queue</h1>
+<p>
+高性能服务器
+分布式通信
+数据存储
+</p>
+
+
+
+<p>
+MQ mq=new MQ();
+mq.bind("tcp://*:5555");
+mq.bind("pipline://*:5555");
+</p>
+
+<p>
+mq.connect();
+mq.mode();“Request-Reply “，”Publisher-Subscriber“，”Parallel Pipeline(push or pull)”
+</p>
+
+
+
+<p>
+1.可以同时绑定多种协议和多个监听，支持：tcp udp http pipe 
+2.数据接收完整性（len:data）
+3.消息格式自定义(data格式随意）
+4.三个基本的通信模型，分别是“Request-Reply “，”Publisher-Subscriber“，”Parallel Pipeline”
+5.自定义缓存存放方式，默认缓存在内存中
+6.支持状态查看器，用来调试节点，查看：有多少socket 每个socket什么模式，有多少缓存，数据流量信息
+7.mqsocket和真实socket并非一对一关系，一个真实socket完全可以服务于多个mqsocket，比如同时为订阅模式和管道模式服务。
+8.mqsocket并非只能用socket来完成，进城内可以用inproc，进程间ipc，网络用socket
+</p>
+
+<hr />
+<p>
+数据网关
+1.订阅和发布数据
+2.一个数据表中每一条记录都是一个Publisher，订阅者可以订阅自己感兴趣的PrimaryKey对应的记录，
+当有CRUD
+</p>
+</div>
+</body>
+</html>

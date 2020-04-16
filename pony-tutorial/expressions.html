@@ -655,19 +655,19 @@ let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	/
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>和大多数编程语言一样，Pony可以数据存储在变量中。不同类型的变量具有不同的生存期，使用场景也有所不同。
-局部变量 Pony中的局部变量与其他语言一样，可以让您在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
+        <p>Pony和其他编程语言一样，可以使用变量存储数据。不同种类的变量有不同的生命周期和使用场景。
+局部变量 Pony中的局部变量与其他语言类似，可以在执行计算时存储临时值。局部变量位于代码块中（它们是该代码块的 local ），并在每次进入代码块时自动创建，并在代码块结束时销毁。
 定义局部变量，可以使用关键字var（也可以使用let，但是我们稍后再讲）。在var后面紧跟着的时变量的名称，变量名后面加上一个：可以设置（可选）变量的类型。例如：
 var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; 上面示例中，创建了一个字符串类型的变量x，并赋值为&quot;Hello&quot;。
-定义变量时不时必须要给变量赋值：如果愿意，可以稍后再赋值。如果在变量赋值之前尝试从变量中读取值，编译器会报一个变量还未初始化的错误： uninitialized variable 。
-每个变量都有一个类型，但是如果提供初始值，则不必在声明中指定它。编译器将自动使用变量初始值的类型。
+定义变量时可以不用给变量赋初始值：可以稍后再赋值。但是如果使用没有赋值的变量，编译器会报一个变量还未初始化的错误： uninitialized variable 。
+所有变量要指定类型，但是如果在声明时提供了初始值，就可以省略类型，编译器会根据初始值自动推导出变量的类型。
 下面示例中x，y和z定义方式是等价的。
-var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 我可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
+var x: String = &quot;Hello&quot; var y = &quot;Hello&quot; var z: String z = &quot;Hello&quot; 可以同时省略变量的类型和初始值吗？ 不行。这样的话编译器无法确定变量的类型。
 所有局部变量名称均以小写字母开头。如果需要，可以用一个（或多个）引号'结尾，当您规避变量重名问题时，会很有用。例如，有一个名为time的变量，另一个变量名可以用time'。
-变量所在的代码块称为 作用域（scope） 。作用域范围取决于它的定义位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
+变量所在的代码块称为 作用域（scope） 。作用域的范围取决于定义的位置。例如，在if语句的then表达式中定义的变量的作用域就是该then表达式。虽然我们还没有讲到if语句，不过它与其他种语言中的用法是相似的。
 if a &gt; b then var x = &quot;a is bigger&quot; env.out.print(x) // OK end env.out.print(x) // Illegal 变量定义后仅在作用域结束前有效。对于变量x，它的有效范围是then表达式到结尾的的end之间：在那之后，就无法再使用它了。
 var和let 局部变量用var或let声明。使用var表示这个变量可以反复赋值。使用let表示这个是常量只能赋值一次，无法被修改。
-var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须赋初值。</p>
+var x: U32 = 3 let y: U32 = 4 x = 5 // OK y = 6 // Error, y is let 使用let时必须初始化。</p>
       
     </div>
   </div>

@@ -46,26 +46,77 @@
     
 
     <meta property="og:title" content="引用权能（Reference Capabilities）" />
-<meta property="og:description" content="So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
-In Pony, we do it with reference capabilities.
-Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right." />
+<meta property="og:description" content="如果对象具有权能，我们该怎么来控制？比如如何表示该对象的 访问权限（access rights） ？
+Pony中，可以用引用权能（reference capabilities）来处理。
+权限只是权能的一部分 如果在UNIX系统中打开一个文件，会返回一个文件描述符，该文件描述符只是一个文件指向标识——并不是一个权能（描述符只体现了能没有体现权,描述符使可以访问文件，但是访问权呢？）。完整的权能：需要获得权限，然后指定文件路径和打开模式。例如:
+chmod u&#43;w /etc/passwd int fd = open(&#34;/etc/passwd&#34;, O_RDWR); 现在我们拥有了/etc/passwd文件的读写权，然后使用O_RDWR模式打开们见得到了一个文件描述符。访问授权、打开模式、文件描述符共同构成了一个权能。
+在Pony中，所有被引用的数据都有一个类型和一个引用权能（reference capabilities）。实际上，引用权能（reference capabilities）是其类型的一部分。这允许你指定哪些对象可以与其他actor共享，并允许编译器检查你的逻辑是并发安全的。
+基本概念（Basic concepts） 在引用权能（reference capabilities）变得有意义之前，您需要理解一些简单的概念。我们已经讨论过其中的一些，有些可能对你来说已经很明显了，但是在这里值得回顾一下。
+共享可变数据非常困难
+并发性的问题根源来自于共享可变数据。如果两个线程可以同时访问同一个数据，那么它们可能会同时修改它。这最多可能导致两个线程拥有不同版本的数据。在最坏的情况下，更新可能会交互不良，导致数据被垃圾覆盖。避免这些问题的常规做法是使用锁来防止同时发生数据更新。这会导致巨大的性能开销（上下文切换），并且一不小心就会导致bug。
+不可变数据可以安全地共享
+任何不可变的数据(即不会被修改数据)都可以安全地并发使用。因为它们永远不会更新，正是更新导致了并发性问题。
+被隔离的数据是安全的
+如果一个数据块只有一个对它的引用，那么我们称它为 被隔离的数据(isolated) 。因为只有一个对它的引用，所以不会被被多个线程共享，也就不存在并发问题。被隔离的数据可以在多个线程之间传递。只要同一时间只存在一个对它的引用，那么数据就是安全的，不会出现并发问题。
+被隔离的数据有可以是复合类型
+一个被隔离的数据（isolated）可以是一个字节，也可以是一个大型数据结构，并且在该结构中的各个对象之间有多个引用。对于隔离的数据来说，重要的是整个程序中只有一个单一的引用。我们讨论了数据结构的隔离边界。对结构进行隔离:
+ 外部必须只能有一个指向内部对象的引用。 外部可以有任意数量的引用，但它们都不能指向外部的对象。  每个actor都只会在一个线程中运行
+actor内部的代码永远不会并发运行。在actor中，数据更新不会导致并发问题。只有当我们希望在actor之间共享数据时，才会遇到问题。
+好吧，看来同时安全地共享数据确实很棘手，来看看引用权能（reference capabilities）是怎么做到的。
+通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
+类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
+A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/reference-capabilities.html" />
 <meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
 <meta itemprop="name" content="引用权能（Reference Capabilities）">
-<meta itemprop="description" content="So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
-In Pony, we do it with reference capabilities.
-Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right.">
+<meta itemprop="description" content="如果对象具有权能，我们该怎么来控制？比如如何表示该对象的 访问权限（access rights） ？
+Pony中，可以用引用权能（reference capabilities）来处理。
+权限只是权能的一部分 如果在UNIX系统中打开一个文件，会返回一个文件描述符，该文件描述符只是一个文件指向标识——并不是一个权能（描述符只体现了能没有体现权,描述符使可以访问文件，但是访问权呢？）。完整的权能：需要获得权限，然后指定文件路径和打开模式。例如:
+chmod u&#43;w /etc/passwd int fd = open(&#34;/etc/passwd&#34;, O_RDWR); 现在我们拥有了/etc/passwd文件的读写权，然后使用O_RDWR模式打开们见得到了一个文件描述符。访问授权、打开模式、文件描述符共同构成了一个权能。
+在Pony中，所有被引用的数据都有一个类型和一个引用权能（reference capabilities）。实际上，引用权能（reference capabilities）是其类型的一部分。这允许你指定哪些对象可以与其他actor共享，并允许编译器检查你的逻辑是并发安全的。
+基本概念（Basic concepts） 在引用权能（reference capabilities）变得有意义之前，您需要理解一些简单的概念。我们已经讨论过其中的一些，有些可能对你来说已经很明显了，但是在这里值得回顾一下。
+共享可变数据非常困难
+并发性的问题根源来自于共享可变数据。如果两个线程可以同时访问同一个数据，那么它们可能会同时修改它。这最多可能导致两个线程拥有不同版本的数据。在最坏的情况下，更新可能会交互不良，导致数据被垃圾覆盖。避免这些问题的常规做法是使用锁来防止同时发生数据更新。这会导致巨大的性能开销（上下文切换），并且一不小心就会导致bug。
+不可变数据可以安全地共享
+任何不可变的数据(即不会被修改数据)都可以安全地并发使用。因为它们永远不会更新，正是更新导致了并发性问题。
+被隔离的数据是安全的
+如果一个数据块只有一个对它的引用，那么我们称它为 被隔离的数据(isolated) 。因为只有一个对它的引用，所以不会被被多个线程共享，也就不存在并发问题。被隔离的数据可以在多个线程之间传递。只要同一时间只存在一个对它的引用，那么数据就是安全的，不会出现并发问题。
+被隔离的数据有可以是复合类型
+一个被隔离的数据（isolated）可以是一个字节，也可以是一个大型数据结构，并且在该结构中的各个对象之间有多个引用。对于隔离的数据来说，重要的是整个程序中只有一个单一的引用。我们讨论了数据结构的隔离边界。对结构进行隔离:
+ 外部必须只能有一个指向内部对象的引用。 外部可以有任意数量的引用，但它们都不能指向外部的对象。  每个actor都只会在一个线程中运行
+actor内部的代码永远不会并发运行。在actor中，数据更新不会导致并发问题。只有当我们希望在actor之间共享数据时，才会遇到问题。
+好吧，看来同时安全地共享数据确实很棘手，来看看引用权能（reference capabilities）是怎么做到的。
+通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
+类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
+A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!">
 <meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="1574">
+<meta itemprop="wordCount" content="210">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="引用权能（Reference Capabilities）"/>
-<meta name="twitter:description" content="So if the object is the capability, what controls what we can do with the object? How do we express our access rights on that object?
-In Pony, we do it with reference capabilities.
-Rights are part of a capability If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right."/>
+<meta name="twitter:description" content="如果对象具有权能，我们该怎么来控制？比如如何表示该对象的 访问权限（access rights） ？
+Pony中，可以用引用权能（reference capabilities）来处理。
+权限只是权能的一部分 如果在UNIX系统中打开一个文件，会返回一个文件描述符，该文件描述符只是一个文件指向标识——并不是一个权能（描述符只体现了能没有体现权,描述符使可以访问文件，但是访问权呢？）。完整的权能：需要获得权限，然后指定文件路径和打开模式。例如:
+chmod u&#43;w /etc/passwd int fd = open(&#34;/etc/passwd&#34;, O_RDWR); 现在我们拥有了/etc/passwd文件的读写权，然后使用O_RDWR模式打开们见得到了一个文件描述符。访问授权、打开模式、文件描述符共同构成了一个权能。
+在Pony中，所有被引用的数据都有一个类型和一个引用权能（reference capabilities）。实际上，引用权能（reference capabilities）是其类型的一部分。这允许你指定哪些对象可以与其他actor共享，并允许编译器检查你的逻辑是并发安全的。
+基本概念（Basic concepts） 在引用权能（reference capabilities）变得有意义之前，您需要理解一些简单的概念。我们已经讨论过其中的一些，有些可能对你来说已经很明显了，但是在这里值得回顾一下。
+共享可变数据非常困难
+并发性的问题根源来自于共享可变数据。如果两个线程可以同时访问同一个数据，那么它们可能会同时修改它。这最多可能导致两个线程拥有不同版本的数据。在最坏的情况下，更新可能会交互不良，导致数据被垃圾覆盖。避免这些问题的常规做法是使用锁来防止同时发生数据更新。这会导致巨大的性能开销（上下文切换），并且一不小心就会导致bug。
+不可变数据可以安全地共享
+任何不可变的数据(即不会被修改数据)都可以安全地并发使用。因为它们永远不会更新，正是更新导致了并发性问题。
+被隔离的数据是安全的
+如果一个数据块只有一个对它的引用，那么我们称它为 被隔离的数据(isolated) 。因为只有一个对它的引用，所以不会被被多个线程共享，也就不存在并发问题。被隔离的数据可以在多个线程之间传递。只要同一时间只存在一个对它的引用，那么数据就是安全的，不会出现并发问题。
+被隔离的数据有可以是复合类型
+一个被隔离的数据（isolated）可以是一个字节，也可以是一个大型数据结构，并且在该结构中的各个对象之间有多个引用。对于隔离的数据来说，重要的是整个程序中只有一个单一的引用。我们讨论了数据结构的隔离边界。对结构进行隔离:
+ 外部必须只能有一个指向内部对象的引用。 外部可以有任意数量的引用，但它们都不能指向外部的对象。  每个actor都只会在一个线程中运行
+actor内部的代码永远不会并发运行。在actor中，数据更新不会导致并发问题。只有当我们希望在actor之间共享数据时，才会遇到问题。
+好吧，看来同时安全地共享数据确实很棘手，来看看引用权能（reference capabilities）是怎么做到的。
+通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
+类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
+A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!"/>
 
   </head>
 
@@ -606,12 +657,12 @@ Rights are part of a capability If you open a file in UNIX and get a file descri
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#rights-are-part-of-a-capability">Rights are part of a capability</a></li>
-    <li><a href="#basic-concepts">Basic concepts</a></li>
-    <li><a href="#type-qualifiers">Type qualifiers</a></li>
-    <li><a href="#the-list-of-reference-capabilities">The list of reference capabilities</a></li>
-    <li><a href="#how-to-write-a-reference-capability">How to write a reference capability</a></li>
-    <li><a href="#how-to-create-objects-with-different-capabilities">How to create objects with different capabilities</a></li>
+    <li><a href="#权限只是权能的一部分">权限只是权能的一部分</a></li>
+    <li><a href="#基本概念basic-concepts">基本概念（Basic concepts）</a></li>
+    <li><a href="#类型限定符type-qualifiers">类型限定符（Type qualifiers）</a></li>
+    <li><a href="#引用权能reference-capabilities列表"><code>引用权能（reference capabilities）</code>列表</a></li>
+    <li><a href="#引用权能如何使用how-to-write-a-reference-capability">引用权能如何使用（How to write a reference capability）</a></li>
+    <li><a href="#如何创建具有不同引用权能的对象">如何创建具有不同引用权能的对象</a></li>
   </ul>
 </nav>
   </div>
@@ -632,68 +683,114 @@ Rights are part of a capability If you open a file in UNIX and get a file descri
             <h1 class="f1 athelas mb1">引用权能（Reference Capabilities）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>So if the object <em>is</em> the capability, what controls what we can do with the object? How do we express our <em>access rights</em> on that object?</p>
-<p>In Pony, we do it with <em>reference capabilities</em>.</p>
-<h2 id="rights-are-part-of-a-capability">Rights are part of a capability</h2>
-<p>If you open a file in UNIX and get a file descriptor back, that file descriptor is a token that designates an object - but it isn&rsquo;t a capability. To be a capability, we need to open that file with some permission - some access right. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> fd <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#34;/etc/passwd&#34;</span>, O_RDWR);
-</code></pre></div><p>Now we have a token and a set of rights.</p>
-<p>In Pony, every reference has both a type and a reference capability. In fact, the reference capability is <em>part</em> of its type. These allow you to specify which of your objects can be shared with other actors and allow the compiler to check that what you&rsquo;re doing is concurrency safe.</p>
-<h2 id="basic-concepts">Basic concepts</h2>
-<p>There are a few simple concepts you need to understand before reference capabilities will make any sense. We&rsquo;ve talked about some of these already, and some may already be obvious to you, but it&rsquo;s worth recapping here.</p>
-<p><strong>Shared mutable data is hard</strong></p>
-<p>The problem with concurrency is shared mutable data. If two different threads have access to the same piece of data then they might try to update it at the same time. At best this can lead to the two threads having different versions of the data. At worst the updates can interact badly resulting in the data being overwritten with garbage. The standard way to avoid these problems is to use locks to prevent data updates from happening at the same time. This causes big performance hits and is very difficult to get right, so it causes lots of bugs.</p>
-<p><strong>Immutable data can be safely shared</strong></p>
-<p>Any data that is immutable (i.e. it cannot be changed) is safe to use concurrently. Since it is immutable it is never updated and it&rsquo;s the updates that cause concurrency problems.</p>
-<p><strong>Isolated data is safe</strong></p>
-<p>If a block of data has only one reference to it then we call it <strong>isolated</strong>. Since there is only one reference to it, isolated data cannot be <strong>shared</strong> by multiple threads, so there are no concurrency problems. Isolated data can be passed between multiple threads. As long as only one of them has a reference to it at a time then the data is still safe from concurrency problems.</p>
-<p><strong>Isolated data may be complex</strong></p>
-<p>An isolated piece of data may be a single byte. But it can also be a large data structure with multiple references between the various objects in that structure. What matters for the data to be isolated is that there is only a single reference to that structure as a whole. We talk about the <strong>isolation boundary</strong> of a data structure. For the structure to be isolated:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>如果对象具有权能，我们该怎么来控制？比如如何表示该对象的 <em>访问权限（access rights）</em> ？</p>
+<!-- raw HTML omitted -->
+<p>Pony中，可以用<code>引用权能（reference capabilities）</code>来处理。</p>
+<!-- raw HTML omitted -->
+<h2 id="权限只是权能的一部分">权限只是权能的一部分</h2>
+<!-- raw HTML omitted -->
+<p>如果在UNIX系统中打开一个文件，会返回一个文件描述符，该文件描述符只是一个文件指向标识——并不是一个权能（描述符只体现了<code>能</code>没有体现<code>权</code>,描述符使可以访问文件，但是访问权呢？）。完整的<code>权能</code>：需要获得权限，然后指定文件路径和打开模式。例如:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod u+w /etc/passwd
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> fd <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#34;/etc/passwd&#34;</span>, O_RDWR);
+</code></pre></div><!-- raw HTML omitted -->
+<p>现在我们拥有了<code>/etc/passwd</code>文件的读写权，然后使用<code>O_RDWR</code>模式打开们见得到了一个文件描述符。访问授权、打开模式、文件描述符共同构成了一个<code>权能</code>。</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，所有被引用的数据都有一个<code>类型</code>和一个<code>引用权能（reference capabilities）</code>。实际上，<code>引用权能（reference capabilities）</code>是其类型的一部分。这允许你指定哪些对象可以与其他actor共享，并允许编译器检查你的逻辑是并发安全的。</p>
+<!-- raw HTML omitted -->
+<h2 id="基本概念basic-concepts">基本概念（Basic concepts）</h2>
+<!-- raw HTML omitted -->
+<p>在<code>引用权能（reference capabilities）</code>变得有意义之前，您需要理解一些简单的概念。我们已经讨论过其中的一些，有些可能对你来说已经很明显了，但是在这里值得回顾一下。</p>
+<!-- raw HTML omitted -->
+<p><strong>共享可变数据非常困难</strong></p>
+<!-- raw HTML omitted -->
+<p>并发性的问题根源来自于共享可变数据。如果两个线程可以同时访问同一个数据，那么它们可能会同时修改它。这最多可能导致两个线程拥有不同版本的数据。在最坏的情况下，更新可能会交互不良，导致数据被垃圾覆盖。避免这些问题的常规做法是使用锁来防止同时发生数据更新。这会导致巨大的性能开销（上下文切换），并且一不小心就会导致bug。</p>
+<!-- raw HTML omitted -->
+<p><strong>不可变数据可以安全地共享</strong></p>
+<!-- raw HTML omitted -->
+<p>任何不可变的数据(即不会被修改数据)都可以安全地并发使用。因为它们永远不会更新，正是更新导致了并发性问题。</p>
+<!-- raw HTML omitted -->
+<p><strong>被隔离的数据是安全的</strong></p>
+<!-- raw HTML omitted -->
+<p>如果一个数据块只有一个对它的引用，那么我们称它为 <strong>被隔离的数据(isolated)</strong> 。因为只有一个对它的引用，所以不会被被多个线程共享，也就不存在并发问题。<code>被隔离的数据</code>可以在多个线程之间传递。只要同一时间只存在一个对它的引用，那么数据就是安全的，不会出现并发问题。</p>
+<!-- raw HTML omitted -->
+<p><strong>被隔离的数据有可以是复合类型</strong></p>
+<!-- raw HTML omitted -->
+<p>一个被隔离的数据（isolated）可以是一个字节，也可以是一个大型数据结构，并且在该结构中的各个对象之间有多个引用。对于隔离的数据来说，重要的是整个程序中只有一个单一的引用。我们讨论了数据结构的隔离边界。对结构进行隔离:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ol>
-<li>There must only be a single reference outside the boundary that points to an object inside.</li>
-<li>There can be any number of references inside the boundary, but none of them must point to an object outside.</li>
+<li>外部必须只能有一个指向内部对象的引用。</li>
+<li>外部可以有任意数量的引用，但它们都不能指向外部的对象。</li>
 </ol>
-<p><strong>Every actor is single threaded</strong></p>
-<p>The code within a single actor is never run concurrently. This means that, within a single actor, data updates cannot cause problems. It&rsquo;s only when we want to share data between actors that we have problems.</p>
-<p><strong>OK, safely sharing data concurrently is tricky. How do reference capabilities help?</strong></p>
-<p>By sharing only immutable data and exchanging only isolated data we can have safe concurrent programs without locks. The problem is that it&rsquo;s very difficult to do that correctly. If you accidentally hang on to a reference to some isolated data you&rsquo;ve handed over or change something you&rsquo;ve shared as immutable then everything goes wrong. What you need is for the compiler to force you to live up to your promises. Pony reference capabilities allow the compiler to do just that.</p>
-<h2 id="type-qualifiers">Type qualifiers</h2>
-<p>If you&rsquo;ve used C/C++, you may be familiar with <code>const</code>, which is a <em>type qualifier</em> that tells the compiler not to allow the programmer to <em>mutate</em> something.</p>
-<p>A reference capability is a form of <em>type qualifier</em> and provides a lot more guarantees than <code>const</code> does!</p>
-<p>In Pony, every use of a type has a reference capability. These capabilities apply to variables, rather than to the type as a whole. In other words, when you define a class <code>Wombat</code>, you don&rsquo;t pick a reference capability for all instances of the class. Instead, <code>Wombat</code> variables each have their own reference capability.</p>
-<p>As an example, in some languages, you have to define a type that represents a mutable <code>String</code> and another type that represents an immutable <code>String</code>. For example, in Java, there is a <code>String</code> and a <code>StringBuilder</code>. In Pony, you can define a single class <code>String</code> and have some variables that are <code>String ref</code> (which are mutable) and other variables that are <code>String val</code> (which are immutable).</p>
-<h2 id="the-list-of-reference-capabilities">The list of reference capabilities</h2>
-<p>There are six reference capabilities in Pony and they all have strict definitions and rules on how they can be used. We&rsquo;ll get to all of that later, but for now here are their names and what you use them for:</p>
-<p><strong>Isolated</strong>, written <code>iso</code>. This is for references to isolated data structures. If you have an <code>iso</code> variable then you know that there are no other variables that can access that data. So you can change it however you like and give it to another actor.</p>
-<p><strong>Value</strong>, written <code>val</code>. This is for references to immutable data structures. If you have a <code>val</code> variable then you know that no-one can change the data. So you can read it and share it with other actors.</p>
-<p><strong>Reference</strong>, written <code>ref</code>. This is for references to mutable data structures that are not isolated, in other words, &ldquo;normal&rdquo; data. If you have a <code>ref</code> variable then you can read and write the data however you like and you can have multiple variables that can access the same data. But you can&rsquo;t share it with other actors.</p>
-<p><strong>Box</strong>. This is for references to data that is read-only to you. That data might be immutable and shared with other actors or there may be other variables using it in your actor that can change the data. Either way, the <code>box</code> variable can be used to safely read the data. This may sound a little pointless, but it allows you to write code that can work for both <code>val</code> and <code>ref</code> variables, as long as it doesn&rsquo;t write to the object.</p>
-<p><strong>Transition</strong>, written <code>trn</code>. This is used for data structures that you want to write to, while also holding read-only (<code>box</code>) variables for them. You can also convert the <code>trn</code> variable to a <code>val</code> variable later if you wish, which stops anyone from changing the data and allows it be shared with other actors.</p>
-<p><strong>Tag</strong>. This is for references used only for identification. You cannot read or write data using a <code>tag</code> variable. But you can store and compare <code>tag</code>s to check object identity and share <code>tag</code> variables with other actors.</p>
-<p>Note that if you have a variable referring to an actor then you can send messages to that actor regardless of what reference capability that variable has.</p>
-<h2 id="how-to-write-a-reference-capability">How to write a reference capability</h2>
-<p>A reference capability comes at the end of a type. So, for example:</p>
+<!-- raw HTML omitted -->
+<p><strong>每个<code>actor</code>都只会在<code>一个</code>线程中运行</strong></p>
+<!-- raw HTML omitted -->
+<p>actor内部的代码永远不会并发运行。在actor中，数据更新不会导致并发问题。只有当我们希望在actor之间共享数据时，才会遇到问题。</p>
+<!-- raw HTML omitted -->
+<p><strong>好吧，看来同时安全地共享数据确实很棘手，来看看<code>引用权能（reference capabilities）</code>是怎么做到的。</strong></p>
+<!-- raw HTML omitted -->
+<p>通过<code>只共享不可变的数据</code>和<code>只交换被隔离的数据</code>，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马<code>引用权能（reference capabilities）</code>允许编译器这样做。</p>
+<!-- raw HTML omitted -->
+<h2 id="类型限定符type-qualifiers">类型限定符（Type qualifiers）</h2>
+<!-- raw HTML omitted -->
+<p>如果你使用过C/C++，您可能熟悉<code>const</code>，它是一个 <em>类型限定符（type qualifier）</em> ，告诉编译器不允许程序员修改某些东西。</p>
+<p>A reference capability is a form of <em>type qualifier</em> and provides a lot more guarantees than <code>const</code> does!
+<code>引用权能（reference capabilities）</code>是 <em>type qualifier</em> 的一种形式，它提供了比<code>const</code>多得多的保证!</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，所有的类型都有一个<code>引用权能（reference capabilities）</code>作为类型限定符。这个规则只适用于变量（局部变量、字段、参数等），而不是类型。换句话说，当你定义一个类<code>Wombat</code>时，你不会为这个类的所有实例使用某个<code>引用权能（reference capabilities）</code>。相反，<code>Wombat</code>的每个字段都有自己的<code>引用权能（reference capabilities）</code>。</p>
+<!-- raw HTML omitted -->
+<p>例如，在某些语言中，必须定义一个表示可变<code>字符串(String)</code>的类型和另一个表示不可变<code>字符串</code>的类型。例如，在Java中，有一个<code>String</code>和一个<code>StringBuilder</code>。在Pony中，一个<code>String</code>类就够了，定义可变字符串：<code>String ref</code>和不可变字符串：<code>String val</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="引用权能reference-capabilities列表"><code>引用权能（reference capabilities）</code>列表</h2>
+<!-- raw HTML omitted -->
+<p>Pony有六种<code>引用权能（reference capabilities）</code>，它们都有严格的定义和使用规则。我们稍后会讲到，现在先来看看它们的名字和用途:</p>
+<!-- raw HTML omitted -->
+<p><strong>被隔离的数据（Isolated）</strong>，关键字为<code>iso</code>。这是为了引用隔离的数据结构。如果你有一个“iso”变量，那么你就知道没有其他变量可以访问这些数据。所以你可以随心所欲地改变它，把它给另一个演员。</p>
+<!-- raw HTML omitted -->
+<p><strong>不可变数据（Value）</strong>,关键字为<code>val</code>。这是用于引用不可变的数据结构。如果你有一个“val”变量，那么你就知道没有人可以改变数据。所以你可以读它，并与其他演员分享。</p>
+<!-- raw HTML omitted -->
+<p><strong>可变数据（Reference）</strong>，关键字为<code>ref</code>。这是为了引用非独立的可变数据结构，换句话说，就是“正常”数据。如果你有一个<code>ref</code>变量，那么你可以读和写的数据，无论你喜欢，你可以有多个变量，可以访问相同的数据。但是你不能和其他演员分享。</p>
+<!-- raw HTML omitted -->
+<p><strong>只读引用（Box）</strong> ，关键字为<code>box</code>，这是为了引用对您来说是只读的数据。这些数据可能是不可变数据，并与其他actor共享，或者在您的actor中使用它的其他变量可以更改数据。无论哪种方式，<code>box</code>变量都可以用来安全地读取数据。这听起来可能有点无意义，但它允许您编写既可以用于<code>val</code>变量又可以用于<code>ref</code>变量的代码，只要它不写入对象即可。</p>
+<!-- raw HTML omitted -->
+<p><strong>可传输数据（Transition）</strong>,关键字为<code>trn</code>。这用于您希望写入的数据结构，同时为它们保存只读(<code>box</code>)变量。如果您愿意，您还可以稍后将<code>trn</code>变量转换为<code>val</code>变量，这将阻止任何人更改数据，并允许与其他actor共享数据。</p>
+<!-- raw HTML omitted -->
+<p><strong>标识（Tag）</strong> 关键字为<code>tag</code>。它仅用于定义标识符。不能对<code>tag</code>变量进行读写。但是<code>tag</code>可以存储和比较，可以方便的用以对象标识检查，另外<code>tag</code>变量可以与其他actor共享。</p>
+<!-- raw HTML omitted -->
+<p>注意，如果您有一个变量引用一个actor，那么您可以向该actor发送消息，而不用关心该变量具有什么<code>引用权能（reference capabilities）</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="引用权能如何使用how-to-write-a-reference-capability">引用权能如何使用（How to write a reference capability）</h2>
+<!-- raw HTML omitted -->
+<p><code>引用权能（reference capabilities）</code>限定符放在类型后。举个例子:</p>
 <pre><code class="language-pony" data-lang="pony">String iso // An isolated string
 String trn // A transition string
 String ref // A string reference
 String val // A string value
 String box // A string box
 String tag // A string tag
-</code></pre><p><strong>What does it mean when a type doesn&rsquo;t specify a reference capability?</strong> It means you are using the <em>default</em> reference capability for that type, which is defined along with the type. Here’s an example from the standard library:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>当类型没有指定<code>引用权能（reference capabilities）</code>时，它意味着什么?__意味着你使用了该类型的 <em>默认</em> <code>引用权能（reference capabilities）</code>，<code>默认引用权能</code>是和类型一起定义的。下面是来自标准库的一个例子:</p>
 <pre><code class="language-pony" data-lang="pony">class val String
-</code></pre><p>When we use a String we usually mean an immutable string value, so we make <code>val</code> the default reference capability for <code>String</code> (but not necessarily for <code>String</code> constructors, see below). For example, when we don&rsquo;t specify the capability in the following code, the compiler understands that we are using the default reference capability <code>val</code> specified in the type definition:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>当我们使用一个字符串时，我们通常指的是一个不可变的字符串值，因此我们将<code>val</code>作为<code>String</code>的默认<code>引用权能（reference capabilities）</code>(但不一定是<code>String</code>构造函数，请参阅下面)。例如，当我们没有在下面的代码中指定<code>引用权能</code>时，编译器会使用默认<code>引用权能（reference capabilities）``val</code>:</p>
 <pre><code class="language-pony" data-lang="pony">let a: String val = &quot;Hello, world!&quot;
 let b: String = &quot;I'm a wombat!&quot; // Also a String val
-</code></pre><p><strong>So do I have to specify a reference capability when I define a type?</strong> Only if you want to. There are sensible defaults that most types will use. These are <code>ref</code> for classes, <code>val</code> for primitives (i.e. immutable references), and <code>tag</code> for actors.</p>
-<h2 id="how-to-create-objects-with-different-capabilities">How to create objects with different capabilities</h2>
-<p>When you write a constructor, by default, that constructor will either create a new object with <code>ref</code> or <code>tag</code> as the capability. In the case of actors, the constructor will always create a <code>tag</code>. For classes, if defaults to <code>ref</code> but you can create with other capabilities. Let&rsquo;s take a look at an example:</p>
+</code></pre><!-- raw HTML omitted -->
+<p><strong>所以定义一个类型时，必须指定一个<code>引用权能（reference capabilities）</code>吗？</strong> 有特殊需求时才需要制定，大多数类型都会使用合理的默认值。类使用<code>ref</code>，基元类使用<code>val</code>(即不可变的引用)，以及actor使用<code>tag</code>。</p>
+<!-- raw HTML omitted -->
+<h2 id="如何创建具有不同引用权能的对象">如何创建具有不同引用权能的对象</h2>
+<!-- raw HTML omitted -->
+<p>在编写构造函数时，该构造函数默认将创建一个具有<code>ref</code>或<code>tag</code>功能的新对象。actor的构造函数总是创建一个<code>tag</code>。对于class默认为<code>ref</code>，但是你可以使用其他<code>引用权能</code>创建。来看一个例子:</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   let x: U32
 
   new val create(x': U32) =&gt;
     x = x'
-</code></pre><p>Now when you call <code>Foo.create(1)</code>, you&rsquo;ll get a <code>Foo val</code> instead of <code>Foo ref</code>.
-But what if you want to create both <code>val</code> and <code>ref</code> <code>Foo</code>s? You could do something like this:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>当你调用Foo。create(1)时，你会得到一个<code>Foo val</code>而不是<code>Foo ref</code>。</p>
+<!-- raw HTML omitted -->
+<p>但是如果你想同时创建<code>val</code>和<code>ref</code>的<code>Foo</code>实例呢？你可以这样做：</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   let x: U32
 
@@ -702,7 +799,8 @@ But what if you want to create both <code>val</code> and <code>ref</code> <code>
 
   new ref create_ref(x': U32) =&gt;
     x = x'
-</code></pre><p>But, that&rsquo;s probably not what you&rsquo;d really want to do. Better to use the capabilities recovery facilities of Pony that we&rsquo;ll cover that later in the <a href="recovering-capabilities.html">Recovering Capabilities</a> section.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>但是，这不是最佳做法。最好的做法是使用Pony的<code>权能借用</code>功能，我们将在后面的<a href="recovery-capabilities.html">权能借用</a>一节中介绍。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>
