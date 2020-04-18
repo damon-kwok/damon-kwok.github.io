@@ -290,7 +290,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -320,12 +320,12 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -346,7 +346,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -711,7 +711,7 @@ Pony语言专注于两个目标，性能和安全性。这两个目标有时会�
 Pony提供了不同的算术运算方式，使程序员可以自由选择最适合他们的操作：安全但较慢的操作或不太安全但快速的操作，因为性能对于某些应用场景至关重要。
 整数（Integers） 默认的算术运算符（Ponys default Arithmetic） 在处理整数的+, -, *, /算术运算上，Pony使用了一些技巧，试图平衡对性能和正确性的需求。所有默认的算术运算都不会暴露任何未定义的行为或错误条件。这意味着它可以处理上溢/下溢和零除的情况。上溢/下溢使用对带符号整数的补全来适当地环绕语义来处理。在这方面，我们得到如下行为：
 // unsigned wrap-around on overflow U32.max_value() + 1 == 0 // signed wrap-around on overflow/underflow I32.min_value() - 1 == I32.max_value() 除零是一种特殊情况，它会影响除法运算符/和取余%运算符。在数学中，零除是不确定的。为了避免将除法定义为部分除法，在除数为零时引发错误或在这种情况下引入未定义的行为，当除数为0时，将 normal 除法定义为0。如果不小心使用，可能会导致无提示错误。选择部分和校验的算术以除以零。
-与Unsafe Arithmetic 相比，默认算法具有一点点运行时开销，因为它与unsafe变体不同，它会检测并处理溢出和除零的情况。
+与[Unsafe Arithmetic](#非安全的算术运算符（Unsafe Arithmetic）) 相比，默认算法具有一点点运行时开销，因为它与unsafe变体不同，它会检测并处理溢出和除零的情况。
     Operator Method Description     + add() wrap around on over-/underflow   - sub() wrap around on over-/underflow   * mul() wrap around on over-/underflow   / div() x / 0 = 0   % rem() x % 0 = 0   %% mod() x %% 0 = 0   - neg() wrap around on over-/underflow   &gt;&gt; shr() filled with zeros, so x &gt;&gt; 1 == x/2 is true   &lt;&lt; shl() filled with zeros, so x &lt;&lt; 1 == x*2 is true     非安全的算术运算符（Unsafe Arithmetic） 不安全的整数算术接近于C语言中的整数算术所期望的结果。不做任何检查， raw speed ，上溢，下溢或被零除的可能性。像在C中一样，上溢，下溢和被零除的情况是不确定的。在这些情况下，请勿依赖结果。它可以是任何东西，并且高度特定于平台。被零除甚至可能会用SIGFPE使程序崩溃。我们的建议是仅在确保可以排除这些情况时才使用这些运算符。</p>
       
     </div>

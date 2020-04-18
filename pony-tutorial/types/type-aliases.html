@@ -46,26 +46,44 @@
     
 
     <meta property="og:title" content="类型别名（Type Aliases）" />
-<meta property="og:description" content="A type alias is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.
-We&rsquo;ll give a couple examples of using type aliases, just to get the feel of them.
-Enumerations One way to use type aliases is to express an enumeration." />
+<meta property="og:description" content="一个 类型别名（type alias） 可以给一个类型起一个不同的名字。听起来可能有点傻：毕竟类型已经有名字了，感觉有点多此一举！但有时会遇到非常复杂的类型名，起一个简短的别名是很方便的。
+我们将给出几个使用类型别名的示例，以便更好的了解。
+枚举（Enumerations） 类型别名的一个很常见的应用场景是表示枚举。例如，我们想定义一组包含颜色值的枚举，：红色、蓝色或绿色。我们可以这样写:
+primitive Red primitive Blue primitive Green type Colour is (Red | Blue | Green) 这里有两个新概念。第一个是类型别名，它由关键字type引入。它只是意味着type后面的名称可以表示is后面的类型。
+第二个新概念是is后面的类型。它不是一个普通类型，而是一个（类型联合体）。在这个上下文中，您可以将|符号理解为或， 因此它的类型是红色、蓝色或绿色。
+类型联合体是 closed world 类型的一种形式。也就是说，每种类型都可能是它的一个成员。相反，面向对象的子类型通常是 open world ，例如在Java中，一个接口可以由任意数量的类实现。
+你也可以用类型别名机制来声明类似于C或Go语言中的常量：
+primitive Red fun apply(): U32 =&gt; 0xFF0000FF primitive Green fun apply(): U32 =&gt; 0x00FF00FF primitive Blue fun apply(): U32 =&gt; 0x0000FFFF type Colour is (Red | Blue | Green) 或者用来表示C&#43;&#43;中的名字空间（namespace）：
+primitive Colours fun red(): U32 =&gt; 0xFF0000FF fun green(): U32 =&gt; 0x00FF00FF 如果你像遍历枚举列表以打印它们的名字，以便进行调试：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/type-aliases.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-18T18:10:17+08:00" />
 <meta itemprop="name" content="类型别名（Type Aliases）">
-<meta itemprop="description" content="A type alias is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.
-We&rsquo;ll give a couple examples of using type aliases, just to get the feel of them.
-Enumerations One way to use type aliases is to express an enumeration.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="853">
+<meta itemprop="description" content="一个 类型别名（type alias） 可以给一个类型起一个不同的名字。听起来可能有点傻：毕竟类型已经有名字了，感觉有点多此一举！但有时会遇到非常复杂的类型名，起一个简短的别名是很方便的。
+我们将给出几个使用类型别名的示例，以便更好的了解。
+枚举（Enumerations） 类型别名的一个很常见的应用场景是表示枚举。例如，我们想定义一组包含颜色值的枚举，：红色、蓝色或绿色。我们可以这样写:
+primitive Red primitive Blue primitive Green type Colour is (Red | Blue | Green) 这里有两个新概念。第一个是类型别名，它由关键字type引入。它只是意味着type后面的名称可以表示is后面的类型。
+第二个新概念是is后面的类型。它不是一个普通类型，而是一个（类型联合体）。在这个上下文中，您可以将|符号理解为或， 因此它的类型是红色、蓝色或绿色。
+类型联合体是 closed world 类型的一种形式。也就是说，每种类型都可能是它的一个成员。相反，面向对象的子类型通常是 open world ，例如在Java中，一个接口可以由任意数量的类实现。
+你也可以用类型别名机制来声明类似于C或Go语言中的常量：
+primitive Red fun apply(): U32 =&gt; 0xFF0000FF primitive Green fun apply(): U32 =&gt; 0x00FF00FF primitive Blue fun apply(): U32 =&gt; 0x0000FFFF type Colour is (Red | Blue | Green) 或者用来表示C&#43;&#43;中的名字空间（namespace）：
+primitive Colours fun red(): U32 =&gt; 0xFF0000FF fun green(): U32 =&gt; 0x00FF00FF 如果你像遍历枚举列表以打印它们的名字，以便进行调试：">
+<meta itemprop="dateModified" content="2020-04-18T18:10:17&#43;08:00" />
+<meta itemprop="wordCount" content="184">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="类型别名（Type Aliases）"/>
-<meta name="twitter:description" content="A type alias is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.
-We&rsquo;ll give a couple examples of using type aliases, just to get the feel of them.
-Enumerations One way to use type aliases is to express an enumeration."/>
+<meta name="twitter:description" content="一个 类型别名（type alias） 可以给一个类型起一个不同的名字。听起来可能有点傻：毕竟类型已经有名字了，感觉有点多此一举！但有时会遇到非常复杂的类型名，起一个简短的别名是很方便的。
+我们将给出几个使用类型别名的示例，以便更好的了解。
+枚举（Enumerations） 类型别名的一个很常见的应用场景是表示枚举。例如，我们想定义一组包含颜色值的枚举，：红色、蓝色或绿色。我们可以这样写:
+primitive Red primitive Blue primitive Green type Colour is (Red | Blue | Green) 这里有两个新概念。第一个是类型别名，它由关键字type引入。它只是意味着type后面的名称可以表示is后面的类型。
+第二个新概念是is后面的类型。它不是一个普通类型，而是一个（类型联合体）。在这个上下文中，您可以将|符号理解为或， 因此它的类型是红色、蓝色或绿色。
+类型联合体是 closed world 类型的一种形式。也就是说，每种类型都可能是它的一个成员。相反，面向对象的子类型通常是 open world ，例如在Java中，一个接口可以由任意数量的类实现。
+你也可以用类型别名机制来声明类似于C或Go语言中的常量：
+primitive Red fun apply(): U32 =&gt; 0xFF0000FF primitive Green fun apply(): U32 =&gt; 0x00FF00FF primitive Blue fun apply(): U32 =&gt; 0x0000FFFF type Colour is (Red | Blue | Green) 或者用来表示C&#43;&#43;中的名字空间（namespace）：
+primitive Colours fun red(): U32 =&gt; 0xFF0000FF fun green(): U32 =&gt; 0x00FF00FF 如果你像遍历枚举列表以打印它们的名字，以便进行调试："/>
 
   </head>
 
@@ -299,7 +317,7 @@ Enumerations One way to use type aliases is to express an enumeration."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -329,12 +347,12 @@ Enumerations One way to use type aliases is to express an enumeration."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -355,7 +373,7 @@ Enumerations One way to use type aliases is to express an enumeration."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -606,9 +624,9 @@ Enumerations One way to use type aliases is to express an enumeration."/>
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#enumerations">Enumerations</a></li>
-    <li><a href="#complex-types">Complex types</a></li>
-    <li><a href="#other-stuff">Other stuff</a></li>
+    <li><a href="#枚举enumerations">枚举（Enumerations）</a></li>
+    <li><a href="#复合类型complex-types">复合类型（Complex types）</a></li>
+    <li><a href="#其他补充other-stuff">其他补充（Other stuff）</a></li>
   </ul>
 </nav>
   </div>
@@ -629,37 +647,48 @@ Enumerations One way to use type aliases is to express an enumeration."/>
             <h1 class="f1 athelas mb1">类型别名（Type Aliases）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>A <strong>type alias</strong> is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.</p>
-<p>We&rsquo;ll give a couple examples of using type aliases, just to get the feel of them.</p>
-<h2 id="enumerations">Enumerations</h2>
-<p>One way to use type aliases is to express an enumeration. For example, imagine we want to say something must either be Red, Blue or Green. We could write something like this:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>一个 <strong>类型别名（type alias）</strong> 可以给一个类型起一个不同的名字。听起来可能有点傻：毕竟类型已经有名字了，感觉有点多此一举！但有时会遇到非常复杂的类型名，起一个简短的别名是很方便的。</p>
+<!-- raw HTML omitted -->
+<p>我们将给出几个使用类型别名的示例，以便更好的了解。</p>
+<h2 id="枚举enumerations">枚举（Enumerations）</h2>
+<!-- raw HTML omitted -->
+<p>类型别名的一个很常见的应用场景是表示枚举。例如，我们想定义一组包含颜色值的枚举，：红色、蓝色或绿色。我们可以这样写:</p>
 <pre><code class="language-pony" data-lang="pony">primitive Red
 primitive Blue
 primitive Green
 
 type Colour is (Red | Blue | Green)
-</code></pre><p>There are two new concepts in there. The first is the type alias, introduced with the keyword <code>type</code>. It just means that the name that comes after <code>type</code> will be translated by the compiler to the type that comes after <code>is</code>.</p>
-<p>The second new concept is the type that comes after <code>is</code>. It&rsquo;s not a single type! Instead, it&rsquo;s a <strong>union</strong> type. You can read the <code>|</code> symbol as <strong>or</strong> in this context, so the type is &ldquo;Red or Blue or Green&rdquo;.</p>
-<p>A union type is a form of <em>closed world</em> type. That is, it says every type that can possibly be a member of it. In contrast, object-oriented subtyping is usually <em>open world</em>, e.g. in Java, an interface can be implemented by any number of classes.</p>
-<p>You can also declare constants like in C or Go like this,</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这里有两个新概念。第一个是类型别名，它由关键字<code>type</code>引入。它只是意味着<code>type</code>后面的名称可以表示<code>is</code>后面的类型。</p>
+<!-- raw HTML omitted -->
+<p>第二个新概念是<code>is</code>后面的类型。它不是一个普通类型，而是一个（<a href="/pony-tutorial/types/type-expressions.html#Unions（类型联合体）">类型联合体</a>）。在这个上下文中，您可以将<code>|</code>符号理解为<code>或</code>， 因此它的类型是<code>红色、蓝色或绿色</code>。</p>
+<!-- raw HTML omitted -->
+<p><code>类型联合体</code>是 <em>closed world</em> 类型的一种形式。也就是说，每种类型都可能是它的一个成员。相反，面向对象的子类型通常是 <em>open world</em> ，例如在Java中，一个接口可以由任意数量的类实现。</p>
+<!-- raw HTML omitted -->
+<p>你也可以用<code>类型别名</code>机制来声明类似于C或Go语言中的常量：</p>
 <pre><code class="language-pony" data-lang="pony">primitive Red    fun apply(): U32 =&gt; 0xFF0000FF
 primitive Green  fun apply(): U32 =&gt; 0x00FF00FF
 primitive Blue   fun apply(): U32 =&gt; 0x0000FFFF
 
 type Colour is (Red | Blue | Green)
-</code></pre><p>or namespace them like this</p>
+</code></pre><!-- raw HTML omitted -->
+<p>或者用来表示C++中的名字空间（namespace）：</p>
 <pre><code class="language-pony" data-lang="pony">primitive Colours
   fun red(): U32 =&gt; 0xFF0000FF
   fun green(): U32 =&gt; 0x00FF00FF
-</code></pre><p>You might also want to iterate over the enum like this to print its name for debugging purposes</p>
+</code></pre><!-- raw HTML omitted -->
+<p>如果你像遍历枚举列表以打印它们的名字，以便进行调试：</p>
 <pre><code class="language-pony" data-lang="pony">primitive ColourList
   fun apply(): Array[Colour] =&gt;
     [Red; Green; Blue]
 
 for colour in ColourList().values() do
 end
-</code></pre><h2 id="complex-types">Complex types</h2>
-<p>If a type is complicated, it can be nice to give it a mnemonic name. For example, if we want to say that a type must implement more than one interface, we could say:</p>
+</code></pre><!-- raw HTML omitted -->
+<h2 id="复合类型complex-types">复合类型（Complex types）</h2>
+<!-- raw HTML omitted -->
+<p>如果你的类型非常复杂，可以用<code>类型别名</code>来起一个简短的名字改善易读性。例如，如果想表达一个类型必须实现多个接口，我们可以这样做:</p>
 <pre><code class="language-pony" data-lang="pony">interface HasName
   fun name(): String
 
@@ -670,7 +699,8 @@ interface HasAddress
   fun address(): String
 
 type Person is (HasName &amp; HasAge &amp; HasAddress)
-</code></pre><p>This use of complex types applies to traits, not just interfaces:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这种复合类型的使用不仅适用于接口，也适用于特征:</p>
 <pre><code class="language-pony" data-lang="pony">trait HasName
   fun name(): String =&gt; &quot;Bob&quot;
 
@@ -681,22 +711,35 @@ trait HasAddress
   fun address(): String =&gt; &quot;3 Abbey Road&quot;
 
 type Person is (HasName &amp; HasAge &amp; HasAddress)
-</code></pre><p>There&rsquo;s another new concept here: the type has a <code>&amp;</code> in it. This is similar to the <code>|</code> of a <strong>union</strong> type: it means this is an <strong>intersection</strong> type. That is, it&rsquo;s something that must be <em>all</em> of <code>HasName</code>, <code>HasAge</code> <em>and</em> <code>HasAddress</code>.</p>
-<p>But the use of <code>type</code> here is exactly the same as the enumeration example above, it&rsquo;s just providing a name for a type that is otherwise a bit tedious to type out over and over.</p>
-<p>Another example, this time from the standard library, is <code>SetIs</code>. Here&rsquo;s the actual definition:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这里还有一个新概念：类型中有一个<code>&amp;</code>。这类似于一个 <strong>类型联合体（union）</strong> 的<code>|</code>：<code>&amp;</code>意味着这是一个<a href="/pony-tutorial/types/type-expressions.html#Intersections（类型集合）">类型集合</a> 。也就是说，它的类型是<code>HasName</code>、<code>HasAge</code>和<code>HasAddress</code>的组合。</p>
+<!-- raw HTML omitted -->
+<p>但是这里使用的<code>type</code>的作用与上面的枚举示例完全相同，它只是为类型提供了一个名称，否则反复输入这么长的类型名会有点无聊。</p>
+<!-- raw HTML omitted -->
+<p>有一个来自标准库的例子<code>SetIs</code>。这是它的定义:</p>
 <pre><code class="language-pony" data-lang="pony">type SetIs[A] is HashSet[A, HashIs[A!]]
-</code></pre><p>Again there&rsquo;s something new here. After the name <code>SetIs</code> comes the name <code>A</code> in square brackets. That&rsquo;s because <code>SetIs</code> is a <strong>generic type</strong>. That is, you can give a <code>SetIs</code> another type as a parameter, to make specific kinds of set. If you&rsquo;ve used Java or C#, this will be pretty familiar. If you&rsquo;ve used C++, the equivalent concept is templates, but they work quite differently.</p>
-<p>And again the use of <code>type</code> just provides a more convenient way to refer to the type we&rsquo;re aliasing:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这里有一些新的东西。名称<code>SetIs</code>后面是方括号中的名称<code>A</code>。这是因为SetIs是一个<code>泛型</code>类型。也就是说可以为<code>SetIs</code>提供一种类型参数，以生成特定类型的set。如果您使用过C++，那么它等价于<code>模板</code>，但是它们的工作方式有很大差别。</p>
+<!-- raw HTML omitted -->
+<p>上面的代码用<code>类型别名</code>提供了一个更简短优雅的名字<code>SetIs[A]</code>指代了复合类型名：</p>
 <pre><code class="language-pony" data-lang="pony">HashSet[A, HashIs[A!]]
-</code></pre><p>That&rsquo;s another <strong>generic type</strong>. It means a <code>SetIs</code> is really a kind of <code>HashSet</code>. Another concept has snuck in, which is <code>!</code> types. This is a type that is the <strong>alias</strong> of another type. That&rsquo;s tricky stuff that you only need when writing complex generic types, so we&rsquo;ll leave it for later.</p>
-<p>One more example, again from the standard library, is the <code>Map</code> type that gets used a lot. It&rsquo;s actually a type alias. Here&rsquo;s the real definition of <code>Map</code>:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这是也是一个<code>泛型</code>。它表示<code>SetIs</code>实际上是一种<code>HashSet</code>。另一个概念悄然而至，那就是类型后面的<code>!</code>符号。这是另一种<code>类型别名</code>用法。这是只在编写复杂泛型类型时才需要的写法，所以我们将其留到以后讨论。</p>
+<!-- raw HTML omitted -->
+<p>另一个例子，同样来自标准库，是经常使用的<code>Map</code>类型。它实际上也是一个类型别名。以下是<code>Map</code>的定义:</p>
 <pre><code class="language-pony" data-lang="pony">type Map[K: (Hashable box &amp; Comparable[K] box), V] is HashMap[K, V, HashEq[K]]
-</code></pre><p>Unlike our previous example, the first type parameter, <code>K</code>, has a type associated with it. This is a <strong>constraint</strong>, which means when you parameterise a <code>Map</code>, the type you pass for <code>K</code> must be a subtype of the constraint.</p>
-<p>Also, notice that <code>box</code> appears in the type. This is a <strong>reference capability</strong>. It means there is a certain class of operations we need to be able to do with a <code>K</code>. We&rsquo;ll cover this in more detail later.</p>
-<p>Just like our other examples, all this really means is that <code>Map</code> is really a kind of <code>HashMap</code>.</p>
-<h2 id="other-stuff">Other stuff</h2>
-<p>Type aliases get used for a lot of things, but this gives you the general idea. Just remember that a type alias is always a convenience: you could replace every use of the type alias with the full type after the <code>is</code>.</p>
-<p>In fact, that&rsquo;s exactly what the compiler does.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>与前面的示例不同，第一个类型参数<code>K</code>具有与之关联的类型。这是一个<code>泛型约束（constraint</code>，这意味着当你参数化一个<code>Map</code>时，传递给<code>K</code>的类型必须是泛型约束条件要求的类型。</p>
+<!-- raw HTML omitted -->
+<p>另外，请注意<code>box</code>出现在类型中。这是一个<code>引用权能</code>。英文我们我们需要使用用K来做某一类的运算。稍后我们将对此进行更详细的讨论。</p>
+<!-- raw HTML omitted -->
+<p>跟前面的其他例子一样，这里的<code>Map</code>实际上是<code>HashMap</code>的一个类型别名。</p>
+<!-- raw HTML omitted -->
+<h2 id="其他补充other-stuff">其他补充（Other stuff）</h2>
+<!-- raw HTML omitted -->
+<p>类型别名有很多用途，但这里只是大致的介绍了它概念。只需记住，类型别名可以提供一种便利：每次使用<code>type</code>后的别名替换<code>is</code>之后的完整类型名。</p>
+<!-- raw HTML omitted -->
+<p>Pony对于类型别名替的换是在编译时进行的。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

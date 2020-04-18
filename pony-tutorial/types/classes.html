@@ -57,7 +57,7 @@ class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/classes.html" />
-<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="类（Classes）">
 <meta itemprop="description" content="和其他面向对象语言一样，Pony也有 类 。声明一个类的关键字是class，类名首字母必须大写，就像这样：
 class Wombat 所有的类型都必须以大写字母开头吗？ 没错！当你阅读Pony代码时，你可以通过命名轻松判断是否是一个类型。
@@ -68,7 +68,7 @@ class Wombat let name: String var _hunger_level: U64 上面例子中，类Wombat
 构造函数 Pony的构造函数可以起 别名 。和其他语言里一样，构造函数返回一个新的类型实例，但Pony 别名 可以有更多的构造方式。
 声明一个构造函数需要用 new 关键字。
 class Wombat let name: String var _hunger_level: U64 new create(name&#39;: String) =&gt; name = name&#39; _hunger_level = 0 new hungry(name&#39;: String, hunger&#39;: U64) =&gt; name = name&#39; _hunger_level = hunger&#39; 上面例子中，我们创建了两个构造函数，第一个用来创建正常状态的树袋熊（Wombat）,第二个用来构造具有饥饿等级的树袋熊。Pony的构造函数__别名__机制为创建实例，提供了多样性。构造对象时使用.">
-<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="303">
 
 
@@ -317,7 +317,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -347,12 +347,12 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -373,7 +373,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -678,7 +678,7 @@ class Wombat let name: String var _hunger_level: U64 new create(name&#39;: Strin
 <!-- raw HTML omitted -->
 <h3 id="字段">字段</h3>
 <!-- raw HTML omitted -->
-<p>和C++、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：<code>var</code>,<code>let</code>和<code>embed</code>。<code>var</code>字段可以初始化和反复赋值，但是<code>let</code>字段初始化后无法再次赋值,<code>embed</code>字段比较复杂，详情参考<a href="/expressions/variables.html">变量</a>章节。</p>
+<p>和C++、C#、Java、Python、Ruby等语言中的字段（类数据成员，类成员变量）类似。字段有三种声明方式：<code>var</code>,<code>let</code>和<code>embed</code>。<code>var</code>字段可以初始化和反复赋值，但是<code>let</code>字段初始化后无法再次赋值,<code>embed</code>字段比较复杂，详情参考<a href="/pony-tutorial/expressions/variables.html">变量</a>章节。</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   let name: String
   var _hunger_level: U64
@@ -745,7 +745,7 @@ class Owl
   let _owl: Owl = Owl
   let _hawk: Hawk = Hawk
 </code></pre><!-- raw HTML omitted -->
-<p>稍后我们会在<a href="/expressions/sugar.html">语法糖</a>章节中做出详细解释。</p>
+<p>稍后我们会在<a href="/pony-tutorial/expressions/sugar.html">语法糖</a>章节中做出详细解释。</p>
 <!-- raw HTML omitted -->
 <h3 id="成员函数">成员函数</h3>
 <!-- raw HTML omitted -->

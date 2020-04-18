@@ -52,13 +52,13 @@ class Foo[A: Any] It can be made shorter because Any is the default constraint, 
 class Foo[A] This is what the example shown before looks like but with any reference capability accepted:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/generics/generics-and-reference-capabilities.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="泛型和引用权能（Generics and Reference Capabilities）">
 <meta itemprop="description" content="In the examples presented previously we&rsquo;ve explicitly set the reference capability to val:
 class Foo[A: Any val] If the capability is left out of the type parameter then the generic class or function can accept any reference capability. This would look like:
 class Foo[A: Any] It can be made shorter because Any is the default constraint, leaving us with:
 class Foo[A] This is what the example shown before looks like but with any reference capability accepted:">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="913">
 
 
@@ -302,7 +302,7 @@ class Foo[A] This is what the example shown before looks like but with any refer
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -332,12 +332,12 @@ class Foo[A] This is what the example shown before looks like but with any refer
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -358,7 +358,7 @@ class Foo[A] This is what the example shown before looks like but with any refer
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -674,7 +674,7 @@ actor Main
     a.set(recover ref String end)
     env.out.print(a.get().string())
 </code></pre><p>This does not compile. The compiler complains that <code>get()</code> doesn&rsquo;t actually return a <code>String ref</code>, but <code>this-&gt;String ref</code>. We obviously need to simply change the type signature to fix this, but what is going on here?
-<code>this-&gt;String ref</code> is <a href="/reference-capabilities/arrow-types.html">an arrow type</a>. An arrow type with &ldquo;this-&gt;&rdquo; states to use the capability of the actual receiver (<code>ref</code> in our case), not the capability of the method (which defaults to <code>box</code> here). According to <a href="/reference-capabilities/combining-capabilities.html">viewpoint adaption</a> this will be <code>ref-&gt;ref</code> which is <code>ref</code>. Without this <a href="/reference-capabilities/arrow-types.html">arrow type</a> we would only see the field <code>_c</code> as <code>box</code> because we are in a <code>box</code> method.</p>
+<code>this-&gt;String ref</code> is <a href="/pony-tutorial/reference-capabilities/arrow-types.html">an arrow type</a>. An arrow type with &ldquo;this-&gt;&rdquo; states to use the capability of the actual receiver (<code>ref</code> in our case), not the capability of the method (which defaults to <code>box</code> here). According to <a href="/pony-tutorial/reference-capabilities/combining-capabilities.html">viewpoint adaption</a> this will be <code>ref-&gt;ref</code> which is <code>ref</code>. Without this <a href="/pony-tutorial/reference-capabilities/arrow-types.html">arrow type</a> we would only see the field <code>_c</code> as <code>box</code> because we are in a <code>box</code> method.</p>
 <p>So let&rsquo;s apply what we just learned:</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _c: String ref
@@ -727,7 +727,7 @@ actor Main
   _c = consume c
 </code></pre><p>A similar issue exists with the <code>set</code> method. Here we also need to consume the variable <code>c</code> that is passed in:</p>
 <pre><code class="language-pony" data-lang="pony">fun set(c: String iso) =&gt; _c = consume c
-</code></pre><p>Now we have a version of <code>Foo</code> that is working correctly for <code>iso</code>. Note how applying the arrow type to the <code>get</code> method also works for <code>iso</code>. But here the result is a different one, by applying <a href="/reference-capabilities/combining-capabilities.html">viewpoint adaptation</a> we get from <code>ref-&gt;iso</code> (with <code>ref</code> being the capability of the receiver, the <code>Foo</code> object referenced by <code>a</code>) to <code>iso</code>. Through the magic of <a href="/reference-capabilities/recovering-capabilities.html">automatic receiver recovery</a> we can call the <code>string</code> method on it:</p>
+</code></pre><p>Now we have a version of <code>Foo</code> that is working correctly for <code>iso</code>. Note how applying the arrow type to the <code>get</code> method also works for <code>iso</code>. But here the result is a different one, by applying <a href="/pony-tutorial/reference-capabilities/combining-capabilities.html">viewpoint adaptation</a> we get from <code>ref-&gt;iso</code> (with <code>ref</code> being the capability of the receiver, the <code>Foo</code> object referenced by <code>a</code>) to <code>iso</code>. Through the magic of <a href="/pony-tutorial/reference-capabilities/recovering-capabilities.html">automatic receiver recovery</a> we can call the <code>string</code> method on it:</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var _c: String iso
 

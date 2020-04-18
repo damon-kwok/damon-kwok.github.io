@@ -46,26 +46,32 @@
     
 
     <meta property="og:title" content="权能合并（Combining Capabilities）" />
-<meta property="og:description" content="When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the origin, that is, the object the field is being read from.
-This is because all the guarantees that the origin reference capability makes have to be maintained for its fields as well.
-Viewpoint adaptation The process of combining origin and field capabilities is called viewpoint adaptation." />
+<meta property="og:description" content="当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
+这是因为对其字段所做的所有保证都必须对其字段进行维护。
+观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
+下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
+    ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/combining-capabilities.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-18T18:10:17+08:00" />
 <meta itemprop="name" content="权能合并（Combining Capabilities）">
-<meta itemprop="description" content="When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the origin, that is, the object the field is being read from.
-This is because all the guarantees that the origin reference capability makes have to be maintained for its fields as well.
-Viewpoint adaptation The process of combining origin and field capabilities is called viewpoint adaptation.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="911">
+<meta itemprop="description" content="当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
+这是因为对其字段所做的所有保证都必须对其字段进行维护。
+观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
+下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
+    ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:">
+<meta itemprop="dateModified" content="2020-04-18T18:10:17&#43;08:00" />
+<meta itemprop="wordCount" content="198">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="权能合并（Combining Capabilities）"/>
-<meta name="twitter:description" content="When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the origin, that is, the object the field is being read from.
-This is because all the guarantees that the origin reference capability makes have to be maintained for its fields as well.
-Viewpoint adaptation The process of combining origin and field capabilities is called viewpoint adaptation."/>
+<meta name="twitter:description" content="当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
+这是因为对其字段所做的所有保证都必须对其字段进行维护。
+观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
+下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
+    ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:"/>
 
   </head>
 
@@ -299,7 +305,7 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -329,12 +335,12 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -355,7 +361,7 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -606,17 +612,17 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#explaining-why">Explaining why</a>
+    <li><a href="#解释了为什么explaining-why">解释了为什么（Explaining why）</a>
       <ul>
-        <li><a href="#reading-from-an-iso-variable">Reading from an <code>iso</code> variable</a></li>
-        <li><a href="#reading-from-a-trn-variable">Reading from a <code>trn</code> variable</a></li>
-        <li><a href="#reading-from-a-ref-variable">Reading from a <code>ref</code> variable</a></li>
-        <li><a href="#reading-from-a-val-variable">Reading from a <code>val</code> variable</a></li>
-        <li><a href="#reading-from-a-box-variable">Reading from a <code>box</code> variable</a></li>
-        <li><a href="#reading-from-a-tag-variable">Reading from a <code>tag</code> variable</a></li>
+        <li><a href="#读取iso变量">读取<code>iso</code>变量</a></li>
+        <li><a href="#读取trn变量">读取<code>trn</code>变量</a></li>
+        <li><a href="#读取ref变量">读取<code>ref</code>变量</a></li>
+        <li><a href="#读取val变量">读取<code>val</code>变量</a></li>
+        <li><a href="#读取box变量">读取<code>box</code>变量</a></li>
+        <li><a href="#读取tag变量">读取<code>tag</code>变量</a></li>
       </ul>
     </li>
-    <li><a href="#writing-to-the-field-of-an-object">Writing to the field of an object</a></li>
+    <li><a href="#为对象的字段赋值">为对象的字段赋值</a></li>
   </ul>
 </nav>
   </div>
@@ -637,11 +643,16 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
             <h1 class="f1 athelas mb1">权能合并（Combining Capabilities）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the <strong>origin</strong>, that is, the object the field is being read from.</p>
-<p>This is because all the guarantees that the <strong>origin</strong> reference capability makes have to be maintained for its fields as well.</p>
-<h1 id="viewpoint-adaptation">Viewpoint adaptation</h1>
-<p>The process of combining origin and field capabilities is called <strong>viewpoint adaptation</strong>. That is, the <strong>origin</strong> has a <strong>viewpoint</strong>, and can &ldquo;see&rdquo; its fields only from that <strong>viewpoint</strong>.</p>
-<p>Let&rsquo;s start with a table. This shows how <strong>fields</strong> of each capability &ldquo;look&rdquo; to <strong>origins</strong> of each capability.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。</p>
+<!-- raw HTML omitted -->
+<p>这是因为对其字段所做的所有保证都必须对其字段进行维护。</p>
+<!-- raw HTML omitted -->
+<h1 id="观点适应viewpoint-adaptation">观点适应（Viewpoint adaptation）</h1>
+<!-- raw HTML omitted -->
+<p>将原始权能和字段权能相结合的过程称为 <strong>视角适应</strong> 。也就是说，<strong>origin</strong> 有一个 <strong>viewpoint</strong> ，并且只能从那个 <strong>viewpoint</strong> 中<code>访问</code>它的字段。</p>
+<!-- raw HTML omitted -->
+<p>下表展示了不同权能的 <strong>字段</strong> 看起来是如何与每个权能的 <strong>源</strong> 相匹配的。</p>
 <hr>
 <table>
 <thead>
@@ -713,7 +724,8 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
 </tbody>
 </table>
 <hr>
-<p>For example, if you have a <code>trn</code> origin and you read a <code>ref</code> field, you get a <code>box</code> result:</p>
+<!-- raw HTML omitted -->
+<p>例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:</p>
 <pre><code class="language-pony" data-lang="pony">class Foo
   var x: String ref
 
@@ -721,30 +733,54 @@ class Bar
   fun f() =&gt;
     var y: Foo trn = get_foo_trn()
     var z: String box = y.x
-</code></pre><h2 id="explaining-why">Explaining why</h2>
-<p>That table will seem totally natural to you, eventually. But probably not yet. To help it seem natural, let&rsquo;s walk through each cell in the table and explain why it is the way it is.</p>
-<h3 id="reading-from-an-iso-variable">Reading from an <code>iso</code> variable</h3>
-<p>Anything read through an <code>iso</code> origin has to maintain the isolation guarantee that the origin has. The key thing to remember is that the <code>iso</code> can be sent to another actor and it can also become any other reference capability. So when we read a field, we need to get a result that won&rsquo;t ever break the isolation guarantees that the origin makes, that is, <em>read and write uniqueness</em>.</p>
-<p>An <code>iso</code> field makes the same guarantees as an <code>iso</code> origin, so that&rsquo;s fine to read. A <code>val</code> field is <em>globally immutable</em>, which means it&rsquo;s always ok to read it, no matter what the origin is (well, other than <code>tag</code>).</p>
-<p>Everything else, though, can break our isolation guarantees. That&rsquo;s why other reference capabilities are seen as <code>tag</code>: it&rsquo;s the only type that is neither readable nor writable.</p>
-<h3 id="reading-from-a-trn-variable">Reading from a <code>trn</code> variable</h3>
-<p>This is like <code>iso</code>, but with a weaker guarantee (<em>write uniqueness</em> as opposed to <em>read and write uniqueness</em>). That makes a big difference since now we can return something readable when we enforce our guarantees.</p>
-<p>An <code>iso</code> field makes stronger guarantees than a <code>trn</code> origin, and a <code>trn</code> field makes the same guarantees, so they&rsquo;re fine to read. A <code>val</code> field is <em>globally immutable</em>, so that&rsquo;s fine too. A <code>box</code> field is readable, and we only guarantee <em>write uniqueness</em>, so that&rsquo;s fine too.</p>
-<p>A <code>ref</code> field, though, would allow writing. So instead we return a <code>box</code>.</p>
-<h3 id="reading-from-a-ref-variable">Reading from a <code>ref</code> variable</h3>
-<p>A <code>ref</code> origin doesn&rsquo;t modify its fields at all. This is because a <code>ref</code> origin doesn&rsquo;t make any guarantees that are incompatible with its fields.</p>
-<h3 id="reading-from-a-val-variable">Reading from a <code>val</code> variable</h3>
-<p>A <code>val</code> origin is deeply and globally immutable, so all of its fields are also <code>val</code>. The only exception is a <code>tag</code> field. Since we can&rsquo;t read from it, we also can&rsquo;t guarantee that nobody can write to it, so it stays <code>tag</code>.</p>
-<h3 id="reading-from-a-box-variable">Reading from a <code>box</code> variable</h3>
-<p>A <code>box</code> variable is locally immutable. This means it&rsquo;s possible that it may be mutated through some other variable (a <code>trn</code> or a <code>ref</code>), but it&rsquo;s also possible that our <code>box</code> variable is an alias of some <code>val</code> variable.</p>
-<p>When we read a field, we need to return a reference capability that is compatible with the field but is also locally immutable.</p>
-<p>An <code>iso</code> field is returned as a <code>tag</code> because no locally immutable reference capability can maintain its isolation guarantees. A <code>val</code> field is returned as a <code>val</code> because global immutability is a stronger guarantee than local immutability. A <code>box</code> field makes the same local immutability guarantee as its origin, so that&rsquo;s also fine.</p>
-<p>For <code>trn</code> and <code>ref</code> we need to return a locally immutable reference capability that doesn&rsquo;t violate any guarantees the field makes. In both cases, we can return <code>box</code>.</p>
-<h3 id="reading-from-a-tag-variable">Reading from a <code>tag</code> variable</h3>
-<p>This one is easy: <code>tag</code> variables are opaque! They can&rsquo;t be read from.</p>
-<h2 id="writing-to-the-field-of-an-object">Writing to the field of an object</h2>
-<p>Like reading the field of an object, writing to a field depends on the reference capability of the object reference being stored and the reference capability of the origin object containing the field. The reference capability of the object being stored must not violate the guarantees made by the origin object&rsquo;s reference capability. For example, a val object reference can be stored in an iso origin. This is because the val reference capability guarantees that no alias to that object exists which could violate the guarantees that the iso capability makes.</p>
-<p>Here&rsquo;s a simplified version of the table above that shows which reference capabilities can be stored in the field of an origin object.</p>
+</code></pre><!-- raw HTML omitted -->
+<h2 id="解释了为什么explaining-why">解释了为什么（Explaining why）</h2>
+<!-- raw HTML omitted -->
+<p>最终，你会觉得这张桌子很自然。但可能还没有。为了让它看起来更自然，让我们遍历表中的每个单元格并解释为什么它是这样的。</p>
+<!-- raw HTML omitted -->
+<h3 id="读取iso变量">读取<code>iso</code>变量</h3>
+<!-- raw HTML omitted -->
+<p>任何通过“iso”来源读取的内容都必须保持来源的隔离保证。要记住的关键一点是，“iso”可以发送给另一个参与者，它也可以成为任何其他引用权能。因此，当我们读取一个字段时，我们需要得到一个结果，这个结果永远不会打破源所做的隔离保证，即_read和write uniqueness_。</p>
+<!-- raw HTML omitted -->
+<p>“iso”字段与“iso”源字段具有相同的保证，所以读起来没有问题。“val”字段是_global immutable_，这意味着它总是可以读取，不管它的来源是什么(好吧，除了“标签”)。</p>
+<!-- raw HTML omitted -->
+<p>然而，其他一切都可能打破我们的隔离保障。这就是为什么其他引用权能被视为“标记”:它是唯一一种既不可读又不可写的类型。</p>
+<!-- raw HTML omitted -->
+<h3 id="读取trn变量">读取<code>trn</code>变量</h3>
+<!-- raw HTML omitted -->
+<p>这就像“iso”，但有一个较弱的保证(<em>write uniqueness_而不是_read和write uniqueness</em>)。这是一个很大的不同，因为现在我们可以返回一些可读的东西，当我们执行我们的保证。</p>
+<!-- raw HTML omitted -->
+<p>“iso”字段比“trn”字段提供了更强的保证，而“trn”字段也提供了相同的保证，所以可以阅读它们。一个“val”字段是全局不可变的，所以这也是可以的。“box”字段是可读的，我们只保证_write的独特性，所以这也是可以的。</p>
+<!-- raw HTML omitted -->
+<p>不过，“ref”字段允许写入。因此我们返回一个“box”。</p>
+<!-- raw HTML omitted -->
+<h3 id="读取ref变量">读取<code>ref</code>变量</h3>
+<!-- raw HTML omitted -->
+<p>“ref”源根本不修改它的字段。这是因为&rsquo; ref &lsquo;源不做任何与它的字段不兼容的保证。</p>
+<!-- raw HTML omitted -->
+<h3 id="读取val变量">读取<code>val</code>变量</h3>
+<!-- raw HTML omitted -->
+<p>“val”源是深度的、全局不可变的，所以它的所有字段也是“val”。唯一的例外是&rsquo; tag &lsquo;字段。因为我们不能读它，我们也不能保证没有人可以写它，所以它保持'标签&rsquo;。</p>
+<!-- raw HTML omitted -->
+<h3 id="读取box变量">读取<code>box</code>变量</h3>
+<!-- raw HTML omitted -->
+<p>一个“box”变量是局部不可变的。这意味着它可能通过其他变量(&rsquo; trn &lsquo;或&rsquo; ref &lsquo;)发生突变，但也有可能我们的&rsquo; box &lsquo;变量是某个&rsquo; val &lsquo;变量的别名。</p>
+<!-- raw HTML omitted -->
+<p>当我们读取一个字段时，我们需要返回一个与该字段兼容但也是局部不可变的引用权能。</p>
+<!-- raw HTML omitted -->
+<p>“iso”字段作为“标记”返回，因为没有本地不可变引用权能可以维护它的隔离保证。“val”字段作为“val”返回，因为全局不变性比局部不变性更能保证全局不变性。一个“box”字段与它的起源具有相同的局部不变性保证，所以这也是可以的。</p>
+<!-- raw HTML omitted -->
+<p>一个“box”变量是局部不可变的。这意味着它可能通过其他变量(&rsquo; trn &lsquo;或&rsquo; ref &lsquo;)发生突变，但也有可能我们的&rsquo; box &lsquo;变量是某个&rsquo; val &lsquo;变量的别名。</p>
+<!-- raw HTML omitted -->
+<h3 id="读取tag变量">读取<code>tag</code>变量</h3>
+<!-- raw HTML omitted -->
+<p>这个很简单:&rsquo; tag &lsquo;变量是不透明的!它们不能被读出来。</p>
+<!-- raw HTML omitted -->
+<h2 id="为对象的字段赋值">为对象的字段赋值</h2>
+<!-- raw HTML omitted -->
+<p>与读取字段一样，字段的赋值取决于存储的对象使用的<code>引用权能</code>和包含该字段的对象所属类型的<code>引用权能</code>类型。存储的对象的引用权能不能违反源对象的引用权能所作的保证。例如，val对象引用可以存储在iso源文件中。这是因为val引用权能保证不存在任何可能违反iso权能保证的对象别名。</p>
+<!-- raw HTML omitted -->
+<p>下面是上面表格的简化版本，它显示了哪些引用权能可以存储在原始对象的字段中。</p>
 <hr>
 <table>
 <thead>
@@ -816,7 +852,8 @@ class Bar
 </tbody>
 </table>
 <hr>
-<p>The bottom half of this chart is empty, since only origins with a mutable capability can have their fields modified.</p>
+<!-- raw HTML omitted -->
+<p>这个图表的下半部分是空的，因为只有具有可变权能的起源才能修改它们的字段。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

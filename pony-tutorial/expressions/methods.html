@@ -63,7 +63,7 @@ class Foo var _x: U32 new create() =&gt; _x = 0 new from_int(x: U32) =&gt; _x = 
 class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fun f() =&gt; let a = hello(&quot;Fred&quot;) 要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/methods.html" />
-<meta property="article:modified_time" content="2020-04-15T15:04:12+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="方法（Methods）">
 <meta itemprop="description" content="在Pony中，所有的执行逻辑（代码）都被放在方法中。方法有三种：函数、构造函数和行为。所有的方法都要写在类型定义中（例如：类、基元类、actor等），不存在全局函数或全局行为。
 行为用于处理发送给参与者的异步消息，我们在类型系统章节中已经讲解过行为。
@@ -80,8 +80,8 @@ class Foo var _x: U32 new create() =&gt; _x = 0 new from_int(x: U32) =&gt; _x = 
 可以从构造函数中提前返回吗？ 是的。使用不带值的return命令。但是要确保return前所有字段都已经进行了初始化。
 方法调用（Calling） 方法的调用与其他语言一样，通过在方法名称后的括号内提供参数来调用。即使没有参数需要传递，也需要括号。
 class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fun f() =&gt; let a = hello(&quot;Fred&quot;) 要实例化一个类型，需要调用这个类型的构造函数。指定类型，后跟一个点，然后是要调用的构造函数名：">
-<meta itemprop="dateModified" content="2020-04-15T15:04:12&#43;08:00" />
-<meta itemprop="wordCount" content="499">
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
+<meta itemprop="wordCount" content="497">
 
 
 
@@ -335,7 +335,7 @@ class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fu
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -365,12 +365,12 @@ class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fu
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -391,7 +391,7 @@ class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fu
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -646,7 +646,7 @@ class Foo fun hello(name: String): String =&gt; &quot;hello &quot; &#43; name fu
     <li><a href="#构造函数constructors">构造函数（Constructors）</a></li>
     <li><a href="#方法调用calling">方法调用（Calling）</a></li>
     <li><a href="#参数默认值default-arguments">参数默认值（Default arguments）</a></li>
-    <li><a href="#参数命名named-arguments">参数命名（Named arguments）</a></li>
+    <li><a href="#命名传参named-arguments">命名传参（Named arguments）</a></li>
     <li><a href="#连续调用chaining">连续调用Chaining</a></li>
     <li><a href="#匿名方法anonymous-methods">匿名方法（Anonymous methods）</a></li>
     <li><a href="#私有方法privacy">私有方法（Privacy）</a></li>
@@ -805,9 +805,9 @@ class Bar
 </code></pre><!-- raw HTML omitted -->
 <p><strong>我必须为所有的参数提供默认值吗?</strong> 不需要，可以自己决定为哪些参数设置默认值。</p>
 <!-- raw HTML omitted -->
-<h2 id="参数命名named-arguments">参数命名（Named arguments）</h2>
+<h2 id="命名传参named-arguments">命名传参（Named arguments）</h2>
 <!-- raw HTML omitted -->
-<p>到目前为止，在调用方法时，我们总是按顺序给出所有参数。这被称为使用 <strong><code>位置传参</code>或<code>顺序传参</code>（positional arguments）</strong> 。但是，我们也可以通过指定参数的名称来指定传参顺序。这被称为 <strong><code>命名传参</code>或<code>动态传参</code>（named arguments）</strong>。</p>
+<p>到目前为止，在调用方法时，我们总是按顺序给出所有参数。这被称为使用 <strong><code>位置传参</code>或<code>顺序传参</code>（positional arguments）</strong> 。但是，我们也可以通过指定参数的名称来指定传参顺序。这被称为 <strong><code>命名传参</code>或<code>无序传参</code>（named arguments）</strong>。</p>
 <!-- raw HTML omitted -->
 <p>要使用<code>命名传参</code>的方式调用方法，需要使用<code>where</code>关键字，然后是形参名和值。</p>
 <pre><code class="language-pony" data-lang="pony">class Coord
@@ -878,7 +878,7 @@ actor Main
       env.out.print(odd_number.string())
     end
 </code></pre><!-- raw HTML omitted -->
-<p>在<a href="/expressions/object-literals.html">Object Literals section</a>中有更详细的介绍。</p>
+<p>在<a href="/pony-tutorial/expressions/object-literals.html">匿名对象</a>中有更详细的介绍。</p>
 <!-- raw HTML omitted -->
 <h2 id="私有方法privacy">私有方法（Privacy）</h2>
 <!-- raw HTML omitted -->
@@ -888,7 +888,7 @@ actor Main
 <!-- raw HTML omitted -->
 <h2 id="调用优先级precedence">调用优先级(Precedence)</h2>
 <!-- raw HTML omitted -->
-<p>我们之前已经讨论过<a href="/expressions/ops.html#precedence">运算符符优先级</a>，在Pony中，<code>方法调用</code>和<code>字段访问</code>的优先级比所有的运算符都要高。</p>
+<p>我们之前已经讨论过<a href="/pony-tutorial/expressions/ops.html#运算符优先级（Precedence）">运算符符优先级</a>，在Pony中，<code>方法调用</code>和<code>字段访问</code>的优先级比所有的运算符都要高。</p>
 <!-- raw HTML omitted -->
 <p>我们来总结回顾一下,在复杂的表达式中:</p>
 <!-- raw HTML omitted -->

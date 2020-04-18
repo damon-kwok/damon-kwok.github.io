@@ -290,7 +290,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -320,12 +320,12 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -346,7 +346,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -607,21 +607,34 @@
             <h1 class="f1 athelas mb1">概述（Overview）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>We&rsquo;ve covered the basics of Pony&rsquo;s type system and then expressions, this chapter about reference capabilities will cover another feature of Pony&rsquo;s type system. There aren&rsquo;t currently any mainstream programming languages that feature reference capabilities. What is a reference capability?</p>
-<p>Well, a reference capability is built on the idea of &ldquo;a capability&rdquo;.
-A capability is the ability to do &ldquo;something&rdquo;. Usually that &ldquo;something&rdquo; involves an external resource that you might want access to; like the filesystem or the network. This usage of capability is called an object capability and is discussed <a href="/object-capabilities.html">in the next chapter</a>.</p>
-<p>Pony also features a different kind of capability, called a &ldquo;reference capability&rdquo;. Where object capabilities are about being granted the ability to do things with objects, reference capabilities are about denying you the ability to do things with memory references. For example, &ldquo;you can have access to this memory BUT ONLY for reading it. You can not write to it&rdquo;. That&rsquo;s a reference capability and it&rsquo;s denying you access to do things.</p>
-<p>Reference capabilities are core to what makes Pony special. You might remember in the introduction to this tutorial what we said about Pony:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>我们已经介绍了Pony的类型系统的基础知识，然后是表达式，这一章关于引用权能将介绍Pony的类型系统的另一个特性。目前还没有任何主流编程语言具有引用权能。什么是引用权能?</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>引用权能是建立在<code>能力</code>这个概念上的。
+能力是做<code>某事</code>的能力。通常，<code>某物</code>涉及您可能希望访问的外部资源;比如文件系统或网络。这种能力的使用被称为对象能力，<a href="/pony-tutorial/object-capabilities.html">在下一章</a>中将对此进行讨论。</p>
+<!-- raw HTML omitted -->
+<p>Pony还有一种不同的功能，称为<code>引用权能</code>。对象功能是指被授予使用对象执行操作的能力，而引用权能是指拒绝使用内存引用执行操作的能力。例如，&ldquo;你可以访问这个内存，但只能读取它。你不能向它发送消息&rdquo;。这是一个引用权能，它拒绝你做事情。</p>
+<!-- raw HTML omitted -->
+<p>引用权能是Pony与众不同的核心。你可能还记得在本教程的介绍中我们说过的Pony:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li>It&rsquo;s type safe. Really type safe. There&rsquo;s a mathematical <a href="http://www.ponylang.org/media/papers/opsla237-clebsch.pdf">proof</a> and everything.</li>
-<li>It&rsquo;s memory safe. Ok, this comes with type safe, but it&rsquo;s still interesting. There are no dangling pointers, no buffer overruns, heck, the language doesn&rsquo;t even have the concept of <em>null</em>!</li>
-<li>It&rsquo;s exception safe. There are no runtime exceptions. All exceptions have defined semantics, and they are <em>always</em> handled.</li>
-<li>It&rsquo;s data-race-free. Pony doesn&rsquo;t have locks or atomic operations or anything like that. Instead, the type system ensures <em>at compile time</em> that your concurrent program can never have data races. So you can write highly concurrent code and never get it wrong.</li>
-<li>It&rsquo;s deadlock free. This one is easy because Pony has no locks at all! So they definitely don&rsquo;t deadlock, because they don&rsquo;t exist.</li>
+<li>它是类型安全的。类型安全。有一个数学<a href="http://www.ponylang.org/media/papers/opsla237-clebsch.pdf">证明</a>和一切。</li>
+<li>它是内存安全的。这个带有类型安全，但仍然很有趣。没有悬空指针，没有缓冲区溢出，糟糕的是，这种语言甚至没有_null_的概念!</li>
+<li>它是异常安全的。没有运行时异常。所有的异常都有定义的语义，它们总是被处理。</li>
+<li>数据竞争。Pony没有锁或原子操作或任何类似的东西。相反，类型系统确保_at编译时您的并发程序永远不会发生数据竞争。因此，您可以编写高度并发的代码，并且永远不会出错。</li>
+<li>没有死锁。这个很简单，因为Pony根本没有锁!所以它们肯定不会死锁，因为它们不存在。</li>
 </ul>
-<p>Reference capabilities are what make all that awesome possible.</p>
-<p>Code examples in this chapter might be kind of sparse, because we&rsquo;re largely dealing with higher-level concepts. Try to read through the chapter at least once before starting to put the ideas into practice. By the time you finish this chapter, you should start to have a handle on what reference capabilities are and how you can use them. Don&rsquo;t worry if you struggle with them at first. For most people, it&rsquo;s a new way of thinking about your code and takes a while to grasp. If you get stuck trying to get your capabilities right, definitely reach out for help. Once you&rsquo;ve used them for a couple weeks, problems with capabilities start to melt away, but before that can be a real struggle. Don&rsquo;t worry, we all went through that struggle. In fact, there&rsquo;s a section of the Pony website dedicated to resources that can help in <a href="https://www.ponylang.io/learn/#reference-capabilities">learning reference capabilities</a>. And by all means, reach out to the Pony community for help. We are here to help you get over the reference capabilities learning curve. It&rsquo;s not easy. We know that. It&rsquo;s a new way of thinking for folks, so do <a href="https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help">please reach out</a>. We&rsquo;re waiting to hear from you.</p>
-<p>Scared? Don&rsquo;t be. Ready? Good. Let&rsquo;s get started.</p>
+<!-- raw HTML omitted -->
+<p>引用权能使所有这些都成为可能。</p>
+<!-- raw HTML omitted -->
+<p>本章中的代码示例可能比较少，因为我们主要处理的是更高级的概念。在把这些想法付诸实践之前，试着至少通读一遍这一章。在完成本章之前，您应该已经开始了解什么是引用权能以及如何使用它们。如果你一开始就和他们斗争，不要担心。对于大多数人来说，这是一种思考代码的新方式，需要一段时间才能掌握。如果你在努力提高自己的能力时遇到了困难，一定要寻求帮助。一旦你使用了几周，功能上的问题就开始消失了，但在那之前可能是一个真正的斗争。别担心，我们都经历过这种挣扎。事实上，Pony网站上有一节专门介绍可以帮助学习引用权能的资源(<a href="https://www.ponylang.io/learn/#reference-capabilities">https://www.ponylang.io/learn/#reference-capabilities</a>)。无论如何，向Pony社区寻求帮助。我们在这里帮助您克服引用权能学习曲线。这并不容易。我们都知道。这对人们来说是一种新的思维方式，所以请伸出你的手(<a href="https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help">https://ponylang.zulipchat.com/#narrow/stream/189985-beginner-help</a>)。我们在等你的消息。</p>
+<!-- raw HTML omitted -->
+<p>害怕吗?不要。准备好了吗?好。让我们开始吧。</p>
 
 
 
@@ -675,10 +688,17 @@ A reference capability is a form of type qualifier and provides a lot more guara
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>Since types are guarantees, it&rsquo;s useful to talk about what guarantees a reference capability makes.
-What is denied We&rsquo;re going to talk about reference capability guarantees in terms of what&rsquo;s denied. By this, we mean: what can other variables not do when you have a variable with a certain reference capability?
-We need to distinguish between the actor that contains the variable in question and other actors.
-This is important because data reads and writes from other actors may occur concurrently.</p>
+        <p>因为类型是保证，所以讨论引用权能的保证是很有用的。
+拒绝访问（What is denied） 我们将讨论引用权能保证在什么情况下访问被拒绝。这里我们讨论的问题是：当你有一个具有一定引用权能的变量时，其他变量 不能 做什么?
+我们需要区分包含有变量的actor和 其他 actor。
+这一点很重要，因为来自其他actor的数据读写可能同时发生。如果两个actor都能读取相同的数据，并且其中一个更改了数据，那么另一个actor的数据也会发生变化。这将导致数据竞争和对锁的需求。只有确保这种情况永远不会发生，Pony才能消除对锁的需求。
+任何一个actor中的所有代码总是顺序执行。这意味着来自单个actor中的多个变量的数据访问不会受到数据竞争的影响。
+可变引用权能（Mutable reference capabilities） 可变的引用权能有iso、trn和ref。用这些引用权能标记的数据是可修改的，它们可以用来读写对象。
+ 如果一个actor有一个iso变量，那么 任何 actor都不能读写这个对象。这表示iso变量是程序中惟一可以读写该对象的变量。 如果一个actor有一个trn变量，那么 任何 actor都不能写入该对象，其他 actor也不能读写该对象。这表示trn变量是程序中惟一可以写入该对象的变量，但是同一actor持有的其他变量可能可以从该对象读取数据。它是 write unique 。 如果一个actor有一个ref变量，那么 其他 actor都不能使用其他变量来读写这个对象。这意味着可以使用其他变量对对象进行读写操作，但只能从相同的actor中进行。  为什可以安全的修改？ 因为 其他 的actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可改变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
+ 如果一个actor有一个val变量，那么 任何 actor不能修改。这表示它 无法被修改 。它是永恒不变。 如果一个actor有一个box变量，那么 其他 actors就不能修改。但时其他actor可以读取，而同一actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。对象是_localy mmutable_。  为什么可以读取不能修改? 因为这些引用权能只会阻止 其他 actor修改对象。这表示不能保证 其他 actor不会从对象中读取数据，这意味着写入它是不安全的。但是，多个actor同时读取一个对象是安全的，所以我们可以这样做。
+不透明的引用权能（Opaque reference capabilities） 只有一种模糊的引用权能，那就是tag。tag变量对其他变量没有任何保证。因此，它既不能用于从对象中读取数据，也不能用于从对象中写入数据;因此被称为 不透明（opaque） 。
+它仍然是有用的:你可以用它做身份比较，你可以在它上面调用行为，你可以在它上面调用功能，只需要一个tag接收器。
+为什么tag不能用来读或写?因为tag并不会阻止其他的角色写入对象。这意味着，如果我们试图读取，我们不能保证没有其他actor写入对象，所以我们可能会得到竞态条件。</p>
       
     </div>
   </div>
@@ -689,13 +709,19 @@ This is important because data reads and writes from other actors may occur conc
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
       <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="link black dim">
-        转让和破坏性读取（Consume and Destructive Read）
+        权能转让和破坏性读取（Consume and Destructive Read）
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>An important part of Pony&rsquo;s capabilities is being able to say &ldquo;I&rsquo;m done with this thing.&rdquo; We&rsquo;ll cover two means of handling this situation: consuming a variable and destructive reads.
-Consuming a variable Sometimes, you want to move an object from one variable to another. In other words, you don&rsquo;t want to make a new name for the object, exactly, you want to move the object from some existing name to a different one.</p>
+        <p>Pony能力的一个重要部分就是能够说&quot;我已经完成了这件事。&ldquo;我们将介绍处理这种情况的两种方法:使用变量和破坏性读取。
+权能转让（Consuming a variable） 有时，你希望将对象从一个变量移动到另一个变量。换句话说，你不希望为对象创建一个_new_名称，确切地说，你希望将对象从某个现有名称移动到另一个不同的名称。
+你可以通过使用转让（consume）来做到这一点。当你转让（consume）一个变量时，你将从中取出该变量的值，实际上是将该变量留空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 编译器对此很高兴，因为通过使用a，你已经说过该值不能再次使用，如果你尝试使用，编译器将会抱怨。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 这里有一个例子。当你试图把a赋值给c时，编译器会报错。
+我可以转让（consume）一个字段吗?__当然不行!转让（consume）意味着它是空的，也就是说，它没有价值。无法确保对象的其他别名不会访问该字段。如果我们试图访问一个空字段，我们会崩溃。但是有一种方法可以做你想做的:destructive read。
+破坏性读取（Destructive read） 还有一种方法可以将值从一个名称移动到另一个名称。在前面，我们讨论了Pony中的赋值如何返回左侧的_old_值，而不是新值。这叫做_destructive read_，我们可以用它来做我们想做的事情，即使是字段。
+class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat end fun ref test(a: Wombat iso) =&gt; var b: Wombat iso = buddy = consume a // Allowed!</p>
       
     </div>
   </div>
@@ -711,8 +737,13 @@ Consuming a variable Sometimes, you want to move an object from one variable to 
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>A recover expression lets you &ldquo;lift&rdquo; the reference capability of the result. A mutable reference capability (iso, trn, or ref) can become any reference capability, and an immutable reference capability (val or box) can become any immutable or opaque reference capability.
-Why is this useful? This most straightforward use of recover is to get an iso that you can pass to another actor. But it can be used for many other things as well, such as:</p>
+        <p>借用（recover）表达式允许你提升（lift）结果的引用权能。可变引用权能(iso、trn或ref)可以成为_any_引用权能，而不可变引用权能(val或box)可以成为任何不可变或不透明的引用权能。
+Why is this useful? 借用（recover）最直接的用法是获得一个可以传递给另一个参与者的iso。但是它也可以用在很多其他的事情上，比如:
+*创建循环的不可变数据结构。也就是说，你可以在借用（recover）表达式中创建一个复杂的可变数据结构，将结果ref提升为val。 *借（Borrow）一个iso作为参考，对它进行一系列复杂的可变操作，然后再次以iso的形式返回。 *从iso中提取（Extract）一个可变字段，并将其作为iso返回。
+What does this look like? 借用（recover）表达式包装了一个表达式列表，并以end结尾，就像这样:
+recover Array[String].create() end 借用表达式返回一个Array[String] iso，而不是Array[String] ref。它是iso而不是其他可变引用权能的原因是，当你不指定一个时，会有一个默认的引用权能。任何可变引用权能的默认值是iso，而任何不可变引用权能的默认值是val。
+下面是一个来自标准库的更复杂的例子:
+recover var s = String((prec + 1).max(width.max(31))) var value = x try if value == 0 then s.push(table(0)?) else while value != 0 do let index = ((value = value / base) - (value * base)) s.push(table(index.usize())?) end end end _extend_digits(s, prec') s.append(typestring) s.append(prestring) _pad(s, width, align, fill) s end 从format/ _FormatInt。它创建了一个String ref，用它做了很多事情，最后返回一个String iso类型。</p>
       
     </div>
   </div>
@@ -728,8 +759,15 @@ Why is this useful? This most straightforward use of recover is to get an iso th
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>Aliasing means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.
-In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what&rsquo;s being assigned to it, and everything is fine.</p>
+        <p>__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
+在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
+在Pony中，这适用于一些引用权能，但不是全部。
+别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+什么算假名?（What counts as making an alias?） 有三件事可以算作别名:</p>
       
     </div>
   </div>
@@ -745,8 +783,20 @@ In most programming languages, aliasing is pretty simple. You just assign some v
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>Reference capabilities make it safe to both pass mutable data between actors and to share immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.
-Passing For an object to be mutable, we need to be sure that no other actor can read from or write to that object. The three mutable reference capabilities (iso, trn, and ref) all make that guarantee.</p>
+        <p>引用权能使得在参与者之间可以安全地传递可变数据，在参与者之间可以安全地共享不变数据。不仅如此，它们还可以安全地进行操作，不需要复制，不需要锁，实际上，根本不需要运行时开销。
+Passing 对于要可变的对象，我们需要确保没有 other actor可以从该对象读写。三种可变引用权能(iso、trn和ref)都保证了这一点。
+但是如果我们想要将一个可变对象从一个参与者传递给另一个参与者呢?为此，我们需要确保正在_sending_可变对象的actor也_give up_从该对象读写的权能。
+这正是iso所做的。它是读写唯一的，一次只能有一个可用于读写的引用。如果您将一个iso对象发送给另一个参与者，您将放弃从该对象读写的权能。
+那么当我想要在actor之间传递一个可变对象时，我应该使用iso吗?__是的!如果你不需要传递它，你可以使用ref代替。
+Sharing 如果你想在参与者之间共享一个对象，那么我们必须做出如下保证:
+ no actor可以写对象，在这种情况下_any_ actor可以从对象中读取，或者 只有_one_ actor可以对对象进行写操作，在这种情况下_other_ actor既不能对对象进行读操作，也不能对对象进行写操作。  第一个保证就是val所做的。它是全局的immutable_，所以我们知道_no_actor可以写那个对象。因此，您可以自由地将val对象发送给其他参与者，而不需要放弃从该对象读取数据的权能。
+那么当我想要在参与者之间共享一个不可变的对象时，我应该使用val吗?__是的!如果你不需要共享它，你可以使用ref代替，或box如果你想它是不可变的。
+第二个保证是tag的权能。不是关于只写一个参与者的部分(这是由任何可变引用权能保证的)，而是关于不能读写对象的部分。这意味着您可以自由地将tag对象传递给其他参与者，而不需要放弃从该对象读写的权能。
+如果另一个参与者不能读写字段，那么将tag引用发送给另一个参与者又有什么意义呢?因为tag可以被用来识别目标，有时这就是你所需要的。另外，如果对象是一个参与者，即使您只有一个tag，您也可以对其调用行为。
+那么当我想要在actor之间共享可变对象的身份时，我应该使用tag吗?__是的!或者，实际上，任何东西的恒等式，不管是可变的，不可变的，甚至是一个行动者。
+无法发送的引用权能 你可能已经注意到我们并没有提到trn，ref，或者box作为你可以发送给其他演员的东西。那是因为你做不到。他们不会为了安全而做出我们需要的保证。
+那么什么时候应该使用这些引用权能呢?
+*当你需要能够随着时间改变一个对象时，使用ref。另一方面，如果您的程序在使用不可变类型时不会变得更慢，那么您可能希望使用val。 *当你不关心对象是可变的还是不可变的时候，使用box。换句话说，你想要能够阅读它，但你不需要给它写信或与其他演员分享它。 *当你想要改变一个对象一段时间，但你也想让它 全局不可变（global immutable） 以后使用trn。</p>
       
     </div>
   </div>
@@ -762,9 +812,13 @@ Passing For an object to be mutable, we need to be sure that no other actor can 
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>Subtyping is about substitutability. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
-Simple substitution First, let&rsquo;s cover substitution without worrying about ephemeral types (^) or alias types (!). The &lt;: symbol means &ldquo;is a subtype of&rdquo; or alternatively &ldquo;can be substituted for&rdquo;.
- iso &lt;: trn. An iso is read and write unique, and a trn is just write unique, so it&rsquo;s safe to substitute an iso for a trn.</p>
+        <p>子类型是关于_替换性的。也就是说，如果我们需要提供某一种类型，我们还可以替代什么类型?其中包括引用权能。
+Simple substitution 首先，让我们讨论替换，而不必担心临时类型(^)或别名类型(!)。符号&lt;:表示是的子类型，或者可以被替换。
+ iso &lt;: trn。iso是_read和write unique_， trn是_write unique_，所以用iso代替trn是安全的。 trn &lt;: ref。一个trn是可变的，也_write unique_。ref是可变的，但不能保证唯一性。用trn代替ref是安全的。 trn &lt;: val。这个很有趣。trn是_write unique_， val是全局不可变的，那么为什么用trn代替val是安全的呢?关键是，为了做到这一点，你必须放弃你所拥有的一切。如果你放弃了_only_变量可以写一个对象，你知道没有变量可以写它。这意味着它是全局不变的。 ref &lt;: box。ref保证没有_other_actor可以读写对象。box只是保证没有_other_ actor可以写对象，所以用ref代替box是安全的。 val &lt;: box。一个val保证_no_actor，即使是这个，也不能写对象。一个box只是保证没有_other_ actor可以写对象，所以用val代替box是安全的。 box &lt;: tag。box保证没有其他参与者可以写入对象，而tag则完全没有保证，所以用box替换tag是安全的。  子类型化_transitive_。这意味着，由于iso &lt;: trn和trn &lt;: ref和ref &lt;: box，我们也得到iso &lt;: box。
+Aliased substitution 现在让我们考虑一下当我们有一个引用权能的别名时会发生什么。例如，如果我们有一些iso，并对其进行别名处理(不执行消费或破坏性读取)，则得到的类型是iso!,而不是iso。
+*iso !&lt;:tag。这是一个相当大的变化。而不是像iso这样的所有东西的子类型，唯一的东西是iso!是tag的子类型。这是因为iso仍然存在，并且仍然是_read和write unique_。任何别名既不能从对象中读取，也不能从对象中写入。这意味着iso!'只能是tag的子类型。 *trn!&lt;:box。这也是一个变化，但并不是很大的变化。因为trn只是_write unique_，所以别名可以从对象中读取，但是别名不能写入对象。这意味着我们可以有box或val别名-除了val保证_no_ alias可以写入对象!因为我们的trn仍然存在，并可以写入对象，val别名将打破val作出的保证。所以一个ref!只能是box的子类型(及及物动词tag)。 *ref!&lt;:ref。由于ref只保证_other_ actor既不能从对象中读取也不能从对象中写入，所以可以在同一个actor中创建更多ref别名。 *val!&lt;:val。因为val只能保证_no_ actor可以写入对象，所以可以使用更多的val别名，因为它们也不能写入对象。 *box!&lt;:box。一个框只能保证_other_ actor不能写对象。val和ref都做了保证，那么为什么box只能别名为box呢?这是因为我们不能做更多的保证当我们别名的东西。这意味着box只能别名为box。 *tag!&lt;:tag。一个tag根本不能保证什么。就像框一样，我们不能在创建新别名时做更多的保证，因此tag只能作为tag的别名。
+Ephemeral substitution 最后要考虑的情况是当我们有临时引用权能时。例如，如果我们有一些iso，我们'消费'它或做一个破坏性的阅读，我们得到的类型是iso^，而不是iso。
+ iso^ &lt;: iso。这很简单。当我们给一个iso^一个名字时，通过把它赋值给某个东西或者把它作为参数传递给某个方法，它就会失去^而变成一个普通的旧的iso。我们知道我们已经放弃了之前的iso，所以换一个新的是安全的。 trn^ &lt;: trn。这和iso^ 完全一样。保证是较弱的(write uniqueness_而不是_read和write uniquess)，但它的工作方式是一样的。 ref^ &lt;: ref 和ref ^ &lt;: ref和ref &lt;: ref ^。这里，我们有另一个例子。a ref不仅是a ref的子类型，它也是a ref的子类型。这是怎么回事?</p>
       
     </div>
   </div>
@@ -780,9 +834,11 @@ Simple substitution First, let&rsquo;s cover substitution without worrying about
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>When a field of an object is read, its reference capability depends both on the reference capability of the field and the reference capability of the origin, that is, the object the field is being read from.
-This is because all the guarantees that the origin reference capability makes have to be maintained for its fields as well.
-Viewpoint adaptation The process of combining origin and field capabilities is called viewpoint adaptation.</p>
+        <p>当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
+这是因为对其字段所做的所有保证都必须对其字段进行维护。
+观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
+下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
+    ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:</p>
       
     </div>
   </div>
@@ -793,14 +849,26 @@ Viewpoint adaptation The process of combining origin and field capabilities is c
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
       <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="link black dim">
-        Arrow Types aka Viewpoints
+        箭头的用法（Arrow Types aka Viewpoints）
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>When we talked about reference capability composition and viewpoint adaptation, we dealt with cases where we know the reference capability of the origin. However, sometimes we don&rsquo;t know the precise reference capability of the origin.
-When that happens, we can write a viewpoint adapted type, which we call an arrow type because we write it with an -&gt;.
-Using this-&gt; as a viewpoint A function with a box receiver can be called with a ref receiver or a val receiver as well since those are both subtypes of box.</p>
+        <p>当我们讨论了 引用权能组合 和 观点适应 时，我们处理了我们知道来源的引用权能的情况。然而，有时我们并不知道原点的精确引用权能。
+当这种情况发生时，我们可以编写一个适合类型为 的视角 ，我们称其为一个 型箭头 ，因为我们用一个-&gt;来编写它。
+Using this-&gt; as a viewpoint 带有box接收器的函数也可以用ref接收器或val接收器来调用，因为它们都是box的子类型。有时，我们希望能够讨论一种类型来考虑这一点。例如:
+class Wombat var _friend: Wombat fun friend(): this-&gt;Wombat =&gt; _friend 在这里，我们有一个袋熊，每个袋熊都有一个同样是袋熊的朋友(幸运的袋熊)。事实上，它是一个Wombat ref，因为ref是Wombat的默认引用权能(因为我们没有指定一个)。我们还有一个函数返回那个朋友。它有一个box接收器(因为box是一个函数的默认接收器引用权能，如果我们不指定它的话)。
+所以返回类型通常是袋熊盒子。为什么?因为，正如我们前面看到的，当我们从一个box源读取一个ref字段时，我们会得到一个box。在本例中，原点是接收器，它是一个方框。
+但是等等!如果我们想要一个函数，在接收方是ref时返回Wombat ref，在接收方是val时返回Wombat val，在接收方是box时返回Wombat box，那该怎么办?我们不想把这个函数写三遍。
+我们使用this-&gt;！在这种情况下，this-&gt;Wombat。它的意思是&quot;接收者看到的Wombat ref&rdquo;。
+我们知道在 call站点上 ，接收方的实际引用权能是什么。因此，当函数被调用时，编译器知道它需要知道的一切，以使其正确。
+Using a type parameter as a viewpoint 我们还没有涉及泛型，所以这看起来有点奇怪。当我们讨论泛型(即参数化类型)时，我们将再次讨论这个问题，但是我们在这里提到它是为了完整性。
+另一种情况是，我们不知道某个东西的精确引用权能，即我们是否使用了类型参数。下面是来自标准库的一个例子:
+class ListValues[A, N: ListNode[A] box] is Iterator[N-&gt;A] 这里，我们有一个ListValues类型，它有两个类型参数a和N。此外，N还有一个约束:它必须是ListNode[a] box的子类型。这很好，但我们也说ListValues[A, N]提供了Iterator[N-&gt;A]。这就是有趣的地方:我们提供了一个接口，让我们对类型N-&gt;A的值进行迭代。
+这意味着我们将返回类型为A的对象，但是引用权能将与类型为N的对象看到类型为A的对象相同。
+Using box-&gt; as a viewpoint 还有一种使用箭头类型的方法，它也与泛型有关。有时，我们希望讨论某个类型参数，因为它是由某个未知类型看到的，as long as该类型可以读取type parameter 。
+换句话说，未知类型将是box的子类型，但我们只知道这些。下面是来自标准库的一个例子:
+interface Comparable[A: Comparable[A] box] fun eq(that: box-&gt;A): Bool =&gt; this is that fun ne(that: box-&gt;A): Bool =&gt; not eq(that) 在这里，我们说一个东西是‘Comparable[A]’，当且仅当它有函数‘eq’和‘ne’，而这些函数有一个类型为‘box-&gt;A’的参数并返回一个‘Bool’时。换句话说，不管A与什么有关，我们只需要能够读懂它。</p>
       
     </div>
   </div>
@@ -811,13 +879,21 @@ Using this-&gt; as a viewpoint A function with a box receiver can be called with
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
       <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="link black dim">
-        Reference Capability Matrix
+        权能矩阵（Reference Capability Matrix）
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>At this point, it&rsquo;s quite possible that you read the previous sections in this chapter and are still pretty confused about the relation between reference capabilities. It&rsquo;s okay! We have all struggled when learning this part of Pony, too. Once you start working on Pony code, you&rsquo;ll get a better intuition with them.
-In the meantime, if you still feel like all these tidbits in the chapter are still scrambled in your head, there is one resource often presented with Pony that can give you a more visual representation: the reference capability matrix.</p>
+        <p>此时，您很可能已经阅读了本章前面的部分，仍然对引用权能之间的关系感到困惑。这是好的!当我们学习小马的这一部分时，我们也都很挣扎。一旦你开始编写小马代码，你就会对它们有一个更好的直觉。
+与此同时，如果您仍然觉得本章中的所有花絮仍在您的脑海中乱作一堆，那么有一种通常使用Pony提供的资源可以为您提供一种更直观的表示:即 引用权能矩阵（reference capability matrix）。
+它也是Pony中每个权能背后的概念的起源，意思是每个权能如何拒绝它所引用的某些属性——换句话说，这保证了权能的产生。在展示矩阵之前，我们会解释这到底是什么意思。
+Local and global aliases 首先，我们要澄清&quot;本地&quot;和&quot;全局&quot;别名的含义。
+局部别名是对存在于同一参与者中的相同变量的引用。当你传递一个值的时候，它不是一个actor行为的参数，这是我们使用的别名。
+另一方面，全局别名是对可以存在于_different actor中的相同变量的引用。也就是说，它描述了两个或多个参与者如何与同一个引用交互的属性。
+Pony中的每个引用权能实际上是一对局部保证和全局保证。例如，ref不否认参与者内部的任何读/写权能，但否认其他参与者对该引用的读或写权能。
+您可能还记得在[Reference Capability guarantee](guarantee .md)一节中提到，易变的引用不能在参与者之间安全地共享，而不可变的引用可以由多个参与者读取。一般来说，全局属性总是与引用的局部属性具有相同或更严格的限制—全局拒绝的内容也必须在局部拒绝。例如，不可能以全局或本地别名写入不可变引用。也不可能从不透明的引用tag读取或写入。因此，局部和全局别名的某些组合是不可能的，并且没有指定的权能。
+Reference capability matrix 言归正传，下面是引用权能矩阵:
+      Deny global read/write aliases Deny global write aliases Don&rsquo;t deny any global aliases     Deny local read/write aliases iso     Deny local write aliases trn val    Don&rsquo;t deny any local aliases ref box tag     (Mutable) (Immutable) (Opaque)     在矩阵的上下文中，&ldquo;拒绝某个权能&quot;意味着不允许该引用的任何其他别名执行该操作。例如，由于trn拒绝其他本地写别名(但允许读)，所以这是惟一允许对对象进行写的引用;由于它同时拒绝向其他参与者写入和读取别名，所以在这个actor中写入别名是安全的，因此是可变的。由于box不会破坏trn所做的任何保证(允许本地读取，但禁止全局写入)，所以我们可以为trn引用创建box别名。</p>
       
     </div>
   </div>

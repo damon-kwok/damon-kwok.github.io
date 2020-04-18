@@ -57,7 +57,7 @@ struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var in
 struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/structs.html" />
-<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="结构体（Structs）">
 <meta itemprop="description" content="结构体和类有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的C-FFI章中更深入地讨论结构。这里只做简短介绍。
 结构体是用来做外部交互的 struct和类的机制一样，但是它可以通过Pony的FFI接口与C代码交互来传递数据。
@@ -68,7 +68,7 @@ What goes in a struct? 结构的构成和类一样：
 例如：
 struct Inner var x: I32 = 0 struct Outer embed inner_embed: Inner = Inner var inner_var: Inner = Inner 构造函数 与类的构造函数一样，结构体的构造函数也可以设置名称。之前讲过的有关Pony类构造函数的所有知识都适用于结构构造函数。
 struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It has no descriptor and thus can&#39;t be included in a union or intersection, or be a subtype of any interface.">
-<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="113">
 
 
@@ -317,7 +317,7 @@ struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It ha
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -347,12 +347,12 @@ struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It ha
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -373,7 +373,7 @@ struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It ha
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -654,7 +654,7 @@ struct Pointer[A] &quot;&quot;&quot; A Pointer[A] is a raw memory pointer. It ha
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p><code>结构体</code>和<code>类</code>有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的<a href="/c-ffi.html">C-FFI章</a>中更深入地讨论结构。这里只做简短介绍。</p>
+<p><code>结构体</code>和<code>类</code>有几个非常重要的区别。平时的Pony程序开发中一般都使用类，很少会使用结构。我们将在本教程的<a href="/pony-tutorial/c-ffi.html">C-FFI章</a>中更深入地讨论结构。这里只做简短介绍。</p>
 <!-- raw HTML omitted -->
 <h2 id="结构体是用来做外部交互的">结构体是用来做外部交互的</h2>
 <!-- raw HTML omitted -->
@@ -713,7 +713,7 @@ struct Outer
 <p>和类一样，结构体也可以有函数。对Pony类成员函数的所有内容也适用于结构。</p>
 <h2 id="well-see-structs-again">We&rsquo;ll see structs again</h2>
 <!-- raw HTML omitted -->
-<p>在Pony与C代码的交互中，结构体扮演着重要的角色。我们将在教程的<a href="/c-ffi.html">C-FFI部分</a>中详细讲解结构体。现在，我们不需要过多关注结构体。</p>
+<p>在Pony与C代码的交互中，结构体扮演着重要的角色。我们将在教程的<a href="/pony-tutorial/c-ffi.html">C-FFI部分</a>中详细讲解结构体。现在，我们不需要过多关注结构体。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | Reference Capability Matrix</title>
+    <title>Pony 教程  | 权能矩阵（Reference Capability Matrix）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,24 +45,48 @@
 
     
 
-    <meta property="og:title" content="Reference Capability Matrix" />
-<meta property="og:description" content="At this point, it&rsquo;s quite possible that you read the previous sections in this chapter and are still pretty confused about the relation between reference capabilities. It&rsquo;s okay! We have all struggled when learning this part of Pony, too. Once you start working on Pony code, you&rsquo;ll get a better intuition with them.
-In the meantime, if you still feel like all these tidbits in the chapter are still scrambled in your head, there is one resource often presented with Pony that can give you a more visual representation: the reference capability matrix." />
+    <meta property="og:title" content="权能矩阵（Reference Capability Matrix）" />
+<meta property="og:description" content="此时，您很可能已经阅读了本章前面的部分，仍然对引用权能之间的关系感到困惑。这是好的!当我们学习小马的这一部分时，我们也都很挣扎。一旦你开始编写小马代码，你就会对它们有一个更好的直觉。
+与此同时，如果您仍然觉得本章中的所有花絮仍在您的脑海中乱作一堆，那么有一种通常使用Pony提供的资源可以为您提供一种更直观的表示:即 引用权能矩阵（reference capability matrix）。
+它也是Pony中每个权能背后的概念的起源，意思是每个权能如何拒绝它所引用的某些属性——换句话说，这保证了权能的产生。在展示矩阵之前，我们会解释这到底是什么意思。
+Local and global aliases 首先，我们要澄清&quot;本地&quot;和&quot;全局&quot;别名的含义。
+局部别名是对存在于同一参与者中的相同变量的引用。当你传递一个值的时候，它不是一个actor行为的参数，这是我们使用的别名。
+另一方面，全局别名是对可以存在于_different actor中的相同变量的引用。也就是说，它描述了两个或多个参与者如何与同一个引用交互的属性。
+Pony中的每个引用权能实际上是一对局部保证和全局保证。例如，ref不否认参与者内部的任何读/写权能，但否认其他参与者对该引用的读或写权能。
+您可能还记得在[Reference Capability guarantee](guarantee .md)一节中提到，易变的引用不能在参与者之间安全地共享，而不可变的引用可以由多个参与者读取。一般来说，全局属性总是与引用的局部属性具有相同或更严格的限制—全局拒绝的内容也必须在局部拒绝。例如，不可能以全局或本地别名写入不可变引用。也不可能从不透明的引用tag读取或写入。因此，局部和全局别名的某些组合是不可能的，并且没有指定的权能。
+Reference capability matrix 言归正传，下面是引用权能矩阵:
+      Deny global read/write aliases Deny global write aliases Don&rsquo;t deny any global aliases     Deny local read/write aliases iso     Deny local write aliases trn val    Don&rsquo;t deny any local aliases ref box tag     (Mutable) (Immutable) (Opaque)     在矩阵的上下文中，&ldquo;拒绝某个权能&quot;意味着不允许该引用的任何其他别名执行该操作。例如，由于trn拒绝其他本地写别名(但允许读)，所以这是惟一允许对对象进行写的引用;由于它同时拒绝向其他参与者写入和读取别名，所以在这个actor中写入别名是安全的，因此是可变的。由于box不会破坏trn所做的任何保证(允许本地读取，但禁止全局写入)，所以我们可以为trn引用创建box别名。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/capability-matrix.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
-<meta itemprop="name" content="Reference Capability Matrix">
-<meta itemprop="description" content="At this point, it&rsquo;s quite possible that you read the previous sections in this chapter and are still pretty confused about the relation between reference capabilities. It&rsquo;s okay! We have all struggled when learning this part of Pony, too. Once you start working on Pony code, you&rsquo;ll get a better intuition with them.
-In the meantime, if you still feel like all these tidbits in the chapter are still scrambled in your head, there is one resource often presented with Pony that can give you a more visual representation: the reference capability matrix.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="918">
+<meta property="article:modified_time" content="2020-04-16T18:05:39+08:00" />
+<meta itemprop="name" content="权能矩阵（Reference Capability Matrix）">
+<meta itemprop="description" content="此时，您很可能已经阅读了本章前面的部分，仍然对引用权能之间的关系感到困惑。这是好的!当我们学习小马的这一部分时，我们也都很挣扎。一旦你开始编写小马代码，你就会对它们有一个更好的直觉。
+与此同时，如果您仍然觉得本章中的所有花絮仍在您的脑海中乱作一堆，那么有一种通常使用Pony提供的资源可以为您提供一种更直观的表示:即 引用权能矩阵（reference capability matrix）。
+它也是Pony中每个权能背后的概念的起源，意思是每个权能如何拒绝它所引用的某些属性——换句话说，这保证了权能的产生。在展示矩阵之前，我们会解释这到底是什么意思。
+Local and global aliases 首先，我们要澄清&quot;本地&quot;和&quot;全局&quot;别名的含义。
+局部别名是对存在于同一参与者中的相同变量的引用。当你传递一个值的时候，它不是一个actor行为的参数，这是我们使用的别名。
+另一方面，全局别名是对可以存在于_different actor中的相同变量的引用。也就是说，它描述了两个或多个参与者如何与同一个引用交互的属性。
+Pony中的每个引用权能实际上是一对局部保证和全局保证。例如，ref不否认参与者内部的任何读/写权能，但否认其他参与者对该引用的读或写权能。
+您可能还记得在[Reference Capability guarantee](guarantee .md)一节中提到，易变的引用不能在参与者之间安全地共享，而不可变的引用可以由多个参与者读取。一般来说，全局属性总是与引用的局部属性具有相同或更严格的限制—全局拒绝的内容也必须在局部拒绝。例如，不可能以全局或本地别名写入不可变引用。也不可能从不透明的引用tag读取或写入。因此，局部和全局别名的某些组合是不可能的，并且没有指定的权能。
+Reference capability matrix 言归正传，下面是引用权能矩阵:
+      Deny global read/write aliases Deny global write aliases Don&rsquo;t deny any global aliases     Deny local read/write aliases iso     Deny local write aliases trn val    Don&rsquo;t deny any local aliases ref box tag     (Mutable) (Immutable) (Opaque)     在矩阵的上下文中，&ldquo;拒绝某个权能&quot;意味着不允许该引用的任何其他别名执行该操作。例如，由于trn拒绝其他本地写别名(但允许读)，所以这是惟一允许对对象进行写的引用;由于它同时拒绝向其他参与者写入和读取别名，所以在这个actor中写入别名是安全的，因此是可变的。由于box不会破坏trn所做的任何保证(允许本地读取，但禁止全局写入)，所以我们可以为trn引用创建box别名。">
+<meta itemprop="dateModified" content="2020-04-16T18:05:39&#43;08:00" />
+<meta itemprop="wordCount" content="69">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Reference Capability Matrix"/>
-<meta name="twitter:description" content="At this point, it&rsquo;s quite possible that you read the previous sections in this chapter and are still pretty confused about the relation between reference capabilities. It&rsquo;s okay! We have all struggled when learning this part of Pony, too. Once you start working on Pony code, you&rsquo;ll get a better intuition with them.
-In the meantime, if you still feel like all these tidbits in the chapter are still scrambled in your head, there is one resource often presented with Pony that can give you a more visual representation: the reference capability matrix."/>
+<meta name="twitter:title" content="权能矩阵（Reference Capability Matrix）"/>
+<meta name="twitter:description" content="此时，您很可能已经阅读了本章前面的部分，仍然对引用权能之间的关系感到困惑。这是好的!当我们学习小马的这一部分时，我们也都很挣扎。一旦你开始编写小马代码，你就会对它们有一个更好的直觉。
+与此同时，如果您仍然觉得本章中的所有花絮仍在您的脑海中乱作一堆，那么有一种通常使用Pony提供的资源可以为您提供一种更直观的表示:即 引用权能矩阵（reference capability matrix）。
+它也是Pony中每个权能背后的概念的起源，意思是每个权能如何拒绝它所引用的某些属性——换句话说，这保证了权能的产生。在展示矩阵之前，我们会解释这到底是什么意思。
+Local and global aliases 首先，我们要澄清&quot;本地&quot;和&quot;全局&quot;别名的含义。
+局部别名是对存在于同一参与者中的相同变量的引用。当你传递一个值的时候，它不是一个actor行为的参数，这是我们使用的别名。
+另一方面，全局别名是对可以存在于_different actor中的相同变量的引用。也就是说，它描述了两个或多个参与者如何与同一个引用交互的属性。
+Pony中的每个引用权能实际上是一对局部保证和全局保证。例如，ref不否认参与者内部的任何读/写权能，但否认其他参与者对该引用的读或写权能。
+您可能还记得在[Reference Capability guarantee](guarantee .md)一节中提到，易变的引用不能在参与者之间安全地共享，而不可变的引用可以由多个参与者读取。一般来说，全局属性总是与引用的局部属性具有相同或更严格的限制—全局拒绝的内容也必须在局部拒绝。例如，不可能以全局或本地别名写入不可变引用。也不可能从不透明的引用tag读取或写入。因此，局部和全局别名的某些组合是不可能的，并且没有指定的权能。
+Reference capability matrix 言归正传，下面是引用权能矩阵:
+      Deny global read/write aliases Deny global write aliases Don&rsquo;t deny any global aliases     Deny local read/write aliases iso     Deny local write aliases trn val    Don&rsquo;t deny any local aliases ref box tag     (Mutable) (Immutable) (Opaque)     在矩阵的上下文中，&ldquo;拒绝某个权能&quot;意味着不允许该引用的任何其他别名执行该操作。例如，由于trn拒绝其他本地写别名(但允许读)，所以这是惟一允许对对象进行写的引用;由于它同时拒绝向其他参与者写入和读取别名，所以在这个actor中写入别名是安全的，因此是可变的。由于box不会破坏trn所做的任何保证(允许本地读取，但禁止全局写入)，所以我们可以为trn引用创建box别名。"/>
 
   </head>
 
@@ -296,7 +320,7 @@ In the meantime, if you still feel like all these tidbits in the chapter are sti
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -326,12 +350,12 @@ In the meantime, if you still feel like all these tidbits in the chapter are sti
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -352,7 +376,7 @@ In the meantime, if you still feel like all these tidbits in the chapter are sti
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -622,20 +646,29 @@ In the meantime, if you still feel like all these tidbits in the chapter are sti
                 
               引用权能（REFERENCE CAPABILITIES）
             </p>
-            <h1 class="f1 athelas mb1">Reference Capability Matrix</h1>
+            <h1 class="f1 athelas mb1">权能矩阵（Reference Capability Matrix）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>At this point, it&rsquo;s quite possible that you read the previous sections in this chapter and are still pretty confused about the relation between reference capabilities. It&rsquo;s okay! We have all struggled when learning this part of Pony, too. Once you start working on Pony code, you&rsquo;ll get a better intuition with them.</p>
-<p>In the meantime, if you still feel like all these tidbits in the chapter are still scrambled in your head, there is one resource often presented with Pony that can give you a more visual representation: the <strong>reference capability matrix</strong>.</p>
-<p>It is also the origin of the concept behind each capability in Pony, in the sense of how each capability denies certain properties to its reference &ndash; in other words, which guarantees a capability makes. We will explain what that actually means before presenting the matrix.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>此时，您很可能已经阅读了本章前面的部分，仍然对引用权能之间的关系感到困惑。这是好的!当我们学习小马的这一部分时，我们也都很挣扎。一旦你开始编写小马代码，你就会对它们有一个更好的直觉。</p>
+<!-- raw HTML omitted -->
+<p>与此同时，如果您仍然觉得本章中的所有花絮仍在您的脑海中乱作一堆，那么有一种通常使用Pony提供的资源可以为您提供一种更直观的表示:即 <strong>引用权能矩阵（reference capability matrix）</strong>。</p>
+<!-- raw HTML omitted -->
+<p>它也是Pony中每个权能背后的概念的起源，意思是每个权能如何拒绝它所引用的某些属性——换句话说，这保证了权能的产生。在展示矩阵之前，我们会解释这到底是什么意思。</p>
 <h2 id="local-and-global-aliases">Local and global aliases</h2>
-<p>Before anything else, we want to clarify what we mean by &ldquo;local&rdquo; and &ldquo;global&rdquo; aliases.</p>
-<p>A local alias is a reference to the same variable that exists in the same actor. Whenever you pass a value around, and it&rsquo;s not the argument of an actor&rsquo;s behavior, this is the kind of alias we are working with.</p>
-<p>On the other hand, a global alias is a reference to the same variable that can exist in a <em>different</em> actor. That is, it describes the properties of how two or more actors could interact with the same reference.</p>
-<p>Each reference capability in Pony is actually a pair of local guarantees and global guarantees. For instance, <code>ref</code> doesn&rsquo;t deny any read/write capabilities inside the actor, but denies other actors from reading or writing to that reference.</p>
-<p>You may recall from the <a href="guarantees.md">Reference Capability Guarantees</a> section that mutable references cannot be safely shared between actors, while immutable references can be read by multiple actors. In general, global properties are always as restrictive or more restrictive than the local properties to that reference - what is denied globally must also be denied locally. For example, it&rsquo;s not possible to write to an immutable reference in either a global or local alias. It&rsquo;s also not possible to read from or write to an opaque reference, <code>tag</code>. Therefore, some combinations of local and global aliases are impossible, and have no designated capabilities.</p>
+<!-- raw HTML omitted -->
+<p>首先，我们要澄清&quot;本地&quot;和&quot;全局&quot;别名的含义。</p>
+<!-- raw HTML omitted -->
+<p>局部别名是对存在于同一参与者中的相同变量的引用。当你传递一个值的时候，它不是一个actor行为的参数，这是我们使用的别名。</p>
+<!-- raw HTML omitted -->
+<p>另一方面，全局别名是对可以存在于_different actor中的相同变量的引用。也就是说，它描述了两个或多个参与者如何与同一个引用交互的属性。</p>
+<!-- raw HTML omitted -->
+<p>Pony中的每个引用权能实际上是一对局部保证和全局保证。例如，<code>ref</code>不否认参与者内部的任何读/写权能，但否认其他参与者对该引用的读或写权能。</p>
+<!-- raw HTML omitted -->
+<p>您可能还记得在[Reference Capability guarantee](guarantee .md)一节中提到，易变的引用不能在参与者之间安全地共享，而不可变的引用可以由多个参与者读取。一般来说，全局属性总是与引用的局部属性具有相同或更严格的限制—全局拒绝的内容也必须在局部拒绝。例如，不可能以全局或本地别名写入不可变引用。也不可能从不透明的引用<code>tag</code>读取或写入。因此，局部和全局别名的某些组合是不可能的，并且没有指定的权能。</p>
 <h2 id="reference-capability-matrix">Reference capability matrix</h2>
-<p>Without further ado, here&rsquo;s the reference capability matrix:</p>
+<!-- raw HTML omitted -->
+<p>言归正传，下面是引用权能矩阵:</p>
 <hr>
 <table>
 <thead>
@@ -674,16 +707,24 @@ In the meantime, if you still feel like all these tidbits in the chapter are sti
 </tbody>
 </table>
 <hr>
-<p>In the context of the matrix, &ldquo;denying a capability&rdquo; means that any other alias to that reference is not allowed to do that action. For example, since <code>trn</code> denies other local write aliases (but allows reads), this is the only reference that allows writing to the object; and since it denies both read and write aliases to other actors, it&rsquo;s safe to write inside this actor, thus being mutable. And since <code>box</code> does not break any guarantees that <code>trn</code> makes (local reads are allowed, but global writes are forbidden), we can create <code>box</code> aliases to a <code>trn</code> reference.</p>
-<p>You&rsquo;ll notice that the top-right side is empty. That&rsquo;s because, as previously discussed, we cannot make any local guarantees that are more restrictive than the global guarantees, or we&rsquo;d end up with invalid capabilities that could be written to in this actor but read somewehre else at the same time.</p>
-<p>The matrix also helps visualizing other concepts previously discussed in this chapter:</p>
+<!-- raw HTML omitted -->
+<p>在矩阵的上下文中，&ldquo;拒绝某个权能&quot;意味着不允许该引用的任何其他别名执行该操作。例如，由于<code>trn</code>拒绝其他本地写别名(但允许读)，所以这是惟一允许对对象进行写的引用;由于它同时拒绝向其他参与者写入和读取别名，所以在这个actor中写入别名是安全的，因此是可变的。由于<code>box</code>不会破坏<code>trn</code>所做的任何保证(允许本地读取，但禁止全局写入)，所以我们可以为<code>trn</code>引用创建<code>box</code>别名。</p>
+<!-- raw HTML omitted -->
+<p>你会发现右上角是空的。这是因为，正如前面所讨论的，我们不能做出比全局保证更具限制性的任何局部保证，否则我们将以无效的权能结束，这些权能可以在这个actor中写入，但同时读取其他内容。</p>
+<!-- raw HTML omitted -->
+<p>矩阵还有助于可视化其他概念之前在本章讨论:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li><strong>Sendable capabilities</strong>. If we want to send references to a different actor, we must make sure that the global and local aliases make the same guarantees. It&rsquo;d be unsafe to send a <code>trn</code> to another actor, since we could possibly hold <code>box</code> references locally. Only <code>iso</code>, <code>val</code>, and <code>tag</code> have the same global and local restrictions – all of which are in the main diagonal of the matrix.</li>
-<li><strong>Ephemeral subtyping</strong>. If we have an ephemeral capability (for instance, <code>iso^</code> after consuming an isolated variable), we can be more permissive for the new alias, i.e. remove restrictions, such as allowing local aliases with read capabilities, and receive the reference into a <code>trn^</code>; or both read and write, which gives us <code>ref</code>. The same is true for more global alias, and we can get <code>val</code>, <code>box</code>, or <code>tag</code>. Visually, this would be equivalent to walking downwards and/or to-the-right starting from the capability in the matrix.</li>
-<li><strong>Recovering capabilities</strong>. This is when we &ldquo;lift&rdquo; a capability, from a mutable reference to <code>iso</code> or an immutable reference to <code>val</code>. The matrix equivalent would be walking upwards starting from the capability – quite literally lifting in this case.</li>
-<li><strong>Aliasing</strong>. With a bit more of imagination, it&rsquo;s possible to picture aliasing <code>iso</code> and <code>trn</code> as reflecting them on the secondary diagonal of the matrix onto <code>tag</code> and <code>box</code>, respectively. The reason for that lies on which restrictions arise from the local guarantees. An <code>iso</code> doesn&rsquo;t allow different aliases to read or write, which <code>tag</code> enforces; and <code>trn</code> doesn&rsquo;t allow different aliases to write but allows them to do local reads, fitting <code>box</code>'s restrictions.</li>
+<li><strong>Sendable capabilities</strong>。如果我们希望将引用发送给不同的参与者，我们必须确保全局别名和本地别名做出相同的保证。将<code>trn</code>发送给另一个演员是不安全的，因为我们可能在本地保存<code>box</code>引用。只有<code>iso</code>、<code>val</code>和<code>tag</code>具有相同的全局和局部限制—所有这些都在矩阵的主对角线上。</li>
+<li><strong>Ephemeral subtyping</strong>。如果我们有一个临时的权能(例如，<code>iso^</code>在使用了一个单独的变量之后)，我们可以对新的别名更加宽容，例如删除限制，例如允许本地别名具有读取权能，并将引用接收到一个<code>trn^</code>;或者是读和写，这给了我们<code>ref</code>。对于更多的全局别名也是如此，我们可以得到<code>val</code>、<code>box</code>或<code>tag</code>。从视觉上看，这相当于从矩阵的权能开始向下走和/或向右走。</li>
+<li><strong>Recovering capabilities</strong>。这就是我们<code>提升</code>一个权能的时候，从一个可变的引用提升到<code>iso</code>，或者从一个不可变的引用提升到<code>val</code>。矩阵等价物将会从权能开始向上走-在这种情况下相当字面地提升。</li>
+<li><strong>Aliasing</strong>。想象一下，你可以把<code>iso</code>和<code>trn</code>的别名分别映射到矩阵的次对角线上的<code>tag</code>和<code>box</code>上。其原因在于哪些限制是由地方担保产生的。<code>iso</code>不允许不同的别名读取或写入，而<code>标签</code>则强制执行;<code>trn</code>不允许不同的别名写入，但允许他们做本地读取，符合<code>box</code>的限制。</li>
 </ul>
-<p>We want to emphasize that trying to apply the reference capability matrix to some capabilities problems is not guaranteed to work (viewpoint adaptation is one example). The matrix is the original definition of the reference capabilities, presented here as a mnemonic device. Whenever you struggle with reference capabilities, we recommend that you reread the corresponding section of this chapter to understand why something is not allowed by the compiler.</p>
+<!-- raw HTML omitted -->
+<p>我们想要强调的是，试图将引用权能矩阵应用于某些权能问题并不能保证一定有效(视点适应就是一个例子)。矩阵是引用权能的原始定义，在这里作为助记设备给出。每当您遇到引用权能方面的困难时，我们建议您重新阅读本章相应的部分，以理解为什么编译器不允许某些东西。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

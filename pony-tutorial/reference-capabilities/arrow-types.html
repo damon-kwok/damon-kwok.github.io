@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | Arrow Types aka Viewpoints</title>
+    <title>Pony 教程  | 箭头的用法（Arrow Types aka Viewpoints）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,27 +45,63 @@
 
     
 
-    <meta property="og:title" content="Arrow Types aka Viewpoints" />
-<meta property="og:description" content="When we talked about reference capability composition and viewpoint adaptation, we dealt with cases where we know the reference capability of the origin. However, sometimes we don&rsquo;t know the precise reference capability of the origin.
-When that happens, we can write a viewpoint adapted type, which we call an arrow type because we write it with an -&gt;.
-Using this-&gt; as a viewpoint A function with a box receiver can be called with a ref receiver or a val receiver as well since those are both subtypes of box." />
+    <meta property="og:title" content="箭头的用法（Arrow Types aka Viewpoints）" />
+<meta property="og:description" content="当我们讨论了 引用权能组合 和 观点适应 时，我们处理了我们知道来源的引用权能的情况。然而，有时我们并不知道原点的精确引用权能。
+当这种情况发生时，我们可以编写一个适合类型为 的视角 ，我们称其为一个 型箭头 ，因为我们用一个-&gt;来编写它。
+Using this-&gt; as a viewpoint 带有box接收器的函数也可以用ref接收器或val接收器来调用，因为它们都是box的子类型。有时，我们希望能够讨论一种类型来考虑这一点。例如:
+class Wombat var _friend: Wombat fun friend(): this-&gt;Wombat =&gt; _friend 在这里，我们有一个袋熊，每个袋熊都有一个同样是袋熊的朋友(幸运的袋熊)。事实上，它是一个Wombat ref，因为ref是Wombat的默认引用权能(因为我们没有指定一个)。我们还有一个函数返回那个朋友。它有一个box接收器(因为box是一个函数的默认接收器引用权能，如果我们不指定它的话)。
+所以返回类型通常是袋熊盒子。为什么?因为，正如我们前面看到的，当我们从一个box源读取一个ref字段时，我们会得到一个box。在本例中，原点是接收器，它是一个方框。
+但是等等!如果我们想要一个函数，在接收方是ref时返回Wombat ref，在接收方是val时返回Wombat val，在接收方是box时返回Wombat box，那该怎么办?我们不想把这个函数写三遍。
+我们使用this-&gt;！在这种情况下，this-&gt;Wombat。它的意思是&quot;接收者看到的Wombat ref&rdquo;。
+我们知道在 call站点上 ，接收方的实际引用权能是什么。因此，当函数被调用时，编译器知道它需要知道的一切，以使其正确。
+Using a type parameter as a viewpoint 我们还没有涉及泛型，所以这看起来有点奇怪。当我们讨论泛型(即参数化类型)时，我们将再次讨论这个问题，但是我们在这里提到它是为了完整性。
+另一种情况是，我们不知道某个东西的精确引用权能，即我们是否使用了类型参数。下面是来自标准库的一个例子:
+class ListValues[A, N: ListNode[A] box] is Iterator[N-&gt;A] 这里，我们有一个ListValues类型，它有两个类型参数a和N。此外，N还有一个约束:它必须是ListNode[a] box的子类型。这很好，但我们也说ListValues[A, N]提供了Iterator[N-&gt;A]。这就是有趣的地方:我们提供了一个接口，让我们对类型N-&gt;A的值进行迭代。
+这意味着我们将返回类型为A的对象，但是引用权能将与类型为N的对象看到类型为A的对象相同。
+Using box-&gt; as a viewpoint 还有一种使用箭头类型的方法，它也与泛型有关。有时，我们希望讨论某个类型参数，因为它是由某个未知类型看到的，as long as该类型可以读取type parameter 。
+换句话说，未知类型将是box的子类型，但我们只知道这些。下面是来自标准库的一个例子:
+interface Comparable[A: Comparable[A] box] fun eq(that: box-&gt;A): Bool =&gt; this is that fun ne(that: box-&gt;A): Bool =&gt; not eq(that) 在这里，我们说一个东西是‘Comparable[A]’，当且仅当它有函数‘eq’和‘ne’，而这些函数有一个类型为‘box-&gt;A’的参数并返回一个‘Bool’时。换句话说，不管A与什么有关，我们只需要能够读懂它。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/arrow-types.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
-<meta itemprop="name" content="Arrow Types aka Viewpoints">
-<meta itemprop="description" content="When we talked about reference capability composition and viewpoint adaptation, we dealt with cases where we know the reference capability of the origin. However, sometimes we don&rsquo;t know the precise reference capability of the origin.
-When that happens, we can write a viewpoint adapted type, which we call an arrow type because we write it with an -&gt;.
-Using this-&gt; as a viewpoint A function with a box receiver can be called with a ref receiver or a val receiver as well since those are both subtypes of box.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="628">
+<meta property="article:modified_time" content="2020-04-16T18:05:39+08:00" />
+<meta itemprop="name" content="箭头的用法（Arrow Types aka Viewpoints）">
+<meta itemprop="description" content="当我们讨论了 引用权能组合 和 观点适应 时，我们处理了我们知道来源的引用权能的情况。然而，有时我们并不知道原点的精确引用权能。
+当这种情况发生时，我们可以编写一个适合类型为 的视角 ，我们称其为一个 型箭头 ，因为我们用一个-&gt;来编写它。
+Using this-&gt; as a viewpoint 带有box接收器的函数也可以用ref接收器或val接收器来调用，因为它们都是box的子类型。有时，我们希望能够讨论一种类型来考虑这一点。例如:
+class Wombat var _friend: Wombat fun friend(): this-&gt;Wombat =&gt; _friend 在这里，我们有一个袋熊，每个袋熊都有一个同样是袋熊的朋友(幸运的袋熊)。事实上，它是一个Wombat ref，因为ref是Wombat的默认引用权能(因为我们没有指定一个)。我们还有一个函数返回那个朋友。它有一个box接收器(因为box是一个函数的默认接收器引用权能，如果我们不指定它的话)。
+所以返回类型通常是袋熊盒子。为什么?因为，正如我们前面看到的，当我们从一个box源读取一个ref字段时，我们会得到一个box。在本例中，原点是接收器，它是一个方框。
+但是等等!如果我们想要一个函数，在接收方是ref时返回Wombat ref，在接收方是val时返回Wombat val，在接收方是box时返回Wombat box，那该怎么办?我们不想把这个函数写三遍。
+我们使用this-&gt;！在这种情况下，this-&gt;Wombat。它的意思是&quot;接收者看到的Wombat ref&rdquo;。
+我们知道在 call站点上 ，接收方的实际引用权能是什么。因此，当函数被调用时，编译器知道它需要知道的一切，以使其正确。
+Using a type parameter as a viewpoint 我们还没有涉及泛型，所以这看起来有点奇怪。当我们讨论泛型(即参数化类型)时，我们将再次讨论这个问题，但是我们在这里提到它是为了完整性。
+另一种情况是，我们不知道某个东西的精确引用权能，即我们是否使用了类型参数。下面是来自标准库的一个例子:
+class ListValues[A, N: ListNode[A] box] is Iterator[N-&gt;A] 这里，我们有一个ListValues类型，它有两个类型参数a和N。此外，N还有一个约束:它必须是ListNode[a] box的子类型。这很好，但我们也说ListValues[A, N]提供了Iterator[N-&gt;A]。这就是有趣的地方:我们提供了一个接口，让我们对类型N-&gt;A的值进行迭代。
+这意味着我们将返回类型为A的对象，但是引用权能将与类型为N的对象看到类型为A的对象相同。
+Using box-&gt; as a viewpoint 还有一种使用箭头类型的方法，它也与泛型有关。有时，我们希望讨论某个类型参数，因为它是由某个未知类型看到的，as long as该类型可以读取type parameter 。
+换句话说，未知类型将是box的子类型，但我们只知道这些。下面是来自标准库的一个例子:
+interface Comparable[A: Comparable[A] box] fun eq(that: box-&gt;A): Bool =&gt; this is that fun ne(that: box-&gt;A): Bool =&gt; not eq(that) 在这里，我们说一个东西是‘Comparable[A]’，当且仅当它有函数‘eq’和‘ne’，而这些函数有一个类型为‘box-&gt;A’的参数并返回一个‘Bool’时。换句话说，不管A与什么有关，我们只需要能够读懂它。">
+<meta itemprop="dateModified" content="2020-04-16T18:05:39&#43;08:00" />
+<meta itemprop="wordCount" content="89">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Arrow Types aka Viewpoints"/>
-<meta name="twitter:description" content="When we talked about reference capability composition and viewpoint adaptation, we dealt with cases where we know the reference capability of the origin. However, sometimes we don&rsquo;t know the precise reference capability of the origin.
-When that happens, we can write a viewpoint adapted type, which we call an arrow type because we write it with an -&gt;.
-Using this-&gt; as a viewpoint A function with a box receiver can be called with a ref receiver or a val receiver as well since those are both subtypes of box."/>
+<meta name="twitter:title" content="箭头的用法（Arrow Types aka Viewpoints）"/>
+<meta name="twitter:description" content="当我们讨论了 引用权能组合 和 观点适应 时，我们处理了我们知道来源的引用权能的情况。然而，有时我们并不知道原点的精确引用权能。
+当这种情况发生时，我们可以编写一个适合类型为 的视角 ，我们称其为一个 型箭头 ，因为我们用一个-&gt;来编写它。
+Using this-&gt; as a viewpoint 带有box接收器的函数也可以用ref接收器或val接收器来调用，因为它们都是box的子类型。有时，我们希望能够讨论一种类型来考虑这一点。例如:
+class Wombat var _friend: Wombat fun friend(): this-&gt;Wombat =&gt; _friend 在这里，我们有一个袋熊，每个袋熊都有一个同样是袋熊的朋友(幸运的袋熊)。事实上，它是一个Wombat ref，因为ref是Wombat的默认引用权能(因为我们没有指定一个)。我们还有一个函数返回那个朋友。它有一个box接收器(因为box是一个函数的默认接收器引用权能，如果我们不指定它的话)。
+所以返回类型通常是袋熊盒子。为什么?因为，正如我们前面看到的，当我们从一个box源读取一个ref字段时，我们会得到一个box。在本例中，原点是接收器，它是一个方框。
+但是等等!如果我们想要一个函数，在接收方是ref时返回Wombat ref，在接收方是val时返回Wombat val，在接收方是box时返回Wombat box，那该怎么办?我们不想把这个函数写三遍。
+我们使用this-&gt;！在这种情况下，this-&gt;Wombat。它的意思是&quot;接收者看到的Wombat ref&rdquo;。
+我们知道在 call站点上 ，接收方的实际引用权能是什么。因此，当函数被调用时，编译器知道它需要知道的一切，以使其正确。
+Using a type parameter as a viewpoint 我们还没有涉及泛型，所以这看起来有点奇怪。当我们讨论泛型(即参数化类型)时，我们将再次讨论这个问题，但是我们在这里提到它是为了完整性。
+另一种情况是，我们不知道某个东西的精确引用权能，即我们是否使用了类型参数。下面是来自标准库的一个例子:
+class ListValues[A, N: ListNode[A] box] is Iterator[N-&gt;A] 这里，我们有一个ListValues类型，它有两个类型参数a和N。此外，N还有一个约束:它必须是ListNode[a] box的子类型。这很好，但我们也说ListValues[A, N]提供了Iterator[N-&gt;A]。这就是有趣的地方:我们提供了一个接口，让我们对类型N-&gt;A的值进行迭代。
+这意味着我们将返回类型为A的对象，但是引用权能将与类型为N的对象看到类型为A的对象相同。
+Using box-&gt; as a viewpoint 还有一种使用箭头类型的方法，它也与泛型有关。有时，我们希望讨论某个类型参数，因为它是由某个未知类型看到的，as long as该类型可以读取type parameter 。
+换句话说，未知类型将是box的子类型，但我们只知道这些。下面是来自标准库的一个例子:
+interface Comparable[A: Comparable[A] box] fun eq(that: box-&gt;A): Bool =&gt; this is that fun ne(that: box-&gt;A): Bool =&gt; not eq(that) 在这里，我们说一个东西是‘Comparable[A]’，当且仅当它有函数‘eq’和‘ne’，而这些函数有一个类型为‘box-&gt;A’的参数并返回一个‘Bool’时。换句话说，不管A与什么有关，我们只需要能够读懂它。"/>
 
   </head>
 
@@ -299,7 +335,7 @@ Using this-&gt; as a viewpoint A function with a box receiver can be called with
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -329,12 +365,12 @@ Using this-&gt; as a viewpoint A function with a box receiver can be called with
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -355,7 +391,7 @@ Using this-&gt; as a viewpoint A function with a box receiver can be called with
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -626,35 +662,50 @@ Using this-&gt; as a viewpoint A function with a box receiver can be called with
                 
               引用权能（REFERENCE CAPABILITIES）
             </p>
-            <h1 class="f1 athelas mb1">Arrow Types aka Viewpoints</h1>
+            <h1 class="f1 athelas mb1">箭头的用法（Arrow Types aka Viewpoints）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>When we talked about <strong>reference capability composition</strong> and <strong>viewpoint adaptation</strong>, we dealt with cases where we know the reference capability of the origin. However, sometimes we don&rsquo;t know the precise reference capability of the origin.</p>
-<p>When that happens, we can write a <strong>viewpoint adapted type</strong>, which we call an <strong>arrow type</strong> because we write it with an <code>-&gt;</code>.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>当我们讨论了 <em>引用权能组合</em> 和 <em>观点适应</em> 时，我们处理了我们知道来源的引用权能的情况。然而，有时我们并不知道原点的精确引用权能。</p>
+<!-- raw HTML omitted -->
+<p>当这种情况发生时，我们可以编写一个适合类型为 <strong>的视角</strong> ，我们称其为一个 <strong>型箭头</strong> ，因为我们用一个<code>-&gt;</code>来编写它。</p>
 <h2 id="using-this--as-a-viewpoint">Using <code>this-&gt;</code> as a viewpoint</h2>
-<p>A function with a <code>box</code> receiver can be called with a <code>ref</code> receiver or a <code>val</code> receiver as well since those are both subtypes of <code>box</code>. Sometimes, we want to be able to talk about a type to take this into account. For example:</p>
+<!-- raw HTML omitted -->
+<p>带有<code>box</code>接收器的函数也可以用<code>ref</code>接收器或<code>val</code>接收器来调用，因为它们都是<code>box</code>的子类型。有时，我们希望能够讨论一种类型来考虑这一点。例如:</p>
 <pre><code class="language-pony" data-lang="pony">class Wombat
   var _friend: Wombat
 
   fun friend(): this-&gt;Wombat =&gt; _friend
-</code></pre><p>Here, we have a <code>Wombat</code>, and every <code>Wombat</code> has a friend that&rsquo;s also a <code>Wombat</code> (lucky <code>Wombat</code>). In fact, it&rsquo;s a <code>Wombat ref</code>, since <code>ref</code> is the default reference capability for a <code>Wombat</code> (since we didn&rsquo;t specify one). We also have a function that returns that friend. It&rsquo;s got a <code>box</code> receiver (because <code>box</code> is the default receiver reference capability for a function if we don&rsquo;t specify it).</p>
-<p>So the return type would normally be a <code>Wombat box</code>. Why&rsquo;s that? Because, as we saw earlier, when we read a <code>ref</code> field from a <code>box</code> origin, we get a <code>box</code>. In this case, the origin is the receiver, which is a <code>box</code>.</p>
-<p>But wait! What if we want a function that can return a <code>Wombat ref</code> when the receiver is a <code>ref</code>, a <code>Wombat val</code> when the receiver is a <code>val</code>, and a <code>Wombat box</code> when the receiver is a <code>box</code>? We don&rsquo;t want to have to write the function three times.</p>
-<p>We use <code>this-&gt;</code>! In this case, <code>this-&gt;Wombat</code>. It means &ldquo;a <code>Wombat ref</code> as seen by the receiver&rdquo;.</p>
-<p>We know at the <em>call site</em> what the real reference capability of the receiver is. So when the function is called, the compiler knows everything it needs to know to get this right.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在这里，我们有一个<code>袋熊</code>，每个<code>袋熊</code>都有一个同样是<code>袋熊</code>的朋友(幸运的<code>袋熊</code>)。事实上，它是一个<code>Wombat ref</code>，因为<code>ref</code>是<code>Wombat</code>的默认引用权能(因为我们没有指定一个)。我们还有一个函数返回那个朋友。它有一个<code>box</code>接收器(因为<code>box</code>是一个函数的默认接收器引用权能，如果我们不指定它的话)。</p>
+<!-- raw HTML omitted -->
+<p>所以返回类型通常是<code>袋熊盒子</code>。为什么?因为，正如我们前面看到的，当我们从一个<code>box</code>源读取一个<code>ref</code>字段时，我们会得到一个<code>box</code>。在本例中，原点是接收器，它是一个<code>方框</code>。</p>
+<!-- raw HTML omitted -->
+<p>但是等等!如果我们想要一个函数，在接收方是<code>ref</code>时返回<code>Wombat ref</code>，在接收方是<code>val</code>时返回<code>Wombat val</code>，在接收方是<code>box</code>时返回<code>Wombat box</code>，那该怎么办?我们不想把这个函数写三遍。</p>
+<!-- raw HTML omitted -->
+<p>我们使用<code>this-&gt;</code>！在这种情况下，<code>this-&gt;Wombat</code>。它的意思是&quot;接收者看到的<code>Wombat ref</code>&rdquo;。</p>
+<!-- raw HTML omitted -->
+<p>我们知道在 <em>call站点上</em> ，接收方的实际引用权能是什么。因此，当函数被调用时，编译器知道它需要知道的一切，以使其正确。</p>
 <h2 id="using-a-type-parameter-as-a-viewpoint">Using a type parameter as a viewpoint</h2>
-<p>We haven&rsquo;t covered generics yet, so this may seem a little weird. We&rsquo;ll cover this again when we talk about generics (i.e. parameterised types), but we&rsquo;re mentioning it here for completeness.</p>
-<p>Another time we don&rsquo;t know the precise reference capability of something is if we are using a type parameter. Here&rsquo;s an example from the standard library:</p>
+<!-- raw HTML omitted -->
+<p>我们还没有涉及泛型，所以这看起来有点奇怪。当我们讨论泛型(即参数化类型)时，我们将再次讨论这个问题，但是我们在这里提到它是为了完整性。</p>
+<!-- raw HTML omitted -->
+<p>另一种情况是，我们不知道某个东西的精确引用权能，即我们是否使用了类型参数。下面是来自标准库的一个例子:</p>
 <pre><code class="language-pony" data-lang="pony">class ListValues[A, N: ListNode[A] box] is Iterator[N-&gt;A]
-</code></pre><p>Here, we have a <code>ListValues</code> type that has two type parameters, <code>A</code> and <code>N</code>. In addition, <code>N</code> has a constraint: it has to be a subtype of <code>ListNode[A] box</code>. That&rsquo;s all fine and well, but we also say the <code>ListValues[A, N]</code> provides <code>Iterator[N-&gt;A]</code>. That&rsquo;s the interesting bit: we provide an interface that let&rsquo;s us iterate over values of the type <code>N-&gt;A</code>.</p>
-<p>That means we&rsquo;ll be returning objects of the type <code>A</code>, but the reference capability will be the same as an object of type <code>N</code> would see an object of type <code>A</code>.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这里，我们有一个<code>ListValues</code>类型，它有两个类型参数<code>a</code>和<code>N</code>。此外，<code>N</code>还有一个约束:它必须是<code>ListNode[a] box</code>的子类型。这很好，但我们也说<code>ListValues[A, N]</code>提供了<code>Iterator[N-&gt;A]</code>。这就是有趣的地方:我们提供了一个接口，让我们对类型<code>N-&gt;A</code>的值进行迭代。</p>
+<!-- raw HTML omitted -->
+<p>这意味着我们将返回类型为<code>A</code>的对象，但是引用权能将与类型为<code>N</code>的对象看到类型为<code>A</code>的对象相同。</p>
 <h2 id="using-box--as-a-viewpoint">Using <code>box-&gt;</code> as a viewpoint</h2>
-<p>There&rsquo;s one more way we use arrow types, and it&rsquo;s also related to generics. Sometimes we want to talk about a type parameter as it is seen by some unknown type, <em>as long as that type can read the type parameter</em>.</p>
-<p>In other words, the unknown type will be a subtype of <code>box</code>, but that&rsquo;s all we know. Here&rsquo;s an example from the standard library:</p>
+<!-- raw HTML omitted -->
+<p>还有一种使用箭头类型的方法，它也与泛型有关。有时，我们希望讨论某个类型参数，因为它是由某个未知类型看到的，<em>as long as该类型可以读取type parameter</em> 。</p>
+<!-- raw HTML omitted -->
+<p>换句话说，未知类型将是<code>box</code>的子类型，但我们只知道这些。下面是来自标准库的一个例子:</p>
 <pre><code class="language-pony" data-lang="pony">interface Comparable[A: Comparable[A] box]
   fun eq(that: box-&gt;A): Bool =&gt; this is that
   fun ne(that: box-&gt;A): Bool =&gt; not eq(that)
-</code></pre><p>Here, we say that something is <code>Comparable[A]</code> if and only if it has functions <code>eq</code> and <code>ne</code> and those functions have a single parameter of type <code>box-&gt;A</code> and return a <code>Bool</code>. In other words, whatever <code>A</code> is bound to, we only need to be able to read it.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在这里，我们说一个东西是‘Comparable[A]’，当且仅当它有函数‘eq’和‘ne’，而这些函数有一个类型为‘box-&gt;A’的参数并返回一个‘Bool’时。换句话说，不管A与什么有关，我们只需要能够读懂它。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

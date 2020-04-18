@@ -51,12 +51,12 @@ In math, divide by zero is undefined. There is no answer to that question as the
 Divide by zero in Pony In Pony, integer division by zero results in zero." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/gotchas/divide-by-zero.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="Divide by Zero">
 <meta itemprop="description" content="What&rsquo;s 1 divided by 0? How about 10 divided by 0? What is the result you get in your favorite programming language?
 In math, divide by zero is undefined. There is no answer to that question as the expression 1/0 has no meaning. In many programming languages, the answer is a runtime exception that the user has to handle. In Pony, things are a bit different.
 Divide by zero in Pony In Pony, integer division by zero results in zero.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="349">
 
 
@@ -299,7 +299,7 @@ Divide by zero in Pony In Pony, integer division by zero results in zero."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -329,12 +329,12 @@ Divide by zero in Pony In Pony, integer division by zero results in zero."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -355,7 +355,7 @@ Divide by zero in Pony In Pony, integer division by zero results in zero."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -637,7 +637,7 @@ Divide by zero in Pony In Pony, integer division by zero results in zero."/>
 <p>In Pony, <em>integer division by zero results in zero</em>. That&rsquo;s right,</p>
 <pre><code class="language-pony" data-lang="pony">let x = I64(1) / I64(0)
 </code></pre><p>results in <code>0</code> being assigned to <code>x</code>. Baffling right? Well, yes and no. From a mathematical standpoint, it is very much baffling. From a practical standpoint, it is very much not.</p>
-<p>While Pony has <a href="/expressions/arithmetic.html#partial-and-checked-arithmetic">Partial division</a>:</p>
+<p>While Pony has <a href="/pony-tutorial/expressions/arithmetic.html#partial-and-checked-arithmetic">Partial division</a>:</p>
 <pre><code class="language-pony" data-lang="pony">let x =
   try
     I64(1) /? I64(0)
@@ -645,13 +645,13 @@ Divide by zero in Pony In Pony, integer division by zero results in zero."/>
     // handle division by zero
   end
 </code></pre><p>Defining division as partial leads to code littered with <code>try</code>s attempting to deal with the possibility of division by zero. Even if you had asserted that your denominator was not zero, you&rsquo;d still need to protect against divide by zero because, at this time, the compiler can&rsquo;t detect that value dependend typing.</p>
-<p>Pony also offers <a href="/expressions/arithmetic.html#unsafe-arithmetic">Unsafe Division</a>, which declares division by zero as undefined, as in C:</p>
+<p>Pony also offers <a href="/pony-tutorial/expressions/arithmetic.html#unsafe-arithmetic">Unsafe Division</a>, which declares division by zero as undefined, as in C:</p>
 <pre><code class="language-pony" data-lang="pony">// the value of x is undefined
 let x = I64(1) /~ I64(0)
-</code></pre><p>But declaring this case as undefined does not help us out here. As a programmer you&rsquo;d still need to guard that case in order to not poison your program with undefined values or risking terminating your program with a <code>SIGFPE</code>. So, in order to maintain a practical API and avoid undefined behaviour, <em>normal</em> division on integers in Pony is defined to be <code>0</code>. To avoid <code>0</code>s silently creeping through your divisions, use <a href="/expressions/arithmetic.html#partial-and-checked-arithmetic">Partial or Checked Division</a>.</p>
+</code></pre><p>But declaring this case as undefined does not help us out here. As a programmer you&rsquo;d still need to guard that case in order to not poison your program with undefined values or risking terminating your program with a <code>SIGFPE</code>. So, in order to maintain a practical API and avoid undefined behaviour, <em>normal</em> division on integers in Pony is defined to be <code>0</code>. To avoid <code>0</code>s silently creeping through your divisions, use <a href="/pony-tutorial/expressions/arithmetic.html#partial-and-checked-arithmetic">Partial or Checked Division</a>.</p>
 <h3 id="divide-by-zero-on-floating-points">Divide by zero on floating points</h3>
 <p>In conformance with IEEE 754, <em>floating point division by zero results in <code>inf</code> or <code>-inf</code></em>, depending on the sign of the numerator.</p>
-<p>If you can assert that your denominator cannot be <code>0</code>, it is possible to use <a href="/expressions/arithmetic.html#floating-point">Unsafe Division</a> to gain some performance:</p>
+<p>If you can assert that your denominator cannot be <code>0</code>, it is possible to use <a href="/pony-tutorial/expressions/arithmetic.html#floating-point">Unsafe Division</a> to gain some performance:</p>
 <pre><code class="language-pony" data-lang="pony">let x = F64(1.5) /~ F64(0.5)
 </code></pre></main>
         </div>

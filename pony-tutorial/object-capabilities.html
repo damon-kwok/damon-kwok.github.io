@@ -290,7 +290,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -320,12 +320,12 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -346,7 +346,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -607,9 +607,12 @@
             <h1 class="f1 athelas mb1">概述（Overview）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>If you are reading this tutorial in order, you&rsquo;ve just finished the reference capabilities chapter and your brain probably hurts. We&rsquo;re sorry about that. Hopefully object capabilities, while a new concept, are less mind bending.</p>
-<p>We touched on object capabilities previously in the tutorial, this chapter will dig in more. So, what is an object capability?</p>
-<p>A capability is the ability to do &ldquo;something&rdquo;. Usually that &ldquo;something&rdquo; involves an external resource that you might want access to; like the filesystem or the network. This is called an object capability. Object capabilities have appeared in a number of programming languages including <a href="https://en.wikipedia.org/wiki/E_%28programming_language%29">E</a>.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>如果您正在按顺序阅读本教程，那么您刚刚完成了参考功能一章，您的大脑可能会感到疼痛。我们对此表示抱歉。希望对象能力，虽然是一个新概念，是较少的精神弯曲。</p>
+<!-- raw HTML omitted -->
+<p>我们在之前的教程中提到过对象功能，本章将深入探讨。那么，什么是对象功能？</p>
+<!-- raw HTML omitted -->
+<p>能力是做&quot;某事&quot;的能力。通常，&ldquo;某物&quot;涉及您可能希望访问的外部资源;比如文件系统或网络。这称为对象功能。对象功能已经出现在许多编程语言中，包括<a href="https://en.wikipedia.org/wiki/E_%28programming_language%29">E</a>。</p>
 
 
 
@@ -629,9 +632,19 @@
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
         <p>Pony的类型安装系统是构建在对象权能模型的理论基础上的。感觉上很复杂，但是其实非常简单优雅，这是对象权能模型的核心概念：
- A capability is an unforgeable token that (a) designates an object and (b) gives the program the authority to perform a specific set of actions on that object.
- So what&rsquo;s that token? It&rsquo;s an address. A pointer. A reference. It&rsquo;s just&hellip; an object.
-How is that unforgeable? Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can&rsquo;t be &ldquo;invented&rdquo; (i.e. forged) by the program.</p>
+ 权能是一个不可伪造的令牌，它(a)指定一个对象，(b)授予程序对该对象执行特定操作集的权限。
+ 那代币是什么?这是一个地址。一个指针。一个引用。它只是&hellip;一个对象。
+这怎么可能是不可伪造的呢? 由于Pony没有指针算法，并且是类型安全的，内存安全的，对象引用不能被程序“发明”(即伪造)。您只能通过构造一个对象或传递一个对象来获得一个。
+那么C FFI呢? 使用信用证可以打破这一保证。稍后我们将讨论如何控制边界。
+那么全局变量呢? 他们是坏的!因为您可以在不构造它们或不传递它们的情况下获得它们。
+全局变量是所谓的_ambient authority_的一种形式。环境权限的另一种形式是不受约束地访问文件系统。
+Pony没有全局变量，也没有全局函数。这并不意味着所有的环境权限都神奇地消失了——例如，我们仍然需要注意文件系统。没有全局权限对于消除环境权限是必要的，但还不够。
+这有什么用呢? 与使用权限列表、访问控制列表或其他形式的安全性不同，对象-功能模型意味着，如果您有对某个对象的引用，则可以使用该对象进行操作。简单而有效的。
+有一篇关于对象-能力模型如何工作的好论文，读起来很容易:
+权能梦碎——对象权能模型跌落神坛
+权能和并发 对象功能模型本身并不处理并发性。它明确了如果同时访问一个对象将会发生什么，但是没有规定控制这个对象的单一方法。
+将功能与角色模型相结合是一个良好的开端，以前已经在E和Joule等语言中实现过。
+Pony做到了这一点，并在类型系统中使用了一个_reference功能的系统。</p>
       
     </div>
   </div>
@@ -642,13 +655,18 @@ How is that unforgeable? Since Pony has no pointer arithmetic and is both type-s
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <h1 class="f3 near-black">
       <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="link black dim">
-        Trust Boundary
+        边界信任（Trust Boundary）
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       
-        <p>We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you&rsquo;ve called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.
-Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust because you think they are perfect. Instead, we mean things you have to trust in order to get things done, even though you know they are imperfect.</p>
+        <p>我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
+在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
+安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
+但我们可以做得更好。
+在Pony中，你可以选择在‘ponyc’命令行上声明一组_safe_包，就像这样:
+ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。</p>
       
     </div>
   </div>

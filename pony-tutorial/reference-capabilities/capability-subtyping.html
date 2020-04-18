@@ -46,26 +46,38 @@
     
 
     <meta property="og:title" content="权能包含关系（Capability Subtyping）" />
-<meta property="og:description" content="Subtyping is about substitutability. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
-Simple substitution First, let&rsquo;s cover substitution without worrying about ephemeral types (^) or alias types (!). The &lt;: symbol means &ldquo;is a subtype of&rdquo; or alternatively &ldquo;can be substituted for&rdquo;.
- iso &lt;: trn. An iso is read and write unique, and a trn is just write unique, so it&rsquo;s safe to substitute an iso for a trn." />
+<meta property="og:description" content="子类型是关于_替换性的。也就是说，如果我们需要提供某一种类型，我们还可以替代什么类型?其中包括引用权能。
+Simple substitution 首先，让我们讨论替换，而不必担心临时类型(^)或别名类型(!)。符号&lt;:表示是的子类型，或者可以被替换。
+ iso &lt;: trn。iso是_read和write unique_， trn是_write unique_，所以用iso代替trn是安全的。 trn &lt;: ref。一个trn是可变的，也_write unique_。ref是可变的，但不能保证唯一性。用trn代替ref是安全的。 trn &lt;: val。这个很有趣。trn是_write unique_， val是全局不可变的，那么为什么用trn代替val是安全的呢?关键是，为了做到这一点，你必须放弃你所拥有的一切。如果你放弃了_only_变量可以写一个对象，你知道没有变量可以写它。这意味着它是全局不变的。 ref &lt;: box。ref保证没有_other_actor可以读写对象。box只是保证没有_other_ actor可以写对象，所以用ref代替box是安全的。 val &lt;: box。一个val保证_no_actor，即使是这个，也不能写对象。一个box只是保证没有_other_ actor可以写对象，所以用val代替box是安全的。 box &lt;: tag。box保证没有其他参与者可以写入对象，而tag则完全没有保证，所以用box替换tag是安全的。  子类型化_transitive_。这意味着，由于iso &lt;: trn和trn &lt;: ref和ref &lt;: box，我们也得到iso &lt;: box。
+Aliased substitution 现在让我们考虑一下当我们有一个引用权能的别名时会发生什么。例如，如果我们有一些iso，并对其进行别名处理(不执行消费或破坏性读取)，则得到的类型是iso!,而不是iso。
+*iso !&lt;:tag。这是一个相当大的变化。而不是像iso这样的所有东西的子类型，唯一的东西是iso!是tag的子类型。这是因为iso仍然存在，并且仍然是_read和write unique_。任何别名既不能从对象中读取，也不能从对象中写入。这意味着iso!&#39;只能是tag的子类型。 *trn!&lt;:box。这也是一个变化，但并不是很大的变化。因为trn只是_write unique_，所以别名可以从对象中读取，但是别名不能写入对象。这意味着我们可以有box或val别名-除了val保证_no_ alias可以写入对象!因为我们的trn仍然存在，并可以写入对象，val别名将打破val作出的保证。所以一个ref!只能是box的子类型(及及物动词tag)。 *ref!&lt;:ref。由于ref只保证_other_ actor既不能从对象中读取也不能从对象中写入，所以可以在同一个actor中创建更多ref别名。 *val!&lt;:val。因为val只能保证_no_ actor可以写入对象，所以可以使用更多的val别名，因为它们也不能写入对象。 *box!&lt;:box。一个框只能保证_other_ actor不能写对象。val和ref都做了保证，那么为什么box只能别名为box呢?这是因为我们不能做更多的保证当我们别名的东西。这意味着box只能别名为box。 *tag!&lt;:tag。一个tag根本不能保证什么。就像框一样，我们不能在创建新别名时做更多的保证，因此tag只能作为tag的别名。
+Ephemeral substitution 最后要考虑的情况是当我们有临时引用权能时。例如，如果我们有一些iso，我们&#39;消费&#39;它或做一个破坏性的阅读，我们得到的类型是iso^，而不是iso。
+ iso^ &lt;: iso。这很简单。当我们给一个iso^一个名字时，通过把它赋值给某个东西或者把它作为参数传递给某个方法，它就会失去^而变成一个普通的旧的iso。我们知道我们已经放弃了之前的iso，所以换一个新的是安全的。 trn^ &lt;: trn。这和iso^ 完全一样。保证是较弱的(write uniqueness_而不是_read和write uniquess)，但它的工作方式是一样的。 ref^ &lt;: ref 和ref ^ &lt;: ref和ref &lt;: ref ^。这里，我们有另一个例子。a ref不仅是a ref的子类型，它也是a ref的子类型。这是怎么回事?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/capability-subtyping.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-16T17:49:19+08:00" />
 <meta itemprop="name" content="权能包含关系（Capability Subtyping）">
-<meta itemprop="description" content="Subtyping is about substitutability. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
-Simple substitution First, let&rsquo;s cover substitution without worrying about ephemeral types (^) or alias types (!). The &lt;: symbol means &ldquo;is a subtype of&rdquo; or alternatively &ldquo;can be substituted for&rdquo;.
- iso &lt;: trn. An iso is read and write unique, and a trn is just write unique, so it&rsquo;s safe to substitute an iso for a trn.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="944">
+<meta itemprop="description" content="子类型是关于_替换性的。也就是说，如果我们需要提供某一种类型，我们还可以替代什么类型?其中包括引用权能。
+Simple substitution 首先，让我们讨论替换，而不必担心临时类型(^)或别名类型(!)。符号&lt;:表示是的子类型，或者可以被替换。
+ iso &lt;: trn。iso是_read和write unique_， trn是_write unique_，所以用iso代替trn是安全的。 trn &lt;: ref。一个trn是可变的，也_write unique_。ref是可变的，但不能保证唯一性。用trn代替ref是安全的。 trn &lt;: val。这个很有趣。trn是_write unique_， val是全局不可变的，那么为什么用trn代替val是安全的呢?关键是，为了做到这一点，你必须放弃你所拥有的一切。如果你放弃了_only_变量可以写一个对象，你知道没有变量可以写它。这意味着它是全局不变的。 ref &lt;: box。ref保证没有_other_actor可以读写对象。box只是保证没有_other_ actor可以写对象，所以用ref代替box是安全的。 val &lt;: box。一个val保证_no_actor，即使是这个，也不能写对象。一个box只是保证没有_other_ actor可以写对象，所以用val代替box是安全的。 box &lt;: tag。box保证没有其他参与者可以写入对象，而tag则完全没有保证，所以用box替换tag是安全的。  子类型化_transitive_。这意味着，由于iso &lt;: trn和trn &lt;: ref和ref &lt;: box，我们也得到iso &lt;: box。
+Aliased substitution 现在让我们考虑一下当我们有一个引用权能的别名时会发生什么。例如，如果我们有一些iso，并对其进行别名处理(不执行消费或破坏性读取)，则得到的类型是iso!,而不是iso。
+*iso !&lt;:tag。这是一个相当大的变化。而不是像iso这样的所有东西的子类型，唯一的东西是iso!是tag的子类型。这是因为iso仍然存在，并且仍然是_read和write unique_。任何别名既不能从对象中读取，也不能从对象中写入。这意味着iso!&#39;只能是tag的子类型。 *trn!&lt;:box。这也是一个变化，但并不是很大的变化。因为trn只是_write unique_，所以别名可以从对象中读取，但是别名不能写入对象。这意味着我们可以有box或val别名-除了val保证_no_ alias可以写入对象!因为我们的trn仍然存在，并可以写入对象，val别名将打破val作出的保证。所以一个ref!只能是box的子类型(及及物动词tag)。 *ref!&lt;:ref。由于ref只保证_other_ actor既不能从对象中读取也不能从对象中写入，所以可以在同一个actor中创建更多ref别名。 *val!&lt;:val。因为val只能保证_no_ actor可以写入对象，所以可以使用更多的val别名，因为它们也不能写入对象。 *box!&lt;:box。一个框只能保证_other_ actor不能写对象。val和ref都做了保证，那么为什么box只能别名为box呢?这是因为我们不能做更多的保证当我们别名的东西。这意味着box只能别名为box。 *tag!&lt;:tag。一个tag根本不能保证什么。就像框一样，我们不能在创建新别名时做更多的保证，因此tag只能作为tag的别名。
+Ephemeral substitution 最后要考虑的情况是当我们有临时引用权能时。例如，如果我们有一些iso，我们&#39;消费&#39;它或做一个破坏性的阅读，我们得到的类型是iso^，而不是iso。
+ iso^ &lt;: iso。这很简单。当我们给一个iso^一个名字时，通过把它赋值给某个东西或者把它作为参数传递给某个方法，它就会失去^而变成一个普通的旧的iso。我们知道我们已经放弃了之前的iso，所以换一个新的是安全的。 trn^ &lt;: trn。这和iso^ 完全一样。保证是较弱的(write uniqueness_而不是_read和write uniquess)，但它的工作方式是一样的。 ref^ &lt;: ref 和ref ^ &lt;: ref和ref &lt;: ref ^。这里，我们有另一个例子。a ref不仅是a ref的子类型，它也是a ref的子类型。这是怎么回事?">
+<meta itemprop="dateModified" content="2020-04-16T17:49:19&#43;08:00" />
+<meta itemprop="wordCount" content="84">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="权能包含关系（Capability Subtyping）"/>
-<meta name="twitter:description" content="Subtyping is about substitutability. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.
-Simple substitution First, let&rsquo;s cover substitution without worrying about ephemeral types (^) or alias types (!). The &lt;: symbol means &ldquo;is a subtype of&rdquo; or alternatively &ldquo;can be substituted for&rdquo;.
- iso &lt;: trn. An iso is read and write unique, and a trn is just write unique, so it&rsquo;s safe to substitute an iso for a trn."/>
+<meta name="twitter:description" content="子类型是关于_替换性的。也就是说，如果我们需要提供某一种类型，我们还可以替代什么类型?其中包括引用权能。
+Simple substitution 首先，让我们讨论替换，而不必担心临时类型(^)或别名类型(!)。符号&lt;:表示是的子类型，或者可以被替换。
+ iso &lt;: trn。iso是_read和write unique_， trn是_write unique_，所以用iso代替trn是安全的。 trn &lt;: ref。一个trn是可变的，也_write unique_。ref是可变的，但不能保证唯一性。用trn代替ref是安全的。 trn &lt;: val。这个很有趣。trn是_write unique_， val是全局不可变的，那么为什么用trn代替val是安全的呢?关键是，为了做到这一点，你必须放弃你所拥有的一切。如果你放弃了_only_变量可以写一个对象，你知道没有变量可以写它。这意味着它是全局不变的。 ref &lt;: box。ref保证没有_other_actor可以读写对象。box只是保证没有_other_ actor可以写对象，所以用ref代替box是安全的。 val &lt;: box。一个val保证_no_actor，即使是这个，也不能写对象。一个box只是保证没有_other_ actor可以写对象，所以用val代替box是安全的。 box &lt;: tag。box保证没有其他参与者可以写入对象，而tag则完全没有保证，所以用box替换tag是安全的。  子类型化_transitive_。这意味着，由于iso &lt;: trn和trn &lt;: ref和ref &lt;: box，我们也得到iso &lt;: box。
+Aliased substitution 现在让我们考虑一下当我们有一个引用权能的别名时会发生什么。例如，如果我们有一些iso，并对其进行别名处理(不执行消费或破坏性读取)，则得到的类型是iso!,而不是iso。
+*iso !&lt;:tag。这是一个相当大的变化。而不是像iso这样的所有东西的子类型，唯一的东西是iso!是tag的子类型。这是因为iso仍然存在，并且仍然是_read和write unique_。任何别名既不能从对象中读取，也不能从对象中写入。这意味着iso!&#39;只能是tag的子类型。 *trn!&lt;:box。这也是一个变化，但并不是很大的变化。因为trn只是_write unique_，所以别名可以从对象中读取，但是别名不能写入对象。这意味着我们可以有box或val别名-除了val保证_no_ alias可以写入对象!因为我们的trn仍然存在，并可以写入对象，val别名将打破val作出的保证。所以一个ref!只能是box的子类型(及及物动词tag)。 *ref!&lt;:ref。由于ref只保证_other_ actor既不能从对象中读取也不能从对象中写入，所以可以在同一个actor中创建更多ref别名。 *val!&lt;:val。因为val只能保证_no_ actor可以写入对象，所以可以使用更多的val别名，因为它们也不能写入对象。 *box!&lt;:box。一个框只能保证_other_ actor不能写对象。val和ref都做了保证，那么为什么box只能别名为box呢?这是因为我们不能做更多的保证当我们别名的东西。这意味着box只能别名为box。 *tag!&lt;:tag。一个tag根本不能保证什么。就像框一样，我们不能在创建新别名时做更多的保证，因此tag只能作为tag的别名。
+Ephemeral substitution 最后要考虑的情况是当我们有临时引用权能时。例如，如果我们有一些iso，我们&#39;消费&#39;它或做一个破坏性的阅读，我们得到的类型是iso^，而不是iso。
+ iso^ &lt;: iso。这很简单。当我们给一个iso^一个名字时，通过把它赋值给某个东西或者把它作为参数传递给某个方法，它就会失去^而变成一个普通的旧的iso。我们知道我们已经放弃了之前的iso，所以换一个新的是安全的。 trn^ &lt;: trn。这和iso^ 完全一样。保证是较弱的(write uniqueness_而不是_read和write uniquess)，但它的工作方式是一样的。 ref^ &lt;: ref 和ref ^ &lt;: ref和ref &lt;: ref ^。这里，我们有另一个例子。a ref不仅是a ref的子类型，它也是a ref的子类型。这是怎么回事?"/>
 
   </head>
 
@@ -299,7 +311,7 @@ Simple substitution First, let&rsquo;s cover substitution without worrying about
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -329,12 +341,12 @@ Simple substitution First, let&rsquo;s cover substitution without worrying about
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -355,7 +367,7 @@ Simple substitution First, let&rsquo;s cover substitution without worrying about
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -629,37 +641,57 @@ Simple substitution First, let&rsquo;s cover substitution without worrying about
             <h1 class="f1 athelas mb1">权能包含关系（Capability Subtyping）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Subtyping is about <em>substitutability</em>. That is, if we need to supply a certain type, what other types can we substitute instead? Reference capabilities factor into this.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>子类型是关于_替换性的。也就是说，如果我们需要提供某一种类型，我们还可以替代什么类型?其中包括引用权能。</p>
 <h2 id="simple-substitution">Simple substitution</h2>
-<p>First, let&rsquo;s cover substitution without worrying about ephemeral types (<code>^</code>) or alias types (<code>!</code>). The <code>&lt;:</code> symbol means &ldquo;is a subtype of&rdquo; or alternatively &ldquo;can be substituted for&rdquo;.</p>
+<!-- raw HTML omitted -->
+<p>首先，让我们讨论替换，而不必担心临时类型(<code>^</code>)或别名类型(<code>!</code>)。符号<code>&lt;:</code>表示<code>是</code>的子类型，或者<code>可以被替换</code>。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li><code>iso &lt;: trn</code>. An <code>iso</code> is <em>read and write unique</em>, and a <code>trn</code> is just <em>write unique</em>, so it&rsquo;s safe to substitute an <code>iso</code> for a <code>trn</code>.</li>
-<li><code>trn &lt;: ref</code>. A <code>trn</code> is mutable and also <em>write unique</em>. A <code>ref</code> is mutable but makes no uniqueness guarantees. It&rsquo;s safe to substitute a <code>trn</code> for a <code>ref</code>.</li>
-<li><code>trn &lt;: val</code>. This one is interesting. A <code>trn</code> is <em>write unique</em> and a <code>val</code> is <em>globally immutable</em>, so why is it safe to substitute a <code>trn</code> for a <code>val</code>? The key is that, in order to do so, you have to <em>give up</em> the <code>trn</code> you have. If you give up the <em>only</em> variable that can write to an object, you know that no variable can write to it. That means it&rsquo;s safe to consider it <em>globally immutable</em>.</li>
-<li><code>ref &lt;: box</code>. A <code>ref</code> guarantees no <em>other</em> actor can read from or write to the object. A <code>box</code> just guarantees no <em>other</em> actor can write to the object, so it&rsquo;s safe to substitute a <code>ref</code> for a <code>box</code>.</li>
-<li><code>val &lt;: box</code>. A <code>val</code> guarantees <em>no</em> actor, not even this one, can write to the object. A <code>box</code> just guarantees no <em>other</em> actor can write to the object, so it&rsquo;s safe to substitute a <code>val</code> for a <code>box</code>.</li>
-<li><code>box &lt;: tag</code>. A <code>box</code> guarantees no other actor can write to the object, and a <code>tag</code> makes no guarantees at all, so it&rsquo;s safe to substitute a <code>box</code> for a <code>tag</code>.</li>
+<li><code>iso &lt;: trn</code>。<code>iso</code>是_read和write unique_，<code> trn</code>是_write unique_，所以用<code>iso</code>代替<code>trn</code>是安全的。</li>
+<li><code>trn &lt;: ref</code>。一个<code>trn</code>是可变的，也_write unique_。<code>ref</code>是可变的，但不能保证唯一性。用<code>trn</code>代替<code>ref</code>是安全的。</li>
+<li><code>trn &lt;: val</code>。这个很有趣。<code>trn</code>是_write unique_，<code> val</code>是全局不可变的，那么为什么用<code>trn</code>代替<code>val</code>是安全的呢?关键是，为了做到这一点，你必须放弃你所拥有的一切。如果你放弃了_only_变量可以写一个对象，你知道没有变量可以写它。这意味着它是全局不变的。</li>
+<li><code>ref &lt;: box</code>。<code>ref</code>保证没有_other_actor可以读写对象。<code>box</code>只是保证没有_other_ actor可以写对象，所以用<code>ref</code>代替<code>box</code>是安全的。</li>
+<li><code>val &lt;: box</code>。一个<code>val</code>保证_no_actor，即使是这个，也不能写对象。一个<code>box</code>只是保证没有_other_ actor可以写对象，所以用<code>val</code>代替<code>box</code>是安全的。</li>
+<li><code>box &lt;: tag</code>。<code>box</code>保证没有其他参与者可以写入对象，而<code>tag</code>则完全没有保证，所以用<code>box</code>替换<code>tag</code>是安全的。</li>
 </ul>
-<p>Subtyping is <em>transitive</em>. That means that since <code>iso &lt;: trn</code> and <code>trn &lt;: ref</code> and <code>ref &lt;: box</code>, we also get <code>iso &lt;: box</code>.</p>
+<!-- raw HTML omitted -->
+<p>子类型化_transitive_。这意味着，由于<code>iso &lt;: trn</code>和<code>trn &lt;: ref</code>和<code>ref &lt;: box</code>，我们也得到<code>iso &lt;: box</code>。</p>
 <h2 id="aliased-substitution">Aliased substitution</h2>
-<p>Now let&rsquo;s consider what happens when we have an alias of a reference capability. For example, if we have some <code>iso</code> and we alias it (without doing a <code>consume</code> or a destructive read), the type we get is <code>iso!</code>, not <code>iso</code>.</p>
-<ul>
-<li><code>iso! &lt;: tag</code>. This is a pretty big change. Instead of being a subtype of everything like <code>iso</code>, the only thing an <code>iso!</code> is a subtype of is <code>tag</code>. This is because the <code>iso</code> still exists, and is still <em>read and write unique</em>. Any alias can neither read from nor write to the object. That means an <code>iso!</code> can only be a subtype of <code>tag</code>.</li>
-<li><code>trn! &lt;: box</code>. This is a change too, but not as big a change. Since <code>trn</code> is only <em>write unique</em>, it&rsquo;s ok for aliases to read from the object, but it&rsquo;s not ok for aliases to write to the object. That means we could have <code>box</code> or <code>val</code> aliases - except <code>val</code> guarantees that <em>no</em> alias can write to the object! Since our <code>trn</code> still exists and can write to the object, a <code>val</code> alias would break the guarantees that <code>val</code> makes. So a <code>trn!</code> can only be a subtype of <code>box</code> (and, transitively, <code>tag</code> as well).</li>
-<li><code>ref! &lt;: ref</code>. Since a <code>ref</code> only guarantees that <em>other</em> actors can neither read from nor write to the object, it&rsquo;s ok to make more <code>ref</code> aliases within the same actor.</li>
-<li><code>val! &lt;: val</code>. Since a <code>val</code> only guarantees that <em>no</em> actor can write to the object, its ok to make more <code>val</code> aliases since they can&rsquo;t write to the object either.</li>
-<li><code>box! &lt;: box</code>. A <code>box</code> only guarantees that <em>other</em> actors can&rsquo;t write to the object. Both <code>val</code> and <code>ref</code> make that guarantee too, so why can <code>box</code> only alias as <code>box</code>? It&rsquo;s because we can&rsquo;t make <em>more</em> guarantees when we alias something. That means <code>box</code> can only alias as <code>box</code>.</li>
-<li><code>tag! &lt;: tag</code>. A <code>tag</code> doesn&rsquo;t make any guarantees at all. Just like with a <code>box</code>, we can&rsquo;t make more guarantees when we make a new alias, so a <code>tag</code> can only alias as a <code>tag</code>.</li>
-</ul>
+<!-- raw HTML omitted -->
+<p>现在让我们考虑一下当我们有一个引用权能的别名时会发生什么。例如，如果我们有一些<code>iso</code>，并对其进行别名处理(不执行<code>消费</code>或破坏性读取)，则得到的类型是<code>iso!</code>,而不是<code>iso</code>。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>*<code>iso !&lt;:tag</code>。这是一个相当大的变化。而不是像<code>iso</code>这样的所有东西的子类型，唯一的东西是<code>iso!</code>是tag的子类型。这是因为<code>iso</code>仍然存在，并且仍然是_read和write unique_。任何别名既不能从对象中读取，也不能从对象中写入。这意味着<code>iso!</code>'只能是<code>tag</code>的子类型。
+*<code>trn!&lt;:box</code>。这也是一个变化，但并不是很大的变化。因为<code>trn</code>只是_write unique_，所以别名可以从对象中读取，但是别名不能写入对象。这意味着我们可以有<code>box</code>或<code>val</code>别名-除了<code>val</code>保证_no_ alias可以写入对象!因为我们的<code>trn</code>仍然存在，并可以写入对象，<code>val</code>别名将打破<code>val</code>作出的保证。所以一个<code>ref</code>!只能是<code>box</code>的子类型(及及物动词<code>tag</code>)。
+*<code>ref!&lt;:ref</code>。由于<code>ref</code>只保证_other_ actor既不能从对象中读取也不能从对象中写入，所以可以在同一个actor中创建更多<code>ref</code>别名。
+*<code>val!&lt;:val</code>。因为<code>val</code>只能保证_no_ actor可以写入对象，所以可以使用更多的<code>val</code>别名，因为它们也不能写入对象。
+*<code>box!&lt;:box</code>。一个<code>框</code>只能保证_other_ actor不能写对象。<code>val</code>和<code>ref</code>都做了保证，那么为什么<code>box</code>只能别名为<code>box</code>呢?这是因为我们不能做更多的保证当我们别名的东西。这意味着<code>box</code>只能别名为<code>box</code>。
+*<code>tag!&lt;:tag</code>。一个<code>tag</code>根本不能保证什么。就像<code>框</code>一样，我们不能在创建新别名时做更多的保证，因此<code>tag</code>只能作为<code>tag</code>的别名。</p>
 <h2 id="ephemeral-substitution">Ephemeral substitution</h2>
-<p>The last case to consider is when we have an ephemeral reference capability. For example, if we have some <code>iso</code> and we <code>consume</code> it or do a destructive read, the type we get is <code>iso^</code>, not <code>iso</code>.</p>
+<!-- raw HTML omitted -->
+<p>最后要考虑的情况是当我们有临时引用权能时。例如，如果我们有一些<code>iso</code>，我们'消费'它或做一个破坏性的阅读，我们得到的类型是<code>iso^</code>，而不是<code>iso</code>。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li><code>iso^ &lt;: iso</code>. This is pretty simple. When we give an <code>iso^</code> a name, by assigning it to something or passing it as an argument to a method, it loses the <code>^</code> and becomes a plain old <code>iso</code>. We know we gave up our previous <code>iso</code>, so it&rsquo;s safe to have a new one.</li>
-<li><code>trn^ &lt;: trn</code>. This works exactly like <code>iso^</code>. The guarantee is weaker (<em>write uniqueness</em> instead of <em>read and write uniqueness</em>), but it works the same way.</li>
-<li><code>ref^ &lt;: ref^</code> and <code>ref^ &lt;: ref</code> and <code>ref &lt;: ref^</code>. Here, we have another case. Not only is a <code>ref^</code> a subtype of a <code>ref</code>, it&rsquo;s also a subtype of a <code>ref^</code>. What&rsquo;s going on here? The reason is that an ephemeral reference capability is a way of saying &ldquo;a reference capability that, when aliased, results in the base reference capability&rdquo;. Since a <code>ref</code> can be aliased as a <code>ref</code>, that means <code>ref</code> and <code>ref^</code> are completely interchangeable.</li>
-<li><code>val^</code>, <code>box^</code>, <code>tag^</code>. These all work the same way as <code>ref</code>, that is, they are interchangeable with the base reference capability. It&rsquo;s for the same reason: all of these reference capabilities can be aliased as themselves.</li>
+<li><code>iso^ &lt;: iso</code>。这很简单。当我们给一个<code>iso^</code>一个名字时，通过把它赋值给某个东西或者把它作为参数传递给某个方法，它就会失去<code>^</code>而变成一个普通的旧的<code>iso</code>。我们知道我们已经放弃了之前的<code>iso</code>，所以换一个新的是安全的。</li>
+<li><code>trn^ &lt;: trn</code>。这和<code>iso^</code> 完全一样。保证是较弱的(<em>write uniqueness_而不是_read和write uniquess</em>)，但它的工作方式是一样的。</li>
+<li><code>ref^ &lt;: ref</code> 和<code>ref ^ &lt;: ref</code>和<code>ref &lt;: ref ^。这里，我们有另一个例子。a</code> ref<code>不仅是a</code> ref<code>的子类型，它也是a</code> <code>ref</code>的子类型。这是怎么回事?原因是临时引用权能是<code>在别名时产生基本引用权能的引用权能</code>的一种说法。由于<code>ref</code>可以别名为<code>ref</code>，这意味着<code>ref</code>和<code>ref^</code>是完全可以互换的。</li>
+<li><code> val^</code>，<code> box^</code>，<code> tag^</code>。它们的工作方式都与<code>ref</code>相同，即可以与基本引用权能互换。原因是一样的:所有这些引用权能都可以作为它们自己的别名。</li>
 </ul>
-<p><strong>Why do <code>ref^</code>, <code>val^</code>, <code>box^</code>, and <code>tag^</code> exist if they are interchangeable with their base reference capabilities?</strong> It&rsquo;s for two reasons: <strong>reference capability recovery</strong> and <strong>generics</strong>. We&rsquo;ll cover both of those later.</p>
+<!-- raw HTML omitted -->
+<p>如果<code>ref^</code>、<code>val^</code>、<code>box^</code>和<code>tag^</code>可以与它们的基本引用权能互换，那么为什么还存在<code>ref^</code>、<code>val^</code>、<code>box^</code>和<code>tag^</code>呢?有两个原因:引用权能恢复__和一般__。这两个我们后面都会讲到。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

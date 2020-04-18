@@ -52,14 +52,14 @@
  作为&quot;标记值&rdquo;。例如，Pony经常使用None基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是None的实例。 作为&quot;枚举&quot;类型。通过创建 primitive 类型的 union ，可以使用类型安全的枚举。稍后我们将介绍 union 类型。 作为&quot;函数集合&rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在Path中（Path就是一个基元类）。  // 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/types/primitives.html" />
-<meta property="article:modified_time" content="2020-04-12T23:08:20+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="基元类（Primitives）">
 <meta itemprop="description" content="primitive（基元类） 和 class（类） 有两点主要区别：
  基元类 没有字段。  一个 基元类 只会产生一个实例。  没有字段就天然具备不可变性不会产生副作用。只有一个实例的意味着 primitive 的构造函数总是会返回相同的实例对象（下面介绍的内置内省&quot;machine word&rdquo; primitives除外）。
 基元类 有什么用途？ 基元类有三种主要用途（如果算上内置的&quot;machine word&rdquo; primitives则有四种）。
  作为&quot;标记值&rdquo;。例如，Pony经常使用None基元类来表示某事物没有值。当然，它其实具有一个值，并且该值就是None的实例。 作为&quot;枚举&quot;类型。通过创建 primitive 类型的 union ，可以使用类型安全的枚举。稍后我们将介绍 union 类型。 作为&quot;函数集合&rdquo;。由于基元类也可以有成员函数，因此可以用基元类来做函数分类。例如，标准库中的路径处理相关的函数都被放在Path中（Path就是一个基元类）。  // 2 &quot;marker values&quot; primitive OpenedDoor primitive ClosedDoor // An &quot;enumeration&quot; type type DoorState is (OpenedDoor | ClosedDoor) // A collection of functions primitive BasicMath fun add(a: U64, b: U64): U64 =&gt; a &#43; b fun multiply(a: U64, b: U64): U64 =&gt; a * b actor Main new create(env: Env) =&gt; let doorState : DoorState = ClosedDoor let isDoorOpen : Bool = match doorState | OpenedDoor =&gt; true | ClosedDoor =&gt; false end env.">
-<meta itemprop="dateModified" content="2020-04-12T23:08:20&#43;08:00" />
-<meta itemprop="wordCount" content="143">
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
+<meta itemprop="wordCount" content="145">
 
 
 
@@ -302,7 +302,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -332,12 +332,12 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -358,7 +358,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -610,7 +610,7 @@
       <nav id="TableOfContents">
   <ul>
     <li><a href="#__基元类__-有什么用途"><strong>基元类</strong> 有什么用途？</a></li>
-    <li><a href="#内置基元类">内置基元类</a></li>
+    <li><a href="#内置的基元类型built-in-primitive-types">内置的基元类型（Built-in primitive types）</a></li>
     <li><a href="#基元类的初始化和销毁">基元类的初始化和销毁</a></li>
   </ul>
 </nav>
@@ -683,7 +683,7 @@ actor Main
 </code></pre><!-- raw HTML omitted -->
 <p>基元类非常强大，尤其是作为枚举使用时。与其他语言中的枚举不同，Pony中枚举的每个<code>值</code>都是一个完整类型，因此可以将数据和函数附加到枚举值上。</p>
 <!-- raw HTML omitted -->
-<h2 id="内置基元类">内置基元类</h2>
+<h2 id="内置的基元类型built-in-primitive-types">内置的基元类型（Built-in primitive types）</h2>
 <!-- raw HTML omitted -->
 <p><em>primitive</em> 关键字还用于引入某些内置的&quot;machine word&quot;类型。除了具有与之关联的值外，这些还类似于用户定义的原语。这些是：</p>
 <!-- raw HTML omitted -->

@@ -67,9 +67,15 @@ trait Named fun name(): String =&amp;gt; &amp;quot;Bob&amp;quot; trait Bald fun 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://damon-kwok.github.io/pony-tutorial/types/type-aliases.html</guid>
-      <description>A type alias is just a way to give a different name to a type. This may sound a bit silly: after all, types already have names! However, Pony can express some complicated types, and it can be convenient to have a short way to talk about them.
-We&amp;rsquo;ll give a couple examples of using type aliases, just to get the feel of them.
-Enumerations One way to use type aliases is to express an enumeration.</description>
+      <description>一个 类型别名（type alias） 可以给一个类型起一个不同的名字。听起来可能有点傻：毕竟类型已经有名字了，感觉有点多此一举！但有时会遇到非常复杂的类型名，起一个简短的别名是很方便的。
+我们将给出几个使用类型别名的示例，以便更好的了解。
+枚举（Enumerations） 类型别名的一个很常见的应用场景是表示枚举。例如，我们想定义一组包含颜色值的枚举，：红色、蓝色或绿色。我们可以这样写:
+primitive Red primitive Blue primitive Green type Colour is (Red | Blue | Green) 这里有两个新概念。第一个是类型别名，它由关键字type引入。它只是意味着type后面的名称可以表示is后面的类型。
+第二个新概念是is后面的类型。它不是一个普通类型，而是一个（类型联合体）。在这个上下文中，您可以将|符号理解为或， 因此它的类型是红色、蓝色或绿色。
+类型联合体是 closed world 类型的一种形式。也就是说，每种类型都可能是它的一个成员。相反，面向对象的子类型通常是 open world ，例如在Java中，一个接口可以由任意数量的类实现。
+你也可以用类型别名机制来声明类似于C或Go语言中的常量：
+primitive Red fun apply(): U32 =&amp;gt; 0xFF0000FF primitive Green fun apply(): U32 =&amp;gt; 0x00FF00FF primitive Blue fun apply(): U32 =&amp;gt; 0x0000FFFF type Colour is (Red | Blue | Green) 或者用来表示C++中的名字空间（namespace）：
+primitive Colours fun red(): U32 =&amp;gt; 0xFF0000FF fun green(): U32 =&amp;gt; 0x00FF00FF 如果你像遍历枚举列表以打印它们的名字，以便进行调试：</description>
     </item>
     
     <item>

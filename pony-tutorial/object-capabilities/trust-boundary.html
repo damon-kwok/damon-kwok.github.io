@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | Trust Boundary</title>
+    <title>Pony 教程  | 边界信任（Trust Boundary）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,24 +45,39 @@
 
     
 
-    <meta property="og:title" content="Trust Boundary" />
-<meta property="og:description" content="We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you&rsquo;ve called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.
-Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust because you think they are perfect. Instead, we mean things you have to trust in order to get things done, even though you know they are imperfect." />
+    <meta property="og:title" content="边界信任（Trust Boundary）" />
+<meta property="og:description" content="我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
+在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
+安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
+但我们可以做得更好。
+在Pony中，你可以选择在‘ponyc’命令行上声明一组_safe_包，就像这样:
+ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/object-capabilities/trust-boundary.html" />
-<meta property="article:modified_time" content="2020-04-12T23:09:49+08:00" />
-<meta itemprop="name" content="Trust Boundary">
-<meta itemprop="description" content="We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you&rsquo;ve called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.
-Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust because you think they are perfect. Instead, we mean things you have to trust in order to get things done, even though you know they are imperfect.">
-<meta itemprop="dateModified" content="2020-04-12T23:09:49&#43;08:00" />
-<meta itemprop="wordCount" content="260">
+<meta property="article:modified_time" content="2020-04-16T18:05:39+08:00" />
+<meta itemprop="name" content="边界信任（Trust Boundary）">
+<meta itemprop="description" content="我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
+在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
+安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
+但我们可以做得更好。
+在Pony中，你可以选择在‘ponyc’命令行上声明一组_safe_包，就像这样:
+ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。">
+<meta itemprop="dateModified" content="2020-04-16T18:05:39&#43;08:00" />
+<meta itemprop="wordCount" content="15">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Trust Boundary"/>
-<meta name="twitter:description" content="We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you&rsquo;ve called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.
-Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust because you think they are perfect. Instead, we mean things you have to trust in order to get things done, even though you know they are imperfect."/>
+<meta name="twitter:title" content="边界信任（Trust Boundary）"/>
+<meta name="twitter:description" content="我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
+在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
+安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
+但我们可以做得更好。
+在Pony中，你可以选择在‘ponyc’命令行上声明一组_safe_包，就像这样:
+ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。"/>
 
   </head>
 
@@ -296,7 +311,7 @@ Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust 
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -326,12 +341,12 @@ Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust 
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -352,7 +367,7 @@ Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust 
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -603,8 +618,8 @@ Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust 
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#trust-boundaries">Trust boundaries</a></li>
-    <li><a href="#safe-packages">Safe packages</a></li>
+    <li><a href="#边界信任">边界信任</a></li>
+    <li><a href="#安全包">安全包</a></li>
   </ul>
 </nav>
   </div>
@@ -622,19 +637,28 @@ Trust boundaries When we talk about trust, we don&rsquo;t mean things you trust 
                 
               对象权能模型（OBJECT CAPABILITIES）
             </p>
-            <h1 class="f1 athelas mb1">Trust Boundary</h1>
+            <h1 class="f1 athelas mb1">边界信任（Trust Boundary）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>We mentioned previously that the C FFI can be used to break pretty much every guarantee that Pony makes. This is because, once you&rsquo;ve called into C, you are executing arbitrary machine code that can stomp memory addresses, write to anything, and generally be pretty badly behaved.</p>
-<h2 id="trust-boundaries">Trust boundaries</h2>
-<p>When we talk about trust, we don&rsquo;t mean things you trust because you think they are perfect. Instead, we mean things you <em>have</em> to trust in order to get things done, even though you know they are <em>imperfect</em>.</p>
-<p>In Pony, when you use the C FFI, you are basically declaring that you trust the C code that&rsquo;s being executed. That&rsquo;s fine, because you may need it to get work done. But what about trusting someone else&rsquo;s code to use the C FFI? You may need to, but you definitely want to know that it&rsquo;s happening.</p>
-<h2 id="safe-packages">Safe packages</h2>
-<p>The normal way to handle that is to be sure you&rsquo;re using just the code you need to use in your program. Pretty simple! Don&rsquo;t use some random package from the internet without looking at the code and making sure it doesn&rsquo;t do nasty FFI stuff.</p>
-<p>But we can do better than that.</p>
-<p>In Pony, you can optionally declare a set of <em>safe</em> packages on the <code>ponyc</code> command line, like this:</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。</p>
+<!-- raw HTML omitted -->
+<h2 id="边界信任">边界信任</h2>
+<!-- raw HTML omitted -->
+<p>当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。</p>
+<!-- raw HTML omitted -->
+<h2 id="安全包">安全包</h2>
+<!-- raw HTML omitted -->
+<p>处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。</p>
+<!-- raw HTML omitted -->
+<p>但我们可以做得更好。</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，你可以选择在‘ponyc’命令行上声明一组_safe_包，就像这样:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ponyc --safe<span style="color:#f92672">=</span>files:net:net/ssl my_project
-</code></pre></div><p>Here, we are declaring that only the <code>files</code>, <code>net</code> and <code>net/ssl</code> packages are allowed to use C FFI calls. We&rsquo;ve established our trust boundary: any other packages that try to use C FFI calls will result in a compile-time error.</p>
+</code></pre></div><!-- raw HTML omitted -->
+<p>这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

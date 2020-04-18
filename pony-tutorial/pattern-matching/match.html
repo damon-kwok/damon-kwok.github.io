@@ -51,12 +51,12 @@ Matching: the basics Here&rsquo;s a simple example of a match expression that pr
 match x | 2 =&gt; &quot;int&quot; | 2." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/pattern-matching/match.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="匹配表达式（Match Expressions）">
 <meta itemprop="description" content="If we want to compare an expression to a value then we use an if. But if we want to compare an expression to a lot of values this gets very tedious. Pony provides a powerful pattern matching facility, combining matching on values and types, without any special code required.
 Matching: the basics Here&rsquo;s a simple example of a match expression that produces a string.
 match x | 2 =&gt; &quot;int&quot; | 2.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="1797">
 
 
@@ -299,7 +299,7 @@ match x | 2 =&gt; &quot;int&quot; | 2."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -329,12 +329,12 @@ match x | 2 =&gt; &quot;int&quot; | 2."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -355,7 +355,7 @@ match x | 2 =&gt; &quot;int&quot; | 2."/>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -719,8 +719,8 @@ actor Main
 
   new create(env: Env) =&gt;
     f(Foo)
-</code></pre><p>Both case patterns actually <strong>do not</strong> check for the match operand <code>x</code> being an instance of <code>Foo</code> or <code>None</code>, but check for equality with the instance created by evaluating the case pattern (each time). <code>None</code> is a primitive and thus there is only one instance at all, in which case this value pattern kind of does the expected thing, but not quite. If <code>None</code> had a custom <code>eq</code> function that would not use <a href="/expressions/equality.html#identity-equality">identity equality</a>, this could lead to surprising results.</p>
-<p>Remember to always use <a href="#captures">Captures</a> if all you need is to differentiate by type. Only use value matching if you need a full blown equality check, be it for <a href="/expressions/equality.html#structural-equality">structural equality</a> or <a href="/expressions/equality.html#identity-equality">identity equality</a>.</p>
+</code></pre><p>Both case patterns actually <strong>do not</strong> check for the match operand <code>x</code> being an instance of <code>Foo</code> or <code>None</code>, but check for equality with the instance created by evaluating the case pattern (each time). <code>None</code> is a primitive and thus there is only one instance at all, in which case this value pattern kind of does the expected thing, but not quite. If <code>None</code> had a custom <code>eq</code> function that would not use <a href="/pony-tutorial/expressions/equality.html#identity-equality">identity equality</a>, this could lead to surprising results.</p>
+<p>Remember to always use <a href="#captures">Captures</a> if all you need is to differentiate by type. Only use value matching if you need a full blown equality check, be it for <a href="/pony-tutorial/expressions/equality.html#structural-equality">structural equality</a> or <a href="/pony-tutorial/expressions/equality.html#identity-equality">identity equality</a>.</p>
 <h2 id="captures">Captures</h2>
 <p>Sometimes you want to be able to match the type, for any value of that type. For this, you use a <strong>capture</strong>. This defines a local variable, valid only within the case, containing the value of the operand. If the operand is not of the specified type then the case doesn&rsquo;t match.</p>
 <p>Captures look just like variable declarations within the pattern. Like normal variables, they can be declared as var or let. If you&rsquo;re not going to reassign them within the case expression it is good practice to use let.</p>

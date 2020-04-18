@@ -68,7 +68,7 @@ actor内部的代码永远不会并发运行。在actor中，数据更新不会�
 A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/reference-capabilities.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="引用权能（Reference Capabilities）">
 <meta itemprop="description" content="如果对象具有权能，我们该怎么来控制？比如如何表示该对象的 访问权限（access rights） ？
 Pony中，可以用引用权能（reference capabilities）来处理。
@@ -90,7 +90,7 @@ actor内部的代码永远不会并发运行。在actor中，数据更新不会�
 通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
 类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
 A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="210">
 
 
@@ -350,7 +350,7 @@ A reference capability is a form of type qualifier and provides a lot more guara
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -380,12 +380,12 @@ A reference capability is a form of type qualifier and provides a lot more guara
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -406,7 +406,7 @@ A reference capability is a form of type qualifier and provides a lot more guara
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -800,7 +800,7 @@ let b: String = &quot;I'm a wombat!&quot; // Also a String val
   new ref create_ref(x': U32) =&gt;
     x = x'
 </code></pre><!-- raw HTML omitted -->
-<p>但是，这不是最佳做法。最好的做法是使用Pony的<code>权能借用</code>功能，我们将在后面的<a href="recovery-capabilities.html">权能借用</a>一节中介绍。</p>
+<p>但是，这不是最佳做法。最好的做法是使用Pony的<code>权能借用</code>功能，我们将在后面的<a href="/pony-tutorial/reference-capabilities/recovering-capabilities.html">权能借用</a>一节中介绍。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

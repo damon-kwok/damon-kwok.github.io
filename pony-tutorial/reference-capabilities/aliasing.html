@@ -46,23 +46,44 @@
     
 
     <meta property="og:title" content="别名（Aliasing）" />
-<meta property="og:description" content="Aliasing means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.
-In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what&rsquo;s being assigned to it, and everything is fine." />
+<meta property="og:description" content="__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
+在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
+在Pony中，这适用于一些引用权能，但不是全部。
+别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+什么算假名?（What counts as making an alias?） 有三件事可以算作别名:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/aliasing.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-16T17:49:19+08:00" />
 <meta itemprop="name" content="别名（Aliasing）">
-<meta itemprop="description" content="Aliasing means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.
-In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what&rsquo;s being assigned to it, and everything is fine.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="706">
+<meta itemprop="description" content="__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
+在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
+在Pony中，这适用于一些引用权能，但不是全部。
+别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+什么算假名?（What counts as making an alias?） 有三件事可以算作别名:">
+<meta itemprop="dateModified" content="2020-04-16T17:49:19&#43;08:00" />
+<meta itemprop="wordCount" content="106">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="别名（Aliasing）"/>
-<meta name="twitter:description" content="Aliasing means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.
-In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what&rsquo;s being assigned to it, and everything is fine."/>
+<meta name="twitter:description" content="__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
+在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
+在Pony中，这适用于一些引用权能，但不是全部。
+别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+什么算假名?（What counts as making an alias?） 有三件事可以算作别名:"/>
 
   </head>
 
@@ -296,7 +317,7 @@ In most programming languages, aliasing is pretty simple. You just assign some v
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -326,12 +347,12 @@ In most programming languages, aliasing is pretty simple. You just assign some v
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -352,7 +373,7 @@ In most programming languages, aliasing is pretty simple. You just assign some v
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -603,10 +624,10 @@ In most programming languages, aliasing is pretty simple. You just assign some v
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#aliasing-and-deny-guarantees">Aliasing and deny guarantees</a></li>
-    <li><a href="#what-counts-as-making-an-alias">What counts as making an alias?</a></li>
-    <li><a href="#ephemeral-types">Ephemeral types</a></li>
-    <li><a href="#alias-types">Alias types</a></li>
+    <li><a href="#别名和拒绝保证aliasing-and-deny-guarantees">别名和拒绝保证（Aliasing and deny guarantees）</a></li>
+    <li><a href="#什么算假名what-counts-as-making-an-alias">什么算假名?（What counts as making an alias?）</a></li>
+    <li><a href="#短暂的类ephemeral-types">短暂的类（Ephemeral types）</a></li>
+    <li><a href="#类型别名alias-types">类型别名（Alias types）</a></li>
   </ul>
 </nav>
   </div>
@@ -627,42 +648,66 @@ In most programming languages, aliasing is pretty simple. You just assign some v
             <h1 class="f1 athelas mb1">别名（Aliasing）</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p><strong>Aliasing</strong> means having more than one reference to the same object, within the same actor. This can be the case for a variable or a field.</p>
-<p>In most programming languages, aliasing is pretty simple. You just assign some variable to another variable, and there you go, you have an alias. The variable you assign to has the same type (or some supertype) as what&rsquo;s being assigned to it, and everything is fine.</p>
-<p>In Pony, that works for some reference capabilities, but not all.</p>
-<h2 id="aliasing-and-deny-guarantees">Aliasing and deny guarantees</h2>
-<p>The reason for this is that the <code>iso</code> reference capability denies other <code>iso</code> variables that point to the same object. That is, you can only have one <code>iso</code> variable pointing to any given object. The same goes for <code>trn</code>.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。</p>
+<!-- raw HTML omitted -->
+<p>在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。</p>
+<!-- raw HTML omitted -->
+<p>在Pony中，这适用于一些引用权能，但不是全部。</p>
+<!-- raw HTML omitted -->
+<h2 id="别名和拒绝保证aliasing-and-deny-guarantees">别名和拒绝保证（Aliasing and deny guarantees）</h2>
+<!-- raw HTML omitted -->
+<p>这样做的原因是<code>iso</code>引用权能拒绝了指向相同对象的其他<code>iso</code>变量。也就是说，你只能有一个<code>iso</code>变量指向任何给定的对象。trn也是一样。</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso) =&gt;
   var b: Wombat iso = a // Not allowed!
-</code></pre><p>Here we have some function that gets passed an isolated Wombat. If we try to alias <code>a</code> by assigning it to <code>b</code>, we&rsquo;ll be breaking reference capability guarantees so the compiler will stop us.</p>
-<p><strong>What can I alias an <code>iso</code> as?</strong> Since an <code>iso</code> says no other variable can be used by <em>any</em> actor to read from or write to that object, we can only create aliases to an <code>iso</code> that can neither read nor write. Fortunately, we&rsquo;ve got a reference capability that does exactly that: <code>tag</code>. So we can do this and the compiler will be happy:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将<code>a</code>赋值给<code>b</code>来别名<code>a</code>，我们将破坏引用权能保证，因此编译器将阻止我们。</p>
+<!-- raw HTML omitted -->
+<p>我可以将<code>iso</code>别名为什么?由于<code>iso</code>表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的<code>iso</code>创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso) =&gt;
   var b: Wombat tag = a // Allowed!
-</code></pre><p><strong>What about aliasing <code>trn</code>?</strong> Since a <code>trn</code> says no other variable can be used by <em>any</em> actor to write to that object, we need something that doesn&rsquo;t allow writing but also doesn&rsquo;t prevent our <code>trn</code> variable from writing. Fortunately, we&rsquo;ve got a reference capability that does that too: <code>box</code>. So we can do this and the compiler will be happy:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>那混叠<code>trn</code>呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:<code>box</code>。所以我们可以这样做，编译器会很高兴:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat trn) =&gt;
   var b: Wombat box = a // Allowed!
-</code></pre><p><strong>What about aliasing other stuff?</strong> For both <code>iso</code> and <code>trn</code>, the guarantees require that aliases must give up on some ability (reading and writing for <code>iso</code>, writing for <code>trn</code>). For the other capabilities (<code>ref</code>, <code>val</code>, <code>box</code> and <code>tag</code>), aliases allow for the same operations, so such a reference can just be aliased as itself.</p>
-<h2 id="what-counts-as-making-an-alias">What counts as making an alias?</h2>
-<p>There are three things that count as making an alias:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>那混叠其他东西呢?对于<code>iso</code>和<code>trn</code>，保证要求别名必须放弃某些权能(<code>iso</code>的读和写，<code>trn</code>的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。</p>
+<!-- raw HTML omitted -->
+<h2 id="什么算假名what-counts-as-making-an-alias">什么算假名?（What counts as making an alias?）</h2>
+<!-- raw HTML omitted -->
+<p>有三件事可以算作别名:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ol>
-<li>When you <strong>assign</strong> a value to a variable or a field.</li>
-<li>When you <strong>pass</strong> a value as an argument to a method.</li>
-<li>When you <strong>call a method</strong>, an alias of the receiver of the call is created. It is accessible as <code>this</code> within the method body.</li>
+<li>当您将一个值赋值给一个变量或字段时。</li>
+<li>当您将一个值作为参数传递给一个方法时。</li>
+<li>当您调用一个method__时，调用的接收者的别名被创建。它可以在方法体中以<code>this</code>的形式访问。</li>
 </ol>
-<p>In all three cases, you are making a new <em>name</em> for the object. This might be the name of a local variable, the name of a field, or the name of a parameter to a method.</p>
-<h2 id="ephemeral-types">Ephemeral types</h2>
-<p>In Pony, every expression has a type. So what&rsquo;s the type of <code>consume a</code>? It&rsquo;s not the same type as <code>a</code>, because it might not be possible to alias <code>a</code>. Instead, it&rsquo;s an <strong>ephemeral</strong> type. That is, it&rsquo;s a type for a value that currently has no name (it might have a name through some other alias, but not the one we just consumed or destructively read).</p>
-<p>To show a type is ephemeral, we put a <code>^</code> at the end. For example:</p>
+<!-- raw HTML omitted -->
+<p>在这三种情况下，都要为对象创建一个新的_name_。这可能是局部变量的名称、字段的名称或方法的参数的名称。</p>
+<!-- raw HTML omitted -->
+<h2 id="短暂的类ephemeral-types">短暂的类（Ephemeral types）</h2>
+<!-- raw HTML omitted -->
+<p>在小马，每个表情都有一个类型。那么<code>消费a</code>是什么类型的呢?它不是与‘a’相同的类型，因为可能无法别名‘a’。相反，它是一种短暂的类型。也就是说，它是当前没有名称的值的类型(它可能通过其他别名具有名称，但不是我们刚刚使用或销毁读取的名称)。</p>
+<!-- raw HTML omitted -->
+<p>要显示一个类型是短暂的，我们在末尾加上一个&rsquo; ^ &lsquo;。例如:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso): Wombat iso^ =&gt;
   consume a
-</code></pre><p>Here, our function takes an isolated Wombat as a parameter and returns an ephemeral isolated Wombat.</p>
-<p>This is useful for dealing with <code>iso</code> and <code>trn</code> types, and for generic types, but it&rsquo;s also important for constructors. A constructor always returns an ephemeral type, because it&rsquo;s a new object.</p>
-<h2 id="alias-types">Alias types</h2>
-<p>For the same reason Pony has ephemeral types, it also has alias types. An alias type is a way of saying &ldquo;whatever we can safely alias this thing as&rdquo;. It&rsquo;s only needed when dealing with generic types, which we&rsquo;ll discuss later.</p>
-<p>We indicate an alias type by putting a <code>!</code> at the end. Here&rsquo;s an example:</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在这里，我们的函数接受一个隔离的袋熊作为参数，并返回一个临时隔离的袋熊。</p>
+<!-- raw HTML omitted -->
+<p>这对于处理<code>iso</code>和<code>trn</code>类型以及泛型类型很有用，但是对于构造函数也很重要。构造函数总是返回临时类型，因为它是一个新对象。</p>
+<!-- raw HTML omitted -->
+<h2 id="类型别名alias-types">类型别名（Alias types）</h2>
+<!-- raw HTML omitted -->
+<p>就像Pony有临时类型一样，它也有别名类型。别名类型是一种表示<code>我们可以安全地将这个东西别名为</code>的方式。只有在处理泛型类型时才需要它，稍后我们将对此进行讨论。</p>
+<!-- raw HTML omitted -->
+<p>我们通过输入'来指示别名类型!``最后。这里有一个例子:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: A) =&gt;
   var b: A! = a
-</code></pre><p>Here, we&rsquo;re using <code>A</code> as a <strong>type variable</strong>, which we&rsquo;ll cover later. So <code>A!</code> means &ldquo;an alias of whatever type <code>A</code> is&rdquo;.</p>
+</code></pre><!-- raw HTML omitted -->
+<p>在这里，我们使用<code>A</code>作为一个变量的类型，我们将在后面介绍。所以<code>!的意思是</code>任何类型的‘A’的别名`。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

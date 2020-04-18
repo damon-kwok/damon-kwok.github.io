@@ -47,28 +47,58 @@
 
     <meta property="og:title" content="对象权能模型（Object Capabilities）" />
 <meta property="og:description" content="Pony的类型安装系统是构建在对象权能模型的理论基础上的。感觉上很复杂，但是其实非常简单优雅，这是对象权能模型的核心概念：
- A capability is an unforgeable token that (a) designates an object and (b) gives the program the authority to perform a specific set of actions on that object.
- So what&rsquo;s that token? It&rsquo;s an address. A pointer. A reference. It&rsquo;s just&hellip; an object.
-How is that unforgeable? Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can&rsquo;t be &ldquo;invented&rdquo; (i.e. forged) by the program." />
+ 权能是一个不可伪造的令牌，它(a)指定一个对象，(b)授予程序对该对象执行特定操作集的权限。
+ 那代币是什么?这是一个地址。一个指针。一个引用。它只是&hellip;一个对象。
+这怎么可能是不可伪造的呢? 由于Pony没有指针算法，并且是类型安全的，内存安全的，对象引用不能被程序“发明”(即伪造)。您只能通过构造一个对象或传递一个对象来获得一个。
+那么C FFI呢? 使用信用证可以打破这一保证。稍后我们将讨论如何控制边界。
+那么全局变量呢? 他们是坏的!因为您可以在不构造它们或不传递它们的情况下获得它们。
+全局变量是所谓的_ambient authority_的一种形式。环境权限的另一种形式是不受约束地访问文件系统。
+Pony没有全局变量，也没有全局函数。这并不意味着所有的环境权限都神奇地消失了——例如，我们仍然需要注意文件系统。没有全局权限对于消除环境权限是必要的，但还不够。
+这有什么用呢? 与使用权限列表、访问控制列表或其他形式的安全性不同，对象-功能模型意味着，如果您有对某个对象的引用，则可以使用该对象进行操作。简单而有效的。
+有一篇关于对象-能力模型如何工作的好论文，读起来很容易:
+权能梦碎——对象权能模型跌落神坛
+权能和并发 对象功能模型本身并不处理并发性。它明确了如果同时访问一个对象将会发生什么，但是没有规定控制这个对象的单一方法。
+将功能与角色模型相结合是一个良好的开端，以前已经在E和Joule等语言中实现过。
+Pony做到了这一点，并在类型系统中使用了一个_reference功能的系统。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/object-capabilities/object-capabilities.html" />
-<meta property="article:modified_time" content="2020-04-12T23:09:49+08:00" />
+<meta property="article:modified_time" content="2020-04-16T18:05:39+08:00" />
 <meta itemprop="name" content="对象权能模型（Object Capabilities）">
 <meta itemprop="description" content="Pony的类型安装系统是构建在对象权能模型的理论基础上的。感觉上很复杂，但是其实非常简单优雅，这是对象权能模型的核心概念：
- A capability is an unforgeable token that (a) designates an object and (b) gives the program the authority to perform a specific set of actions on that object.
- So what&rsquo;s that token? It&rsquo;s an address. A pointer. A reference. It&rsquo;s just&hellip; an object.
-How is that unforgeable? Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can&rsquo;t be &ldquo;invented&rdquo; (i.e. forged) by the program.">
-<meta itemprop="dateModified" content="2020-04-12T23:09:49&#43;08:00" />
-<meta itemprop="wordCount" content="326">
+ 权能是一个不可伪造的令牌，它(a)指定一个对象，(b)授予程序对该对象执行特定操作集的权限。
+ 那代币是什么?这是一个地址。一个指针。一个引用。它只是&hellip;一个对象。
+这怎么可能是不可伪造的呢? 由于Pony没有指针算法，并且是类型安全的，内存安全的，对象引用不能被程序“发明”(即伪造)。您只能通过构造一个对象或传递一个对象来获得一个。
+那么C FFI呢? 使用信用证可以打破这一保证。稍后我们将讨论如何控制边界。
+那么全局变量呢? 他们是坏的!因为您可以在不构造它们或不传递它们的情况下获得它们。
+全局变量是所谓的_ambient authority_的一种形式。环境权限的另一种形式是不受约束地访问文件系统。
+Pony没有全局变量，也没有全局函数。这并不意味着所有的环境权限都神奇地消失了——例如，我们仍然需要注意文件系统。没有全局权限对于消除环境权限是必要的，但还不够。
+这有什么用呢? 与使用权限列表、访问控制列表或其他形式的安全性不同，对象-功能模型意味着，如果您有对某个对象的引用，则可以使用该对象进行操作。简单而有效的。
+有一篇关于对象-能力模型如何工作的好论文，读起来很容易:
+权能梦碎——对象权能模型跌落神坛
+权能和并发 对象功能模型本身并不处理并发性。它明确了如果同时访问一个对象将会发生什么，但是没有规定控制这个对象的单一方法。
+将功能与角色模型相结合是一个良好的开端，以前已经在E和Joule等语言中实现过。
+Pony做到了这一点，并在类型系统中使用了一个_reference功能的系统。">
+<meta itemprop="dateModified" content="2020-04-16T18:05:39&#43;08:00" />
+<meta itemprop="wordCount" content="21">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="对象权能模型（Object Capabilities）"/>
 <meta name="twitter:description" content="Pony的类型安装系统是构建在对象权能模型的理论基础上的。感觉上很复杂，但是其实非常简单优雅，这是对象权能模型的核心概念：
- A capability is an unforgeable token that (a) designates an object and (b) gives the program the authority to perform a specific set of actions on that object.
- So what&rsquo;s that token? It&rsquo;s an address. A pointer. A reference. It&rsquo;s just&hellip; an object.
-How is that unforgeable? Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can&rsquo;t be &ldquo;invented&rdquo; (i.e. forged) by the program."/>
+ 权能是一个不可伪造的令牌，它(a)指定一个对象，(b)授予程序对该对象执行特定操作集的权限。
+ 那代币是什么?这是一个地址。一个指针。一个引用。它只是&hellip;一个对象。
+这怎么可能是不可伪造的呢? 由于Pony没有指针算法，并且是类型安全的，内存安全的，对象引用不能被程序“发明”(即伪造)。您只能通过构造一个对象或传递一个对象来获得一个。
+那么C FFI呢? 使用信用证可以打破这一保证。稍后我们将讨论如何控制边界。
+那么全局变量呢? 他们是坏的!因为您可以在不构造它们或不传递它们的情况下获得它们。
+全局变量是所谓的_ambient authority_的一种形式。环境权限的另一种形式是不受约束地访问文件系统。
+Pony没有全局变量，也没有全局函数。这并不意味着所有的环境权限都神奇地消失了——例如，我们仍然需要注意文件系统。没有全局权限对于消除环境权限是必要的，但还不够。
+这有什么用呢? 与使用权限列表、访问控制列表或其他形式的安全性不同，对象-功能模型意味着，如果您有对某个对象的引用，则可以使用该对象进行操作。简单而有效的。
+有一篇关于对象-能力模型如何工作的好论文，读起来很容易:
+权能梦碎——对象权能模型跌落神坛
+权能和并发 对象功能模型本身并不处理并发性。它明确了如果同时访问一个对象将会发生什么，但是没有规定控制这个对象的单一方法。
+将功能与角色模型相结合是一个良好的开端，以前已经在E和Joule等语言中实现过。
+Pony做到了这一点，并在类型系统中使用了一个_reference功能的系统。"/>
 
   </head>
 
@@ -302,7 +332,7 @@ How is that unforgeable? Since Pony has no pointer arithmetic and is both type-s
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -332,12 +362,12 @@ How is that unforgeable? Since Pony has no pointer arithmetic and is both type-s
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -358,7 +388,7 @@ How is that unforgeable? Since Pony has no pointer arithmetic and is both type-s
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -609,10 +639,10 @@ How is that unforgeable? Since Pony has no pointer arithmetic and is both type-s
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#how-is-that-unforgeable">How is that unforgeable?</a></li>
-    <li><a href="#what-about-global-variables">What about global variables?</a></li>
-    <li><a href="#how-does-this-help">How does this help?</a></li>
-    <li><a href="#capabilities-and-concurrency">Capabilities and concurrency</a></li>
+    <li><a href="#这怎么可能是不可伪造的呢">这怎么可能是不可伪造的呢?</a></li>
+    <li><a href="#那么全局变量呢">那么全局变量呢?</a></li>
+    <li><a href="#这有什么用呢">这有什么用呢?</a></li>
+    <li><a href="#权能和并发">权能和并发</a></li>
   </ul>
 </nav>
   </div>
@@ -635,26 +665,42 @@ How is that unforgeable? Since Pony has no pointer arithmetic and is both type-s
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
 <p>Pony的类型安装系统是构建在<a href="https://everything.explained.today/Object-capability_model/">对象权能模型</a>的理论基础上的。感觉上很复杂，但是其实非常简单优雅，这是<code>对象权能模型</code>的核心概念：</p>
+<!-- raw HTML omitted -->
 <blockquote>
-<p>A capability is an unforgeable token that (a) designates an object and (b) gives the program the authority to perform a specific set of actions on that object.</p>
+<p>权能是一个不可伪造的令牌，它(a)指定一个对象，(b)授予程序对该对象执行特定操作集的权限。</p>
 </blockquote>
-<p>So what&rsquo;s that token? It&rsquo;s an address. A pointer. A reference. It&rsquo;s just&hellip; an object.</p>
-<h2 id="how-is-that-unforgeable">How is that unforgeable?</h2>
-<p>Since Pony has no pointer arithmetic and is both type-safe and memory-safe, object references can&rsquo;t be &ldquo;invented&rdquo; (i.e. forged) by the program. You can only get one by constructing an object or being passed an object.</p>
-<p><strong>What about the C FFI?</strong> Using the C FFI can break this guarantee. We&rsquo;ll talk about the <strong>C FFI trust boundary</strong> later, and how to control it.</p>
-<h2 id="what-about-global-variables">What about global variables?</h2>
-<p>They&rsquo;re bad! Because you can get them without either constructing them or being passed them.</p>
-<p>Global variables are a form of what is called <em>ambient authority</em>. Another form of ambient authority is unfettered access to the file system.</p>
-<p>Pony has no global variables and no global functions. That doesn&rsquo;t mean all ambient authority is magically gone - we still need to be careful about the file system, for example. Having no globals is necessary, but not sufficient, to eliminate ambient authority.</p>
-<h2 id="how-does-this-help">How does this help?</h2>
-<p>Instead of having permissions lists, access control lists, or other forms of security, the object-capabilities model means that if you have a reference to an object, you can do things with that object. Simple and effective.</p>
-<p>There&rsquo;s a great paper on how the object-capability model works, and it&rsquo;s pretty easy reading:</p>
+<!-- raw HTML omitted -->
+<p>那代币是什么?这是一个地址。一个指针。一个引用。它只是&hellip;一个对象。</p>
+<!-- raw HTML omitted -->
+<h2 id="这怎么可能是不可伪造的呢">这怎么可能是不可伪造的呢?</h2>
+<!-- raw HTML omitted -->
+<p>由于Pony没有指针算法，并且是类型安全的，内存安全的，对象引用不能被程序“发明”(即伪造)。您只能通过构造一个对象或传递一个对象来获得一个。</p>
+<!-- raw HTML omitted -->
+<p><strong>那么C FFI呢?</strong> 使用信用证可以打破这一保证。稍后我们将讨论如何控制边界。</p>
+<!-- raw HTML omitted -->
+<h2 id="那么全局变量呢">那么全局变量呢?</h2>
+<!-- raw HTML omitted -->
+<p>他们是坏的!因为您可以在不构造它们或不传递它们的情况下获得它们。</p>
+<!-- raw HTML omitted -->
+<p>全局变量是所谓的_ambient authority_的一种形式。环境权限的另一种形式是不受约束地访问文件系统。</p>
+<!-- raw HTML omitted -->
+<p>Pony没有全局变量，也没有全局函数。这并不意味着所有的环境权限都神奇地消失了——例如，我们仍然需要注意文件系统。没有全局权限对于消除环境权限是必要的，但还不够。</p>
+<!-- raw HTML omitted -->
+<h2 id="这有什么用呢">这有什么用呢?</h2>
+<!-- raw HTML omitted -->
+<p>与使用权限列表、访问控制列表或其他形式的安全性不同，对象-功能模型意味着，如果您有对某个对象的引用，则可以使用该对象进行操作。简单而有效的。</p>
+<!-- raw HTML omitted -->
+<p>有一篇关于对象-能力模型如何工作的好论文，读起来很容易:</p>
 <!-- raw HTML omitted -->
 <p><a href="http://srl.cs.jhu.edu/pubs/SRL2003-02.pdf">权能梦碎——对象权能模型跌落神坛</a></p>
-<h2 id="capabilities-and-concurrency">Capabilities and concurrency</h2>
-<p>The object-capability model on its own does not address concurrency. It makes clear <em>what</em> will happen if there is simultaneous access to an object, but it does not prescribe a single method of controlling this.</p>
-<p>Combining capabilities with the actor-model is a good start, and has been done before in languages such as <a href="http://erights.org/">E</a> and Joule.</p>
-<p>Pony does this and also uses a system of <em>reference capabilities</em> in the type system.</p>
+<!-- raw HTML omitted -->
+<h2 id="权能和并发">权能和并发</h2>
+<!-- raw HTML omitted -->
+<p>对象功能模型本身并不处理并发性。它明确了如果同时访问一个对象将会发生什么，但是没有规定控制这个对象的单一方法。</p>
+<!-- raw HTML omitted -->
+<p>将功能与角色模型相结合是一个良好的开端，以前已经在<a href="http://erights.org/">E</a>和Joule等语言中实现过。</p>
+<!-- raw HTML omitted -->
+<p>Pony做到了这一点，并在类型系统中使用了一个_reference功能的系统。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

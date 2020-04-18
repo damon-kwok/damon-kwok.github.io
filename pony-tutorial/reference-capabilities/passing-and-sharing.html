@@ -46,23 +46,59 @@
     
 
     <meta property="og:title" content="Passing and Sharing References" />
-<meta property="og:description" content="Reference capabilities make it safe to both pass mutable data between actors and to share immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.
-Passing For an object to be mutable, we need to be sure that no other actor can read from or write to that object. The three mutable reference capabilities (iso, trn, and ref) all make that guarantee." />
+<meta property="og:description" content="引用权能使得在参与者之间可以安全地传递可变数据，在参与者之间可以安全地共享不变数据。不仅如此，它们还可以安全地进行操作，不需要复制，不需要锁，实际上，根本不需要运行时开销。
+Passing 对于要可变的对象，我们需要确保没有 other actor可以从该对象读写。三种可变引用权能(iso、trn和ref)都保证了这一点。
+但是如果我们想要将一个可变对象从一个参与者传递给另一个参与者呢?为此，我们需要确保正在_sending_可变对象的actor也_give up_从该对象读写的权能。
+这正是iso所做的。它是读写唯一的，一次只能有一个可用于读写的引用。如果您将一个iso对象发送给另一个参与者，您将放弃从该对象读写的权能。
+那么当我想要在actor之间传递一个可变对象时，我应该使用iso吗?__是的!如果你不需要传递它，你可以使用ref代替。
+Sharing 如果你想在参与者之间共享一个对象，那么我们必须做出如下保证:
+ no actor可以写对象，在这种情况下_any_ actor可以从对象中读取，或者 只有_one_ actor可以对对象进行写操作，在这种情况下_other_ actor既不能对对象进行读操作，也不能对对象进行写操作。  第一个保证就是val所做的。它是全局的immutable_，所以我们知道_no_actor可以写那个对象。因此，您可以自由地将val对象发送给其他参与者，而不需要放弃从该对象读取数据的权能。
+那么当我想要在参与者之间共享一个不可变的对象时，我应该使用val吗?__是的!如果你不需要共享它，你可以使用ref代替，或box如果你想它是不可变的。
+第二个保证是tag的权能。不是关于只写一个参与者的部分(这是由任何可变引用权能保证的)，而是关于不能读写对象的部分。这意味着您可以自由地将tag对象传递给其他参与者，而不需要放弃从该对象读写的权能。
+如果另一个参与者不能读写字段，那么将tag引用发送给另一个参与者又有什么意义呢?因为tag可以被用来识别目标，有时这就是你所需要的。另外，如果对象是一个参与者，即使您只有一个tag，您也可以对其调用行为。
+那么当我想要在actor之间共享可变对象的身份时，我应该使用tag吗?__是的!或者，实际上，任何东西的恒等式，不管是可变的，不可变的，甚至是一个行动者。
+无法发送的引用权能 你可能已经注意到我们并没有提到trn，ref，或者box作为你可以发送给其他演员的东西。那是因为你做不到。他们不会为了安全而做出我们需要的保证。
+那么什么时候应该使用这些引用权能呢?
+*当你需要能够随着时间改变一个对象时，使用ref。另一方面，如果您的程序在使用不可变类型时不会变得更慢，那么您可能希望使用val。 *当你不关心对象是可变的还是不可变的时候，使用box。换句话说，你想要能够阅读它，但你不需要给它写信或与其他演员分享它。 *当你想要改变一个对象一段时间，但你也想让它 全局不可变（global immutable） 以后使用trn。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/passing-and-sharing.html" />
-<meta property="article:modified_time" content="2020-04-11T18:34:49+08:00" />
+<meta property="article:modified_time" content="2020-04-16T18:05:39+08:00" />
 <meta itemprop="name" content="Passing and Sharing References">
-<meta itemprop="description" content="Reference capabilities make it safe to both pass mutable data between actors and to share immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.
-Passing For an object to be mutable, we need to be sure that no other actor can read from or write to that object. The three mutable reference capabilities (iso, trn, and ref) all make that guarantee.">
-<meta itemprop="dateModified" content="2020-04-11T18:34:49&#43;08:00" />
-<meta itemprop="wordCount" content="659">
+<meta itemprop="description" content="引用权能使得在参与者之间可以安全地传递可变数据，在参与者之间可以安全地共享不变数据。不仅如此，它们还可以安全地进行操作，不需要复制，不需要锁，实际上，根本不需要运行时开销。
+Passing 对于要可变的对象，我们需要确保没有 other actor可以从该对象读写。三种可变引用权能(iso、trn和ref)都保证了这一点。
+但是如果我们想要将一个可变对象从一个参与者传递给另一个参与者呢?为此，我们需要确保正在_sending_可变对象的actor也_give up_从该对象读写的权能。
+这正是iso所做的。它是读写唯一的，一次只能有一个可用于读写的引用。如果您将一个iso对象发送给另一个参与者，您将放弃从该对象读写的权能。
+那么当我想要在actor之间传递一个可变对象时，我应该使用iso吗?__是的!如果你不需要传递它，你可以使用ref代替。
+Sharing 如果你想在参与者之间共享一个对象，那么我们必须做出如下保证:
+ no actor可以写对象，在这种情况下_any_ actor可以从对象中读取，或者 只有_one_ actor可以对对象进行写操作，在这种情况下_other_ actor既不能对对象进行读操作，也不能对对象进行写操作。  第一个保证就是val所做的。它是全局的immutable_，所以我们知道_no_actor可以写那个对象。因此，您可以自由地将val对象发送给其他参与者，而不需要放弃从该对象读取数据的权能。
+那么当我想要在参与者之间共享一个不可变的对象时，我应该使用val吗?__是的!如果你不需要共享它，你可以使用ref代替，或box如果你想它是不可变的。
+第二个保证是tag的权能。不是关于只写一个参与者的部分(这是由任何可变引用权能保证的)，而是关于不能读写对象的部分。这意味着您可以自由地将tag对象传递给其他参与者，而不需要放弃从该对象读写的权能。
+如果另一个参与者不能读写字段，那么将tag引用发送给另一个参与者又有什么意义呢?因为tag可以被用来识别目标，有时这就是你所需要的。另外，如果对象是一个参与者，即使您只有一个tag，您也可以对其调用行为。
+那么当我想要在actor之间共享可变对象的身份时，我应该使用tag吗?__是的!或者，实际上，任何东西的恒等式，不管是可变的，不可变的，甚至是一个行动者。
+无法发送的引用权能 你可能已经注意到我们并没有提到trn，ref，或者box作为你可以发送给其他演员的东西。那是因为你做不到。他们不会为了安全而做出我们需要的保证。
+那么什么时候应该使用这些引用权能呢?
+*当你需要能够随着时间改变一个对象时，使用ref。另一方面，如果您的程序在使用不可变类型时不会变得更慢，那么您可能希望使用val。 *当你不关心对象是可变的还是不可变的时候，使用box。换句话说，你想要能够阅读它，但你不需要给它写信或与其他演员分享它。 *当你想要改变一个对象一段时间，但你也想让它 全局不可变（global immutable） 以后使用trn。">
+<meta itemprop="dateModified" content="2020-04-16T18:05:39&#43;08:00" />
+<meta itemprop="wordCount" content="31">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Passing and Sharing References"/>
-<meta name="twitter:description" content="Reference capabilities make it safe to both pass mutable data between actors and to share immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.
-Passing For an object to be mutable, we need to be sure that no other actor can read from or write to that object. The three mutable reference capabilities (iso, trn, and ref) all make that guarantee."/>
+<meta name="twitter:description" content="引用权能使得在参与者之间可以安全地传递可变数据，在参与者之间可以安全地共享不变数据。不仅如此，它们还可以安全地进行操作，不需要复制，不需要锁，实际上，根本不需要运行时开销。
+Passing 对于要可变的对象，我们需要确保没有 other actor可以从该对象读写。三种可变引用权能(iso、trn和ref)都保证了这一点。
+但是如果我们想要将一个可变对象从一个参与者传递给另一个参与者呢?为此，我们需要确保正在_sending_可变对象的actor也_give up_从该对象读写的权能。
+这正是iso所做的。它是读写唯一的，一次只能有一个可用于读写的引用。如果您将一个iso对象发送给另一个参与者，您将放弃从该对象读写的权能。
+那么当我想要在actor之间传递一个可变对象时，我应该使用iso吗?__是的!如果你不需要传递它，你可以使用ref代替。
+Sharing 如果你想在参与者之间共享一个对象，那么我们必须做出如下保证:
+ no actor可以写对象，在这种情况下_any_ actor可以从对象中读取，或者 只有_one_ actor可以对对象进行写操作，在这种情况下_other_ actor既不能对对象进行读操作，也不能对对象进行写操作。  第一个保证就是val所做的。它是全局的immutable_，所以我们知道_no_actor可以写那个对象。因此，您可以自由地将val对象发送给其他参与者，而不需要放弃从该对象读取数据的权能。
+那么当我想要在参与者之间共享一个不可变的对象时，我应该使用val吗?__是的!如果你不需要共享它，你可以使用ref代替，或box如果你想它是不可变的。
+第二个保证是tag的权能。不是关于只写一个参与者的部分(这是由任何可变引用权能保证的)，而是关于不能读写对象的部分。这意味着您可以自由地将tag对象传递给其他参与者，而不需要放弃从该对象读写的权能。
+如果另一个参与者不能读写字段，那么将tag引用发送给另一个参与者又有什么意义呢?因为tag可以被用来识别目标，有时这就是你所需要的。另外，如果对象是一个参与者，即使您只有一个tag，您也可以对其调用行为。
+那么当我想要在actor之间共享可变对象的身份时，我应该使用tag吗?__是的!或者，实际上，任何东西的恒等式，不管是可变的，不可变的，甚至是一个行动者。
+无法发送的引用权能 你可能已经注意到我们并没有提到trn，ref，或者box作为你可以发送给其他演员的东西。那是因为你做不到。他们不会为了安全而做出我们需要的保证。
+那么什么时候应该使用这些引用权能呢?
+*当你需要能够随着时间改变一个对象时，使用ref。另一方面，如果您的程序在使用不可变类型时不会变得更慢，那么您可能希望使用val。 *当你不关心对象是可变的还是不可变的时候，使用box。换句话说，你想要能够阅读它，但你不需要给它写信或与其他演员分享它。 *当你想要改变一个对象一段时间，但你也想让它 全局不可变（global immutable） 以后使用trn。"/>
 
   </head>
 
@@ -296,7 +332,7 @@ Passing For an object to be mutable, we need to be sure that no other actor can 
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -326,12 +362,12 @@ Passing For an object to be mutable, we need to be sure that no other actor can 
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -352,7 +388,7 @@ Passing For an object to be mutable, we need to be sure that no other actor can 
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -605,7 +641,7 @@ Passing For an object to be mutable, we need to be sure that no other actor can 
   <ul>
     <li><a href="#passing">Passing</a></li>
     <li><a href="#sharing">Sharing</a></li>
-    <li><a href="#reference-capabilities-that-cant-be-sent">Reference capabilities that can&rsquo;t be sent</a></li>
+    <li><a href="#无法发送的引用权能">无法发送的引用权能</a></li>
   </ul>
 </nav>
   </div>
@@ -626,31 +662,48 @@ Passing For an object to be mutable, we need to be sure that no other actor can 
             <h1 class="f1 athelas mb1">Passing and Sharing References</h1>
           </header>
 
-          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><p>Reference capabilities make it safe to both <strong>pass</strong> mutable data between actors and to <strong>share</strong> immutable data amongst actors. Not only that, they make it safe to do it with no copying, no locks, in fact, no runtime overhead at all.</p>
+          <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
+<p>引用权能使得在参与者之间可以安全地传递可变数据，在参与者之间可以安全地共享不变数据。不仅如此，它们还可以安全地进行操作，不需要复制，不需要锁，实际上，根本不需要运行时开销。</p>
 <h2 id="passing">Passing</h2>
-<p>For an object to be mutable, we need to be sure that no <em>other</em> actor can read from or write to that object. The three mutable reference capabilities (<code>iso</code>, <code>trn</code>, and <code>ref</code>) all make that guarantee.</p>
-<p>But what if we want to pass a mutable object from one actor to another? To do that, we need to be sure that the actor that is <em>sending</em> the mutable object also <em>gives up</em> the ability to both read from and write to that object.</p>
-<p>This is exactly what <code>iso</code> does. It is <em>read and write unique</em>, there can only be one reference at a time that can be used for reading or writing. If you send an <code>iso</code> object to another actor, you will be giving up the ability to read from or write to that object.</p>
-<p><strong>So I should use <code>iso</code> when I want to pass a mutable object between actors?</strong> Yes! If you don&rsquo;t need to pass it, you can just use <code>ref</code> instead.</p>
+<!-- raw HTML omitted -->
+<p>对于要可变的对象，我们需要确保没有 <em>other</em> actor可以从该对象读写。三种可变引用权能(<code>iso</code>、<code>trn</code>和<code>ref</code>)都保证了这一点。</p>
+<!-- raw HTML omitted -->
+<p>但是如果我们想要将一个可变对象从一个参与者传递给另一个参与者呢?为此，我们需要确保正在_sending_可变对象的actor也_give up_从该对象读写的权能。</p>
+<!-- raw HTML omitted -->
+<p>这正是<code>iso</code>所做的。它是读写唯一的，一次只能有一个可用于读写的引用。如果您将一个<code>iso</code>对象发送给另一个参与者，您将放弃从该对象读写的权能。</p>
+<!-- raw HTML omitted -->
+<p>那么当我想要在actor之间传递一个可变对象时，我应该使用<code>iso</code>吗?__是的!如果你不需要传递它，你可以使用<code>ref</code>代替。</p>
 <h2 id="sharing">Sharing</h2>
-<p>If you want to <strong>share</strong> an object amongst actors, then we have to make one of the following guarantees:</p>
+<!-- raw HTML omitted -->
+<p>如果你想在参与者之间共享一个对象，那么我们必须做出如下保证:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ol>
-<li>Either <em>no</em> actor can write to the object, in which case <em>any</em> actor can read from it, or</li>
-<li>Only <em>one</em> actor can write to the object, in which case <em>other</em> actors can neither read from or write to the object.</li>
+<li><em>no</em> actor可以写对象，在这种情况下_any_ actor可以从对象中读取，或者</li>
+<li>只有_one_ actor可以对对象进行写操作，在这种情况下_other_ actor既不能对对象进行读操作，也不能对对象进行写操作。</li>
 </ol>
-<p>The first guarantee is exactly what <code>val</code> does. It is <em>globally immutable</em>, so we know that <em>no</em> actor can ever write to that object. As a result, you can freely send <code>val</code> objects to other actors, without needing to give up the ability to read from that object.</p>
-<p><strong>So I should use <code>val</code> when I want to share an immutable object amongst actors?</strong> Yes! If you don&rsquo;t need to share it, you can just use <code>ref</code> instead, or <code>box</code> if you want it to be immutable.</p>
-<p>The second guarantee is what <code>tag</code> does. Not the part about only one actor writing (that&rsquo;s guaranteed by any mutable reference capability), but the part about not being able to read from or write to an object. That means you can freely pass <code>tag</code> objects to other actors, without needing to give up the ability to read from or write to that object.</p>
-<p><strong>What&rsquo;s the point in sending a tag reference to another actor if it can&rsquo;t then read or write the fields?</strong> Because <code>tag</code> <strong>can</strong> be used to <strong>identify</strong> objects and sometimes that&rsquo;s all you need. Also, if the object is an actor you can call behaviours on it even though you only have a <code>tag</code>.</p>
-<p><strong>So I should use <code>tag</code> when I want to share the identity of a mutable object amongst actors?</strong> Yes! Or, really, the identity of anything, whether it&rsquo;s mutable, immutable, or even an actor.</p>
-<h2 id="reference-capabilities-that-cant-be-sent">Reference capabilities that can&rsquo;t be sent</h2>
-<p>You may have noticed we didn&rsquo;t mention <code>trn</code>, <code>ref</code>, or <code>box</code> as things you can send to other actors. That&rsquo;s because you can&rsquo;t do it. They don&rsquo;t make the guarantees we need in order to be safe.</p>
-<p>So when should you use those reference capabilities?</p>
-<ul>
-<li>Use <code>ref</code> when you need to be able to change an object over time. On the other hand, if your program wouldn&rsquo;t be any slower if you used an immutable type instead, you may want to use a <code>val</code> anyway.</li>
-<li>Use <code>box</code> when you don&rsquo;t care whether the object is mutable or immutable. In other words, you want to be able to read it, but you don&rsquo;t need to write to it or share it with other actors.</li>
-<li>Use <code>trn</code> when you want to be able to change an object for a while, but you also want to be able to make it <em>globally immutable</em> later.</li>
-</ul>
+<!-- raw HTML omitted -->
+<p>第一个保证就是val所做的。它是全局的immutable_，所以我们知道_no_actor可以写那个对象。因此，您可以自由地将<code>val</code>对象发送给其他参与者，而不需要放弃从该对象读取数据的权能。</p>
+<!-- raw HTML omitted -->
+<p>那么当我想要在参与者之间共享一个不可变的对象时，我应该使用<code>val</code>吗?__是的!如果你不需要共享它，你可以使用<code>ref</code>代替，或<code>box</code>如果你想它是不可变的。</p>
+<!-- raw HTML omitted -->
+<p>第二个保证是<code>tag</code>的权能。不是关于只写一个参与者的部分(这是由任何可变引用权能保证的)，而是关于不能读写对象的部分。这意味着您可以自由地将<code>tag</code>对象传递给其他参与者，而不需要放弃从该对象读写的权能。</p>
+<!-- raw HTML omitted -->
+<p>如果另一个参与者不能读写字段，那么将tag引用发送给另一个参与者又有什么意义呢?因为<code>tag</code>可以被用来识别目标，有时这就是你所需要的。另外，如果对象是一个参与者，即使您只有一个<code>tag</code>，您也可以对其调用行为。</p>
+<!-- raw HTML omitted -->
+<p>那么当我想要在actor之间共享可变对象的身份时，我应该使用<code>tag</code>吗?__是的!或者，实际上，任何东西的恒等式，不管是可变的，不可变的，甚至是一个行动者。</p>
+<!-- raw HTML omitted -->
+<h2 id="无法发送的引用权能">无法发送的引用权能</h2>
+<!-- raw HTML omitted -->
+<p>你可能已经注意到我们并没有提到<code>trn</code>，<code>ref</code>，或者<code>box</code>作为你可以发送给其他演员的东西。那是因为你做不到。他们不会为了安全而做出我们需要的保证。</p>
+<!-- raw HTML omitted -->
+<p>那么什么时候应该使用这些引用权能呢?</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>*当你需要能够随着时间改变一个对象时，使用<code>ref</code>。另一方面，如果您的程序在使用不可变类型时不会变得更慢，那么您可能希望使用<code>val</code>。
+*当你不关心对象是可变的还是不可变的时候，使用<code>box</code>。换句话说，你想要能够阅读它，但你不需要给它写信或与其他演员分享它。
+*当你想要改变一个对象一段时间，但你也想让它 <em>全局不可变（global immutable）</em> 以后使用<code>trn</code>。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

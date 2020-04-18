@@ -61,7 +61,7 @@ Bool型 布尔类型有两个可选值：true 和 false。
 let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	//十六进制 let my_binary_int: I32 = 0b10000000000	//二进制 浮点文字以标准浮点或科学计数法表示：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/expressions/literals.html" />
-<meta property="article:modified_time" content="2020-04-13T18:18:28+08:00" />
+<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
 <meta itemprop="name" content="字面量（Literals）">
 <meta itemprop="description" content="What do we want?
 Values!
@@ -76,7 +76,7 @@ Bool型 布尔类型有两个可选值：true 和 false。
 可以使用以下一种数字类型的构造函数来帮助编译器确定字面量的具体类型：
  U8, U16, U32, U64, U128, USize, ULong I8, I16, I32, I64, I128, ISize, ILong F32, F64  let my_explicit_unsigned: U32 = 42_000 let my_constructor_unsigned = U8(1) let my_constructor_float = F64(1.234) 整数可以以十进制，十六进制或二进制形式给出：
 let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	//十六进制 let my_binary_int: I32 = 0b10000000000	//二进制 浮点文字以标准浮点或科学计数法表示：">
-<meta itemprop="dateModified" content="2020-04-13T18:18:28&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
 <meta itemprop="wordCount" content="494">
 
 
@@ -329,7 +329,7 @@ let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	/
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              转让和破坏性读取（Consume and Destructive Read）
+              权能转让和破坏性读取（Consume and Destructive Read）
             </a>
           </li>
           <li class="f6 fw4">
@@ -359,12 +359,12 @@ let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	/
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/arrow-types.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Arrow Types aka Viewpoints
+              箭头的用法（Arrow Types aka Viewpoints）
             </a>
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/capability-matrix.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Reference Capability Matrix
+              权能矩阵（Reference Capability Matrix）
             </a>
           </li>
         </ul>
@@ -385,7 +385,7 @@ let my_decimal_int: I32 = 1024 //十进制 let my_hexadecimal_int: I32 = 0x400	/
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/object-capabilities/trust-boundary.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              Trust Boundary
+              边界信任（Trust Boundary）
             </a>
           </li>
         </ul>
@@ -837,14 +837,14 @@ end
 </code></pre><!-- raw HTML omitted -->
 <p>这里，<code>my_stringable_array</code>被强制转换为<code>Array [Stringable] ref</code>。之所以能编译通过，是因为String和U64都实现了<code>Stringable</code>特征。</p>
 <!-- raw HTML omitted -->
-<p>通过在数组上指定类型说明符<code>val</code>，可以与[ref]不同的<a href="/reference-capabilities.html">引用权能（Reference Capability）</a>的数组：</p>
+<p>通过在数组上指定类型说明符<code>val</code>，可以与[ref]不同的<a href="/pony-tutorial/reference-capabilities.html">引用权能（Reference Capability）</a>的数组：</p>
 <pre><code class="language-pony" data-lang="pony">let my_immutable_array: Array[Stringable] val =
   [
     U64(0xBEEF)
     &quot;0xBEEF&quot;
   ]
 </code></pre><!-- raw HTML omitted -->
-<p>你可以创建任何<a href="/reference-capabilities.html">引用权能（Reference Capability）</a>的数组类型。</p>
+<p>你可以创建任何<a href="/pony-tutorial/reference-capabilities.html">引用权能（Reference Capability）</a>的数组类型。</p>
 <!-- raw HTML omitted -->
 <h3 id="as表达式">as表达式</h3>
 <!-- raw HTML omitted -->
@@ -864,7 +864,7 @@ end
 <!-- raw HTML omitted -->
 <p>用字面量构造一个数组会创建对其元素的新引用。因此，为了确保100%的正确性，会将数组元素推导为实际元素类型的别名。如果所有元素的类型均为T，则将数组的北行会被推导为<code>Array [T!] ref</code>，即类型别名为T的数组。</p>
 <!-- raw HTML omitted -->
-<p>要使用具有多种引用权能的数组（例如val和ref引用权能类型）可以参考下（<a href="/types/classes.html#constructors">构造函数</a>和<a href="/reference-capabilities/consume-and-destructive-read.html">所有权转让</a>章节）。</p>
+<p>要使用具有多种引用权能的数组（例如val和ref引用权能类型）可以参考下（<a href="/pony-tutorial/types/classes.html#构造函数">构造函数</a>和<a href="/pony-tutorial/reference-capabilities/consume-and-destructive-read.html">所有权转让</a>章节）。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>
