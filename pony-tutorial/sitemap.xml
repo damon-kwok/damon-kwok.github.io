@@ -88,7 +88,7 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/passing-and-sharing.html</loc>
-    <lastmod>2020-04-16T18:05:39+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -152,7 +152,7 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/aliasing.html</loc>
-    <lastmod>2020-04-16T17:49:19+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -192,12 +192,12 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/object-capabilities/object-capabilities.html</loc>
-    <lastmod>2020-04-16T18:05:39+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/types/actors.html</loc>
-    <lastmod>2020-04-13T11:10:46+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -211,13 +211,8 @@
   </url>
   
   <url>
-    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/guarantees.html</loc>
-    <lastmod>2020-04-16T17:49:19+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/reference-capabilities.html</loc>
-    <lastmod>2020-04-17T18:02:44+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -227,27 +222,32 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/recovering-capabilities.html</loc>
-    <lastmod>2020-04-16T17:49:19+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/capability-subtyping.html</loc>
-    <lastmod>2020-04-16T17:49:19+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/combining-capabilities.html</loc>
-    <lastmod>2020-04-18T18:10:17+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/capability-matrix.html</loc>
-    <lastmod>2020-04-16T18:05:39+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/guarantees.html</loc>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities/consume-and-destructive-read.html</loc>
-    <lastmod>2020-04-16T17:49:19+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -307,7 +307,7 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/reference-capabilities.html</loc>
-    <lastmod>2020-04-17T18:23:30+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -367,7 +367,7 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/types/at-a-glance.html</loc>
-    <lastmod>2020-04-13T11:10:46+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>
@@ -392,7 +392,7 @@
   
   <url>
     <loc>https://damon-kwok.github.io/pony-tutorial/object-capabilities/trust-boundary.html</loc>
-    <lastmod>2020-04-16T18:05:39+08:00</lastmod>
+    <lastmod>2020-04-20T17:26:26+08:00</lastmod>
   </url>
   
   <url>

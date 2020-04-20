@@ -46,40 +46,40 @@
     
 
     <meta property="og:title" content="权能转让和破坏性读取（Consume and Destructive Read）" />
-<meta property="og:description" content="Pony能力的一个重要部分就是能够说&quot;我已经完成了这件事。&ldquo;我们将介绍处理这种情况的两种方法:使用变量和破坏性读取。
-权能转让（Consuming a variable） 有时，你希望将对象从一个变量移动到另一个变量。换句话说，你不希望为对象创建一个_new_名称，确切地说，你希望将对象从某个现有名称移动到另一个不同的名称。
-你可以通过使用转让（consume）来做到这一点。当你转让（consume）一个变量时，你将从中取出该变量的值，实际上是将该变量留空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 编译器对此很高兴，因为通过使用a，你已经说过该值不能再次使用，如果你尝试使用，编译器将会抱怨。
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 这里有一个例子。当你试图把a赋值给c时，编译器会报错。
-我可以转让（consume）一个字段吗?__当然不行!转让（consume）意味着它是空的，也就是说，它没有价值。无法确保对象的其他别名不会访问该字段。如果我们试图访问一个空字段，我们会崩溃。但是有一种方法可以做你想做的:destructive read。
-破坏性读取（Destructive read） 还有一种方法可以将值从一个名称移动到另一个名称。在前面，我们讨论了Pony中的赋值如何返回左侧的_old_值，而不是新值。这叫做_destructive read_，我们可以用它来做我们想做的事情，即使是字段。
+<meta property="og:description" content="权能是Pony的一个重要部分，就是能够说&quot;我已经完成了这件事。&rdquo; 我们将介绍处理这种情况的两种方法:转让变量和破坏性读取。
+转让变量（Consuming a variable） 有时，你希望将对象从一个变量转移到另一个变量。你不希望为对象创建一个新名字，只是从某个现有名称移动到另一个不同的名字。
+你可以使用转让（consume）表达式来完成。当你转让（consume）一个变量时，将从中取出该变量的值，实际上是将该变量清空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 此处编译器非常清楚a已经被你转让出去了，该变量不能再次使用，如果你尝试使用，编译器就会报错。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 上面示例中，当你试图把a赋值给c时，编译器会报错。
+可以转让（consume）一个字段吗? 当然不行！被转让（consume）意味着被置空，也就是说它会没有值。我们无法确保对象的其他别名不会访问该字段。如果试图访问一个空字段，程序会崩溃。但是还有有一种情况你需要知道：破坏性读取（destructive read）。
+破坏性读取（Destructive read） 还有另一种方法可以将数据从一个变量移动到另一个变量。在前面，我们讨论了Pony中的赋值如何返回左侧的旧值，而不是新值。这叫做破坏性读取（destructive read），我们可以用它来转让任何数据，就算是字段也没问题。
 class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat end fun ref test(a: Wombat iso) =&gt; var b: Wombat iso = buddy = consume a // Allowed!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/consume-and-destructive-read.html" />
-<meta property="article:modified_time" content="2020-04-16T17:49:19+08:00" />
+<meta property="article:modified_time" content="2020-04-20T17:26:26+08:00" />
 <meta itemprop="name" content="权能转让和破坏性读取（Consume and Destructive Read）">
-<meta itemprop="description" content="Pony能力的一个重要部分就是能够说&quot;我已经完成了这件事。&ldquo;我们将介绍处理这种情况的两种方法:使用变量和破坏性读取。
-权能转让（Consuming a variable） 有时，你希望将对象从一个变量移动到另一个变量。换句话说，你不希望为对象创建一个_new_名称，确切地说，你希望将对象从某个现有名称移动到另一个不同的名称。
-你可以通过使用转让（consume）来做到这一点。当你转让（consume）一个变量时，你将从中取出该变量的值，实际上是将该变量留空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 编译器对此很高兴，因为通过使用a，你已经说过该值不能再次使用，如果你尝试使用，编译器将会抱怨。
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 这里有一个例子。当你试图把a赋值给c时，编译器会报错。
-我可以转让（consume）一个字段吗?__当然不行!转让（consume）意味着它是空的，也就是说，它没有价值。无法确保对象的其他别名不会访问该字段。如果我们试图访问一个空字段，我们会崩溃。但是有一种方法可以做你想做的:destructive read。
-破坏性读取（Destructive read） 还有一种方法可以将值从一个名称移动到另一个名称。在前面，我们讨论了Pony中的赋值如何返回左侧的_old_值，而不是新值。这叫做_destructive read_，我们可以用它来做我们想做的事情，即使是字段。
+<meta itemprop="description" content="权能是Pony的一个重要部分，就是能够说&quot;我已经完成了这件事。&rdquo; 我们将介绍处理这种情况的两种方法:转让变量和破坏性读取。
+转让变量（Consuming a variable） 有时，你希望将对象从一个变量转移到另一个变量。你不希望为对象创建一个新名字，只是从某个现有名称移动到另一个不同的名字。
+你可以使用转让（consume）表达式来完成。当你转让（consume）一个变量时，将从中取出该变量的值，实际上是将该变量清空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 此处编译器非常清楚a已经被你转让出去了，该变量不能再次使用，如果你尝试使用，编译器就会报错。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 上面示例中，当你试图把a赋值给c时，编译器会报错。
+可以转让（consume）一个字段吗? 当然不行！被转让（consume）意味着被置空，也就是说它会没有值。我们无法确保对象的其他别名不会访问该字段。如果试图访问一个空字段，程序会崩溃。但是还有有一种情况你需要知道：破坏性读取（destructive read）。
+破坏性读取（Destructive read） 还有另一种方法可以将数据从一个变量移动到另一个变量。在前面，我们讨论了Pony中的赋值如何返回左侧的旧值，而不是新值。这叫做破坏性读取（destructive read），我们可以用它来转让任何数据，就算是字段也没问题。
 class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat end fun ref test(a: Wombat iso) =&gt; var b: Wombat iso = buddy = consume a // Allowed!">
-<meta itemprop="dateModified" content="2020-04-16T17:49:19&#43;08:00" />
-<meta itemprop="wordCount" content="84">
+<meta itemprop="dateModified" content="2020-04-20T17:26:26&#43;08:00" />
+<meta itemprop="wordCount" content="87">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="权能转让和破坏性读取（Consume and Destructive Read）"/>
-<meta name="twitter:description" content="Pony能力的一个重要部分就是能够说&quot;我已经完成了这件事。&ldquo;我们将介绍处理这种情况的两种方法:使用变量和破坏性读取。
-权能转让（Consuming a variable） 有时，你希望将对象从一个变量移动到另一个变量。换句话说，你不希望为对象创建一个_new_名称，确切地说，你希望将对象从某个现有名称移动到另一个不同的名称。
-你可以通过使用转让（consume）来做到这一点。当你转让（consume）一个变量时，你将从中取出该变量的值，实际上是将该变量留空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 编译器对此很高兴，因为通过使用a，你已经说过该值不能再次使用，如果你尝试使用，编译器将会抱怨。
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 这里有一个例子。当你试图把a赋值给c时，编译器会报错。
-我可以转让（consume）一个字段吗?__当然不行!转让（consume）意味着它是空的，也就是说，它没有价值。无法确保对象的其他别名不会访问该字段。如果我们试图访问一个空字段，我们会崩溃。但是有一种方法可以做你想做的:destructive read。
-破坏性读取（Destructive read） 还有一种方法可以将值从一个名称移动到另一个名称。在前面，我们讨论了Pony中的赋值如何返回左侧的_old_值，而不是新值。这叫做_destructive read_，我们可以用它来做我们想做的事情，即使是字段。
+<meta name="twitter:description" content="权能是Pony的一个重要部分，就是能够说&quot;我已经完成了这件事。&rdquo; 我们将介绍处理这种情况的两种方法:转让变量和破坏性读取。
+转让变量（Consuming a variable） 有时，你希望将对象从一个变量转移到另一个变量。你不希望为对象创建一个新名字，只是从某个现有名称移动到另一个不同的名字。
+你可以使用转让（consume）表达式来完成。当你转让（consume）一个变量时，将从中取出该变量的值，实际上是将该变量清空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是iso或trn。例如:
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! 此处编译器非常清楚a已经被你转让出去了，该变量不能再次使用，如果你尝试使用，编译器就会报错。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = consume a // Allowed! var c: Wombat tag = a // Not allowed! 上面示例中，当你试图把a赋值给c时，编译器会报错。
+可以转让（consume）一个字段吗? 当然不行！被转让（consume）意味着被置空，也就是说它会没有值。我们无法确保对象的其他别名不会访问该字段。如果试图访问一个空字段，程序会崩溃。但是还有有一种情况你需要知道：破坏性读取（destructive read）。
+破坏性读取（Destructive read） 还有另一种方法可以将数据从一个变量移动到另一个变量。在前面，我们讨论了Pony中的赋值如何返回左侧的旧值，而不是新值。这叫做破坏性读取（destructive read），我们可以用它来转让任何数据，就算是字段也没问题。
 class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat end fun ref test(a: Wombat iso) =&gt; var b: Wombat iso = buddy = consume a // Allowed!"/>
 
   </head>
@@ -309,7 +309,7 @@ class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat e
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              引用权能保证（Reference Capability Guarantees）
+              权能约束（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
@@ -324,7 +324,7 @@ class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat e
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              别名（Aliasing）
+              别名引用（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
@@ -621,7 +621,7 @@ class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat e
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#权能转让consuming-a-variable">权能转让（Consuming a variable）</a></li>
+    <li><a href="#转让变量consuming-a-variable">转让变量（Consuming a variable）</a></li>
     <li><a href="#破坏性读取destructive-read">破坏性读取（Destructive read）</a></li>
   </ul>
 </nav>
@@ -644,28 +644,28 @@ class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat e
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>Pony能力的一个重要部分就是能够说&quot;我已经完成了这件事。&ldquo;我们将介绍处理这种情况的两种方法:使用变量和破坏性读取。</p>
+<p>权能是Pony的一个重要部分，就是能够说&quot;我已经完成了这件事。&rdquo; 我们将介绍处理这种情况的两种方法:转让变量和破坏性读取。</p>
 <!-- raw HTML omitted -->
-<h2 id="权能转让consuming-a-variable">权能转让（Consuming a variable）</h2>
+<h2 id="转让变量consuming-a-variable">转让变量（Consuming a variable）</h2>
 <!-- raw HTML omitted -->
-<p>有时，你希望将对象从一个变量移动到另一个变量。换句话说，你不希望为对象创建一个_new_名称，确切地说，你希望将对象从某个现有名称移动到另一个不同的名称。</p>
+<p>有时，你希望将对象从一个变量转移到另一个变量。你不希望为对象创建一个<code>新名字</code>，只是从某个现有名称移动到另一个不同的名字。</p>
 <!-- raw HTML omitted -->
-<p>你可以通过使用<code>转让（consume）</code>来做到这一点。当你<code>转让（consume）</code>一个变量时，你将从中取出该变量的值，实际上是将该变量留空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用局部变量或参数允许你使用相同类型的别名，即使它是<code>iso</code>或<code>trn</code>。例如:</p>
+<p>你可以使用<code>转让（consume）</code>表达式来完成。当你<code>转让（consume）</code>一个变量时，将从中取出该变量的值，实际上是将该变量清空。在向该变量写入新值之前，任何代码都不能再次读取该变量。使用<code>局部变量</code>或<code>参数</code>允许你使用相同类型的别名，即使它是<code>iso</code>或<code>trn</code>。例如:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso) =&gt;
   var b: Wombat iso = consume a // Allowed!
 </code></pre><!-- raw HTML omitted -->
-<p>编译器对此很高兴，因为通过使用<code>a</code>，你已经说过该值不能再次使用，如果你尝试使用，编译器将会抱怨。</p>
+<p>此处编译器非常清楚<code>a</code>已经被你转让出去了，该变量不能再次使用，如果你尝试使用，编译器就会报错。</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso) =&gt;
   var b: Wombat iso = consume a // Allowed!
   var c: Wombat tag = a // Not allowed!
 </code></pre><!-- raw HTML omitted -->
-<p>这里有一个例子。当你试图把<code>a</code>赋值给<code>c</code>时，编译器会报错。</p>
+<p>上面示例中，当你试图把<code>a</code>赋值给<code>c</code>时，编译器会报错。</p>
 <!-- raw HTML omitted -->
-<p>我可以<code>转让（consume）</code>一个字段吗?__当然不行!转让（consume）意味着它是空的，也就是说，它没有价值。无法确保对象的其他别名不会访问该字段。如果我们试图访问一个空字段，我们会崩溃。但是有一种方法可以做你想做的:<em>destructive read</em>。</p>
+<p><strong>可以<code>转让（consume）</code>一个字段吗?</strong> 当然不行！被<code>转让（consume）</code>意味着被置空，也就是说它会没有值。我们无法确保对象的其他别名不会访问该字段。如果试图访问一个空字段，程序会崩溃。但是还有有一种情况你需要知道：<code>破坏性读取（destructive read）</code>。</p>
 <!-- raw HTML omitted -->
 <h2 id="破坏性读取destructive-read">破坏性读取（Destructive read）</h2>
 <!-- raw HTML omitted -->
-<p>还有一种方法可以将值从一个名称移动到另一个名称。在前面，我们讨论了Pony中的赋值如何返回左侧的_old_值，而不是新值。这叫做_destructive read_，我们可以用它来做我们想做的事情，即使是字段。</p>
+<p>还有另一种方法可以将数据从一个变量<code>移动</code>到另一个变量。在前面，我们讨论了Pony中的赋值如何返回左侧的<code>旧值</code>，而不是<code>新值</code>。这叫做<code>破坏性读取（destructive read）</code>，我们可以用它来转让任何数据，就算是<code>字段</code>也没问题。</p>
 <pre><code class="language-pony" data-lang="pony">class Aardvark
   var buddy: Wombat iso
 
@@ -677,7 +677,7 @@ class Aardvark var buddy: Wombat iso new create() =&gt; buddy = recover Wombat e
 </code></pre><!-- raw HTML omitted -->
 <p>在这里，我们使用<code>a</code>，将它分配给<code>buddy</code>字段，并将<code>buddy</code>的_old_值分配给<code>b</code>。</p>
 <!-- raw HTML omitted -->
-<p>为什么当我们不能使用字段时，可以销毁它们呢?因为当我们做一个破坏性的读取时，我们给字段赋值，所以它总是有一个值。不像<code>转让（consume）</code>，没有时间当字段是空的。这意味着它是安全的，编译器不会报错。</p>
+<p><strong>为什么可以对一个字段进行破坏性读取，但是不可以销毁它们呢?</strong> 因为当我们做一个破坏性的读取时，我们给字段赋了一个新的值，所以它总是有一个值。和单纯的<code>转让（consume）</code>不同，它没有任何时间让字段是置空状态。这表示它是安全的，编译器不会报错。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

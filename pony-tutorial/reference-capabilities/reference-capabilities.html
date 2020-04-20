@@ -65,10 +65,10 @@ actor内部的代码永远不会并发运行。在actor中，数据更新不会�
 好吧，看来同时安全地共享数据确实很棘手，来看看引用权能（reference capabilities）是怎么做到的。
 通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
 类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
-A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!" />
+A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const更多的约束!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/reference-capabilities.html" />
-<meta property="article:modified_time" content="2020-04-17T18:02:44+08:00" />
+<meta property="article:modified_time" content="2020-04-20T17:26:26+08:00" />
 <meta itemprop="name" content="引用权能（Reference Capabilities）">
 <meta itemprop="description" content="如果对象具有权能，我们该怎么来控制？比如如何表示该对象的 访问权限（access rights） ？
 Pony中，可以用引用权能（reference capabilities）来处理。
@@ -89,8 +89,8 @@ actor内部的代码永远不会并发运行。在actor中，数据更新不会�
 好吧，看来同时安全地共享数据确实很棘手，来看看引用权能（reference capabilities）是怎么做到的。
 通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
 类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
-A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!">
-<meta itemprop="dateModified" content="2020-04-17T18:02:44&#43;08:00" />
+A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const更多的约束!">
+<meta itemprop="dateModified" content="2020-04-20T17:26:26&#43;08:00" />
 <meta itemprop="wordCount" content="210">
 
 
@@ -116,7 +116,7 @@ actor内部的代码永远不会并发运行。在actor中，数据更新不会�
 好吧，看来同时安全地共享数据确实很棘手，来看看引用权能（reference capabilities）是怎么做到的。
 通过只共享不可变的数据和只交换被隔离的数据，我们可以拥有没有锁的安全并发程序。问题是要正确地做到这一点是非常困难的。如果您不小心挂起了对某些已提交的独立数据的引用，或者将已共享的内容更改为不可变的，那么一切都会出错。你需要的是编译器强迫你去实现你的承诺。小马引用权能（reference capabilities）允许编译器这样做。
 类型限定符（Type qualifiers） 如果你使用过C/C&#43;&#43;，您可能熟悉const，它是一个 类型限定符（type qualifier） ，告诉编译器不允许程序员修改某些东西。
-A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const多得多的保证!"/>
+A reference capability is a form of type qualifier and provides a lot more guarantees than const does! 引用权能（reference capabilities）是 type qualifier 的一种形式，它提供了比const更多的约束!"/>
 
   </head>
 
@@ -345,7 +345,7 @@ A reference capability is a form of type qualifier and provides a lot more guara
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              引用权能保证（Reference Capability Guarantees）
+              权能约束（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
@@ -360,7 +360,7 @@ A reference capability is a form of type qualifier and provides a lot more guara
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              别名（Aliasing）
+              别名引用（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
@@ -736,7 +736,7 @@ A reference capability is a form of type qualifier and provides a lot more guara
 <!-- raw HTML omitted -->
 <p>如果你使用过C/C++，您可能熟悉<code>const</code>，它是一个 <em>类型限定符（type qualifier）</em> ，告诉编译器不允许程序员修改某些东西。</p>
 <p>A reference capability is a form of <em>type qualifier</em> and provides a lot more guarantees than <code>const</code> does!
-<code>引用权能（reference capabilities）</code>是 <em>type qualifier</em> 的一种形式，它提供了比<code>const</code>多得多的保证!</p>
+<code>引用权能（reference capabilities）</code>是 <em>type qualifier</em> 的一种形式，它提供了比<code>const</code>更多的约束!</p>
 <!-- raw HTML omitted -->
 <p>在Pony中，所有的类型都有一个<code>引用权能（reference capabilities）</code>作为类型限定符。这个规则只适用于变量（局部变量、字段、参数等），而不是类型。换句话说，当你定义一个类<code>Wombat</code>时，你不会为这个类的所有实例使用某个<code>引用权能（reference capabilities）</code>。相反，<code>Wombat</code>的每个字段都有自己的<code>引用权能（reference capabilities）</code>。</p>
 <!-- raw HTML omitted -->

@@ -46,7 +46,7 @@
     
 
     <meta property="og:title" content="边界信任（Trust Boundary）" />
-<meta property="og:description" content="我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+<meta property="og:description" content="我们之前提到过，C FFI可以用来打破Pony做出的几乎所有约束限制。这是因为，一旦调用了C语言，就可能会执行任意的机器码，这些代码会破坏内存地址、修改任何数据，而且通常表现得非常糟糕。
 边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
 在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
 安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
@@ -55,23 +55,23 @@
 ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/object-capabilities/trust-boundary.html" />
-<meta property="article:modified_time" content="2020-04-16T18:05:39+08:00" />
+<meta property="article:modified_time" content="2020-04-20T17:26:26+08:00" />
 <meta itemprop="name" content="边界信任（Trust Boundary）">
-<meta itemprop="description" content="我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+<meta itemprop="description" content="我们之前提到过，C FFI可以用来打破Pony做出的几乎所有约束限制。这是因为，一旦调用了C语言，就可能会执行任意的机器码，这些代码会破坏内存地址、修改任何数据，而且通常表现得非常糟糕。
 边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
 在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
 安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
 但我们可以做得更好。
 在Pony中，你可以选择在‘ponyc’命令行上声明一组_safe_包，就像这样:
 ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件”、“net”和“net/ssl”包才允许使用C FFI调用。我们已经建立了信任边界:任何其他试图使用C FFI调用的包都会导致编译时错误。">
-<meta itemprop="dateModified" content="2020-04-16T18:05:39&#43;08:00" />
-<meta itemprop="wordCount" content="15">
+<meta itemprop="dateModified" content="2020-04-20T17:26:26&#43;08:00" />
+<meta itemprop="wordCount" content="16">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="边界信任（Trust Boundary）"/>
-<meta name="twitter:description" content="我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。
+<meta name="twitter:description" content="我们之前提到过，C FFI可以用来打破Pony做出的几乎所有约束限制。这是因为，一旦调用了C语言，就可能会执行任意的机器码，这些代码会破坏内存地址、修改任何数据，而且通常表现得非常糟糕。
 边界信任 当我们谈论信任的时候，我们并不是指你相信的事情，因为你认为它们是完美的。相反，我们指的是那些你必须信任才能完成的事情，即使你知道它们是不完美的。
 在Pony中，当你使用C FFI时，你基本上是在声明你相信正在执行的C代码。这很好，因为你可能需要它来完成工作。但是信任别人的代码来使用cffi呢?你可能需要知道，但你肯定想知道它正在发生。
 安全包 处理这个问题的常规方法是确保您只使用了程序中需要使用的代码。很简单!不要使用一些随机的包从互联网上没有看到的代码，并确保它不会做令人讨厌的FFI的东西。
@@ -306,7 +306,7 @@ ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件�
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              引用权能保证（Reference Capability Guarantees）
+              权能约束（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
@@ -321,7 +321,7 @@ ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件�
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              别名（Aliasing）
+              别名引用（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
@@ -641,7 +641,7 @@ ponyc --safe=files:net:net/ssl my_project 这里，我们声明只有“文件�
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>我们之前提到过，cffi可以用来打破Pony做出的几乎所有保证。这是因为，一旦调用了C语言，就会执行任意的机器码，这些代码会破坏内存地址、写入任何东西，而且通常表现得非常糟糕。</p>
+<p>我们之前提到过，C FFI可以用来打破Pony做出的几乎所有约束限制。这是因为，一旦调用了C语言，就可能会执行任意的机器码，这些代码会破坏内存地址、修改任何数据，而且通常表现得非常糟糕。</p>
 <!-- raw HTML omitted -->
 <h2 id="边界信任">边界信任</h2>
 <!-- raw HTML omitted -->

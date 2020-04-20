@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | 引用权能保证（Reference Capability Guarantees）</title>
+    <title>Pony 教程  | 权能约束（Reference Capability Guarantees）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,51 +45,51 @@
 
     
 
-    <meta property="og:title" content="引用权能保证（Reference Capability Guarantees）" />
-<meta property="og:description" content="因为类型是保证，所以讨论引用权能的保证是很有用的。
-拒绝访问（What is denied） 我们将讨论引用权能保证在什么情况下访问被拒绝。这里我们讨论的问题是：当你有一个具有一定引用权能的变量时，其他变量 不能 做什么?
-我们需要区分包含有变量的actor和 其他 actor。
-这一点很重要，因为来自其他actor的数据读写可能同时发生。如果两个actor都能读取相同的数据，并且其中一个更改了数据，那么另一个actor的数据也会发生变化。这将导致数据竞争和对锁的需求。只有确保这种情况永远不会发生，Pony才能消除对锁的需求。
-任何一个actor中的所有代码总是顺序执行。这意味着来自单个actor中的多个变量的数据访问不会受到数据竞争的影响。
-可变引用权能（Mutable reference capabilities） 可变的引用权能有iso、trn和ref。用这些引用权能标记的数据是可修改的，它们可以用来读写对象。
- 如果一个actor有一个iso变量，那么 任何 actor都不能读写这个对象。这表示iso变量是程序中惟一可以读写该对象的变量。 如果一个actor有一个trn变量，那么 任何 actor都不能写入该对象，其他 actor也不能读写该对象。这表示trn变量是程序中惟一可以写入该对象的变量，但是同一actor持有的其他变量可能可以从该对象读取数据。它是 write unique 。 如果一个actor有一个ref变量，那么 其他 actor都不能使用其他变量来读写这个对象。这意味着可以使用其他变量对对象进行读写操作，但只能从相同的actor中进行。  为什可以安全的修改？ 因为 其他 的actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可改变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
- 如果一个actor有一个val变量，那么 任何 actor不能修改。这表示它 无法被修改 。它是永恒不变。 如果一个actor有一个box变量，那么 其他 actors就不能修改。但时其他actor可以读取，而同一actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。对象是_localy mmutable_。  为什么可以读取不能修改? 因为这些引用权能只会阻止 其他 actor修改对象。这表示不能保证 其他 actor不会从对象中读取数据，这意味着写入它是不安全的。但是，多个actor同时读取一个对象是安全的，所以我们可以这样做。
-不透明的引用权能（Opaque reference capabilities） 只有一种模糊的引用权能，那就是tag。tag变量对其他变量没有任何保证。因此，它既不能用于从对象中读取数据，也不能用于从对象中写入数据;因此被称为 不透明（opaque） 。
-它仍然是有用的:你可以用它做身份比较，你可以在它上面调用行为，你可以在它上面调用功能，只需要一个tag接收器。
-为什么tag不能用来读或写?因为tag并不会阻止其他的角色写入对象。这意味着，如果我们试图读取，我们不能保证没有其他actor写入对象，所以我们可能会得到竞态条件。" />
+    <meta property="og:title" content="权能约束（Reference Capability Guarantees）" />
+<meta property="og:description" content="因为类型系统的约束性，所以也需要了解下引用权能提供了哪些约束。
+哪些语法是被禁止的？（What is denied） 接下来我们将讨论在引用权能的守护下，编译器会阻止哪些非法操作。也就是说：当你定义了一个具有引用权能的变量时，其他变量 不能 对它做什么?
+首先我们需要区分：自身actor（变量所在的actor）、其他actor（外部actor）和任何actor（表示所有actor，包括自身actor和其他actor）。
+需要知道一件重要事：多个actor会存在并发。如果两个actor都能读同一份数据，其中一个更改了数据，另一个actor也必须知道数据发生了变化。这将导致数据竞争，并产生对锁的需求。只有确保这种情况永远不会发生，Pony才能真正的消除锁。
+还要牢记一点：单个actor中的代码总是顺序执行的。所以，在actor的内部对变量的访问不会产生数据竞争问题。
+可变引用权能（Mutable reference capabilities） 可变的引用权能类型有iso、trn和ref。用这些引用权能标记的数据是可以修改的，它们可以用来读写对象。
+ 如果一个actor有一个iso变量，那么 任何actor都不能读写这个变量的数据。这表示iso变量是程序中惟一可以读写自身数据的变量，它具有读写唯一性（read and write unique）。 如果一个actor有一个trn变量，自身actor可读不可写，其他actor不能读写。这表示trn变量是程序中惟一可以修改自身数据的变量，但是自身actor持有的其他变量可能可以从该对象读取数据。它具备修改唯一性（write unique）。 如果一个actor有一个ref变量，只有自身actor可以读写，其他actor不能读写。其他actor想要读写该变量，只能借助消息机制（调用此actor的行为）来进行。  为什么自身actor内部可以安全的修改？ 因为其他actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
+ 如果一个actor有一个val变量，那么任何actor不能修改它。这表示它无法被修改。它的数据是全局不可变（globally immutable）的。 如果一个actor有一个box变量，那么其他actor不能修改她，但可以读取，而自身actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。这类对象是局部不可变（localy immutable）的。  为什么可以读取不能修改? 因为这些引用权能只会阻止其他actor的修改操作，但是不会阻止其他actor的读取操作。因为多个actor同时读取一个对象是安全的，所以这样做没问题。
+不透明的引用权能（Opaque reference capabilities） 不透明（opaque）的引用权能只有一种，那就是tag。tag变量对其他变量没有任何约束。它既不能用于从对象中读取数据，也不能用于从对象中写入数据。因此被称为 不透明（opaque） 。
+即便如此，它仍然是有用的：你可以用它做身份比较，也可以在它上面调用行为和方法，只需要一个tag接收器。
+为什么编译器不允许对tag进行读写？ 这是Pony的一种取舍，因为在在tag调用行为时，我们无法停止这一调佣操作。你可以想象一下这样的情况：如果我们一边用它来调用一些操行为，但是同时我们又其他actor对其修改，那就可能会触发数据竞争的情况。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/guarantees.html" />
-<meta property="article:modified_time" content="2020-04-16T17:49:19+08:00" />
-<meta itemprop="name" content="引用权能保证（Reference Capability Guarantees）">
-<meta itemprop="description" content="因为类型是保证，所以讨论引用权能的保证是很有用的。
-拒绝访问（What is denied） 我们将讨论引用权能保证在什么情况下访问被拒绝。这里我们讨论的问题是：当你有一个具有一定引用权能的变量时，其他变量 不能 做什么?
-我们需要区分包含有变量的actor和 其他 actor。
-这一点很重要，因为来自其他actor的数据读写可能同时发生。如果两个actor都能读取相同的数据，并且其中一个更改了数据，那么另一个actor的数据也会发生变化。这将导致数据竞争和对锁的需求。只有确保这种情况永远不会发生，Pony才能消除对锁的需求。
-任何一个actor中的所有代码总是顺序执行。这意味着来自单个actor中的多个变量的数据访问不会受到数据竞争的影响。
-可变引用权能（Mutable reference capabilities） 可变的引用权能有iso、trn和ref。用这些引用权能标记的数据是可修改的，它们可以用来读写对象。
- 如果一个actor有一个iso变量，那么 任何 actor都不能读写这个对象。这表示iso变量是程序中惟一可以读写该对象的变量。 如果一个actor有一个trn变量，那么 任何 actor都不能写入该对象，其他 actor也不能读写该对象。这表示trn变量是程序中惟一可以写入该对象的变量，但是同一actor持有的其他变量可能可以从该对象读取数据。它是 write unique 。 如果一个actor有一个ref变量，那么 其他 actor都不能使用其他变量来读写这个对象。这意味着可以使用其他变量对对象进行读写操作，但只能从相同的actor中进行。  为什可以安全的修改？ 因为 其他 的actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可改变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
- 如果一个actor有一个val变量，那么 任何 actor不能修改。这表示它 无法被修改 。它是永恒不变。 如果一个actor有一个box变量，那么 其他 actors就不能修改。但时其他actor可以读取，而同一actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。对象是_localy mmutable_。  为什么可以读取不能修改? 因为这些引用权能只会阻止 其他 actor修改对象。这表示不能保证 其他 actor不会从对象中读取数据，这意味着写入它是不安全的。但是，多个actor同时读取一个对象是安全的，所以我们可以这样做。
-不透明的引用权能（Opaque reference capabilities） 只有一种模糊的引用权能，那就是tag。tag变量对其他变量没有任何保证。因此，它既不能用于从对象中读取数据，也不能用于从对象中写入数据;因此被称为 不透明（opaque） 。
-它仍然是有用的:你可以用它做身份比较，你可以在它上面调用行为，你可以在它上面调用功能，只需要一个tag接收器。
-为什么tag不能用来读或写?因为tag并不会阻止其他的角色写入对象。这意味着，如果我们试图读取，我们不能保证没有其他actor写入对象，所以我们可能会得到竞态条件。">
-<meta itemprop="dateModified" content="2020-04-16T17:49:19&#43;08:00" />
-<meta itemprop="wordCount" content="59">
+<meta property="article:modified_time" content="2020-04-20T17:26:26+08:00" />
+<meta itemprop="name" content="权能约束（Reference Capability Guarantees）">
+<meta itemprop="description" content="因为类型系统的约束性，所以也需要了解下引用权能提供了哪些约束。
+哪些语法是被禁止的？（What is denied） 接下来我们将讨论在引用权能的守护下，编译器会阻止哪些非法操作。也就是说：当你定义了一个具有引用权能的变量时，其他变量 不能 对它做什么?
+首先我们需要区分：自身actor（变量所在的actor）、其他actor（外部actor）和任何actor（表示所有actor，包括自身actor和其他actor）。
+需要知道一件重要事：多个actor会存在并发。如果两个actor都能读同一份数据，其中一个更改了数据，另一个actor也必须知道数据发生了变化。这将导致数据竞争，并产生对锁的需求。只有确保这种情况永远不会发生，Pony才能真正的消除锁。
+还要牢记一点：单个actor中的代码总是顺序执行的。所以，在actor的内部对变量的访问不会产生数据竞争问题。
+可变引用权能（Mutable reference capabilities） 可变的引用权能类型有iso、trn和ref。用这些引用权能标记的数据是可以修改的，它们可以用来读写对象。
+ 如果一个actor有一个iso变量，那么 任何actor都不能读写这个变量的数据。这表示iso变量是程序中惟一可以读写自身数据的变量，它具有读写唯一性（read and write unique）。 如果一个actor有一个trn变量，自身actor可读不可写，其他actor不能读写。这表示trn变量是程序中惟一可以修改自身数据的变量，但是自身actor持有的其他变量可能可以从该对象读取数据。它具备修改唯一性（write unique）。 如果一个actor有一个ref变量，只有自身actor可以读写，其他actor不能读写。其他actor想要读写该变量，只能借助消息机制（调用此actor的行为）来进行。  为什么自身actor内部可以安全的修改？ 因为其他actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
+ 如果一个actor有一个val变量，那么任何actor不能修改它。这表示它无法被修改。它的数据是全局不可变（globally immutable）的。 如果一个actor有一个box变量，那么其他actor不能修改她，但可以读取，而自身actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。这类对象是局部不可变（localy immutable）的。  为什么可以读取不能修改? 因为这些引用权能只会阻止其他actor的修改操作，但是不会阻止其他actor的读取操作。因为多个actor同时读取一个对象是安全的，所以这样做没问题。
+不透明的引用权能（Opaque reference capabilities） 不透明（opaque）的引用权能只有一种，那就是tag。tag变量对其他变量没有任何约束。它既不能用于从对象中读取数据，也不能用于从对象中写入数据。因此被称为 不透明（opaque） 。
+即便如此，它仍然是有用的：你可以用它做身份比较，也可以在它上面调用行为和方法，只需要一个tag接收器。
+为什么编译器不允许对tag进行读写？ 这是Pony的一种取舍，因为在在tag调用行为时，我们无法停止这一调佣操作。你可以想象一下这样的情况：如果我们一边用它来调用一些操行为，但是同时我们又其他actor对其修改，那就可能会触发数据竞争的情况。">
+<meta itemprop="dateModified" content="2020-04-20T17:26:26&#43;08:00" />
+<meta itemprop="wordCount" content="42">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="引用权能保证（Reference Capability Guarantees）"/>
-<meta name="twitter:description" content="因为类型是保证，所以讨论引用权能的保证是很有用的。
-拒绝访问（What is denied） 我们将讨论引用权能保证在什么情况下访问被拒绝。这里我们讨论的问题是：当你有一个具有一定引用权能的变量时，其他变量 不能 做什么?
-我们需要区分包含有变量的actor和 其他 actor。
-这一点很重要，因为来自其他actor的数据读写可能同时发生。如果两个actor都能读取相同的数据，并且其中一个更改了数据，那么另一个actor的数据也会发生变化。这将导致数据竞争和对锁的需求。只有确保这种情况永远不会发生，Pony才能消除对锁的需求。
-任何一个actor中的所有代码总是顺序执行。这意味着来自单个actor中的多个变量的数据访问不会受到数据竞争的影响。
-可变引用权能（Mutable reference capabilities） 可变的引用权能有iso、trn和ref。用这些引用权能标记的数据是可修改的，它们可以用来读写对象。
- 如果一个actor有一个iso变量，那么 任何 actor都不能读写这个对象。这表示iso变量是程序中惟一可以读写该对象的变量。 如果一个actor有一个trn变量，那么 任何 actor都不能写入该对象，其他 actor也不能读写该对象。这表示trn变量是程序中惟一可以写入该对象的变量，但是同一actor持有的其他变量可能可以从该对象读取数据。它是 write unique 。 如果一个actor有一个ref变量，那么 其他 actor都不能使用其他变量来读写这个对象。这意味着可以使用其他变量对对象进行读写操作，但只能从相同的actor中进行。  为什可以安全的修改？ 因为 其他 的actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可改变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
- 如果一个actor有一个val变量，那么 任何 actor不能修改。这表示它 无法被修改 。它是永恒不变。 如果一个actor有一个box变量，那么 其他 actors就不能修改。但时其他actor可以读取，而同一actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。对象是_localy mmutable_。  为什么可以读取不能修改? 因为这些引用权能只会阻止 其他 actor修改对象。这表示不能保证 其他 actor不会从对象中读取数据，这意味着写入它是不安全的。但是，多个actor同时读取一个对象是安全的，所以我们可以这样做。
-不透明的引用权能（Opaque reference capabilities） 只有一种模糊的引用权能，那就是tag。tag变量对其他变量没有任何保证。因此，它既不能用于从对象中读取数据，也不能用于从对象中写入数据;因此被称为 不透明（opaque） 。
-它仍然是有用的:你可以用它做身份比较，你可以在它上面调用行为，你可以在它上面调用功能，只需要一个tag接收器。
-为什么tag不能用来读或写?因为tag并不会阻止其他的角色写入对象。这意味着，如果我们试图读取，我们不能保证没有其他actor写入对象，所以我们可能会得到竞态条件。"/>
+<meta name="twitter:title" content="权能约束（Reference Capability Guarantees）"/>
+<meta name="twitter:description" content="因为类型系统的约束性，所以也需要了解下引用权能提供了哪些约束。
+哪些语法是被禁止的？（What is denied） 接下来我们将讨论在引用权能的守护下，编译器会阻止哪些非法操作。也就是说：当你定义了一个具有引用权能的变量时，其他变量 不能 对它做什么?
+首先我们需要区分：自身actor（变量所在的actor）、其他actor（外部actor）和任何actor（表示所有actor，包括自身actor和其他actor）。
+需要知道一件重要事：多个actor会存在并发。如果两个actor都能读同一份数据，其中一个更改了数据，另一个actor也必须知道数据发生了变化。这将导致数据竞争，并产生对锁的需求。只有确保这种情况永远不会发生，Pony才能真正的消除锁。
+还要牢记一点：单个actor中的代码总是顺序执行的。所以，在actor的内部对变量的访问不会产生数据竞争问题。
+可变引用权能（Mutable reference capabilities） 可变的引用权能类型有iso、trn和ref。用这些引用权能标记的数据是可以修改的，它们可以用来读写对象。
+ 如果一个actor有一个iso变量，那么 任何actor都不能读写这个变量的数据。这表示iso变量是程序中惟一可以读写自身数据的变量，它具有读写唯一性（read and write unique）。 如果一个actor有一个trn变量，自身actor可读不可写，其他actor不能读写。这表示trn变量是程序中惟一可以修改自身数据的变量，但是自身actor持有的其他变量可能可以从该对象读取数据。它具备修改唯一性（write unique）。 如果一个actor有一个ref变量，只有自身actor可以读写，其他actor不能读写。其他actor想要读写该变量，只能借助消息机制（调用此actor的行为）来进行。  为什么自身actor内部可以安全的修改？ 因为其他actor无法对其读写。不可变的引用权能(Immutable reference capabilities) 不可变的引用权能是val和box。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。
+ 如果一个actor有一个val变量，那么任何actor不能修改它。这表示它无法被修改。它的数据是全局不可变（globally immutable）的。 如果一个actor有一个box变量，那么其他actor不能修改她，但可以读取，而自身actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。这类对象是局部不可变（localy immutable）的。  为什么可以读取不能修改? 因为这些引用权能只会阻止其他actor的修改操作，但是不会阻止其他actor的读取操作。因为多个actor同时读取一个对象是安全的，所以这样做没问题。
+不透明的引用权能（Opaque reference capabilities） 不透明（opaque）的引用权能只有一种，那就是tag。tag变量对其他变量没有任何约束。它既不能用于从对象中读取数据，也不能用于从对象中写入数据。因此被称为 不透明（opaque） 。
+即便如此，它仍然是有用的：你可以用它做身份比较，也可以在它上面调用行为和方法，只需要一个tag接收器。
+为什么编译器不允许对tag进行读写？ 这是Pony的一种取舍，因为在在tag调用行为时，我们无法停止这一调佣操作。你可以想象一下这样的情况：如果我们一边用它来调用一些操行为，但是同时我们又其他actor对其修改，那就可能会触发数据竞争的情况。"/>
 
   </head>
 
@@ -318,7 +318,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              引用权能保证（Reference Capability Guarantees）
+              权能约束（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
@@ -333,7 +333,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              别名（Aliasing）
+              别名引用（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
@@ -630,7 +630,7 @@
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#拒绝访问what-is-denied"><code>拒绝访问</code>（What is denied）</a></li>
+    <li><a href="#哪些语法是被禁止的what-is-denied">哪些语法是被禁止的？（What is denied）</a></li>
     <li><a href="#可变引用权能mutable-reference-capabilities">可变引用权能（Mutable reference capabilities）</a></li>
     <li><a href="#不可变的引用权能immutable-reference-capabilities">不可变的引用权能(Immutable reference capabilities)</a></li>
     <li><a href="#不透明的引用权能opaque-reference-capabilities">不透明的引用权能（Opaque reference capabilities）</a></li>
@@ -651,55 +651,55 @@
                 
               引用权能（REFERENCE CAPABILITIES）
             </p>
-            <h1 class="f1 athelas mb1">引用权能保证（Reference Capability Guarantees）</h1>
+            <h1 class="f1 athelas mb1">权能约束（Reference Capability Guarantees）</h1>
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>因为类型是保证，所以讨论引用权能的保证是很有用的。</p>
+<p>因为类型系统的约束性，所以也需要了解下引用权能提供了哪些约束。</p>
 <!-- raw HTML omitted -->
-<h2 id="拒绝访问what-is-denied"><code>拒绝访问</code>（What is denied）</h2>
+<h2 id="哪些语法是被禁止的what-is-denied">哪些语法是被禁止的？（What is denied）</h2>
 <!-- raw HTML omitted -->
-<p>我们将讨论引用权能保证在什么情况下访问被拒绝。这里我们讨论的问题是：当你有一个具有一定引用权能的变量时，其他变量 <em>不能</em> 做什么?</p>
+<p>接下来我们将讨论在引用权能的守护下，编译器会阻止哪些非法操作。也就是说：当你定义了一个具有引用权能的变量时，其他变量 <em>不能</em> 对它做什么?</p>
 <!-- raw HTML omitted -->
-<p>我们需要区分包含有变量的actor和 <em>其他</em> actor。</p>
+<p>首先我们需要区分：<code>自身actor</code>（变量所在的actor）、<code>其他actor</code>（外部actor）和<code>任何actor</code>（表示所有actor，包括自身actor和其他actor）。</p>
 <!-- raw HTML omitted -->
-<p>这一点很重要，因为来自其他actor的数据读写可能同时发生。如果两个actor都能读取相同的数据，并且其中一个更改了数据，那么另一个actor的数据也会发生变化。这将导致数据竞争和对锁的需求。只有确保这种情况永远不会发生，Pony才能消除对锁的需求。</p>
+<p>需要知道一件重要事：多个actor会存在并发。如果两个actor都能读同一份数据，其中一个更改了数据，另一个actor也必须知道数据发生了变化。这将导致数据竞争，并产生对锁的需求。只有确保这种情况永远不会发生，Pony才能真正的消除锁。</p>
 <!-- raw HTML omitted -->
-<p>任何一个actor中的所有代码总是顺序执行。这意味着来自单个actor中的多个变量的数据访问不会受到数据竞争的影响。</p>
+<p>还要牢记一点：单个actor中的代码总是顺序执行的。所以，在actor的内部对变量的访问不会产生数据竞争问题。</p>
 <!-- raw HTML omitted -->
 <h2 id="可变引用权能mutable-reference-capabilities">可变引用权能（Mutable reference capabilities）</h2>
 <!-- raw HTML omitted -->
-<p>可变的引用权能有<code>iso</code>、<code>trn</code>和<code>ref</code>。用这些引用权能标记的数据是可修改的，它们可以用来读写对象。</p>
+<p><code>可变</code>的<code>引用权能</code>类型有<code>iso</code>、<code>trn</code>和<code>ref</code>。用这些引用权能标记的数据是可以修改的，它们可以用来读写对象。</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
-<li>如果一个actor有一个<code>iso</code>变量，那么 <strong>任何</strong> actor都不能读写这个对象。这表示<code>iso</code>变量是程序中惟一可以读写该对象的变量。<!-- raw HTML omitted --></li>
-<li>如果一个actor有一个<code>trn</code>变量，那么 <strong>任何</strong> actor都不能写入该对象，<em>其他</em> actor也不能读写该对象。这表示<code>trn</code>变量是程序中惟一可以写入该对象的变量，但是同一actor持有的其他变量可能可以从该对象读取数据。它是 <em>write unique</em> 。</li>
-<li>如果一个actor有一个<code>ref</code>变量，那么 <strong>其他</strong> actor都不能使用其他变量来读写这个对象。这意味着可以使用其他变量对对象进行读写操作，但只能从相同的actor中进行。</li>
+<li>如果一个actor有一个<code>iso</code>变量，那么 <code>任何actor</code>都<code>不能读写</code>这个变量的数据。这表示<code>iso</code>变量是程序中惟一可以读写自身数据的变量，它具有<code>读写唯一性（read and write unique）</code>。<!-- raw HTML omitted --></li>
+<li>如果一个actor有一个<code>trn</code>变量，<code>自身actor</code>可读不可写，<code>其他actor</code>不能读写。这表示<code>trn</code>变量是程序中惟一可以修改自身数据的变量，但是自身actor持有的其他变量可能可以从该对象读取数据。它具备<code>修改唯一性（write unique）</code>。</li>
+<li>如果一个actor有一个<code>ref</code>变量，只有<code>自身actor</code>可以读写，<code>其他actor</code>不能读写。其他actor想要读写该变量，只能借助消息机制（调用此actor的行为）来进行。</li>
 </ul>
 <!-- raw HTML omitted -->
-<p><strong>为什可以安全的修改？</strong> 因为 <strong>其他</strong> 的actor无法对其读写。<!-- raw HTML omitted --></p>
+<p><strong>为什么自身actor内部可以安全的修改？</strong> 因为<code>其他actor</code>无法对其读写。<!-- raw HTML omitted --></p>
 <!-- raw HTML omitted -->
 <h2 id="不可变的引用权能immutable-reference-capabilities">不可变的引用权能(Immutable reference capabilities)</h2>
 <!-- raw HTML omitted -->
-<p>不可改变的引用权能是<code>val</code>和<code>box</code>。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。</p>
+<p><code>不可变</code>的引用权能是<code>val</code>和<code>box</code>。这些引用权能是不可变的，它们可以用于从对象中读取数据，而不是写入数据。</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <ul>
-<li>如果一个actor有一个<code>val</code>变量，那么 <strong>任何</strong> actor不能修改。这表示它 <em>无法被修改</em> 。它是永恒不变。</li>
-<li>如果一个actor有一个<code>box</code>变量，那么 <strong>其他</strong> actors就不能修改。但时其他actor可以读取，而同一actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。对象是_localy mmutable_。</li>
+<li>如果一个actor有一个<code>val</code>变量，那么<code>任何actor</code>不能修改它。这表示它<code>无法被修改</code>。它的数据是<code>全局不可变（globally immutable）</code>的。</li>
+<li>如果一个actor有一个<code>box</code>变量，那么<code>其他actor</code>不能修改她，但可以读取，而自身actor中的其他变量才可以修改(尽管不是同时写入)。无论哪种情况，我们读取变量都是安全的。这类对象是<code>局部不可变（localy immutable）</code>的。</li>
 </ul>
 <!-- raw HTML omitted -->
-<p><strong>为什么可以读取不能修改?</strong> 因为这些引用权能只会阻止 <strong>其他</strong> actor修改对象。这表示不能保证 <em>其他</em> actor不会从对象中读取数据，这意味着写入它是不安全的。但是，多个actor同时读取一个对象是安全的，所以我们可以这样做。</p>
+<p><strong>为什么可以读取不能修改?</strong> 因为这些引用权能只会阻止<code>其他actor</code>的修改操作，但是不会阻止<code>其他actor</code>的读取操作。因为多个actor同时读取一个对象是安全的，所以这样做没问题。</p>
 <!-- raw HTML omitted -->
 <h2 id="不透明的引用权能opaque-reference-capabilities">不透明的引用权能（Opaque reference capabilities）</h2>
 <!-- raw HTML omitted -->
-<p>只有一种模糊的引用权能，那就是<code>tag</code>。<code>tag</code>变量对其他变量没有任何保证。因此，它既不能用于从对象中读取数据，也不能用于从对象中写入数据;因此被称为 <strong>不透明（opaque）</strong> 。</p>
+<p><code>不透明（opaque）</code>的引用权能只有一种，那就是<code>tag</code>。<code>tag</code>变量对其他变量没有任何约束。它既不能用于从对象中读取数据，也不能用于从对象中写入数据。因此被称为 <strong>不透明（opaque）</strong> 。</p>
 <!-- raw HTML omitted -->
-<p>它仍然是有用的:你可以用它做身份比较，你可以在它上面调用行为，你可以在它上面调用功能，只需要一个<code>tag</code>接收器。</p>
+<p>即便如此，它仍然是有用的：你可以用它做身份比较，也可以在它上面调用行为和方法，只需要一个<code>tag</code>接收器。</p>
 <!-- raw HTML omitted -->
-<p>为什么<code>tag</code>不能用来读或写?因为<code>tag</code>并不会阻止其他的角色写入对象。这意味着，如果我们试图读取，我们不能保证没有其他actor写入对象，所以我们可能会得到竞态条件。</p>
+<p><strong>为什么编译器不允许对<code>tag</code>进行读写？</strong> 这是Pony的一种取舍，因为在在<code>tag</code>调用行为时，我们无法停止这一调佣操作。你可以想象一下这样的情况：如果我们一边用它来调用一些操行为，但是同时我们又其他actor对其修改，那就可能会触发数据竞争的情况。</p>
 </main>
         </div>
         <div id="search-results" class="center mw7 dn"></div>

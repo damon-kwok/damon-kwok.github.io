@@ -47,28 +47,28 @@
 
     <meta property="og:title" content="权能合并（Combining Capabilities）" />
 <meta property="og:description" content="当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
-这是因为对其字段所做的所有保证都必须对其字段进行维护。
+这是因为对其字段所做的所有约束性都必须对其字段进行维护。
 观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
 下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
     ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/combining-capabilities.html" />
-<meta property="article:modified_time" content="2020-04-18T18:10:17+08:00" />
+<meta property="article:modified_time" content="2020-04-20T17:26:26+08:00" />
 <meta itemprop="name" content="权能合并（Combining Capabilities）">
 <meta itemprop="description" content="当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
-这是因为对其字段所做的所有保证都必须对其字段进行维护。
+这是因为对其字段所做的所有约束性都必须对其字段进行维护。
 观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
 下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
     ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:">
-<meta itemprop="dateModified" content="2020-04-18T18:10:17&#43;08:00" />
-<meta itemprop="wordCount" content="198">
+<meta itemprop="dateModified" content="2020-04-20T17:26:26&#43;08:00" />
+<meta itemprop="wordCount" content="204">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="权能合并（Combining Capabilities）"/>
 <meta name="twitter:description" content="当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。
-这是因为对其字段所做的所有保证都必须对其字段进行维护。
+这是因为对其字段所做的所有约束性都必须对其字段进行维护。
 观点适应（Viewpoint adaptation） 将原始权能和字段权能相结合的过程称为 视角适应 。也就是说，origin 有一个 viewpoint ，并且只能从那个 viewpoint 中访问它的字段。
 下表展示了不同权能的 字段 看起来是如何与每个权能的 源 相匹配的。
     ▷ iso field trn field ref field val field box field tag field     iso origin iso tag tag val tag tag   trn origin iso trn box val box tag   ref origin iso trn ref val box tag   val origin val val val val val tag   box origin tag box box val box tag   tag origin n/a n/a n/a n/a n/a n/a     例如，如果你有一个&rsquo; trn &lsquo;原点，你读了一个&rsquo; ref &lsquo;字段，你会得到一个&rsquo; box &lsquo;结果:"/>
@@ -300,7 +300,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              引用权能保证（Reference Capability Guarantees）
+              权能约束（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
@@ -315,7 +315,7 @@
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              别名（Aliasing）
+              别名引用（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
@@ -646,7 +646,7 @@
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
 <p>当一个对象的一个字段被读取时，它的引用权能既取决于字段的引用权能，也取决于_origin__的引用权能，也就是说，从该字段被读取的对象。</p>
 <!-- raw HTML omitted -->
-<p>这是因为对其字段所做的所有保证都必须对其字段进行维护。</p>
+<p>这是因为对其字段所做的所有约束性都必须对其字段进行维护。</p>
 <!-- raw HTML omitted -->
 <h1 id="观点适应viewpoint-adaptation">观点适应（Viewpoint adaptation）</h1>
 <!-- raw HTML omitted -->
@@ -740,27 +740,27 @@ class Bar
 <!-- raw HTML omitted -->
 <h3 id="读取iso变量">读取<code>iso</code>变量</h3>
 <!-- raw HTML omitted -->
-<p>任何通过“iso”来源读取的内容都必须保持来源的隔离保证。要记住的关键一点是，“iso”可以发送给另一个参与者，它也可以成为任何其他引用权能。因此，当我们读取一个字段时，我们需要得到一个结果，这个结果永远不会打破源所做的隔离保证，即_read和write uniqueness_。</p>
+<p>任何通过<code>iso</code>来源读取的内容都必须保持来源的隔离约束。要记住的关键一点是，<code>iso</code>可以发送给另一个actor，它也可以成为任何其他引用权能。因此，当我们读取一个字段时，我们需要得到一个结果，这个结果永远不会打破源所做的隔离约束性，即 <em>read和write uniqueness</em> 。</p>
 <!-- raw HTML omitted -->
-<p>“iso”字段与“iso”源字段具有相同的保证，所以读起来没有问题。“val”字段是_global immutable_，这意味着它总是可以读取，不管它的来源是什么(好吧，除了“标签”)。</p>
+<p><code>iso</code>字段与<code>iso</code>源字段具有相同的约束，所以读取操作没有问题。<code>val</code>字段是 <em>全局不可变的（global immutable）</em> ，这意味着它总是可以读取，不管它的来源是什么(好吧，除了<code>tag</code>)。</p>
 <!-- raw HTML omitted -->
 <p>然而，其他一切都可能打破我们的隔离保障。这就是为什么其他引用权能被视为“标记”:它是唯一一种既不可读又不可写的类型。</p>
 <!-- raw HTML omitted -->
 <h3 id="读取trn变量">读取<code>trn</code>变量</h3>
 <!-- raw HTML omitted -->
-<p>这就像“iso”，但有一个较弱的保证(<em>write uniqueness_而不是_read和write uniqueness</em>)。这是一个很大的不同，因为现在我们可以返回一些可读的东西，当我们执行我们的保证。</p>
+<p>这就像<code>iso</code>，但有一个较弱的约束 (<em>write uniqueness</em> 而不是 <em>read和write uniqueness</em> )。这是一个很大的不同，因为现在我们可以返回一些可读的东西，当我们执行我们的约束。</p>
 <!-- raw HTML omitted -->
-<p>“iso”字段比“trn”字段提供了更强的保证，而“trn”字段也提供了相同的保证，所以可以阅读它们。一个“val”字段是全局不可变的，所以这也是可以的。“box”字段是可读的，我们只保证_write的独特性，所以这也是可以的。</p>
+<p><code>iso</code>字段比<code>trn</code>字段提供了更强的约束性，而<code>trn</code>字段也提供了相同的约束，所以可以读取它们。一个<code>val</code>字段是全局不可变的，所以这也是可以的。<code>box</code>字段是可读的，我们只约束 <em>write的独特性</em> ，所以这也是可以的。</p>
 <!-- raw HTML omitted -->
 <p>不过，“ref”字段允许写入。因此我们返回一个“box”。</p>
 <!-- raw HTML omitted -->
 <h3 id="读取ref变量">读取<code>ref</code>变量</h3>
 <!-- raw HTML omitted -->
-<p>“ref”源根本不修改它的字段。这是因为&rsquo; ref &lsquo;源不做任何与它的字段不兼容的保证。</p>
+<p><code>ref</code>源根本不修改它的字段。这是因为<code>ref</code>源不做任何与它的字段不兼容的约束保证。</p>
 <!-- raw HTML omitted -->
 <h3 id="读取val变量">读取<code>val</code>变量</h3>
 <!-- raw HTML omitted -->
-<p>“val”源是深度的、全局不可变的，所以它的所有字段也是“val”。唯一的例外是&rsquo; tag &lsquo;字段。因为我们不能读它，我们也不能保证没有人可以写它，所以它保持'标签&rsquo;。</p>
+<p><code>val</code>具有深层的<code>全局不可变</code>性，所以它的所有字段也是<code>val</code>。唯一的例外是<code>tag</code>字段。因为我们不能读取它，我们也不能保证没有人可以修改它，所以它保持<code>tag</code>。</p>
 <!-- raw HTML omitted -->
 <h3 id="读取box变量">读取<code>box</code>变量</h3>
 <!-- raw HTML omitted -->
@@ -768,7 +768,7 @@ class Bar
 <!-- raw HTML omitted -->
 <p>当我们读取一个字段时，我们需要返回一个与该字段兼容但也是局部不可变的引用权能。</p>
 <!-- raw HTML omitted -->
-<p>“iso”字段作为“标记”返回，因为没有本地不可变引用权能可以维护它的隔离保证。“val”字段作为“val”返回，因为全局不变性比局部不变性更能保证全局不变性。一个“box”字段与它的起源具有相同的局部不变性保证，所以这也是可以的。</p>
+<p><code>iso</code>字段作为<code>tag</code>返回，因为没有本地不可变引用权能可以维护它的隔离性约束。<code>val</code>字段作为<code>val</code>返回，因为<code>全局不可变</code>比<code>局部可不变</code>有更强的不可变性约束。一个<code>box</code>字段与它的起源具有相同的<code>局部不可变</code>性约束，所以这也是可以的。</p>
 <!-- raw HTML omitted -->
 <p>一个“box”变量是局部不可变的。这意味着它可能通过其他变量(&rsquo; trn &lsquo;或&rsquo; ref &lsquo;)发生突变，但也有可能我们的&rsquo; box &lsquo;变量是某个&rsquo; val &lsquo;变量的别名。</p>
 <!-- raw HTML omitted -->
@@ -778,7 +778,7 @@ class Bar
 <!-- raw HTML omitted -->
 <h2 id="为对象的字段赋值">为对象的字段赋值</h2>
 <!-- raw HTML omitted -->
-<p>与读取字段一样，字段的赋值取决于存储的对象使用的<code>引用权能</code>和包含该字段的对象所属类型的<code>引用权能</code>类型。存储的对象的引用权能不能违反源对象的引用权能所作的保证。例如，val对象引用可以存储在iso源文件中。这是因为val引用权能保证不存在任何可能违反iso权能保证的对象别名。</p>
+<p>与读取字段一样，字段的赋值取决于存储的对象使用的<code>引用权能</code>和包含该字段的对象所属类型的<code>引用权能</code>类型。存储的对象的引用权能不能违反源对象的引用权能提供的约束。例如，val对象引用可以存储在iso源文件中。这是因为val引用权能提供约束性，不允许出现违反iso权能约束的对象别名。</p>
 <!-- raw HTML omitted -->
 <p>下面是上面表格的简化版本，它显示了哪些引用权能可以存储在原始对象的字段中。</p>
 <hr>

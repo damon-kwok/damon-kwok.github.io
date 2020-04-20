@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Pony 教程  | 别名（Aliasing）</title>
+    <title>Pony 教程  | 别名引用（Aliasing）</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -45,44 +45,44 @@
 
     
 
-    <meta property="og:title" content="别名（Aliasing）" />
-<meta property="og:description" content="__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
-在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
-在Pony中，这适用于一些引用权能，但不是全部。
-别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+    <meta property="og:title" content="别名引用（Aliasing）" />
+<meta property="og:description" content="别名引用（Aliasing） 是指在一个actor内部对同一对象会有多个引用。可能是变量，也可能是字段。
+在其他编程语言中，别名引用很常见。只需要把一个变量赋值给另一个变量，就得到了一个别名。只要被赋值的变量与原始变量具有相同的类型(或某些超类型)，操作就没问题。
+在Pony中，这种操作只适用于一些引用权能，不是所有引用权能都支持这么做。
+别名引用和引用约束（Aliasing and deny guarantees） 下面示例引用操作被编译器阻止的原因是iso引用权能的读写唯一性约束，拒绝了其他iso变量引用自身数据。也就是说，只能有一个iso变量指向任何给定的对象数据。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个iso权能类型的Wombat对象。为a创建一个b的别名，将破坏引用权能约束，因此编译器将阻止我们。
 我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
-fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
-fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为trn表示任何其他变量都不能被任何actor用来写入该对象，所以我们需要一些不允许写入但也不阻止trn变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，引用权能机制约束别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
 什么算假名?（What counts as making an alias?） 有三件事可以算作别名:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://damon-kwok.github.io/pony-tutorial/reference-capabilities/aliasing.html" />
-<meta property="article:modified_time" content="2020-04-16T17:49:19+08:00" />
-<meta itemprop="name" content="别名（Aliasing）">
-<meta itemprop="description" content="__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
-在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
-在Pony中，这适用于一些引用权能，但不是全部。
-别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+<meta property="article:modified_time" content="2020-04-20T17:26:26+08:00" />
+<meta itemprop="name" content="别名引用（Aliasing）">
+<meta itemprop="description" content="别名引用（Aliasing） 是指在一个actor内部对同一对象会有多个引用。可能是变量，也可能是字段。
+在其他编程语言中，别名引用很常见。只需要把一个变量赋值给另一个变量，就得到了一个别名。只要被赋值的变量与原始变量具有相同的类型(或某些超类型)，操作就没问题。
+在Pony中，这种操作只适用于一些引用权能，不是所有引用权能都支持这么做。
+别名引用和引用约束（Aliasing and deny guarantees） 下面示例引用操作被编译器阻止的原因是iso引用权能的读写唯一性约束，拒绝了其他iso变量引用自身数据。也就是说，只能有一个iso变量指向任何给定的对象数据。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个iso权能类型的Wombat对象。为a创建一个b的别名，将破坏引用权能约束，因此编译器将阻止我们。
 我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
-fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
-fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为trn表示任何其他变量都不能被任何actor用来写入该对象，所以我们需要一些不允许写入但也不阻止trn变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，引用权能机制约束别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
 什么算假名?（What counts as making an alias?） 有三件事可以算作别名:">
-<meta itemprop="dateModified" content="2020-04-16T17:49:19&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-20T17:26:26&#43;08:00" />
 <meta itemprop="wordCount" content="106">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="别名（Aliasing）"/>
-<meta name="twitter:description" content="__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。
-在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。
-在Pony中，这适用于一些引用权能，但不是全部。
-别名和拒绝保证（Aliasing and deny guarantees） 这样做的原因是iso引用权能拒绝了指向相同对象的其他iso变量。也就是说，你只能有一个iso变量指向任何给定的对象。trn也是一样。
-fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将a赋值给b来别名a，我们将破坏引用权能保证，因此编译器将阻止我们。
+<meta name="twitter:title" content="别名引用（Aliasing）"/>
+<meta name="twitter:description" content="别名引用（Aliasing） 是指在一个actor内部对同一对象会有多个引用。可能是变量，也可能是字段。
+在其他编程语言中，别名引用很常见。只需要把一个变量赋值给另一个变量，就得到了一个别名。只要被赋值的变量与原始变量具有相同的类型(或某些超类型)，操作就没问题。
+在Pony中，这种操作只适用于一些引用权能，不是所有引用权能都支持这么做。
+别名引用和引用约束（Aliasing and deny guarantees） 下面示例引用操作被编译器阻止的原因是iso引用权能的读写唯一性约束，拒绝了其他iso变量引用自身数据。也就是说，只能有一个iso变量指向任何给定的对象数据。trn也是一样。
+fun test(a: Wombat iso) =&gt; var b: Wombat iso = a // Not allowed! 这里我们有一些函数传递给一个iso权能类型的Wombat对象。为a创建一个b的别名，将破坏引用权能约束，因此编译器将阻止我们。
 我可以将iso别名为什么?由于iso表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的iso创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:
-fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
-fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，保证要求别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
+fun test(a: Wombat iso) =&gt; var b: Wombat tag = a // Allowed! 那混叠trn呢?因为trn表示任何其他变量都不能被任何actor用来写入该对象，所以我们需要一些不允许写入但也不阻止trn变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:box。所以我们可以这样做，编译器会很高兴:
+fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他东西呢?对于iso和trn，引用权能机制约束别名必须放弃某些权能(iso的读和写，trn的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。
 什么算假名?（What counts as making an alias?） 有三件事可以算作别名:"/>
 
   </head>
@@ -312,7 +312,7 @@ fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他�
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/guarantees.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 black ">
-              引用权能保证（Reference Capability Guarantees）
+              权能约束（Reference Capability Guarantees）
             </a>
           </li>
           <li class="f6 fw4">
@@ -327,7 +327,7 @@ fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他�
           </li>
           <li class="f6 fw4">
             <a href="/pony-tutorial/reference-capabilities/aliasing.html" class="db link hover-bg-gray hover-white pl3 pr2 pv2 primary-color ">
-              别名（Aliasing）
+              别名引用（Aliasing）
             </a>
           </li>
           <li class="f6 fw4">
@@ -624,7 +624,7 @@ fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他�
     <p class="f5 b mb3">What's in this document</p>
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#别名和拒绝保证aliasing-and-deny-guarantees">别名和拒绝保证（Aliasing and deny guarantees）</a></li>
+    <li><a href="#别名引用和引用约束aliasing-and-deny-guarantees">别名引用和引用约束（Aliasing and deny guarantees）</a></li>
     <li><a href="#什么算假名what-counts-as-making-an-alias">什么算假名?（What counts as making an alias?）</a></li>
     <li><a href="#短暂的类ephemeral-types">短暂的类（Ephemeral types）</a></li>
     <li><a href="#类型别名alias-types">类型别名（Alias types）</a></li>
@@ -645,33 +645,33 @@ fun test(a: Wombat trn) =&gt; var b: Wombat box = a // Allowed! 那混叠其他�
                 
               引用权能（REFERENCE CAPABILITIES）
             </p>
-            <h1 class="f1 athelas mb1">别名（Aliasing）</h1>
+            <h1 class="f1 athelas mb1">别名引用（Aliasing）</h1>
           </header>
 
           <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l"><!-- raw HTML omitted -->
-<p>__别名（Aliasing）__意味着在同一行为人内对同一对象有多个引用。这可以是变量或字段的情况。</p>
+<p><strong>别名引用（Aliasing）</strong> 是指在一个actor内部对同一对象会有多个引用。可能是变量，也可能是字段。</p>
 <!-- raw HTML omitted -->
-<p>在大多数编程语言中，别名非常简单。你只需要把一个变量赋值给另一个变量，就得到了一个别名。赋值给的变量与赋值给它的变量具有相同的类型(或某些超类型)，一切正常。</p>
+<p>在其他编程语言中，别名引用很常见。只需要把一个变量赋值给另一个变量，就得到了一个别名。只要被赋值的变量与原始变量具有相同的类型(或某些超类型)，操作就没问题。</p>
 <!-- raw HTML omitted -->
-<p>在Pony中，这适用于一些引用权能，但不是全部。</p>
+<p>在Pony中，这种操作只适用于一些引用权能，不是所有引用权能都支持这么做。</p>
 <!-- raw HTML omitted -->
-<h2 id="别名和拒绝保证aliasing-and-deny-guarantees">别名和拒绝保证（Aliasing and deny guarantees）</h2>
+<h2 id="别名引用和引用约束aliasing-and-deny-guarantees">别名引用和引用约束（Aliasing and deny guarantees）</h2>
 <!-- raw HTML omitted -->
-<p>这样做的原因是<code>iso</code>引用权能拒绝了指向相同对象的其他<code>iso</code>变量。也就是说，你只能有一个<code>iso</code>变量指向任何给定的对象。trn也是一样。</p>
+<p>下面示例引用操作被编译器阻止的原因是<code>iso</code>引用权能的读写唯一性约束，拒绝了其他<code>iso</code>变量引用自身数据。也就是说，只能有一个<code>iso</code>变量指向任何给定的对象数据。<code>trn</code>也是一样。</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso) =&gt;
   var b: Wombat iso = a // Not allowed!
 </code></pre><!-- raw HTML omitted -->
-<p>这里我们有一些函数传递给一个孤立的袋熊。如果我们试图通过将<code>a</code>赋值给<code>b</code>来别名<code>a</code>，我们将破坏引用权能保证，因此编译器将阻止我们。</p>
+<p>这里我们有一些函数传递给一个<code>iso</code>权能类型的Wombat对象。为<code>a</code>创建一个<code>b</code>的别名，将破坏引用权能约束，因此编译器将阻止我们。</p>
 <!-- raw HTML omitted -->
 <p>我可以将<code>iso</code>别名为什么?由于<code>iso</code>表示任何其他变量都不能被_any_ actor用来读写该对象，所以我们只能为既不能读也不能写的<code>iso</code>创建别名。幸运的是，我们有一个引用权能:&rsquo; tag &lsquo;。所以我们可以这样做，编译器会很高兴:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat iso) =&gt;
   var b: Wombat tag = a // Allowed!
 </code></pre><!-- raw HTML omitted -->
-<p>那混叠<code>trn</code>呢?因为‘trn’表示任何其他变量都不能被_any_ actor用来写入该对象，所以我们需要一些不允许写入但也不阻止‘trn’变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:<code>box</code>。所以我们可以这样做，编译器会很高兴:</p>
+<p>那混叠<code>trn</code>呢?因为<code>trn</code>表示任何其他变量都不能被<code>任何actor</code>用来写入该对象，所以我们需要一些不允许写入但也不阻止<code>trn</code>变量写入的东西。幸运的是，我们还有一个引用权能可以做到这一点:<code>box</code>。所以我们可以这样做，编译器会很高兴:</p>
 <pre><code class="language-pony" data-lang="pony">fun test(a: Wombat trn) =&gt;
   var b: Wombat box = a // Allowed!
 </code></pre><!-- raw HTML omitted -->
-<p>那混叠其他东西呢?对于<code>iso</code>和<code>trn</code>，保证要求别名必须放弃某些权能(<code>iso</code>的读和写，<code>trn</code>的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。</p>
+<p>那混叠其他东西呢?对于<code>iso</code>和<code>trn</code>，引用权能机制<code>约束</code>别名必须放弃某些权能(<code>iso</code>的读和写，<code>trn</code>的写)。对于其他功能(&rsquo; ref &lsquo;、&rsquo; val &lsquo;、&rsquo; box &lsquo;和&rsquo; tag &lsquo;)，别名允许相同的操作，所以这样的引用可以作为它自己的别名。</p>
 <!-- raw HTML omitted -->
 <h2 id="什么算假名what-counts-as-making-an-alias">什么算假名?（What counts as making an alias?）</h2>
 <!-- raw HTML omitted -->
